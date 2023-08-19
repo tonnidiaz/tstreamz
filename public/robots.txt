@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Disallow: /test
+Disallow: /test/*
+Disallow: /admin/*
+Disallow: /site/*
+
+# Host
+Host: https://www.tunedstreamz.cc
+
+# Sitemaps
+Sitemap: https://www.tunedstreamz.cc/sitemap.xml

@@ -1,0 +1,49 @@
+@import "./vars";
+.auth-form {
+    width: 500px;
+    background: $color-blue-2;
+    padding: 20px;
+    box-shadow: 0px 3px 5px rgb(14, 14, 14);
+    border-radius: 4px;
+}
+
+@media screen and (max-width: 500px) {
+    .auth-form {
+        width: calc(100% - 20px) !important;
+    }
+}
+
+.pwd-val {
+    ul {
+        padding-left: 3vw;
+    }
+}
+
+.form-container {
+    margin-top: 20vh;
+}
+
+@media screen and (max-width: 460px) {
+    .form {
+        width: 100% !important;
+    }
+}
+
+.form {
+    width: 450px;
+    margin: 5vh auto;
+    // padding: 0;
+    .row {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    form {
+        label {
+            margin: 5px;
+        }
+    }
+}
+
+input:disabled {
+    opacity: .7 !important;
+}
