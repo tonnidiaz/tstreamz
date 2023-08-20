@@ -1,5 +1,5 @@
 <template>
-  <div class="row no-wrap ai-center">
+  <div class="_row no-wrap ai-center">
     <div :key="i" v-for="(it, i) in movies" :title="isShow ? it.name : it.title" class="fmc fshr-0 p-0 oh">
       <div class="movie-card fixed h-100p bg-card oh">
         <div class="w-100p h-130 pos-rel">
@@ -7,7 +7,7 @@
             :style="`background-size: cover`"
             class="br-4 pos-rel w-100p h-100p"
           >
-            <img alt="Movie cover" class='br-4' loading="lazy" :src="imgUrl + it.poster_path" />
+            <img alt="Banner" class='br-4' loading="lazy" :src="imgUrl + it.poster_path" />
           </div>
           <div class="info dflex jc-center pos-abs w-100p h-100p">
             <NuxtLink

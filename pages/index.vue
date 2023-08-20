@@ -4,7 +4,7 @@
         <div>
             <div>
                 <div class="body">
-                    <div style="" class="">
+                    <div class="mt-10">
                         <h1 class="t-c fs-24 fw-7">
                             <b>
                                 Tuned<span class="color-orange"

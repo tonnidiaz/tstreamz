@@ -11,8 +11,11 @@
                         aria-controls="navbarNav"
                         aria-expanded="false"
                         @click="openSideMenu"
+                        style="position: relative; left: -10px"
                     >
-                        <span class="navbar-toggler-icon"></span>
+                        <span class="fs-20">
+                            <i class="fa fa-bars"></i>
+                        </span>
                     </button>
                 </div>
                 <a class="navbar-brand" href="/"

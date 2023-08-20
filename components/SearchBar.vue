@@ -3,22 +3,22 @@
     <div class="pos-rel">
       <div class="sch br-4 rls form pos-rel">
         <button
-          @click="close" 
+         @click="close"
           title="Close"
-          class="btn-none fs-18 top-right p-2"
+          class="btn-none fs-18 top-right"
         >
-          <i class="fal fa-times"></i>
+          <i class="far fa-times-circle"></i>
         </button> 
         <form ref="sform" @submit="handleSubmit" class="search-form" action="/search">
-          <div class="form-group d-flex jc-center">
+          <div class="form-group d-flex jc-center mt-5">
             <input
               name="search"
               type="search"
-              class="form-control search"
+              class="form-control search pd-10 bg-body"
               placeholder="Enter movie or tv show title"
             />
             <button type="submit" class="btn-none search-icon">
-              <i class="fal fa-search"></i>
+              <i class="fas fa-search"></i>
             </button>
             <div class="search-results card p-4">
         

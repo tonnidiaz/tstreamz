@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="height: 5px;" class="the-top"></div>
-        <div class="mt-3">
+        <div class="mt-13">
     <TMeta
       v-if="movie"
       :url="root + `/watch/m/${movie?.id}`"
@@ -30,7 +30,7 @@
           ></iframe>
         </div>
 
-        <div class="mt-4 d-flex-md sandes p-3">
+        <div class="mt-14 d-flex-md sandes p-3">
           <div style="flex-shrink: 0" class="m-auto w-225 h-280 pos-rel">
             <img
             alt="Movie  banner"
@@ -153,7 +153,7 @@
           <!--AD-->
           <TerraBanner />
         </div>
-        <section class="mt-4">
+        <section class="mt-10">
           <h3 class="he">Similar Movies</h3>
           <div class="mt-3 d-flex os">
             <FixedMovieCard
@@ -166,7 +166,6 @@
             </div>
           </div>
         </section>
-        <button @click="scrollToTheTop">Scroll</button>
         <DillaBanner/>
       </div>
 
@@ -202,7 +201,7 @@ const meta = ref<any>(null),
 
 const embedUrls = (i: number = 0) =>{
     const movieId =movie.value?.id;
-    return false ? [
+    return true ? [
         `https://multiembed.mov/?video_id=${movieId}&tmdb=1`,
         `https://www.2embed.cc/embed/${movieId}`
     ][i] : ""
@@ -248,5 +247,6 @@ onBeforeMount(()=>{
       e.preventDefault();
     }
 
+    //api.123movies.cc
   
 </script>

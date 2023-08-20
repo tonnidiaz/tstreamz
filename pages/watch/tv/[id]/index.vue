@@ -26,7 +26,7 @@
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
 
-                <div class="mt-4 d-flex-md sandes p-3">
+                <div class="mt-14 d-flex-md sandes p-3">
                     <div
                         class="m-auto w-250 pos-rel h-280"
                         style="flex-shrink: 0"
@@ -54,7 +54,7 @@
                             />
                         </span>
                     </div>
-                    <div class="movie-info mt-4">
+                    <div class="movie-info mt-14">
                         <h1>{{ tv?.name }}</h1>
                         <div class="mt-2">
                             <div class="d-flex ai-center">
@@ -68,7 +68,7 @@
                                 <WatchlistBtn :item="tv" :isShow="true" />
                                 <!--Watchlist button-->
                             </div>
-                            <p class="plot mt-3">
+                            <p class="plot mt-13">
                                 {{ tv?.overview }}
                             </p>
                         </div>
@@ -147,10 +147,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="mt-3 mb-3">
+                <div class="mt-13 mb-3">
                     <DillaBanner />
                 </div>
-                <div class="mt-3 sandes p-2 row mb-3" style="margin: 0">
+                <div class="mt-13 sandes p-2 row mb-3" style="margin: 0">
                     <div v-if="epsReady">
                         <div v-if="currEp">
                             <h5>
@@ -191,7 +191,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-3 sandes row mb-3" style="margin: 0">
+                <div class="mt-13 sandes row mb-3" style="margin: 0">
                     <div class="col-md-3 p-4">
                         <h4>Seasons</h4>
 
@@ -232,12 +232,12 @@
                     </div>
                 </div>
 
-                <div class="mt-4">
+                <div class="mt-14">
                     <TerraBanner />
                 </div>
-                <div class="mt-4">
+                <div class="mt-14">
                     <h3 class="he">Similar Shows</h3>
-                    <div style="padding-left: 15px" class="mt-3 os d-flex">
+                    <div style="padding-left: 15px" class="mt-13 os d-flex">
                         <FixedMovieCard
                             :movies="meta.similar"
                             isShow="true"
