@@ -30,6 +30,7 @@
                         width="100%"
                         height="100%"
                         allowFullScreen
+                        frameborder="0"
                         :src="
                             'https://www.youtube.com/embed/' +
                             appStore.trailerId

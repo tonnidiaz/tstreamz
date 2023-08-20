@@ -142,15 +142,13 @@ body,
     &::-webkit-scrollbar-thumb {
         display: none; 
     }
-    background-color: rgb(10,
-    10,
-    10) !important;
+    background-color: $color-body !important;
     color: $color-white-1 !important;
     input,
     textarea {
         background-color: $color-black !important;
         color: $color-blue !important;
-        border: 2px solid $color-blue-2 !important;
+        border: 2px solid $color-card !important;
     }
     * {
         font-family: Poppins, "Arial";
@@ -180,7 +178,7 @@ body,
     width: $sidenav-w; 
     height: 100vh;
     position: relative;
-    background-color: $color-card;//$color-blue-2; //rgb(6, 6, 6);
+    background-color: $color-card;//$color-card; //rgb(6, 6, 6);
     
     padding: 10px;
     .nav {
@@ -257,14 +255,30 @@ header {
         background-color: $color-card;
     }
 }
+.title-cont{
+    height: 40;
+    width: 50vw;
+    padding: 5px;
+    text-align: center;
+    background-color: $color-body;
+    border-top: 4px solid $color-card;
+    border-left: 4px solid $color-card;
+    border-right: 4px solid $color-card;
+    //transform: skewX(20deg);
+    transform: perspective(100px) rotateX(20deg);
+    -webkit-transform: perspective(100px) rotateX(20deg);
+    margin: 0 auto;
+
+}
 .video-frame {
     height: 60vh;
-    margin-top: 40px;
-    background-color: $color-blue-2;
-    //border: 4px solid $color-orange;
-    box-shadow: 0 1px 5px $color-blue-2;
+    margin-top: 0px;
+    background-color: $color-card;
+    box-shadow: 0 1px 5px $color-card;
+
+    
     iframe {
-        background-color: $color-blue-2;
+        background-color: $color-card;
         //width: 70%;
         padding: 5px;
         height: 100%;
@@ -485,7 +499,7 @@ ul {
 }
 
 .sandes {
-    background-color: $color-blue-2 //#1e1e1e;
+    background-color: $color-card //#1e1e1e;
 }
 
 a,
@@ -634,7 +648,7 @@ a * {
     z-index: 999999;
     .sch {
         box-shadow: 0 1px 5px #000000;
-        background-color: $color-blue-2;
+        background-color: $color-card;
         padding: 30px 0px 30px 30px !important;
     }
     display: none;
@@ -725,10 +739,10 @@ a * {
     // /padding: 1vw;
     input {
         &:focus {
-            background-color: $color-blue-2 !important;
+            background-color: $color-card !important;
         }
         &:active {
-            background-color: $color-blue-2 !important;
+            background-color: $color-card !important;
         }
         border-radius: 5px;
         padding: 7px;
@@ -769,7 +783,7 @@ input::placeholder {
 }
 
 .bg-blue-2 {
-    background-color: $color-blue-2 !important;
+    background-color: $color-card !important;
 }
 
 .bg-card {
@@ -785,7 +799,7 @@ input::placeholder {
 }
 
 footer {
-    background-color: $color-blue-2;
+    background-color: $color-card;
 }
 
 span {
@@ -901,7 +915,7 @@ $sidemanu-w: 50vw;
 .sidemenu {
     min-height: 200px;
     width: 100vw;
-    background-color: $color-blue-2;
+    background-color: $color-card;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -971,7 +985,7 @@ $sidemanu-w: 50vw;
     }
     position: absolute;
     min-height: 20px;
-    background-color: $color-blue-2;
+    background-color: $color-card;
     right: 0;
     top: 30px;
     border-radius: 2px;
@@ -1150,16 +1164,16 @@ $sidemanu-w: 50vw;
         position: absolute;
         top: -18px;
         right: -18px;
-        color: white;
+        color: $color-white-2;
     }
     .trailer {
-        width: 400px;
-        height: 400px;
-        box-shadow: 0 1px 5px $color-blue-2;
+        width: 560px;
+        height: 300px;
+        box-shadow: 0 1px 5px $color-card;
     }
 }
 
-@media screen and (max-width: 410px) {
+@media screen and (max-width: 570px) {
     .trailer {
         width: calc(100% - 10px) !important;
         height: 40% !important;
@@ -1179,7 +1193,7 @@ $sidemanu-w: 50vw;
     top: 0;
     position: fixed;
     z-index: 99999999999;
-    background-color: $color-blue-2;
+    background-color: $color-card;
     .child {
         width: 100%;
         height: 100%;
@@ -1195,7 +1209,7 @@ $sidemanu-w: 50vw;
     max-width: 900px;
     * {
         margin: 0 auto;
-        //background-color: $color-blue-2 !important;
+        //background-color: $color-card !important;
         color: $color-blue !important;
     }
 }

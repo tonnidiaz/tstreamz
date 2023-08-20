@@ -61,4 +61,16 @@ const getMeta = async (id, tv) =>{
 const rand = (min,max) =>{
     return Math.floor(Math.random() * max) + min;
 }
+
+export const getTrailer = async (id, tv = false) => {
+    const m = tv ? "tv" : "movie";
+    
+    const url = tmdbUrl + `${m}/${id}/videos?api_key=${tapiKey}`;
+    const { data } = await axios.get(url);
+  
+    let d = data.results.filter((it) => it.type === "Trailer" && it.official)[0];
+    d = d ?? data.results.filter((it) => it.type === "Trailer")[0];
+  
+    return d;
+  };
 export {getData, getMeta, rand}
