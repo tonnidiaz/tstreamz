@@ -68,8 +68,8 @@ const  { user, watchlist, ready} = storeToRefs(appStore)
           newList = [item];
         }
         const newWList = isShow
-          ? { ...watchlist, shows: newList }
-          : { ...watchlist, movies: newList };
+          ? { ...watchlist.value, shows: newList }
+          : { ...watchlist.value, movies: newList };
         const fd = new FormData();
         fd.append("watchlist", JSON.stringify(newWList));
         post("/user/watchlist", fd)
@@ -100,8 +100,8 @@ const  { user, watchlist, ready} = storeToRefs(appStore)
           : watchlist.value.movies.filter((it : any) => it?.id !== item?.id);
       }
       const newWList = isShow
-        ? { ...watchlist, shows: newList }
-        : { ...watchlist, movies: newList };
+        ? { ...watchlist.value, shows: newList }
+        : { ...watchlist.value, movies: newList };
 
       const fd = new FormData();
       fd.append("watchlist", JSON.stringify(newWList));
