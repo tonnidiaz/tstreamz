@@ -5,7 +5,7 @@
             <SearchBar />
             <!--------------------------------------------- UTILS   ---------------------------------------------------------->
 
-            <div id="global-overlay"></div>
+            <div id="global-overlay" class=" sch blur"></div>
             <div class="ERR">
                 <span>
                     <i class="fad fa-exclamation-triangle"></i>
