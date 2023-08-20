@@ -235,7 +235,7 @@
                 <div class="mt-14">
                     <TerraBanner />
                 </div>
-                <div class="mt-14">
+                <div  class="mt-14">
                     <h3 class="he">Similar Shows</h3>
                     <div style="padding-left: 15px" class="mt-13 os d-flex">
                         <FixedMovieCard
@@ -290,7 +290,7 @@ const id = ref(route.params.id);
 
 const embedUrls = (i: number = 0) => {
     const movieId = tv.value?.id;
-    return true
+    return false
         ? [
               `https://multiembed.mov/?video_id=${movieId}&tmdb=1`,
               `https://www.2embed.cc/embedtv/${route.params.id}&s=${

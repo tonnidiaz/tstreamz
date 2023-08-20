@@ -32,10 +32,9 @@ import { useAppStore } from "@/stores/app";
 import {storeToRefs} from 'pinia'
 
   const progress = ref(false);
-  const ready = ref(false);
 
   const appStore = useAppStore()
-const  { user, watchlist} = storeToRefs(appStore)
+const  { user, watchlist, ready} = storeToRefs(appStore)
 
   const props = defineProps({
     isShow: {type: Boolean},
@@ -71,7 +70,6 @@ const  { user, watchlist} = storeToRefs(appStore)
         const newWList = isShow
           ? { ...watchlist, shows: newList }
           : { ...watchlist, movies: newList };
-
         const fd = new FormData();
         fd.append("watchlist", JSON.stringify(newWList));
         post("/user/watchlist", fd)

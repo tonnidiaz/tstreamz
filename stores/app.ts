@@ -21,10 +21,10 @@ export const useAppStore = defineStore("app", {
             this.genres = val;
         },
         setWatchlist(val: any) {
-            this.watchlist = val;
+            this.watchlist = { shows: val.shows, movies: val.movies};
           },
           setReady(val: any) {
-            this.ready = val;
+            this.ready = val; 
           },
           setTrailerId(val: any) {
             this.trailerId = val;
