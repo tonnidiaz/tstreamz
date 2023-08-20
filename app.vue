@@ -1,6 +1,9 @@
 <template>
   
   <NuxtLayout>
+    <Head>
+            <Link rel="stylesheet" href="/assets/fa/fa.css" />
+        </Head>
         <NuxtPage>
             
         </NuxtPage>

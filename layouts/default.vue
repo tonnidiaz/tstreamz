@@ -1,8 +1,6 @@
 <template>
     <div>
-        <Head>
-            <Link rel="stylesheet" href="/assets/fa/fa.css" />
-        </Head>
+       
         <div>
             <SearchBar />
             <!--------------------------------------------- UTILS   ---------------------------------------------------------->

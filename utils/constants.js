@@ -5,7 +5,7 @@ const company = 'TUNEDBASS'
 const year = new Date().getFullYear()
 const __DEV__ = process.env.NODE_ENV === 'development' ? true : false
 const root = __DEV__ ?  'http://localhost:3000' : 'https://tstreamz.vercel.app'
-const dbUrl = __DEV__ ?  'http://localhost:5000' : 'https://ts-bend.vercel.app'
+const dbUrl = __DEV__ ?  'http://127.0.0.1:5000' : 'https://ts-bend.vercel.app'
 const imgUrl = "https://image.tmdb.org/t/p/w500"
 const tmdbUrl = "https://api.themoviedb.org/3/"
 const mvs = [

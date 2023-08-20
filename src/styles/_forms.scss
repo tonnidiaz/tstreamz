@@ -1,12 +1,22 @@
 @import "./vars";
-.auth-form {
+.auth-form, .formset {
     width: 500px;
-    background: $color-blue-2;
+   border-color: $color-card !important;
+   border-width: 4px;
     padding: 20px;
     box-shadow: 0px 3px 5px rgb(14, 14, 14);
-    border-radius: 4px;
+    legend{
+        font-weight: bold !important;
+        letter-spacing: 2px;
+        width: auto;
+        padding: 5px;
+    }
 }
-
+.auth-form{
+     background: $color-card;
+     border-radius: 4px;
+     
+}
 @media screen and (max-width: 500px) {
     .auth-form {
         width: calc(100% - 20px) !important;
