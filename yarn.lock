@@ -717,7 +717,7 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.2.tgz#5749f04df13bda4c863338d8dabaf370f45ef7c7"
   integrity sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==
 
-"@nuxt/devtools-kit@0.8.0":
+"@nuxt/devtools-kit@0.8.0", "@nuxt/devtools-kit@^0.8.0":
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-0.8.0.tgz#2d987a5a3794b3ba59f50c45ffc94df84b18e791"
   integrity sha512-zHwotLFwmYPFDg0JHyInn0L3i2gZK24JYDfgOzqBuvCD/Q3ytQVyAMrX2Mp4iIrHjwToZBJ0dlyV+UYXCiWwSg==
@@ -4643,6 +4643,50 @@ nuxi@3.6.5:
   optionalDependencies:
     fsevents "~2.3.2"
 
+nuxt-simple-sitemap@^3.1.8:
+  version "3.1.8"
+  resolved "https://registry.yarnpkg.com/nuxt-simple-sitemap/-/nuxt-simple-sitemap-3.1.8.tgz#20024aca8478f66f6945f6ea81851b9da3c6a802"
+  integrity sha512-R/5lCkj9+177oc1FFg8fHKjoknUaqo7oEyW560JQNzYC2RJWhQGBS7tSkxTQchSD/I8XkFMzUvZT8m6s98FEbA==
+  dependencies:
+    "@nuxt/devtools-kit" "^0.8.0"
+    "@nuxt/kit" "^3.6.5"
+    chalk "^5.3.0"
+    defu "^6.1.2"
+    escape-string-regexp "^5.0.0"
+    fast-glob "^3.3.1"
+    knitwork "^1.0.0"
+    nuxt-site-config "^1.0.10"
+    nuxt-site-config-kit "^1.0.10"
+    pathe "^1.1.1"
+    radix3 "^1.0.1"
+    semver "^7.5.4"
+    site-config-stack "^1.0.10"
+    ufo "^1.2.0"
+
+nuxt-site-config-kit@1.0.10, nuxt-site-config-kit@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/nuxt-site-config-kit/-/nuxt-site-config-kit-1.0.10.tgz#5907bbc3bb8f5ef366455cfc87b5fe9c62d7b164"
+  integrity sha512-LvuXp2mWLONdB3biY4GmUPHu47XBZvoPIy2yDceWiGWa4tfwdCp/jVBJwgyFYVqwiXNZ7uJxG0omjNRPafXkqw==
+  dependencies:
+    "@nuxt/kit" "^3.6.5"
+    "@nuxt/schema" "^3.6.5"
+    defu "^6.1.2"
+    pkg-types "^1.0.3"
+    site-config-stack "1.0.10"
+    ufo "^1.2.0"
+
+nuxt-site-config@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/nuxt-site-config/-/nuxt-site-config-1.0.10.tgz#832b26cd126e9c9256f14b5d83a56d2648237bc3"
+  integrity sha512-rXiyDMeJTn32EBSZ5sSLAPrGOee2aacCCbCSFOlLfcQD3uXxNk25FZWFJbNO9RGVaSajY3qcNKcqa5vRKEy35A==
+  dependencies:
+    "@nuxt/kit" "^3.6.5"
+    "@nuxt/schema" "^3.6.5"
+    nuxt-site-config-kit "1.0.10"
+    pathe "^1.1.1"
+    site-config-stack "1.0.10"
+    ufo "^1.2.0"
+
 nuxt@^3.5.2:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.6.5.tgz#8c919dbf4bb16c67af2bb1d2c50427469a17321a"
@@ -5720,6 +5764,16 @@ sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
   integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
+
+site-config-stack@1.0.10, site-config-stack@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/site-config-stack/-/site-config-stack-1.0.10.tgz#c641f97ea255ee0d5e293c4740f0da97a0ad1439"
+  integrity sha512-sEKECSkg9XYrzs6ykKWbelxj/P/K8kUgKtWZdETTfLlnKl7e/0JsTS0UZf2Gu4aNEXWUwHrOxtZcvIa3ASYhHA==
+  dependencies:
+    "@nuxt/kit" "^3.6.5"
+    defu "^6.1.2"
+    pkg-types "^1.0.3"
+    ufo "^1.2.0"
 
 slash@^4.0.0:
   version "4.0.0"

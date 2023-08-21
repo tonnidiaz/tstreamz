@@ -20,6 +20,8 @@
             <Meta name="author" content="Tonni DIaz"/>
             <Meta name="publisher" content="Tonni DIaz"/>
             <Meta name="copyright" content="Tunedbass"/>
+
+        
     </Head>
   </template>
   <script setup lang="ts">
@@ -37,5 +39,24 @@
     keywords: { type: String, default: "" },
   })
 
+useHead({
+    script: [
+
+        // Google Analyticts 
+        {
+            async: true,
+            src: "https://www.googletagmanager.com/gtag/js?id=G-NMN9VWLJ6B"
+        },
+        {
+            innerHTML: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-NMN9VWLJ6B');
+            `
+        }
+    ]
+})
   </script>
   
