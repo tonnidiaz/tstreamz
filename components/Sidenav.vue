@@ -3,25 +3,25 @@
     <ul class="nav">
       <li class="nav-item" title="Home">
         <NuxtLink class="nav-link" to="/"
-          ><i class="fas fa-home"></i
+          ><i class="fa fa-home"></i
         ></NuxtLink>
       </li>
       <li class="nav-item" title="Watchlist">
         <NuxtLink class="nav-link" to="/me/watchlist"
-          ><i class="fas fa-bookmark"></i
+          ><i class="fa fa-bookmark"></i
         ></NuxtLink>
       </li>
       <li class="nav-item" title="Search">
-        <button @click="showSBar" class="nav-link btn-none"><i class="fal fa-search"></i></button>
+        <button @click="showSBar" class="nav-link btn-none"><i class="fa fa-search"></i></button>
       </li>
       <li class="nav-item" title="Contact us">
         <NuxtLink class="nav-link" to="/contact"
-          ><i class="fas fa-envelope"></i
+          ><i class="fa fa-envelope"></i
         ></NuxtLink>
       </li>
       <li class="nav-item" title="Notifications">
         <a disabled="" class="nav-link disabled" href="#"
-          ><i class="fas fa-bell"></i
+          ><i class="fa fa-bell"></i
         ></a>
       </li>
     </ul>

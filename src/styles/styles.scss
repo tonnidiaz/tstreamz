@@ -192,17 +192,18 @@ body,
     border-top: $card-border;
     padding: 10px;
     top: 28px;
+
+    .nav-item{
+        font-size: 28px;
+       margin: 10px 0;
+        font-weight: 600 !important;
+        &:not(.active){
+             color: $color-white-3 !important;
+        }
+    }
     .nav {
         //margin-top: 10vh;
         flex-direction: column;
-    }
-    .nav-item {
-        margin: 10px 0;
-        color: rgb(201, 201, 201);
-        font-size: 20px;
-        .fal {
-            font-weight: 500;
-        }
     }
 }
 

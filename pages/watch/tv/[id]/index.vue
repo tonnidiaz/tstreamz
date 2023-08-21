@@ -7,7 +7,7 @@
             :keywords="`TunedBass, TunedStreamz, ${tv?.name}, Watch ${tv?.name} TunedStreamz`"
             :src="imgUrl + tv?.poster_path"
             :desc="tv?.overview"
-            :title="`Watch ${tv?.name} S${sNum}E${eNum} - TunedStreamz`"
+            :title="`Watch ${tv?.name} S${$route.query.s ?? 1}E${$route.query.ep ?? 1} - TunedStreamz`"
         />
         <ClientOnly v-if="tv">
             <div>
@@ -294,7 +294,7 @@ const id = ref(route.params.id);
 
 const embedUrls = (i: number = 0) => {
     const movieId = tv.value?.id;
-    return false
+    return true
         ? [
               `https://multiembed.mov/?video_id=${movieId}&tmdb=1`,
               `https://www.2embed.cc/embedtv/${route.params.id}&s=${
