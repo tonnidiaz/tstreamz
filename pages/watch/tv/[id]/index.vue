@@ -21,7 +21,7 @@
                         allowfullscreen
                         class="br-4"
                         id="frame"
-                        :src="`embedUrls(1)`"
+                        :src="embedUrls(1)"
                     ></iframe>
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
@@ -244,7 +244,7 @@
                     <div style="padding-left: 15px" class="mt-13 os d-flex">
                         <FixedMovieCard
                             :movies="meta.similar"
-                            isShow="true"
+                            :isShow="true"
                             v-if="meta"
                         />
                         <div v-else class="loading-div">
@@ -304,7 +304,7 @@ const embedUrls = (i: number = 0) => {
         : "";
 };
 
-const getEps = async (id: number, s: string) => {
+const getEps = async (id: any, s: string) => {
     const url = root + `/api/tv/${id}?s=${s}`;
 
     setEpsReady(false);
@@ -322,7 +322,7 @@ const getEps = async (id: number, s: string) => {
     }
 };
 
-const getMeta = async (id) => {
+const getMeta = async (id: any) => {
     const url = `/api/meta/tv/${id}`;
 
     const { data } = await axios.get(url);
@@ -361,7 +361,7 @@ const setupEps = async (s: any) => {
 watch(episodes, (val) => {
     const { ep } = route.query;
     const e = ep ?? "1";
-    const i = parseInt(e) - 1;
+    const i = parseInt(`${e}`) - 1;
     if (val.episodes) setCurrEp(val.episodes[i]);
     setEpsReady(true);
 });
@@ -382,7 +382,7 @@ watch(
         setSNum(s);
         setENum(ep);
         if (episodes.value.episodes) {
-            setCurrEp(episodes.value.episodes[parseInt(ep) - 1]);
+            setCurrEp(episodes.value.episodes[parseInt(`${ep}`) - 1]);
         } else {
             setCurrEp(null);
         }

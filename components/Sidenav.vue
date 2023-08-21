@@ -3,12 +3,12 @@
     <ul class="nav">
       <li class="nav-item" title="Home">
         <NuxtLink class="nav-link" to="/"
-          ><i class="far fa-home"></i
+          ><i class="fas fa-home"></i
         ></NuxtLink>
       </li>
       <li class="nav-item" title="Watchlist">
         <NuxtLink class="nav-link" to="/me/watchlist"
-          ><i class="far fa-bookmark"></i
+          ><i class="fas fa-bookmark"></i
         ></NuxtLink>
       </li>
       <li class="nav-item" title="Search">
@@ -16,12 +16,12 @@
       </li>
       <li class="nav-item" title="Contact us">
         <NuxtLink class="nav-link" to="/contact"
-          ><i class="far fa-envelope"></i
+          ><i class="fas fa-envelope"></i
         ></NuxtLink>
       </li>
       <li class="nav-item" title="Notifications">
         <a disabled="" class="nav-link disabled" href="#"
-          ><i class="fal fa-bell"></i
+          ><i class="fas fa-bell"></i
         ></a>
       </li>
     </ul>
