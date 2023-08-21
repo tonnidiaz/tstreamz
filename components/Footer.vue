@@ -16,8 +16,8 @@
       </div>
       <ul class="list-inline">
         <li class="list-inline-item"><NuxtLink to="/">Home</NuxtLink></li>
-        <li class="list-inline-item"><NuxtLink to="/contact-us">Contact us</NuxtLink></li>
-        <li class="list-inline-item"><NuxtLink to="/about-us">About us</NuxtLink></li>
+        <li class="list-inline-item"><NuxtLink to="/contact">Contact us</NuxtLink></li>
+        <li class="list-inline-item"><NuxtLink to="/about">About us</NuxtLink></li>
       </ul>
       <p class="copyright">TUNEDBASS © 2022</p>
       <hr />

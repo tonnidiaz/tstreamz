@@ -13,7 +13,7 @@
           />
         </Head>
         <div class="m" v-if="isSuccessful">
-            <fieldset class="formset m-auto">
+            <fieldset class="formset m-auto border-card">
             <legend>Signup successful!</legend>
 
             <h3 class="fs-18 color-white-2 text-center">Please use the verification link we've sent to your email to complete signing up.</h3>
@@ -25,7 +25,7 @@
           
           autocomplete="off"
         >
-        <fieldset class="formset m-auto">
+        <fieldset class="formset m-auto border-card">
             <legend>Create account</legend>
          
           <div class="form-group mb-13">
@@ -40,7 +40,6 @@
               min-length="3"
               autocomplete="off"
               autocorrect="off"
-              value="tonnidiaz"
             />
           </div>
           <div class="form-group mb-13">
@@ -50,7 +49,6 @@
               type="email"
               name="email"
               required
-              value="clickbait4587@gmail.com"
               class="form-control"
               placeholder="Enter your email address..."
             />
@@ -63,7 +61,6 @@
               id="pass"
               name="password"
               required
-              value="Baseline@072"
               class="form-control"
               placeholder="Enter password..."
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -127,7 +124,7 @@
               name="conf-pass"
               required
               class="form-control"
-              value="Baseline@072"
+              value=""
               placeholder="Confirm your password..."
             />
             <div class="mt-3 t-c error">
@@ -159,7 +156,7 @@
               type="submit"
               :disabled="btnDisabled"
               id="su-btn"
-              class="btn su-btn bg-card w-100p"
+              class="btn su-btn bg-card2 w-100p"
             >
               Sign up
             </button>

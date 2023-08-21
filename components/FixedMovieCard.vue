@@ -1,7 +1,7 @@
 <template>
-  <div class="_row no-wrap ai-center">
+  <div :class="classes">
     <div :key="i" v-for="(it, i) in movies" :title="isShow ? it.name : it.title" class="fmc fshr-0 p-0 oh">
-      <div class="movie-card fixed h-100p bg-card oh">
+      <div class="movie-card fixed h-100p bg-card ">
         <div class="w-100p h-130 pos-rel">
           <div
             :style="`background-size: cover`"
@@ -52,15 +52,24 @@
 
 <script setup lang="ts">
 import { imgUrl } from "@/utils/constants";
-defineProps({
+const classes = ref(""), cardClasses = ref("");
+const props  = defineProps({
     name: {
         type: String
     },
     movies: {
         type: Array<any>
     },
+    wrap: Boolean,
     isShow: {
         type: Boolean
     }
 })
+
+watch(()=> props.wrap, v=>{
+    console.log(v);
+    classes.value = v ? "row ai-center jc-center" : "_row no-wrap ai-center";
+    cardClasses.value = v ? "row ai-center" : "_row no-wrap ai-center";
+
+}, {deep: true, immediate: true})
 </script>

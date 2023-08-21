@@ -20,7 +20,7 @@
             <NuxtLink to="/search" class="nav-link"> Search </NuxtLink>
           </li>
           <li class="nav-item" @click="hide">
-            <NuxtLink to="/contact-us" class="nav-link">
+            <NuxtLink to="/contact" class="nav-link">
               Report issues
             </NuxtLink>
           </li>

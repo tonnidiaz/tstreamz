@@ -224,9 +224,7 @@ main{
 }
 
 @media screen and (max-width: 500px) {
-    main {
-        margin-left: 0 !important;
-    }
+
     .progress,
     .inProgress {
         width: 100vw !important;
@@ -236,6 +234,7 @@ main{
         top: unset !important;
     }
     .sidenav {
+        position: fixed;
         width: 100% !important;
         height: $sidenav-w !important;
         bottom: -2px !important;
@@ -305,12 +304,6 @@ header {
 }
 
 
-@media screen and (max-width: 500px) {
-    main {
-        //padding: 0 5vw;
-        padding-top: 80px;
-    }
-}
 
 #navbarNav {
     flex: 1;

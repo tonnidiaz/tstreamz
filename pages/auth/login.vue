@@ -14,7 +14,7 @@
           action=""
           method="POST"
         >
-        <fieldset class="formset m-auto">
+        <fieldset class="formset m-auto border-card">
             <legend>Login</legend>
           <input hidden autocomplete="off" />
 
@@ -51,7 +51,7 @@
           </div>
           <div class="t-c">
             <div class="form-group mt-3 mb-3">
-              <button type="submit" id="li-btn" class="btn bg-card w-100p">
+              <button type="submit" id="li-btn" class="btn bg-card2 w-100p">
                 {{ txt }}
               </button>
             </div>

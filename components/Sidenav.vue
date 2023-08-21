@@ -15,7 +15,7 @@
         <button @click="showSBar" class="nav-link btn-none"><i class="fal fa-search"></i></button>
       </li>
       <li class="nav-item" title="Contact us">
-        <NuxtLink class="nav-link" to="/contact-us"
+        <NuxtLink class="nav-link" to="/contact"
           ><i class="far fa-envelope"></i
         ></NuxtLink>
       </li>

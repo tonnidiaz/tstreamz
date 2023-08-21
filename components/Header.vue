@@ -51,7 +51,7 @@
                             >
                         </li>
                         <li class="nav-item">
-                            <NuxtLink class="nav-link" to="/contact-us"
+                            <NuxtLink class="nav-link" to="/contact"
                                 >Report issues</NuxtLink
                             >
                         </li>
