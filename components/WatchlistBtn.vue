@@ -124,21 +124,6 @@ const  { user, watchlist, ready} = storeToRefs(appStore)
     }
   </script>
   <style>
-  .wlst-btn:disabled {
-    color: rgb(99, 99, 99);
-    text-shadow: 0 0px 10px orange;
-    animation: 0.5s infinite blinky;
-  }
-  
-  @keyframes blinky {
-    0% {
-      text-shadow: 0 0px 10px orange;
-      opacity: 0.7;
-    }
-    50% {
-      text-shadow: 0 0px 10px rgba(255, 166, 0, 0.359);
-      opacity: 0.5;
-    }
-  }
+ 
   </style>
   

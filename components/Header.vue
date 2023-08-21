@@ -81,7 +81,7 @@
                                                 <a>
                                                     <span>
                                                         <i
-                                                            class="fal fa-user-circle"
+                                                            class="fas fa-user-circle"
                                                         ></i>
                                                     </span>
                                                     Profile
@@ -96,7 +96,7 @@
                                                 <a>
                                                     <span>
                                                         <i
-                                                            class="fal fa-bookmark"
+                                                            class="fas fa-bookmark"
                                                         ></i>
                                                     </span>
                                                     Watchlist
@@ -116,7 +116,7 @@
                                                 <a>
                                                     <span>
                                                         <i
-                                                            class="fal fa-sign-out"
+                                                            class="fas fa-sign-out"
                                                         ></i>
                                                     </span>
                                                     Signout
@@ -185,6 +185,8 @@ function openSideMenu() {
             document.body.removeEventListener("click", closeMenu);
         }
     };
+    console.log(blur);
     blur[0]?.addEventListener("click", closeMenu);
+    blur[1]?.addEventListener("click", closeMenu);
 }
 </script>

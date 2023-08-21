@@ -1009,7 +1009,7 @@ $sidemanu-w: 50vw;
     }
     position: absolute;
     min-height: 20px;
-    background-color: $color-card2;
+    background-color: $color-card;
     right: 0;
     top: 30px;
     border-radius: 2px;
@@ -1021,9 +1021,13 @@ $sidemanu-w: 50vw;
     }
     li {
         padding: 0px 7px !important;
-        background-color: #11111140;
+        background-color: #11111100;
         margin: 4px;
         border-radius: 4px;
+        
+        *{
+            color: $color-white-1 !important;
+        }
     }
     &.active {
         display: block !important;
@@ -1573,3 +1577,22 @@ box-shadow: 0 0 0 2px #43434388
         padding: 5px;
     }
 }
+
+.wlst-btn:disabled {
+    color: rgb(99, 99, 99);
+    text-shadow: 0 0px 10px orange;
+    animation: 0.5s infinite blinky;
+  }
+  .blinky{
+    animation: 3s infinite blinky;
+  }
+  @keyframes blinky {
+    0% {
+      text-shadow: 0 0px 10px orange;
+      opacity: 0.7;
+    }
+    100% {
+      text-shadow: 0 0px 10px rgba(255, 166, 0, 0.359);
+      opacity: 0.5;
+    }
+  }

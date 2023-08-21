@@ -17,7 +17,9 @@
                 </div>
   
             </Dialog>
-        
+        <div class="my-5">
+            <CardPH :movies="[5,6,8,8]"/>
+        </div>
         <button @click="_=> showDialog = true">Show  modal</button>
     </div>
 </template>
