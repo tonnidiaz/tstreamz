@@ -1,10 +1,11 @@
 @import "./vars";
 .auth-form, .formset {
+    margin: 0 auto;
     width: 500px;
    border-color: $color-card !important;
    border-width: 4px;
     padding: 20px;
-    box-shadow: 0px 3px 5px rgb(14, 14, 14);
+    box-shadow: 0px 1px 2px rgb(14, 14, 14);
     legend{
         font-weight: bold !important;
         letter-spacing: 2px;

@@ -15,7 +15,7 @@
          <div class="title-cont d-none">
             <h1 class="fs-16 t-c fw-7">You're watching <span class="color-orange">{{ movie.title }}</span> </h1>
             </div>
-        <div class="mb-4 video-frame d-flex ai-center jc-center">
+        <div class="mb-4 video-frame d-flex ai-center jc-center sandes br-10">
            
           <iframe
           title="Tunedtreamz frame"
@@ -30,7 +30,7 @@
           ></iframe>
         </div>
 
-        <div class="mt-14 d-flex-md sandes p-3">
+        <div class="mt-14 d-flex-md sandes br-10 p-3">
           <div style="flex-shrink: 0" class="m-auto w-225 h-280 pos-rel">
             <img
             alt="Movie  banner"

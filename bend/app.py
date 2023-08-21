@@ -48,6 +48,7 @@ try:
         engine.connect(host=os.getenv('MONGO_URL'), db=db, ssl=True,ssl_cert_reqs='CERT_NONE')
     else:
         engine.connect(host=os.getenv('MONGO_URL_LOCAL'), db=db)
+    print("Mongo connected")
 except Exception as e:
     print(e)
  

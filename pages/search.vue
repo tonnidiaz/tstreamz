@@ -1,7 +1,5 @@
 <template>
-    <div
-      style="display: flex; justify-content: center; flex-direction: column"
-      class="body styles-container"
+    <div class="search-page"
     >
       <TMeta
         title="Search Movies and TV shows - TunedStreamz"
@@ -9,8 +7,10 @@
         keywords="tunedstreamz search, tunedstreams search, tuned streamz search, search movies tunedstreamz, search movies, latest movies, latest series, search series tunedstreamz"
       />
       <div>
-        <div class="mt-24 form mb-0">
-          <SearchForm :value="$route.query.q" />
+        <div class="bg-card pd-10 mb-0 tu-searchbar">
+            <div class="w-500 m-auto">
+          <SearchForm :value="`${$route.query.q ?? ''}`" />
+            </div>
         </div>
         
         <!---
@@ -24,14 +24,16 @@
         >
           Share on Facebook
         </ShareNetwork>-->
-        <div v-if="$route.query.q">
-            <h1 class="text-left fs-25">
-              Showing search results for:
-              <span class="color-orange">{{ $route.query.q }}</span>
-            </h1>
+        <div class="m-auto" v-if="$route.query.q">
+           
           <section class="filter-sec m-0"> 
-                <fieldset style="gap: 10px" class="d-flex">
+                <fieldset style="gap: 10px" class="d-flex formset">
+                    <legend class="">
+              Search results for:
+              <span class="color-orange">{{ $route.query.q }}</span>
+            </legend>
                   <fieldset class="checkbox-switch">
+                     
                     <input
                       @change="handleCheck"
                       type="checkbox"
@@ -64,8 +66,9 @@
                 </fieldset>
         </section>
           <section v-if="filter.movies" class="mt-4 mv-50">
-            <h2 class="mb-2">Movies</h2>
-            <div class="mt-4 no-wrap ai-center">
+        <fieldset class="formset w-100p">
+            <legend class="mb-2">Movies</legend>
+              <div class="mt-4 no-wrap ai-center">
               <div v-if="ready">
                 <div v-if="movies.length">
                   <SearchRes v-for="(it, i) in movies" :key="i" :movie="it" />
@@ -80,9 +83,13 @@
                 <h4>Loading...</h4>
               </div>
             </div>
+        </fieldset>
+            
+          
           </section>
           <section v-if="filter.shows" class="mt-4 mv-50">
-            <h3 class="mb-4">TV Shows</h3>
+            <fieldset class="formset w-100p">
+                            <legend class="mb-4">TV Shows</legend>
             <div class="mt-4 no-wrap ai-center">
               <div v-if="ready">
                 <div v-if="shows.length">
@@ -102,6 +109,7 @@
                 <h4>Loading...</h4>
               </div>
             </div>
+            </fieldset> 
           </section>
         </div>
         
@@ -174,3 +182,19 @@ const filter = ref({ movies: true, shows: true }),
         }
     })
 </script>
+
+<style lang="scss">
+
+
+.tu-searchbar{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 54px;
+    z-index: 9;
+}
+
+.search-page{
+    margin-top: 64px
+}
+</style>

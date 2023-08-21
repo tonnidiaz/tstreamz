@@ -1,47 +1,47 @@
 <template>
-      <div style="margin: 0 auto" class="w-500px p-10 dialog bg-card2">
+    <Teleport to="#dialog-slot">
+
+        <div class="dialog-overlay">
+             <div style="margin: 0 auto" class="w-500px p-10 dialog bg-card2">
             
-            <h4 class="fs-20">Confirm password</h4>
-              <div class="">
-                <div class="form-group">
-                  <label htmlFor="pass">
-                    Password:
-                  </label>
-                  <input
-                    placeholder="Password"
-                    class="form-"
-                    type="password"
-                    id="pass"
-                    name="pass"
-                    required
-                  />
-                </div>
-  
-                <div class="form-group mt-3">
-                  <button class="fw-5 ui red button">Confirm</button>
+            <h4 class="fs-18 fw-6">{{ title }}</h4>
+              <div class="mt-4">
+             <slot />
+                <div class="dflex _row mt-3 gap-10 " style="justify-content: flex-end;">
+                  <button @click="_onOk" class="fw-6 btn btn-sm btn-success color-white ">Confirm</button>
+                  <button @click="_onCancel" class="fw-6 btn btn-sm btn-dark color-white ">Cancel</button>
                 </div>
   
                 <div class="mt-2 form-group err"></div>
               </div>
           </div>
+        </div>
+    </Teleport>
+     
 </template>
+<script setup lang="ts">
+
+const props = defineProps({
+    title: {
+        type: String,
+        default: "Dialog"
+    },
+    onOk: Function,
+    onCancel: Function,
+})
+
+const _onCancel = ()=>{
+    if (props.onCancel) props.onCancel()
+}
+const _onOk = ()=>{
+    if (props.onOk) props.onOk()
+    if (props.onCancel) props.onCancel()
+}
+onMounted(()=>{
+})
+</script>
 
 <style lang="scss">
 
-$dlg-border-color: #434343;
-$dlg-bg-color: #333333;
-.dialog{
-    border: 2px solid $dlg-border-color;
-    padding: 10px;
 
-    input{
-        display:  block;
-        outline: none;
-        border: 2px solid $dlg-border-color !important;
-        background-color: $dlg-bg-color !important;
-        &:focus, &:active{
-            box-shadow: ;
-        }
-    }
-}
 </style>

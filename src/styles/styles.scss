@@ -58,6 +58,8 @@
 }
 
 .movie-card {
+    border: $card-border;
+    box-shadow: 0 2px 5px #000;
     margin: 20px 5px;
     background-position: center;
     background-repeat: no-repeat;
@@ -149,7 +151,7 @@ body,
     &::-webkit-scrollbar-thumb {
         display: none; 
     }
-    background-color: $color-body !important;
+    background-color: $color-card !important;
     color: $color-white-1 !important;
     input,
     textarea {
@@ -183,11 +185,13 @@ body,
     align-items: flex-start;
     justify-content: center;
     width: $sidenav-w; 
-    height: 100vh;
+    height: calc(100vh);
     position: relative;
     background-color: $color-card;//$color-card; //rgb(6, 6, 6);
-    
+    border-right: $card-border;
+    border-top: $card-border;
     padding: 10px;
+    top: 28px;
     .nav {
         //margin-top: 10vh;
         flex-direction: column;
@@ -250,6 +254,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
+    border-bottom: $card-border;
     //margin-top: 20px;
     .nav-item {
         margin: 0 1.2rem;
@@ -261,6 +266,7 @@ header {
         padding: 0 10px;
         z-index: 99998;
         background-color: $color-card;
+       
     }
 }
 .title-cont{
@@ -505,9 +511,12 @@ ul {
 .pointer {
     cursor: pointer;
 }
-
-.sandes {
-    background-color: $color-card //#1e1e1e;
+.border-card{
+    border: $card-border !important;
+}
+.sandes, .tu-card {
+    background-color: $color-card ;//#1e1e1e;
+    border: $card-border;
 }
 
 a,
@@ -796,7 +805,13 @@ input::placeholder {
 .bg-body {
     background-color: $color-body !important;
 }
+.bg-dlg{
+    background-color: $dlg-bg-color !important;
+}
 
+.border-dlg{
+    border: 2px solid $dlg-border-color !important
+}
 
 .bg-card {
     background-color: $color-card !important;
@@ -1520,7 +1535,7 @@ small.cretits {
 }
 
 fieldset{
-    display: block;
+   /*  display: block;
     margin-inline-start: 2px !important;
     margin-inline-end: 2px !important;
     padding-block-start: 0.35em !important;
@@ -1532,5 +1547,36 @@ fieldset{
     border-style: solid;
     border-color: rgb(192, 192, 192);
     border-image: initial !important;
-    border-radius: 10px;
+   */ border-radius: 10px; 
+}
+
+
+input.tu-inp{
+    display:  block;
+    outline: none;
+    border: 2px solid $dlg-border-color !important;
+    background-color: $dlg-bg-color !important;
+
+    &:not(.custom-padding){
+           padding: 4px 10px; 
+    }
+
+    width: 100%;
+    &:focus, &:active{
+
+box-shadow: 0 0 0 2px #43434388
+    } 
+}
+
+.fieldset{
+   border-color: $color-card;
+   border-width: 4px;
+    padding: 20px;
+    &:not(.no-el){box-shadow: 0px 1px 2px rgb(14, 14, 14);}
+    legend{
+        font-weight: bold !important;
+        letter-spacing: 2px;
+        width: auto;
+        padding: 5px;
+    }
 }

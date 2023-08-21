@@ -48,7 +48,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="email">Username:</label>
+            <label for="email">Email:</label>
             <br />
             <input
               class="form-control"
@@ -60,30 +60,7 @@
               required
             />
           </div>
-          <div class="form-group">
-            <label for="iid">Account ID:</label>
-            <br />
   
-            <input
-              v-if="user.is_pro"
-              class="form-control"
-              @change="handleChange"
-              id="iid"
-              name="iid"
-              :value="user.iid"
-            />
-  
-            <input
-              v-else
-              title="Only premium users can modify account ID"
-              class="disabled-inp form-control"
-              disabled
-              @change="handleChange"
-              id="iid"
-              name="iid"
-              :value="user.iid"
-            />
-          </div>
           <div class="row jc-center my-14">
           <button
             id="save-changes-btn"
@@ -94,11 +71,11 @@
             Save changes
           </button>
           <button
-            @click="e=> deleteAccount(e.currentTarget as HTMLButtonElement)"
+            @click="_=>onBtnClick(deleteAccount)"
             type="button"
-            class="mb-2 col-md offset-md-2 btn btn-danger"
+            class="mb-2 col-md offset-md-2 btn btn-dark"
           >
-            DELETE ACCOUNT
+            Delete account
           </button>
         </div>
 </fieldset>
@@ -109,37 +86,28 @@
       <div v-else class="centered-children loading-div">
         <h5>Please wait...</h5>
       </div>
-      <Teleport v-if="open" to="#global-overlay">
-        <div v-if="open" class="overlayChild">
-          <div style="margin: 0 auto" class="w-500px p-10 menu-modal active ">
-            
-            <h4 class="fs-20">Confirm password</h4>
-              <div class="">
+      <Dialog :onOk="onOk" title="Enter your password to proceed" :onCancel="()=> showDialog = false" v-if="showDialog">
                 <div class="form-group">
-                  <label htmlFor="pass">
+                  <label style="font-weight: 500;" class="fs-16" htmlFor="pass">
                     Password:
                   </label>
                   <input
-                    placeholder="Password"
-                    class="form-control"
+                    placeholder="Enter password..."
+                    class="form-"
                     type="password"
+                    @change="(e: any)=> pswd = e.target.value"
                     id="pass"
                     name="pass"
                     required
                   />
                 </div>
   
-                <div class="form-group mt-3">
-                  <button class="fw-5 ui red button">Confirm</button>
-                </div>
-  
-                <div class="mt-2 form-group err"></div>
-              </div>
-          </div>
-        </div>
-      </Teleport>
+            </Dialog>
+
+            <Toast :txt="toastTxt" v-if="showToast"/>
     </div>
   </template>
+
   <script setup lang="ts">
 import { ref, watch, onMounted } from "vue";
 import { useAppStore } from "../../stores/app";
@@ -147,32 +115,38 @@ import { post } from "@/utils/api";
 import { storeToRefs } from "pinia";
 import $ from 'jquery'
 const err = ref("");
-const open = ref(false);
+const pswd = ref("");
+const toastTxt = ref(""), setToastTxt = (v: string) => toastTxt.value = v;
+const showDialog = ref(false);
+const showToast = ref(false);
 const setErr = (v: string) => (err.value = v);
 
 const { user, ready } = storeToRefs(useAppStore())
 const { setUser } = useAppStore()
+const onOk = ref<Function>(), setOnOk = (val : Function) => onOk.value = val;
 
+const onBtnClick = (onOk : Function) => { 
+    setOnOk(onOk);
+    showDialog.value = true
+ }
 function handleChange(e: any) {
       setTimeout(() => {
         setErr("");
       }, 1000);
     }
 
-   function deleteAccount(deleteBtn: HTMLButtonElement) {
-      setTimeout(() => {
-        const conf = window.confirm(
-          `Action cannot be undone. Are you sure you want to PERMANENTLY TERMINATE your account?`
-        );
-        prompt("Enter pass")
-return;
-        if (conf) {
-          deleteBtn.innerText = "Deleting..."
+   function deleteAccount() {
+    if(!pswd.value) return;
+        console.log("Deleting...");
+        setToastTxt("Deleting account...")
+        showToast.value = true
+        const fd = new FormData()
+        fd.append("password", pswd.value)
           //document.body.appendChild(inProgress);
-          post(`/user/${user.value.iid}/terminate`)
+          post(`/user/${user.value._id.$oid}/terminate`, fd)
             .then((res : any) => {
-              deleteBtn.innerText = "Success!"
               localStorage.clear();
+              setToastTxt("Account deleted successfully!")
               $(".SUCCESS .msg").text("Account deleted successfully!");
               $(".SUCCESS").show();
 
@@ -182,13 +156,19 @@ return;
               }, 2000);
             })
             .catch((err: any) => {
-              deleteBtn.innerText = "Retry"
+                const msg = err.response?.data?.msg
+                let errTxt = msg ?? "SOmething went wrong"
+                setToastTxt(errTxt)
               $(".ERR .msg").text("Something went wrong!");
               $(".ERR").hide();
               console.log(err.response);
+            }).finally(()=>{
+                setTimeout(()=>{
+                    showToast.value = false
+                }, 2500)
+                
             });
-        }
-      }, 500);
+
     }
     function saveChanges(e: any) {
       e.preventDefault();

@@ -589,28 +589,21 @@ def reset():
             return {"message" : 'Something went wrong'}, 500
         
         
-@router.route('/user/<iid>/terminate', methods=['POST'])
-def terminate(iid):
+@router.route('/user/<oid>/terminate', methods=['POST'])
+def terminate(oid):
 
     try:
-        token = request.headers['Authorization'].split(' ')[1]
-
-        if token:
-
-            info = jwt.decode(token, os.getenv('JWT_SECRET_KEY'), algorithms=['HS256'])
-            if info:
-                user = User.objects.get(email= info['sub'])
-
-                image = None
-                try:
-                    image = Media.objects(name=user.avatar.split('/')[-1]).first()
-                except Exception as e:
-                    pass
-                if image:
-                    image.delete()
-                    print('Avatar deleted')
-                user.delete()
-            return {'data' : 'User account deleted successfully'}
+        usr = User.objects(id=oid)
+        if not usr:
+            return {"msg": "User not found"}, 404
+        usr = usr[0]
+        password = request.form.get('password')
+        password_correct = bcrypt.check_password_hash(bytes(usr.password, encoding='utf-8'), password)
+        if not password_correct:
+            return {"msg": "Incorrect password"}, 401
+        
+        usr.delete()
+        return {'data' : 'User account deleted successfully'}
     except Exception as e:
         print(e)
         return {'message' : 'Something went wrong'}, 500

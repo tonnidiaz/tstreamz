@@ -12,7 +12,7 @@
         <ClientOnly v-if="tv">
             <div>
             
-                <div style="margin-top: 10px;" class="mb-4 br-4 video-frame d-flex ai-center jc-center">
+                <div style="margin-top: 10px;" class="mb-4 br-10 video-frame d-flex ai-center jc-center sandes ">
                     <iframe
                         width="100%"
                         height="500"
@@ -21,12 +21,12 @@
                         allowfullscreen
                         class="br-4"
                         id="frame"
-                        :src="embedUrls(1)"
+                        :src="`embedUrls(1)`"
                     ></iframe>
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
 
-                <div class="mt-14 d-flex-md sandes p-3">
+                <div class="mt-14 d-flex-md sandes p-3 br-10">
                     <div
                         class="m-auto w-250 pos-rel h-280"
                         style="flex-shrink: 0"
@@ -150,7 +150,7 @@
                 <div class="mt-13 mb-3">
                     <DillaBanner />
                 </div>
-                <div class="mt-13 sandes p-2 row mb-3" style="margin: 0">
+                <div class="mt-13 sandes  br-10 p-2 row mb-3" style="margin: 0">
                     <div v-if="epsReady">
                         <div v-if="currEp">
                             <h5>
@@ -191,31 +191,34 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-13 sandes row mb-3" style="margin: 0">
-                    <div class="col-md-3 p-4">
-                        <h4>Seasons</h4>
+                <div class="mt-13 sandes br-10 row mb-3 pd-5 pdb-10" style="margin: 0">
+                    <div class="col-md-4">
+                    <fieldset class=" p-4 w-100p fieldset border-card no-el">
+                        <legend>Seasons</legend>
 
                         <div class="mt-2 row">
                             <NuxtLink
                                 :key="i"
                                 v-for="(season, i) in tv?.seasons"
-                                :class="`col m-1 btn btn-sm btn-outline-secondary ${
+                                :class="`col m-1 btn btn-sm btn-outline-dark ${
                                     `${sNum}` === `${i + 1}` ? 'active' : ''
                                 }`"
                                 :to="`/watch/tv/${tv?.id}?s=${i + 1}&ep=1`"
                                 >Season {{ i + 1 }}</NuxtLink
                             >
                         </div>
-                    </div>
-                    <div class="col-md-9 p-4">
-                        <h4 class="t-c">Episodes</h4>
+                    </fieldset>
+                </div>
+                <div class=" col-md-8">
+                    <fieldset class=" p-4 fieldset no-el border-card">
+                        <legend class="">Episodes</legend>
                         <div class="mt-2 row">
                             <NuxtLink
                                 :key="i"
                                 v-if="episodes"
                                 v-for="(ep, i) in episodes?.episodes"
                                 :title="ep.name"
-                                :class="`col-md-3 m-1 w-nowrap btn btn-sm btn-outline-secondary  ${
+                                :class="`col-md-3 m-1 w-nowrap btn btn-sm btn-outline-dark  ${
                                     eNum === `${ep.episode_number}`
                                         ? 'active'
                                         : ''
@@ -229,7 +232,8 @@
                                 <span>Loading Episodes...</span>
                             </div>
                         </div>
-                    </div>
+                    </fieldset>
+                </div>
                 </div>
 
                 <div class="mt-14">
