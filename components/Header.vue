@@ -72,7 +72,7 @@
                                     <i class="far fa-user-circle"></i>
                                 </button>
                                 <div id="user-menu" class="menu-modal">
-                                    <ul class="fs-15 t-l">
+                                    <ul class="fs-17 t-l">
                                         <li class="nav-item">
                                             <NuxtLink
                                                 to="/me/profile"

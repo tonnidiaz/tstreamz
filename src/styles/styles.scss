@@ -3,6 +3,8 @@
 @import "./classes";
 @import "./footer";
 @import "./forms";
+@import "@material-design-icons/font";
+
 @font-face {
     font-family: Poppins;
     src: url("/assets/fonts/Poppins/Poppins-Regular.ttf");
@@ -194,9 +196,15 @@ body,
     top: 28px;
 
     .nav-item{
-        font-size: 28px;
+        font-size: 25px;
        margin: 10px 0;
-        font-weight: 600 !important;
+        &:not(.mi){font-weight: 600 !important;}
+        &.mi{
+            i{
+                font-weight: 500;
+                font-size: 30px;
+            }
+        }
         &:not(.active){
              color: $color-white-3 !important;
         }
@@ -508,6 +516,9 @@ ul {
 .border-card{
     border: $card-border !important;
 }
+.border-body{
+    border: $color-body !important;
+}
 .sandes, .tu-card {
     background-color: $color-card ;//#1e1e1e;
     border: $card-border;
@@ -772,10 +783,6 @@ a * {
     margin: 0 auto;
 }
 
-input::placeholder {
-    opacity: 0.7 !important;
-    font-size: 0.9rem;
-}
 
 .search-btn {
     color: $color-white-2;
@@ -817,6 +824,14 @@ input::placeholder {
 
 .bg-white:not(.antialiased) {
     background-color: white !important;
+}
+.bg-orange {
+    background-color: $color-orange;
+    color: white !important;
+}
+.bg-dark-0 {
+    background-color: $color-dark-0;
+    color: white !important;
 }
 
 .antialiased {
@@ -913,10 +928,6 @@ img {
     color: black !important;
 }
 
-.bg-orange {
-    background-color: $color-orange;
-    color: white !important;
-}
 
 .plot {
     text-align: justify;
@@ -1010,19 +1021,23 @@ $sidemanu-w: 50vw;
     }
     position: absolute;
     min-height: 20px;
-    background-color: $color-card;
+    background-color: $dlg-bg-color;
+    border: 2px solid $dlg-border-color;
     right: 0;
     top: 30px;
     border-radius: 2px;
     box-shadow: 0 2px 15px black;
     display: none;
-    padding: 10px;
+    padding: 5px;
     ul {
         margin: 0 !important;
     }
     li {
-        padding: 0px 7px !important;
+        padding: 0px 5px !important;
         background-color: #11111100;
+        &:hover{
+            background-color: #00000046;
+        }
         margin: 4px;
         border-radius: 4px;
         
@@ -1100,6 +1115,8 @@ $sidemanu-w: 50vw;
         font-weight: 600;
     }
 }
+
+
 
 .disabled {
     opacity: 0.6;
@@ -1596,4 +1613,8 @@ box-shadow: 0 0 0 2px #43434388
       text-shadow: 0 0px 10px rgba(255, 166, 0, 0.359);
       opacity: 0.5;
     }
+  }
+
+  button{
+    font-weight: 500 !important;
   }

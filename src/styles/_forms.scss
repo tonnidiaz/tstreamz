@@ -58,3 +58,16 @@
 input:disabled {
     opacity: .7 !important;
 }
+
+
+input, textarea {
+    &::placeholder{
+    opacity: 0.4 !important;
+    font-weight: 500 !important;
+    font-size: 0.9rem;
+    color: $color-white-2 !important;}
+}
+
+label {
+    font-weight: 500 !important;
+}

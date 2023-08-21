@@ -156,7 +156,7 @@
               type="submit"
               :disabled="btnDisabled"
               id="su-btn"
-              class="btn su-btn bg-card2 w-100p"
+              class="btn su-btn bg-dark-0 border-body w-100p"
             >
               Sign up
             </button>

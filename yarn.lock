@@ -627,6 +627,11 @@
     semver "^7.3.5"
     tar "^6.1.11"
 
+"@material-design-icons/font@^0.14.11":
+  version "0.14.11"
+  resolved "https://registry.yarnpkg.com/@material-design-icons/font/-/font-0.14.11.tgz#82fe9b9d6e2182ad68eb43f6fa1c3cdb8a54af14"
+  integrity sha512-s9L+2pgNPSNlmvVf17ST7A5D9QnU2bikHfL/08Huf4Q0haw+DkaZCyiLLXyaECnD1Kyzl66a6WqPeqfGtgj4sQ==
+
 "@netlify/functions@^1.6.0":
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@netlify/functions/-/functions-1.6.0.tgz#c373423e6fef0e6f7422ac0345e8bbf2cb692366"

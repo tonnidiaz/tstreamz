@@ -31,7 +31,7 @@
             <textarea placeholder="What is your query?..." required name="message" id="msg" class="form-control" />
           </div>
           <div class="form-group mt-4 mb-3">
-            <button class="btn bg-card2 m-auto w-100p" type="submit">
+            <button class="btn bg-dark-0 m-auto w-100p border-body" type="submit">
               Submit
             </button>
           </div>

@@ -51,7 +51,7 @@
           </div>
           <div class="t-c">
             <div class="form-group mt-3 mb-3">
-              <button type="submit" id="li-btn" class="btn bg-card2 w-100p">
+              <button type="submit" id="li-btn" class="btn bg-dark-0 border-body w-100p">
                 {{ txt }}
               </button>
             </div>

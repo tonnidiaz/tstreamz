@@ -1,29 +1,25 @@
 <template>
   <div class="sidenav">
     <ul class="nav">
-      <li class="nav-item" title="Home">
+      <li class="nav-item mi" title="Home">
         <NuxtLink class="nav-link" to="/"
-          ><i class="fa fa-home"></i
+          ><i class="material-icons">house</i
         ></NuxtLink>
       </li>
-      <li class="nav-item" title="Watchlist">
+      <li class="nav-item mi" title="Watchlist">
         <NuxtLink class="nav-link" to="/me/watchlist"
-          ><i class="fa fa-bookmark"></i
+          ><i class="material-icons">bookmark</i
         ></NuxtLink>
       </li>
-      <li class="nav-item" title="Search">
-        <button @click="showSBar" class="nav-link btn-none"><i class="fa fa-search"></i></button>
+      <li class="nav-item mi" title="Search">
+        <button @click="showSBar" class="nav-link btn-none"><i class="material-icons">search</i></button>
       </li>
-      <li class="nav-item" title="Contact us">
+      <li class="nav-item mi" title="Contact us">
         <NuxtLink class="nav-link" to="/contact"
-          ><i class="fa fa-envelope"></i
+          ><i class="material-icons">email</i
         ></NuxtLink>
       </li>
-      <li class="nav-item" title="Notifications">
-        <a disabled="" class="nav-link disabled" href="#"
-          ><i class="fa fa-bell"></i
-        ></a>
-      </li>
+
     </ul>
   </div>
 </template>
