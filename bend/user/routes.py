@@ -177,7 +177,7 @@ def signup():
         user.username = username
         user.save()
 
-        otp = OTP()
+        otp = OTP() 
         otp.user = f"{user.id}"
         otp.date_created = datetime.datetime.now()
         otp.save()

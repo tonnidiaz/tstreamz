@@ -20,7 +20,7 @@
 <script setup lang="ts">
 
 import {dbUrl} from '@/utils/constants'
-import {ref, onBeforeMount} from "vue"
+import {ref} from "vue"
 const verified = ref(false)
 
 

@@ -21,7 +21,7 @@
                         allowfullscreen
                         class="br-4"
                         id="frame"
-                        :src="embedUrls(1)"
+                        :src="embedUrls(0)"
                     ></iframe>
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
