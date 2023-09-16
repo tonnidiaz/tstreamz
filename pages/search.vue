@@ -32,9 +32,10 @@
               Search results for:
               <span class="color-orange">{{ $route.query.q }}</span>
             </legend>
-                  <fieldset class="checkbox-switch">
+                  <fieldset class="checkbox-switc">
                      
                     <input
+                    class="form-check form-control"
                       @change="handleCheck"
                       type="checkbox"
                       name="movies"
@@ -48,8 +49,9 @@
                       >Movies</label
                     >
                   </fieldset>
-                  <fieldset class="checkbox-switch">
+                  <fieldset class="checkbox-switc">
                     <input
+                    class="form-check form-control"
                       @change="handleCheck"
                       type="checkbox"
                       name="shows"
@@ -143,6 +145,7 @@ const filter = ref({ movies: true, shows: true }),
 
   function handleCheck(e: any) {
       const { checked, name } : {checked : boolean, name : "movies" | "shows"} = e.currentTarget;
+      console.log(checked, name)
       let  newFilter = filter.value;
       newFilter[name] = checked
       setFilter(newFilter)

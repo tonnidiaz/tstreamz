@@ -14,7 +14,7 @@
             <input
               name="search"
               type="search"
-              class="form-control search pd-10 bg-body"
+              class="form-control search pd-5 bg-body"
               placeholder="Enter movie or tv show title"
             />
             <button type="submit" class="btn-none search-icon">
