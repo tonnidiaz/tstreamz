@@ -155,12 +155,7 @@ body,
     }
     background-color: $color-card !important;
     color: $color-white-1 !important;
-    input,
-    textarea {
-        background-color: $color-body !important;
-        color: $color-white-2 !important;
-        border: 2px solid $color-dark-0 !important;
-    }
+
     * {
         font-family: Poppins, "Arial";
         transition: 0.1s linear;

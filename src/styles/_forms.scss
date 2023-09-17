@@ -60,12 +60,15 @@ input:disabled {
 }
 
 
-input, textarea {
+input, textarea, select {color: $color-white-2 !important;
+    background-color:  $color-body !important;
+    border: 2px solid $color-dark-0 !important;
     &::placeholder{
     opacity: 0.4 !important;
     font-weight: 500 !important;
     font-size: 0.9rem;
-    color: $color-white-2 !important;}
+    
+}
 }
 
 label {

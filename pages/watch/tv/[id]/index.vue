@@ -7,21 +7,26 @@
             :keywords="`TunedBass, TunedStreamz, ${tv?.name}, Watch ${tv?.name} TunedStreamz`"
             :src="imgUrl + tv?.poster_path"
             :desc="tv?.overview"
-            :title="`Watch ${tv?.name} S${$route.query.s ?? 1}E${$route.query.ep ?? 1} - TunedStreamz`"
+            :title="`Watch ${tv?.name} S${$route.query.s ?? 1}E${
+                $route.query.ep ?? 1
+            } - TunedStreamz`"
         />
         <ClientOnly v-if="tv">
             <div>
-            
-                <div style="margin-top: 10px;" class="mb-4 br-10 video-frame d-flex ai-center jc-center sandes ">
+                <div
+                    style="margin-top: 10px"
+                    class="mb-4 br-10 video-frame d-flex ai-center jc-center sandes"
+                >
                     <iframe
+                    title="Frame"
                         width="100%"
                         height="500"
-                        scrolling="no"
+                        scrolling="yes"
                         frameborder="0"
                         allowfullscreen
                         class="br-4"
                         id="frame"
-                        :src="embedUrls(0)"
+                        :src="embedUrls()"
                     ></iframe>
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
@@ -150,7 +155,7 @@
                 <div class="mt-13 mb-3">
                     <DillaBanner />
                 </div>
-                <div class="mt-13 sandes  br-10 p-2 row mb-3" style="margin: 0">
+                <div class="mt-13 sandes br-10 p-2 row mb-3" style="margin: 0">
                     <div v-if="epsReady">
                         <div v-if="currEp">
                             <h5>
@@ -191,55 +196,59 @@
                         </p>
                     </div>
                 </div>
-                <div class="mt-13 sandes br-10 row mb-3 pd-5 pdb-10" style="margin: 0">
+                <div
+                    class="mt-13 sandes br-10 row mb-3 pd-5 pdb-10"
+                    style="margin: 0"
+                >
                     <div class="col-md-4">
-                    <fieldset class=" p-4 w-100p fieldset border-card no-el">
-                        <legend>Seasons</legend>
+                        <fieldset class="p-4 w-100p fieldset border-card no-el">
+                            <legend>Seasons</legend>
 
-                        <div class="mt-2 row">
-                            <NuxtLink
-                                :key="i"
-                                v-for="(season, i) in tv?.seasons"
-                                :class="`col m-1 btn btn-sm btn-outline-dark ${
-                                    `${sNum}` === `${i + 1}` ? 'active' : ''
-                                }`"
-                                :to="`/watch/tv/${tv?.id}?s=${i + 1}&ep=1`"
-                                >Season {{ i + 1 }}</NuxtLink
-                            >
-                        </div>
-                    </fieldset>
-                </div>
-                <div class=" col-md-8">
-                    <fieldset class=" p-4 fieldset no-el border-card">
-                        <legend class="">Episodes</legend>
-                        <div class="mt-2 row">
-                            <NuxtLink
-                                :key="i"
-                                v-if="episodes"
-                                v-for="(ep, i) in episodes?.episodes"
-                                :title="ep.name"
-                                :class="`col-md-3 m-1 w-nowrap btn btn-sm btn-outline-dark  ${
-                                    eNum === `${ep.episode_number}`
-                                        ? 'active'
-                                        : ''
-                                }`"
-                                :to="`/watch/tv/${tv?.id}?s=${ep.season_number}&amp;ep=${ep.episode_number}`"
-                            >
-                                Episode {{ i + 1 }} : {{ ep.name }}</NuxtLink
-                            >
-
-                            <div class="loading-div" v-else>
-                                <span>Loading Episodes...</span>
+                            <div class="mt-2 row">
+                                <NuxtLink
+                                    :key="i"
+                                    v-for="(season, i) in tv?.seasons"
+                                    :class="`col m-1 btn btn-sm btn-outline-dark ${
+                                        `${sNum}` === `${i + 1}` ? 'active' : ''
+                                    }`"
+                                    :to="`/watch/tv/${tv?.id}?s=${i + 1}&ep=1`"
+                                    >Season {{ i + 1 }}</NuxtLink
+                                >
                             </div>
-                        </div>
-                    </fieldset>
-                </div>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-8">
+                        <fieldset class="p-4 fieldset no-el border-card">
+                            <legend class="">Episodes</legend>
+                            <div class="mt-2 row">
+                                <NuxtLink
+                                    :key="i"
+                                    v-if="episodes"
+                                    v-for="(ep, i) in episodes?.episodes"
+                                    :title="ep.name"
+                                    :class="`col-md-3 m-1 w-nowrap btn btn-sm btn-outline-dark  ${
+                                        eNum === `${ep.episode_number}`
+                                            ? 'active'
+                                            : ''
+                                    }`"
+                                    :to="`/watch/tv/${tv?.id}?s=${ep.season_number}&amp;ep=${ep.episode_number}`"
+                                >
+                                    Episode {{ i + 1 }} :
+                                    {{ ep.name }}</NuxtLink
+                                >
+
+                                <div class="loading-div" v-else>
+                                    <span>Loading Episodes...</span>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
                 </div>
 
                 <div class="mt-14">
                     <TerraBanner />
                 </div>
-                <div  class="mt-14">
+                <div class="mt-14">
                     <h3 class="he">Similar Shows</h3>
                     <div style="padding-left: 15px" class="mt-13 os d-flex">
                         <FixedMovieCard
@@ -292,14 +301,17 @@ const tv = ref<any>(null);
 const route = useRoute();
 const id = ref(route.params.id);
 
-const embedUrls = (i: number = 0) => {
-    const movieId = tv.value?.id;
+const embedUrls = (i: number = 3) => {
+    const movieId = id.value;
+    const s = route.query.s ?? "1",
+        e = route.query.e ?? "1";
     return true
         ? [
               `https://multiembed.mov/?video_id=${movieId}&tmdb=1`,
-              `https://www.2embed.cc/embedtv/${route.params.id}&s=${
-                  route.query.s ? route.query.s : "1"
-              }&e=${route.query.ep ? route.query.ep : "1"}`,
+              `https://www.2embed.cc/embedtv/${movieId}&s=${s}&e=${e}`,
+              `https://api.123movie.cc/tmdb_api.php?se=${s}&ep=${e}&tmdb=${movieId}&server_name=vcu`,
+`https://api.123movie.cc/tmdb_api?se=${s}&ep=${e}&tmdb=${movieId}&server_name=vcs`,
+              `https://api.123movie.cc/jadeed.php?ep=${movieId}-${s}x${e}&server_name=serverf4&t=${movieId}`,
           ][i]
         : "";
 };
@@ -389,10 +401,10 @@ watch(
     }
 );
 
-const setupMeta = async () => { 
+const setupMeta = async () => {
     const mta = await getMeta(id.value);
-        setMeta(mta);
- }
+    setMeta(mta);
+};
 watch(sNum, (val) => {
     setupEps(val);
 });
@@ -401,14 +413,14 @@ onBeforeMount(() => {
     // When show changes
     scrollToTheTop();
 
-    setupMeta()
+    setupMeta();
     setSNum(null);
     if (tv.value) {
         let { s, ep } = route.query;
         s = s ?? "1";
         ep = ep ?? "1";
-        setSNum(s)
-        setENum(ep)
+        setSNum(s);
+        setENum(ep);
     }
 });
 </script>
