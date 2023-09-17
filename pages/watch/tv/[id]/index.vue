@@ -33,7 +33,7 @@
                         allowfullscreen
                         class="br-4"
                         id="frame"
-                        :src="embedUrls(server)"
+                
                     ></iframe>
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
