@@ -309,9 +309,10 @@ const tv = ref<any>(null);
 const route = useRoute();
 const id = ref(route.params.id);
 
-const servers = () => {   const movieId = id.value;
+const servers = () => {   
+    const movieId = id.value;
     const s = route.query.s ?? "1",
-        e = route.query.e ?? "1";
+        e = route.query.ep ?? "1";
     return [
               `https://multiembed.mov/directstream.php?video_id=${movieId}&tmdb=1&s=${s}&e=${e}`,
               `https://www.2embed.cc/embedtv/${movieId}&s=${s}&e=${e}`,
