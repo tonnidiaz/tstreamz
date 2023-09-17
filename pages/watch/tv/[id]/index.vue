@@ -13,6 +13,13 @@
         />
         <ClientOnly v-if="tv">
             <div>
+                <select :value="server" @change="(e: any)=>{
+                        setServer(e.target.value)
+                    }" name="server" id="server" class="form-control w-150 my-5">
+                        <option v-for="(server, i) in servers()" :value="i">
+                            Server {{ i + 1 }}
+                        </option>
+                    </select>
                 <div
                     style="margin-top: 10px"
                     class="mb-4 br-10 video-frame d-flex ai-center jc-center sandes"
@@ -26,7 +33,7 @@
                         allowfullscreen
                         class="br-4"
                         id="frame"
-                        :src="embedUrls()"
+                        :src="embedUrls(server)"
                     ></iframe>
                     <!--/*:src="`https://www.2embed.cc/embedtv/${tv.id}&s=${s}&e=${e}`"*/-->
                 </div>
@@ -282,7 +289,7 @@ import { imgUrl, root } from "../../../../utils/constants";
 import TerraBanner from "../../../../components/sda/TerraBanner.vue";
 import DillaBanner from "../../../../components/sda/DillaBanner.vue";
 import axios from "axios";
-
+const server = ref(0), setServer = (v: number)=> server.value = v;
 const meta = ref<any>(null),
     setMeta = (v: any) => (meta.value = v);
 const episodes = ref<any>(null),
@@ -301,19 +308,17 @@ const tv = ref<any>(null);
 const route = useRoute();
 const id = ref(route.params.id);
 
-const embedUrls = (i: number = 3) => {
-    const movieId = id.value;
+const servers = () => {   const movieId = id.value;
     const s = route.query.s ?? "1",
         e = route.query.e ?? "1";
-    return true
-        ? [
-              `https://multiembed.mov/?video_id=${movieId}&tmdb=1`,
+    return [
+              `https://multiembed.mov/directstream.php?video_id=${movieId}&tmdb=1&s=${s}&e=${e}`,
               `https://www.2embed.cc/embedtv/${movieId}&s=${s}&e=${e}`,
-              `https://api.123movie.cc/tmdb_api.php?se=${s}&ep=${e}&tmdb=${movieId}&server_name=vcu`,
-`https://api.123movie.cc/tmdb_api?se=${s}&ep=${e}&tmdb=${movieId}&server_name=vcs`,
-              `https://api.123movie.cc/jadeed.php?ep=${movieId}-${s}x${e}&server_name=serverf4&t=${movieId}`,
-          ][i]
-        : "";
+          
+          ]}
+const embedUrls = (i: number = 3) => {
+  
+    return servers()[i];
 };
 
 const getEps = async (id: any, s: string) => {
