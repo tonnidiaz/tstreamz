@@ -237,7 +237,6 @@ const route = useRoute();
 const id = ref(route.params.id);
 
 const servers = () => [
-    `https://multiembed.mov/directstream.php?video_id=${id.value}&tmdb=1`,
     `https://multiembed.mov/?video_id=${id.value}&tmdb=1`,
     `https://www.2embed.cc/embed/${id.value}`,
 ];

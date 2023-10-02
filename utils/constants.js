@@ -3,7 +3,7 @@ const site = 'TunedStreamz'
 const siteDesc = 'Watch all your favorite Movies And TV Shows in HD. Live update'
 const company = 'TUNEDBASS'
 const year = new Date().getFullYear()
-const __DEV__ = process.env.NODE_ENV === 'development' ? true : false
+const __DEV__ = process.env.NODE_ENV == 'development'
 const root = __DEV__ ?  'http://localhost:3000' : 'https://tstreamz.vercel.app'
 const dbUrl = __DEV__ ?  'http://127.0.0.1:5000' : 'https://ts-bend.vercel.app'
 const imgUrl = "https://image.tmdb.org/t/p/w500"
