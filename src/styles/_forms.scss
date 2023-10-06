@@ -19,8 +19,8 @@
      
 }
 @media screen and (max-width: 500px) {
-    .auth-form {
-        width: calc(100% - 20px) !important;
+    .auth-form, .formset {
+        width: calc(100% - 10px) !important;
     }
 }
 
