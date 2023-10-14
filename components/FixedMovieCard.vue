@@ -7,7 +7,7 @@
             :style="`background-size: cover`"
             class="br-4 pos-rel w-100p h-100p"
           >
-            <img alt="Banner" class='br-4' loading="lazy" :src="imgUrl + it.poster_path" />
+            <img alt="image" class='br-4' loading="lazy" :src="imgUrl + it.poster_path" />
           </div>
           <div class="info dflex jc-center pos-abs w-100p h-100p">
             <NuxtLink
