@@ -19,8 +19,8 @@
                 <div
                     class="trailer bg-blue-2 p-1 d-flex jc-center ai-center pos-rel"
                 >
-                    <button @click="hideTrailer" class="btn btn-none fs-24">
-                        <i class="far fa-times-circle"></i>
+                    <button @click="hideTrailer" class="btn btn-none fs-24 pdr-4">
+                        <i class="far fa-times"></i>
                     </button>
                     <iframe
                         title="Trailer frame"
@@ -170,6 +170,8 @@ watch(route, (val) => {
     console.log(val);
     window.scrollTo(0, 0);
 });
+
+
 </script>
 
 <style>

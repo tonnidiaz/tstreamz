@@ -168,6 +168,8 @@ function showUserMenu() {
     };
     document.addEventListener("mousedown", hideMenu);
 }
+
+
 function openSideMenu() {
     const menu = $(".sidemenu"),
         blur = $(".blur");
@@ -178,15 +180,10 @@ function openSideMenu() {
         menu.addClass("open");
         blur.addClass("active");
     }
-    const closeMenu = (e: any) => {
-        if (!menu[0].contains(e.target)) {
-            menu.removeClass("open");
-            $(".blur").removeClass("active");
-            document.body.removeEventListener("click", closeMenu);
-        }
-    };
-    console.log(blur);
-    blur[0]?.addEventListener("click", closeMenu);
-    blur[1]?.addEventListener("click", closeMenu);
+   
+   /*  blur[0]?.addEventListener("click", closeMenu);
+    blur[1]?.addEventListener("click", closeMenu); */
+    blur.on("click", closeMenu)
+    
 }
 </script>

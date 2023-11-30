@@ -1,7 +1,9 @@
 @import "./vars";
+
+$form-w: 350px;
 .auth-form, .formset {
     margin: 0 auto;
-    width: 500px;
+    width: $form-w;
    border-color: $color-card !important;
    border-width: 4px;
     padding: 20px;
@@ -18,7 +20,7 @@
      border-radius: 4px;
      
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: $form-w) {
     .auth-form, .formset {
         width: calc(100% - 10px) !important;
     }

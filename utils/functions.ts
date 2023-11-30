@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { imgUrl, tapiKey, tmdbUrl } from './constants'
+import $ from 'jquery'
+import { IObj } from './interfaces'
 
-const getData = async (url, isShow) => {
+const getData = async (url: string, isShow: boolean) => {
     let res = await axios.get(url)
     const {results} = await res.data
-    results.map(async r=>{
+    results.map(async (r: any)=>{
         if (false){
             const url = `https://2embed.org/embed/series?tmdb=${r.id}`
             console.log(url);
@@ -49,7 +51,7 @@ const getSimilar= async (id, tv) =>{
 }
 const getMeta = async (id, tv) =>{
 
-    let data = {}
+    let data : IObj = {}
     const credits = await getCredits(id, tv)
     const similar = await getSimilar(id, tv)
     data.credits = credits
@@ -58,7 +60,7 @@ const getMeta = async (id, tv) =>{
     return data
 }
 
-const rand = (min,max) =>{
+const rand = (min: number,max: number) =>{
     return Math.floor(Math.random() * max) + min;
 }
 
@@ -73,4 +75,21 @@ export const getTrailer = async (id, tv = false) => {
   
     return d;
   };
+
+export  const closeMenu = (e: any) => {
+    const menu = $(".sidemenu"),
+        blur = $(".blur");
+        if (!e){
+            menu.removeClass("open");
+            blur.removeClass("active");
+            document.body.removeEventListener("click", closeMenu);
+            return    
+        }
+    if (!menu[0].contains(e.target)) {
+        menu.removeClass("open");
+        blur.removeClass("active");
+        document.body.removeEventListener("click", closeMenu);
+    }
+};
 export {getData, getMeta, rand}
+

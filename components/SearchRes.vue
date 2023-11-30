@@ -6,7 +6,7 @@
             :to="isShow ? '/watch/tv/' + movie.id : '/watch/m/' + movie.id"
             class="ttl"
           >
-            <img alt="Banner" loading="lazy" :src="imgUrl + movie.poster_path" />
+            <img alt="Cover image" loading="lazy" :src="imgUrl + movie.poster_path" />
           </NuxtLink>
         </div>
         <div class="w-100p">

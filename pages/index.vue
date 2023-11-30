@@ -42,7 +42,7 @@
                                 <CardPH v-else :movies="[...Array(50)]" />
                             </div>
                         </section>
-                        <!-- <TerraBanner /> -->
+                        <TerraBanner />
                         <section>
                             <h3 class="mb-2 he">popular Shows</h3>
                             <div class="">
@@ -66,7 +66,7 @@
                                 <CardPH v-else :movies="[...Array(50)]" />
                             </div>
                         </section>
-                        <DillaBanner />
+                        <TerraBanner />
                     </div>
                 </div>
             </div>

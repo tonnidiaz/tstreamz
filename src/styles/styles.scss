@@ -263,7 +263,7 @@ header {
         margin: 0 1.2rem;
     }
      z-index: 99998;
-    //background-color: rgb(6, 6, 6);
+    background-color: $color-card;
     nav {
         //margin: 0 7px;
         padding: 0 10px;
@@ -608,6 +608,12 @@ a * {
         margin-left: #{$i}px !important;
         margin-right: #{$i}px !important;
     }
+
+    @media screen and (max-width: #{$i + 20}px) {
+        .w-#{$i} {
+            width: calc(100% - 0px) !important;
+        }
+    }
 }
 
 .mcard-img {
@@ -629,16 +635,29 @@ a * {
     }
 }
 
+@media screen and (max-width: 415px) {
+    .search-res {
+        h2, a{
+            font-size: 15px !important;
+        }
+        a{
+            font-size: 13px !important;
+        }
+        img{
+            width: 65px !important;
+            height: 65px !important;
+        }
+    }
+}
+
 .ttl {
     font-weight: 600;
 }
 
 .search-bar {
-    position: fixed;
-    //width: calc(100% - #{$sidenav-w}*2);
+  position: fixed;
     padding: 30px;
     border-radius: 4px;
-    // height: 300px;
     background-color: rgba(0, 0, 0, 0.876);
     top: 0;
     left: 0; //calc(50% + #{$sidenav-w}/2);
@@ -647,12 +666,13 @@ a * {
     align-items: center;
     width: 100%;
     height: 100%;
-    //transform: translate(-50%, -50%);
     z-index: 999;
+    input{
+        padding-right: 30px !important;
+    }
     .form-group {
         position: relative;
-        left: 10px;
-    }
+    } 
 }
 
 .blur {

@@ -13,7 +13,7 @@
         />
         <ClientOnly v-if="tv">
             <div>
-                <select :value="server" @change="(e: any)=>{
+                <select v-if="false" :value="server" @change="(e: any)=>{
                         setServer(e.target.value)
                     }" name="server" id="server" class="form-control w-150 my-5">
                         <option v-for="(server, i) in servers()" :value="i">
@@ -61,7 +61,7 @@
                             "
                         >
                             <img
-                                alt="Banner"
+                                alt="conver image"
                                 class="br-4"
                                 :src="imgUrl + tv?.poster_path"
                             />
@@ -314,7 +314,6 @@ const servers = () => {
     const s = route.query.s ?? "1",
         e = route.query.ep ?? "1";
     return [
-              `https://multiembed.mov?video_id=${movieId}&tmdb=1&s=${s}&e=${e}`,
               `https://www.2embed.cc/embedtv/${movieId}&s=${s}&e=${e}`,
           
           ]}

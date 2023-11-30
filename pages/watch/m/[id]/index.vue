@@ -18,7 +18,7 @@
                             <span class="color-orange">{{ movie.title }}</span>
                         </h1>
                     </div>
-                    <select :value="server" @change="(e: any)=>{
+                    <select v-if="false" :value="server" @change="(e: any)=>{
                         setServer(e.target.value)
                     }" name="server" id="server" class="form-control w-150 my-5">
                         <option v-for="(server, i) in servers()" :value="i">
@@ -237,7 +237,6 @@ const route = useRoute();
 const id = ref(route.params.id);
 
 const servers = () => [
-    `https://multiembed.mov/?video_id=${id.value}&tmdb=1`,
     `https://www.2embed.cc/embed/${id.value}`,
 ];
 const embedUrls = (i: number = 0) => {

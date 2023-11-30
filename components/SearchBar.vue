@@ -5,9 +5,9 @@
         <button
          @click="close"
           title="Close"
-          class="btn-none fs-18 top-right"
+          class="btn-none fs-18 top-right pdr-10"
         >
-          <i class="far fa-times-circle"></i>
+          <i class="far fa-times"></i>
         </button> 
         <form ref="sform" @submit="handleSubmit" class="search-form" action="/search">
           <div class="form-group d-flex jc-center mt-5">

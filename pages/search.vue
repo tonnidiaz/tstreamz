@@ -28,7 +28,7 @@
            
           <section class="filter-sec m-0"> 
                 <fieldset style="gap: 10px" class="d-flex formset">
-                    <legend class="">
+                    <legend class="fs-18">
               Search results for:
               <span class="color-orange">{{ $route.query.q }}</span>
             </legend>
@@ -190,14 +190,17 @@ const filter = ref({ movies: true, shows: true }),
 
 
 .tu-searchbar{
-    position: fixed;
+    //position: fixed;
     width: 100%;
     left: 0;
-    top: 54px;
+    //top: 54px;
     z-index: 9;
 }
 
 .search-page{
-    margin-top: 64px
+    margin-top: 64px;
+    .formset{
+        padding: 0 !important;
+    }
 }
 </style>
