@@ -25,17 +25,17 @@
     let classes = $state(""),
         cardClasses = $state("");
 
-    $effect(() => {
-        // watch wrap
-        const v = wrap;
-        untrack(() => {
-            classes = v ? "row items-center justify-center" : "flex no-wrap items-center";
-            cardClasses = v ? "row items-center" : "flex no-wrap items-center";
-        });
-    });
+    // $effect(() => {
+    //     // watch wrap
+    //     const v = wrap;
+    //     untrack(() => {
+    //         // classes = ;
+    //         // cardClasses = v ? "row items-center" : "flex no-wrap items-center";
+    //     });
+    // });
 </script>
 
-<div class={`${classes} ${_class} gap-2 overflow-x-scroll`} {...props}>
+<div class={`${wrap ? "row items-center justify-center wrap" : "flex no-wrap items-center"} ${_class} gap-2 overflow-x-scroll`} {...props}>
     {#each movies as it, i}
         <div title={isShow ? it.name : it.title} class="fmc fshr-0 p-0 oh">
             <div class="movie-card h-100p bg-card">

@@ -11,6 +11,7 @@
     import { onMount } from "svelte";
     import {
         appStore,
+        setGenres,
         setReady,
     } from "@/stores/app.svelte";
     import { localApi } from "@/lib/api";
@@ -18,6 +19,7 @@
     import Navbar from "@/components/Navbar.svelte";
     import Sidebar from "@/components/Sidebar.svelte";
     import Loader from "@repo/ui/components/Loader.svelte";
+    import axios from "axios";
     let { children } = $props();
     let { ready } = $derived(appStore);
 
@@ -36,9 +38,11 @@
         setReady(true);
     };
 
-    onMount(() => {
+    onMount(async() => {
        
         init();
+        const {data} = await axios.get("/api/genres");
+        setGenres(data.genres);
     });
 
 

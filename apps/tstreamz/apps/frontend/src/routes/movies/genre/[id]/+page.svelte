@@ -20,12 +20,12 @@
 
         const _page = p ? p : "1";
         const { id } = $page.params;
-        const url = "/movie/genre/" + id + "?isShow=false&page=" + _page;
+        const url = "/movie/genre/" + id + "?page=" + _page;
         const { data } = await localApi.get(url);
         console.log(data);
         setMovies(data.data);
     }
-
+ 
     $effect(() => {
         let _p = p;
         console.log("Watch P", { _p });
@@ -52,9 +52,9 @@
     {/if}
 
     <div class="mt-4 mb-4 t-c">
-        <h1 class="mb-3">
+        <h1 class="mb-3 title">
             {#if genres?.movies}
-                <span class="color-orange fs-25"
+                <span class="text-primary fs-25"
                     >{genres?.movies?.filter(
                         (it: any) => it.id === parseInt(`${$page.params.id}`)
                     )[0]?.name}</span

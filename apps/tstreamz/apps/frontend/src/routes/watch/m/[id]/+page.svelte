@@ -15,7 +15,7 @@
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import axios from "axios";
     import { onMount, untrack } from "svelte";
-
+    const showFrame = true
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);
     let server = $state(0),
@@ -37,7 +37,8 @@
         console.log("Getting meta...");
         try {
             const url = `/meta/m/${id}`;
-
+            console.log({id});
+            setMeta(undefined)
             const { data } = await localApi.get(url);
             const { meta } = data;
             // console.log({meta});
@@ -49,19 +50,22 @@
     };
 
     const scrollToTheTop = () => {
-        return
+        
         const _top = document.querySelector(".the-top");
         _top?.scrollIntoView({ behavior: "smooth" });
     };
   
     
     $effect(()=>{
-        console.log({movie});
+        console.log({id});
+        scrollToTheTop();
+        untrack(()=>{
+             getMeta(id);
+        })
+       
     })
   onMount(() => {
-        scrollToTheTop();
         
-        getMeta(id);
     });
 
     //api.123movies.cc
@@ -114,14 +118,14 @@
                             allowFullScreen
                             
                             frameborder="0"
-                            src={false ? '' : embedUrls(server)}
+                            src={!showFrame ? '' : embedUrls(server)}
                         ></iframe>
                     </div>
 
-                    <div class=" md:flex md:gap-3 sandes br-10 p-3">
+                    <div class=" md:flex md:gap-3 sandes br-10 p-3 justify-start">
                         <div
                             style="flex-shrink: 0"
-                            class="m-auto w-225px h-280px pos-rel"
+                            class="w-225px h-280px pos-rel"
                         >
                             <img
                                 alt="Movie  banner"
@@ -295,8 +299,5 @@
 </div>
 
 <style lang="scss">
-    .key{
-        color: white;
-        font-size: 15px;
-    }
+    
 </style>
