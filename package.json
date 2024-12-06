@@ -3,7 +3,6 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
@@ -15,9 +14,11 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "npm@10.8.2",
   "workspaces": [
+    "apps/**/apps/*",
     "apps/*",
-    "packages/*"
+    "apps/**/libs/*",
+    "libs/*"
   ]
 }
