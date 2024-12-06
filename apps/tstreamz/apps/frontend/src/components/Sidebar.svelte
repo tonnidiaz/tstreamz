@@ -22,6 +22,7 @@
             title="Search"
             innerClass="justify-center"
             icon="fi fi-rr-search"
+            to="/search"
         ></MenuItem>
         <MenuItem
             title="Contact us"

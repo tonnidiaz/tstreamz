@@ -8,7 +8,8 @@
         isShow,
         id,
         className,
-    }: { isShow?: boolean; id: number; className?: string } = $props();
+        class: _class
+    }: { isShow?: boolean; id: number; className?: string; class?: string } = $props();
     function showTrailer(id: number) {
         setTrailerId(null);
         setTrailerErr(null);
@@ -32,7 +33,7 @@
     onclick={() => showTrailer(id)}
     title="Show trailer"
     class={"pos-rel btn btn-sm btn-secondary items-center justify-center flex " +
-        (className ? className : "btn-outline btn-secondary")}
+        (className ? className : "btn-outline btn-secondary") + ` ${_class || ''}`}
 >
     <span>
         <i class="fi fi-rr-film"></i>
