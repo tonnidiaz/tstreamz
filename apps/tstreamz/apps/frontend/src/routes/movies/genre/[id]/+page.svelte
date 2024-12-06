@@ -3,6 +3,7 @@
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
+    import { SITE } from "@/lib/constants";
     import { appStore } from "@/stores/app.svelte";
     import type { IObj } from "@cmn/utils/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
@@ -42,12 +43,12 @@
 <div class="mt-2">
     {#if genres?.movies?.filter((it: any) => it.id === parseInt(`${$page.params.id}`))[0]?.name}
         <TMeta
-            desc="Browse through movies by genre | TunedStreamz"
+            desc={"Browse through movies by genre | " + SITE}
             title={`${
                 genres?.movies?.filter(
                     (it: any) => it.id === parseInt(`${$page.params.id}`)
                 )[0]?.name
-            } Movies - TunedStreamz`}
+            } Movies - ${SITE}`}
         />
     {/if}
 

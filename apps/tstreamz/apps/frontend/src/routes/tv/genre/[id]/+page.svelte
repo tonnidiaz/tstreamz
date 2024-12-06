@@ -3,6 +3,7 @@
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
+    import { SITE } from "@/lib/constants";
     import { appStore } from "@/stores/app.svelte";
     import type { IObj } from "@cmn/utils/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
@@ -40,22 +41,22 @@
 </script>
 
 <div class="mt-2">
-    {#if genres?.movies?.filter((it: any) => it.id === parseInt(`${$page.params.id}`))[0]?.name}
+    {#if genres?.shows?.filter((it: any) => it.id === parseInt(`${$page.params.id}`))[0]?.name}
         <TMeta
-            desc="Browse through tv shows by genre | TunedStreamz"
+            desc={"Browse through tv shows by genre | " + SITE}
             title={`${
-                genres?.movies?.filter(
+                genres?.shows?.filter(
                     (it: any) => it.id === parseInt(`${$page.params.id}`)
                 )[0]?.name
-            } TV Shows - TunedStreamz`}
+            } TV Shows - ${SITE}`}
         />
     {/if}
 
     <div class="mt-4 mb-4 t-c">
-        <h1 class="mb-3">
-            {#if genres?.movies}
-                <span class="color-orange fs-25"
-                    >{genres?.movies?.filter(
+        <h1 class="mb-3 title">
+            {#if genres?.shows}
+                <span class="text-primary fs-25"
+                    >{genres?.shows?.filter(
                         (it: any) => it.id === parseInt(`${$page.params.id}`)
                     )[0]?.name}</span
                 >
@@ -63,7 +64,7 @@
             <b>shows</b>
         </h1>
 
-        {#if !genres?.movies}
+        {#if !genres?.shows}
             <div class="skel">
                 <h2 class="fs-10 skel-text">genre grenre genre</h2>
             </div>

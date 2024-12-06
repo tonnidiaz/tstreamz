@@ -42,6 +42,7 @@
        
         init();
         const {data} = await axios.get("/api/genres");
+        console.log(data);
         setGenres(data.genres);
     });
 

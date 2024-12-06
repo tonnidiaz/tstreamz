@@ -8,7 +8,8 @@
     import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
     import UAvatar from "@repo/ui/components/UAvatar.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
-
+    import Genres from "./Genres.svelte";
+    
     let ioConnected = $state(true);
     let menuOpen = $state(false);
     let { user } = $derived(userStore);
@@ -86,6 +87,14 @@
             </li>
             <li>
                 <TuLink to="/tv">Shows</TuLink>
+            </li>
+            <li>
+                <CtxMenu2 anchor="top">
+                    {#snippet toggler()}
+                        Genre
+                    {/snippet}
+                    <Genres />
+                </CtxMenu2>
             </li>
         </ul>
 

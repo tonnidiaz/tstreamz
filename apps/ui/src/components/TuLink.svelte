@@ -1,5 +1,6 @@
-<a class={"tu-link " + _class} href={to || href} {...props}>{@render children?.()}</a>
+<a class={`tu-link text-${$page.url.pathname == (to || href) ? 'primary' : ''} ${_class || ''}`} href={to || href} {...props}>{@render children?.()}</a>
 <script lang="ts">
+    import { page } from '$app/stores';
     import type {HTMLAnchorAttributes} from 'svelte/elements'
 
     interface IProps extends HTMLAnchorAttributes {to?: string}

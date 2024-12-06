@@ -1,17 +1,20 @@
 <script lang="ts">
-    import { onMount, type Snippet } from "svelte";
+    import { onMount, untrack, type Snippet } from "svelte";
     import type { HTMLAttributes } from "svelte/elements";
     import TuTeleport from "./TuTeleport.svelte";
-
+    import { page } from "$app/stores";
+    
     interface IProps extends HTMLAttributes<any> {
         toggler?: Snippet;
         open?: boolean;
+        anchor?: 'top' | 'bottom'
     }
     let {
         children,
         toggler: trigger,
         open = $bindable(false),
         class: _class,
+        anchor,
         ...props
     }: IProps = $props();
 
@@ -64,11 +67,20 @@
             const menuBottomInPerc = (menuRect.bottom / winSz.h) * 100;
             const xOut = menuRightInPerc > 100;
             const yOut = menuBottomInPerc > 100;
+            // console.log({yOut, menuBottomInPerc, menuRect});
             if (xOut || yOut) {
                 menuRef.style.transform = `translate(${xOut ? -100 : 0}%, ${yOut ? -100 : 0}%)`;
             }
         }
     });
+
+    let p = $derived($page.url.href)
+    $effect(()=>{
+        // watch route
+        console.log({p});
+        untrack(()=>{open = false})
+        
+    })
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
