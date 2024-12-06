@@ -25,4 +25,4 @@ export const company = 'TUNEDBASS'
 export const year = new Date().getFullYear()
 export const imgUrl = "https://image.tmdb.org/t/p/w500"
 export const tmdbUrl = "https://api.themoviedb.org/3/"
-export const offline = true
+export const offline = false

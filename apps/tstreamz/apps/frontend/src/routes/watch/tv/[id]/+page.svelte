@@ -15,11 +15,13 @@
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import { onMount, untrack } from "svelte";
 
+    const showFrame = true
+    let {data} = $props()
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);
     let server = $state(0),
         setServer = (v: number) => (server = v);
-    let tv = $state<IObj | null>(null);
+    let tv = $derived<IObj | null>(data.tv);
     let frame: HTMLIFrameElement;
 
     let episodes = $state<any>(null),
@@ -47,46 +49,69 @@
     };
 
     const getEps = async (id: any, s: string) => {
-        const url = ROOT + `/tv/${id}?s=${s}`;
+        const url = `/tv/${id}?s=${s}`;
 
         setEpsReady(false);
         try {
-            const { data } = await localApi.get(url);
-            const episodes = data.data;
+            const r = await localApi.get(url);
+            const episodes = r.data;
+            // console.log({episodes});
+            if (typeof episodes == "object")
             return episodes;
         } catch (e) {
             handleErrs(e);
             setEpsReady(true);
-            throw e; /* createError({
-        statusCode: 500,
-        message: "Error fetching episodes"
-    }) */
+           
         }
     };
 
     const getMeta = async (id: any) => {
         const url = `/meta/tv/${id}`;
-
-        const { data } = await localApi.get(url);
+        try{
+           const { data } = await localApi.get(url);
         const { meta } = data;
-        return meta;
+        // console.log({meta});
+        return meta; 
+        }
+        catch(e){
+            handleErrs(e)
+        }
     };
 
     const setupEps = async (s: any) => {
         // When season changes
         try {
             const eps = await getEps(id, s);
-            setEpisodes(eps);
-            setCurrEp(eps.episodes[0]);
+            if (eps)
+            {setEpisodes(eps);
+            setCurrEp(eps.episodes[0])};
             setEpsReady(true);
         } catch (e) {
-            console.log(e);
+            handleErrs(e);
         }
     };
+    onMount(() => {
+        // When show changes
+        scrollToTheTop();
 
+        setupMeta();
+        setSNum(null);
+        if (tv.value) {
+            let { s, ep } = query;
+            s = s ?? "1";
+            ep = ep ?? "1";
+            setSNum(s);
+            setENum(ep);
+        }
+    });
+
+ $effect(()=>{
+        console.log({tv});
+    })
     $effect(() => {
         // Watch episodes
         const val = episodes;
+        if (!val) return
         untrack(() => {
             const { ep } = Object.fromEntries($page.url.searchParams);
             const e = ep ?? "1";
@@ -102,6 +127,7 @@
     };
 
     let query = $derived(Object.fromEntries($page.url.searchParams));
+   
     $effect(() => {
         // watch rpute.query
         const v = query;
@@ -109,11 +135,11 @@
             scrollToTheTop();
 
             let { s, ep } = v;
-            s = s ?? "1";
-            ep = ep ?? "1";
+            s = s || "1";
+            ep = ep || "1";
             setSNum(s);
             setENum(ep);
-            if (episodes.episodes) {
+            if (episodes?.episodes) {
                 setCurrEp(episodes.episodes[parseInt(`${ep}`) - 1]);
             } else {
                 setCurrEp(null);
@@ -133,25 +159,12 @@
         });
     });
 
-    onMount(() => {
-        // When show changes
-        scrollToTheTop();
-
-        setupMeta();
-        setSNum(null);
-        if (tv.value) {
-            let { s, ep } = query;
-            s = s ?? "1";
-            ep = ep ?? "1";
-            setSNum(s);
-            setENum(ep);
-        }
-    });
+    
 </script>
 
 <div class="h-100p">
     <div style="height: 5px" class="the-top"></div>
-    <div class="mt-13 relative h-100p">
+    <div class="mt-1 relative h-100p">
         {#if tv}
             <TMeta
                 url={ROOT + `/watch/tv/${tv?.id}`}
@@ -164,7 +177,7 @@
         <div class="relative h-100p">
             {#if tv}
                 <div>
-                    <div class="title-cont d-none">
+                    <div class="title-cont d-none hidden">
                         <h1 class="fs-16 t-c fw-7">
                             You're watching
                             <span class="color-orange">{tv.name}</span>
@@ -195,14 +208,14 @@
                             height={500}
                             allowFullScreen
                             frameborder="0"
-                            src={embedUrls(server)}
+                            src={showFrame ? embedUrls(server) : ''}
                         ></iframe>
                     </div>
 
-                    <div class="mt-14 d-flex-md sandes br-10 p-3">
+                    <div class="md:flex md:gap-3 sandes br-10 p-3">
                         <div
                             style="flex-shrink: 0"
-                            class="m-auto w-225 h-280 pos-rel"
+                            class="w-225px h-280px pos-rel"
                         >
                             <img
                                 alt="Movie  banner"
@@ -217,12 +230,12 @@
                         <div class="movie-info mt-4">
                             <h1 class="title">{tv?.name}</h1>
                             <div class="mt-2">
-                                <div class="d-flex ai-center">
+                                <div class="flex items-center">
                                     <TrailerBtn isShow id={tv?.id} />
                                     &nbsp; &nbsp;
                                     <span class="rating color-yellow">
                                         <span>
-                                            <i class="fas fa-star"></i>
+                                            <i class="fi fi-ss-star"></i>
                                         </span>
                                         {tv?.vote_average}
                                     </span>
@@ -234,19 +247,19 @@
                             {#if meta}
                                 <div
                                     style="textoverflow: ellipsis; overflow: hidden"
-                                    class="meta row"
+                                    class="mt-2 meta grid sm:grid-cols-2 gap-2"
                                 >
-                                    <ul class="col-md-7 col-lg-6">
+                                    <ul class="fs-14">
                                         <li>
                                             <p>
-                                                <b>Genre(s): </b>
+                                                <span class="key">Genre(s): </span>
                                                 {#if tv?.genres}
                                                     {#each tv?.genres as it, i}
                                                         <span>
                                                             {#if i !== tv?.genres.length - 1}
                                                                 <span
                                                                     ><TuLink
-                                                                        class="link"
+                                                                        class="text-secondary"
                                                                         to={`/tv/genre/${it.id}`}
                                                                     >
                                                                         {it.name}
@@ -255,7 +268,7 @@
                                                                 >
                                                             {:else}
                                                                 <TuLink
-                                                                    class="link"
+                                                                    class="text-secondary"
                                                                     to={`/tv/genre/${it.id}`}
                                                                 >
                                                                     {it.name}
@@ -269,7 +282,7 @@
 
                                         <li>
                                             <p>
-                                                <b>Date: </b>
+                                                <span class="key">Date: </span>
                                                 {tv?.first_air_date.split(
                                                     "-"
                                                 )[0]} -
@@ -282,13 +295,13 @@
                                     <ul class="col-md-7 col-lg-6">
                                         <li>
                                             <p>
-                                                <b>Status: </b>
+                                                <span class="key">Status: </span>
                                                 {tv?.status}
                                             </p>
                                         </li>
                                         <li>
                                             <p>
-                                                <b>Language(s): </b>
+                                                <span class="key">Language(s): </span>
                                                 {#each tv?.spoken_languages as it, i}
                                                     <span>
                                                         {#if i !== tv?.spoken_languages.length - 1}
@@ -307,11 +320,11 @@
                                     </ul>
                                 </div>
                             {:else}
-                                <div class="mt-4w-100p h-200">
-                                    <div class="w-100p h-100p">
-                                        <h3 class="text-center">Loading...</h3>
-                                    </div>
+                            <div class="mt-4 w-100p">
+                                <div class="w-100p h-100p _row jc-center">
+                                    <span class="loading loading-bars loading-md"></span>
                                 </div>
+                            </div>
                             {/if}
                         </div>
                     </div>
@@ -322,70 +335,61 @@
                     </div>
                     <!-- 167 -->
                     <div
-                        class="mt-13 sandes br-10 p-2 flex mb-3"
-                        style="margin: 0"
+                        class="mt- sandes br-10 pd-4 flex mb-2"
                     >
                         {#if epsReady}
-                            <div>
+                            {#if episodes}
+                               <div class="w-100p">
                                 {#if currEp}
                                     <div>
-                                        <h5>
+                                        <h5 class="fs-18 text-white">
                                             S{sNum}Ep{eNum}: &nbsp;{currEp.name}
                                         </h5>
                                         <div class="mt-2 mb-2">
-                                            <p>Date: {currEp.air_date}</p>
+                                            <p><span class="key">Date:</span> <span class="text-secondary"> {currEp.air_date}</span></p>
                                         </div>
                                         <p>
                                             {currEp.overview}
                                         </p>
                                     </div>
                                 {:else}
-                                    <div class="loading-div">
-                                        <p class="fs-20">No data!</p>
+                                    <div class="loading-div w-100p h-100p m-0">
+                                        <span class="fs-30 flex ai-center mt-4">
+                                            <i class="fi fi-rr-sad-tear"></i>
+                                        </span>
                                     </div>
                                 {/if}
+                            </div> 
+                            {:else}
+                            <div class="loading-div w-100p h-100p m-0">
+                                <span class="fs-30 flex ai-center mt-4">
+                                    <i class="fi fi-rr-sad-tear"></i>
+                                </span>
                             </div>
+                            {/if}
+                            
                         {:else}
-                            <div class="skel w-100p h-150">
-                                <h5 class="skel-text">Episode name</h5>
-                                <div class="mt-2 mb-2">
-                                    <p class="skel-text">Date: 0000-00-00</p>
-                                </div>
-                                <p class="skel-text">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit.
-                                </p>
-                                <p class="skel-text">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit.
-                                </p>
-                                <p class="skel-text">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit.
-                                </p>
-                                <p class="skel-text">
-                                    Lorem ipsum dolor, sit amet consectetur
-                                    adipisicing elit.
-                                </p>
+                            <div class="loading-div">
+                                <span class="loading loading-lg loading-bars"></span>
                             </div>
                         {/if}
                     </div>
                     <div
-                        class="mt-13 sandes br-10 row mb-3 pd-5 pdb-10"
+                        class="mt-13 sandes br-10 md:grid md:grid-cols-3 gap-2 mb-3 pd-5 pdb-10"
                         style="margin: 0"
                     >
-                        <div class="col-md-4">
+                        <div class="col-span-1">
                             <fieldset
-                                class="p-4 w-100p fieldset border-card no-el"
+                                class="pd-5 w-100p fieldset border-card no-el"
                             >
                                 <legend>Seasons</legend>
 
-                                <div class="mt-2 row">
+                                <div class="mt-2 flex wrap jistify-center">
                                     {#each tv?.seasons as season, i}
                                         <TuLink
-                                            class={`col m-1 btn btn-sm btn-outline-dark ${
+                                            class={`col m-1 btn btn-sm btn-outline btn-neutral ${
                                                 `${sNum}` === `${i + 1}`
-                                                    ? "active"
+                                                    ? "text-secondary"
                                                     : ""
                                             }`}
                                             to={`/watch/tv/${tv?.id}?s=${i + 1}&ep=1`}
@@ -395,29 +399,37 @@
                                 </div>
                             </fieldset>
                         </div>
-                        <div class="col-md-8">
-                            <fieldset class="p-4 fieldset no-el border-card">
+                        <div class="col-span-2">
+                            <fieldset class="pd-4 fieldset no-el border-card">
                                 <legend class="">Episodes</legend>
-                                <div class="mt-2 row">
-                                    {#if episodes}
+                                <div class="mt-2 flex wrap">
+                                    {#if epsReady}
+                                        {#if episodes}
                                         {#each episodes?.episodes as ep, i}
                                             <TuLink
                                                 title={ep.name}
-                                                class={`col-md-3 m-1 w-nowrap btn btn-sm btn-outline-dark  ${
+                                                class={`col-md-3 m-1 w-nowrap btn btn-sm btn-outline btn-neutral  ${
                                                     eNum ===
                                                     `${ep.episode_number}`
-                                                        ? "active"
+                                                        ? "text-secondary"
                                                         : ""
                                                 }`}
-                                                to={`/watch/tv/${tv?.id}?s=${ep.season_number}&amp;ep=${ep.episode_number}`}
+                                                to={`/watch/tv/${tv?.id}?s=${ep.season_number}&ep=${ep.episode_number}`}
                                             >
                                                 Episode {i + 1} :
                                                 {ep.name}</TuLink
                                             >
                                         {/each}
+                                                {:else}
+                                                <div class="loading-div w-100p h-100p m-0">
+                                                    <span class="fs-30 flex ai-center mt-4">
+                                                        <i class="fi fi-rr-sad-tear"></i>
+                                                    </span>
+                                                </div>
+                                        {/if}
                                     {:else}
                                         <div class="loading-div">
-                                            <span>Loading Episodes...</span>
+                                            <span class="loading loading-bars"></span>
                                         </div>
                                     {/if}
                                 </div>
@@ -425,17 +437,17 @@
                         </div>
                     </div>
 
-                    <div class="mt-14">
+                    <div class="mt-4">
                         <TerraBanner />
                     </div>
-                    <div class="mt-14">
+                    <div class="mt-4">
                         <h3 class="he">Similar Shows</h3>
                         <div style="padding-left: 15px" class="mt-13 os d-flex">
                             {#if meta}
                                 <FixedMovieCard movies={meta.similar} isShow />
                             {:else}
                                 <div class="loading-div">
-                                    <h5>Loading...</h5>
+                                    <span class="loading loading-lg loading-bars"></span>
                                 </div>
                             {/if}
                         </div>

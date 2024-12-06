@@ -9,7 +9,7 @@ export const load = async ({params, url}) =>{
         const root = url.origin
         const {id} = params
          const r = await localApi.get(root + "/api/watch/tv/" + id);
-         return r.data
+         return {tv: r.data.tv}
     } catch (err) {
         handleErrs(err)
         let status: number | undefined;

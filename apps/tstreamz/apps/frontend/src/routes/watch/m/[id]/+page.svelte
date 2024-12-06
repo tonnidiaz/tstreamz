@@ -73,7 +73,7 @@
 
 <div class="h-100p">
     <div style="height: 5px" class="the-top"></div>
-    <div class="mt-13 relative h-100p">
+    <div class="mt-1 relative h-100p">
         {#if movie}
             <TMeta
                 url={ROOT + `/watch/m/${movie?.id}`}
@@ -140,12 +140,12 @@
                         <div class="movie-info mt-4">
                             <h1 class="title">{movie?.title}</h1>
                             <div class="mt-2">
-                                <div class="flex ai-center">
+                                <div class="flex items-center">
                                     <TrailerBtn id={movie?.id} />
                                     &nbsp; &nbsp;
                                     <span class="rating color-yellow">
                                         <span>
-                                            <i class="fas fa-star"></i>
+                                            <i class="fi fi-ss-star"></i>
                                         </span>
                                         {movie?.vote_average}
                                     </span>
@@ -250,9 +250,9 @@
                                     </ul>
                                 </div>
                             {:else}
-                                <div class="mt-4w-100p h-200px">
+                                <div class="mt-4 w-100p">
                                     <div class="w-100p h-100p _row jc-center">
-                                        <span class="loading loading-lg"></span>
+                                        <span class="loading loading-bars loading-md"></span>
                                     </div>
                                 </div>
                             {/if}
@@ -273,7 +273,7 @@
                             {:else}
                                 <div class="loading-div">
                                     <p>
-                                        <span class="loading loading-lg"></span>
+                                        <span class="loading loading-lg loading-bars"></span>
                                     </p>
                                 </div>
                             {/if}
