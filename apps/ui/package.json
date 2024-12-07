@@ -2,7 +2,6 @@
     "name": "@repo/ui",
     "type": "module",
     "scripts": {
-        "build": "vite build"
     },
     "devDependencies":{
         "@sveltejs/vite-plugin-svelte": "^4.0.0",
