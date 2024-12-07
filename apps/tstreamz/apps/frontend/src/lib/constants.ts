@@ -1,9 +1,10 @@
+import { dev } from "$app/environment";
 
 export const SITE = "Tunedstreamz";
-const __DEV__ = typeof window == "undefined" || window.location.origin.includes("localhost")
+const __DEV__ = dev // typeof window == "undefined" || window.location.origin.includes("localhost")
 export const ROOT = __DEV__
     ? "http://localhost:3000"
-    : "https://tu-trader-sv.vercel.app";
+    : "https://tstreamz-sv.vercel.app";
 const heroku = false,
     koyeb = true;
 export const BEND_URL = __DEV__
