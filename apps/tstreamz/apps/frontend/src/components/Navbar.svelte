@@ -13,6 +13,7 @@
     let ioConnected = $state(true);
     let menuOpen = $state(false);
     let { user } = $derived(userStore);
+    let menu: HTMLUListElement
     const menuItems = [
         [
             {
@@ -21,9 +22,31 @@
             },
         ],
     ];
-
+            const onResize = () =>{
+                const w = window.innerWidth
+                const menuParent = document.getElementById("nav-menu")
+                const ddMenu = document.getElementById("dropdown-menu")
+                if (w <= 786){
+                    if (menuParent.contains(menu)){
+                        menuParent.removeChild(menu)
+                    ddMenu.appendChild(menu)
+                    }
+                    
+                }else{
+                    // console.log(ddMenu.contains(menu));
+                    if (ddMenu.contains(menu)){
+                      ddMenu.removeChild(menu)
+                    menuParent.appendChild(menu)  
+                    }
+                    
+                }
+            }
     onMount(() => {
+        onResize()
+        window.addEventListener("resize", onResize);
+        return ()=> window.removeEventListener("resize", onResize)
     });
+
 </script>
 
 <div class="navbar !z-[51]">
@@ -48,32 +71,12 @@
                 </svg>
             </label>
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-            <ul
+            <ul id="dropdown-menu"
                 tabindex="0"
                 class="menu menu-menu menu-sm text-left justify-start open border-1 border-card dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-md"
             >
                 <li><TuLink to="/">Home</TuLink></li>
-                <li>
-                    <TuLink to="/test/arbit/cross/coins"
-                        >Cross-arbit cointest</TuLink
-                    >
-                </li>
-                <li><UDivider/></li>
-                <li>
-                    <TuLink to="/test/arbit/compare/cross/coins"
-                        >Cross-comp arbit cointest</TuLink
-                    >
-                </li>
-                <li>
-                    <TuLink to="/test/arbit/compare/coins"
-                        >Tri-comp arbit cointest</TuLink
-                    >
-                </li>
-                <li><TuLink to="/rf/ws/book-ticker">RF Book Ticker</TuLink></li>
-                <li><TuLink to="/rf/nets">Networks</TuLink></li>
-                <li><TuLink to="/app/config">App config</TuLink></li>
-                <li><TuLink to="/data/books">Orderbooks</TuLink></li>
-                <li><TuLink to="/test/candles">Candletest</TuLink></li>
+                
             </ul>
         </div>
     </div>
@@ -81,7 +84,8 @@
         <a href="/" class="btn btn-ghost normal-case text-xl">{SITE}</a>
     </div>
     <div class="navbar-end">
-        <ul class="menu menu-horizontal p-0 px-1 md:flex hidden">
+        <div id="nav-menu">
+           <ul class="menu menu-horizontal p-0 px-1 md:flex" bind:this={menu}>
             <li>
                 <TuLink to="/movies">Movies</TuLink>
             </li>
@@ -89,14 +93,16 @@
                 <TuLink to="/tv">Shows</TuLink>
             </li>
             <li>
-                <CtxMenu2 anchor="top">
+                <CtxMenu2 anchor="top" class="pd-0">
                     {#snippet toggler()}
                         Genre
                     {/snippet}
                     <Genres />
                 </CtxMenu2>
             </li>
-        </ul>
+        </ul> 
+        </div>
+        
 
     
 
@@ -114,8 +120,8 @@
                     {/snippet}
                     <ul>
                         <MenuItem
-                        to="/profile"
-                        icon="i-heroicons-user-circle-16-solid"
+                        to="/me/profile"
+                        icon="fi fi-br-circle-user"
                         >Profile</MenuItem
                     >
                     <MenuItem

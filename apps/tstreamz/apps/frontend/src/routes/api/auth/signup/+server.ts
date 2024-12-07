@@ -66,7 +66,7 @@ export const POST = async ({url, request: req}) => {
             }
         }
         const otp = randomInRange(1000, 9999);
-        if (dev) {
+        if (true) {
             console.log(otp);
         }
         user.otp = otp;

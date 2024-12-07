@@ -22,9 +22,6 @@
         ...props
     }: IProps = $props();
 
-    let classes = $state(""),
-        cardClasses = $state("");
-
     // $effect(() => {
     //     // watch wrap
     //     const v = wrap;
@@ -33,12 +30,22 @@
     //         // cardClasses = v ? "row items-center" : "flex no-wrap items-center";
     //     });
     // });
-</script>
 
-<div class={`${wrap ? "row items-center justify-center wrap" : "flex no-wrap items-center"} ${_class} gap-2 overflow-x-scroll`} {...props}>
+    const classes = "movie-card h-100p bg-card w-100p"
+</script><div class={`${wrap ? "row items-center justify-center wrap" : "flex no-wrap items-center"} ${_class} gap-2 overflow-x-scroll`} {...props}>
+{#if !movies?.length}
+{#each [...Array(5)] as it}
+    <div class={"fmc flex items-center justify-center "}>
+        <div class={classes + ` flex items-center justify-center`}><span class="fs-30"><i class="fi fi-rr-sad-tear"></i></span></div>
+    
+</div>
+{/each}
+
+{:else}
+    
     {#each movies as it, i}
         <div title={isShow ? it.name : it.title} class="fmc fshr-0 p-0 oh">
-            <div class="movie-card h-100p bg-card">
+            <div class={classes}>
                 <div class="w-100p h-130px pos-rel">
                     <div
                         style="background-size: cover"
@@ -90,4 +97,7 @@
             </div>
         </div>
     {/each}
+
+
+{/if}
 </div>

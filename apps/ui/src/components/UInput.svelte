@@ -5,6 +5,7 @@
     interface IProps extends HTMLInputAttributes {
         value?: any;
         override?: string;
+        inputClass?: string;
         trailing?: Snippet;
         leading?: Snippet;
     }
@@ -14,7 +15,7 @@
         value = $bindable(),
         class: _class,
         trailing,
-        leading,
+        leading, inputClass,
         ...props
     }: IProps = $props();
     const defClass = override.split(" ").find((el) => el == "class")
@@ -24,7 +25,7 @@
 
 <div class={defClass + _class || ''}>
     {@render leading?.()}
-    <input autocomplete="on" bind:value {...props} />
+    <input autocomplete="on" bind:value {...props} class={inputClass || ''} />
     {@render trailing?.()}
 </div>
 

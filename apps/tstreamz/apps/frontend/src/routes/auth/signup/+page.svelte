@@ -36,7 +36,7 @@
             localStorage.setItem(STORAGE_KEYS.authTkn, token)
 
             setTimeout(()=>{btnDisabled = (false)}, 1500)
-            location.href = "/"
+            location.href = "/me/profile"
         }catch(e: any){
             console.log(e)
             const _err = e.response?.data?.startsWith("tuned:") ? e.response.data.replace("tuned:", "") : "Something went wrong"
@@ -46,7 +46,7 @@
         }
      }
 
-     const validClass = "text-primary", invalidClass = "text-error"
+     const validClass = "text-white fw-6", invalidClass = "text-error-2"
 
      const submitForm = async (e:any)=>{
         try {
@@ -289,7 +289,7 @@
         {:else}
         <UForm onsubmit={submitOTP}>
             <fieldset class="formset m-auto border-card border-1 px-5 pb-5">
-                <legend class="flex items-center gap-2"> <UButton onclick={()=>step += 1} type="button" class="mt-1"><i class="fi fi-br-arrow-left"></i></UButton> <div>{SITE} auth</div></legend>
+                <legend class="flex items-center gap-2"> <UButton onclick={()=>step = 0} type="button" class="mt-1"><i class="fi fi-br-arrow-left"></i></UButton> <div>{SITE} auth</div></legend>
                 <p class="text-center fs-13 mb-3">
                     Enter the 4-digit PIN sent to{" "}
                     <span class="text-primary">
@@ -302,7 +302,7 @@
                         placeholder="Enter OTP"
                         maxlength={4}
                         minlength={4}
-                        class="text-center"
+                        inputClass="text-center"
                         value={formData.otp}
                         onchange={(e: any) => {
                             if (isNaN(e.target.value as any)) return;

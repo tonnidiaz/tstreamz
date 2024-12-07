@@ -1,5 +1,5 @@
     {#if genres}
-    <div  class="genres flex flex-col gap-4">
+    <div  class="genres flex flex-col gap-4 bg-card  pd-3">
         <section>
           <h3 class="title mb-3">Movies</h3>
           <!-- <UDivider class="mt-2"/> -->

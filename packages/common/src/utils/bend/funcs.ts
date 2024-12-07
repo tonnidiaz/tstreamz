@@ -40,13 +40,13 @@ export const sendMail = async ({subject, app, body, clients, sender}:
             port: Number(GMAIL_PORT),
             secure: false, // true for 465, false for other ports
             auth: {
-                user: process.env.EMAIL, //testAccount.user, // generated ethereal user
-                pass: process.env.GMAIL_PASSWORD, //testAccount.pass, // generated ethereal password
+                user: process.env.ADMIN_GMAIL_EMAIL, //testAccount.user, // generated ethereal user
+                pass: process.env.ADMIN_GMAIL_PASSWORD, //testAccount.pass, // generated ethereal password
             },
         });
 
         // send mail with defined transport object
-        const _sender = sender || process.env.EMAIL;
+        const _sender = sender || process.env.ADMIN_GMAIL_EMAIL;
         console.log("SENDING FROM: ", _sender);
         console.log("SENDING MAIL TO: ", clients);
         let info = await transporter.sendMail({
