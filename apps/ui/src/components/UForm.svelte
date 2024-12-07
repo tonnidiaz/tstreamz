@@ -10,8 +10,10 @@ interface IProps extends HTMLFormAttributes {state?: any}
 
 let {children, onsubmit,...props} : IProps = $props()
 const _onSubmit = async (e: any)=>{
+    console.log('TuForm: onSubmit');
     e.preventDefault()
     const btns = [...e.target.querySelectorAll('button[type=submit]')]
+    console.log(btns.length);
     btns.forEach((btn: any)=>{
         btn.disabled = true})
         await onsubmit?.(e)

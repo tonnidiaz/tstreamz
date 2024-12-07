@@ -56,6 +56,7 @@ import {page} from "$app/stores"
     import UForm from "@repo/ui/components/UForm.svelte";
     import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
     import UInput from "@repo/ui/components/UInput.svelte";
+    import { handleErrs } from "@cmn/utils/funcs";
 
     let btnDisabled = $state(false), setBtnDisabled = (v: boolean)=> btnDisabled = v;
     let passType = $state<"password" | "text">("password"), err = $state(""), setPassType = (v: typeof passType) => passType = v, setErr = (v: string) => err = v;
@@ -68,12 +69,9 @@ import {page} from "$app/stores"
 
         try{
             setErr("")
-            setBtnDisabled(true)
             
             const formData = formState
-            console.log(formData);
             const res = await localApi.post('/auth/login', formData)
-            console.log(res.data);
             setUser(res.data.user)
             localStorage.setItem(STORAGE_KEYS.authTkn, res.data.token)
             setTimeout(()=>{setBtnDisabled(false)}, 1500)
@@ -82,9 +80,9 @@ import {page} from "$app/stores"
             location.href = red || '/'
 
         }catch(e: any){
-            console.log(e)
-            setBtnDisabled(false)
-            const _err = typeof e.response?.data == "string" && e.response?.data?.startsWith("tuned:") ? e.response.data.replace("tuned:", "") : "Something went wrong"
+            handleErrs(e)
+            console.log(e);
+            const _err = e.response?.data?.message?.startsWith?.("tu:") ? e.response.data.message?.replace("tu:", "") : "Something went wrong"
             setErr(_err)
             
         }

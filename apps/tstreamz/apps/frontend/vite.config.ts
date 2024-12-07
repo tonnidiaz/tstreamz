@@ -11,7 +11,7 @@ export default defineConfig({
 	// },
     build: {
         commonjsOptions: {
-            include: [/@repo\/common/, /node_modules/],
+            include: [/@repo\/common/, /node_modules/, /@repo\/ui/],
           },
     },
     define: {

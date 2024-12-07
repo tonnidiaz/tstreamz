@@ -1,6 +1,6 @@
 <script lang="ts">
-    import "@/styles/styles3.scss";
     import "@/styles/globals.css";
+    import "@/styles/styles3.scss";
     import "@/styles/styles2.scss";
     import "@/styles/page-progress.css";
     import "@/styles/select.scss";

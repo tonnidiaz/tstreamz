@@ -17,7 +17,8 @@ const config = {
         alias: {
             "@cmn/*": root2 + "/packages/common/src/*",
             "@repo/ui/*": root2 + "/apps/ui/src/*",
-            "@/*": "src/*"
+            "@/*": "src/*",
+            "@server/*": "src/lib/server/*",
         },
         typescript: {
             config: (c)=>{

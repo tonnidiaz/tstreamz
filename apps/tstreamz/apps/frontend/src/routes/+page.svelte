@@ -20,6 +20,7 @@
                             ></b
                         >
                     </h1>
+                    <input type="text" class="hidden input-bordered">
                     <p class="text-center text-white mt-1">
                         Watch all your favorite
                         <span class="color-orange">Movies</span> And

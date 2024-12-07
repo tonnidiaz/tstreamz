@@ -102,9 +102,11 @@
 
         {#if user}
             <div class="relative">
+                <!-- <div class="avatar ring rounded-full"></div> -->
                 <CtxMenu2 class="relative mr-4">
                     {#snippet toggler()}
-                        <UAvatar class="pointer"
+                        <UAvatar class="pointer ring-neutral"
+                        
                             ><span class="text-md fw-7"
                                 >{user.username.slice(0, 1).toUpperCase()}</span
                             ></UAvatar

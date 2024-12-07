@@ -13,10 +13,10 @@
         <div class="fmc fshr-0 p-0 oh">
             <div class="movie-card  h-100p bg-card oh">
                 <div class="w-100p h-100p pos-rel flex flex-col gap-2 items-center justify-center">
-                    <div class="fs-30 color-orange loading blinky">
+                    <div class="fs-30 color-orange loading loading-rs blinky">
                         <i class="far fa-popcorn"></i>
                     </div>
-                    <div class="fs-12 fw-6 color-gray-100">&nbsp;&nbsp;Loading...</div>
+                    <div class="fs-12 fw-6 color-gray-100 hidden">&nbsp;&nbsp;Loading...</div>
                 </div>
             </div>
         </div>

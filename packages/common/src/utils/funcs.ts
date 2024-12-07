@@ -1,5 +1,9 @@
 import { isAxiosError } from "axios";
 
+export function randomInRange(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 export const isEmail = (emailAdress: string) => {
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     return emailAdress.match(regex) ? true : false;

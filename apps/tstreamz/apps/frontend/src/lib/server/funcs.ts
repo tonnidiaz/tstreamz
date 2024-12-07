@@ -3,6 +3,7 @@ import { imgUrl, tmdbUrl } from "../constants";
 import { handleErrs } from "@cmn/utils/funcs";
 import type { IObj } from "@cmn/utils/interfaces";
 import { tapiKey } from "./constants";
+import { error } from "@sveltejs/kit";
 
 export const getMovieData = async (url: string, isShow: boolean) => {
     try {
@@ -66,3 +67,6 @@ export const getTrailer = async (id: string, tv: boolean = false) => {
 
     return d;
 };
+
+
+export const tuErr = (status: number, msg: string) => error(status, `tu:${msg}`)
