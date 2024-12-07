@@ -3,9 +3,62 @@
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
     import TerraBanner from "@/components/TerraBanner.svelte";
     import TMeta from "@/components/TMeta.svelte";
-    import { homeStore } from "@/stores/home.svelte";
+    import { localApi } from "@/lib/api";
+    import { homeStore as _homeStore, setPopularShows, setTopMovies, setPopularMovies, setTopShows } from "@/stores/home.svelte";
+    import { handleErrs, randomInRange } from "@cmn/utils/funcs";
+    import { onMount } from "svelte";
 
-    let _homeStore = $derived(homeStore)
+    let homeStore = $derived(_homeStore)
+
+    async function getPopularShows() {
+    try{
+    const url = "/shows?t=popular&page=" + randomInRange(1, 100);
+    const { data } = await localApi.get(url);
+    setPopularShows(data.data);
+    }
+    catch(e){
+        handleErrs(e)
+    }
+}
+async function getTopShows() {
+    try{
+    const url = "/shows?t=top&page=" + randomInRange(1, 100);
+    const { data } = await localApi.get(url);
+    setTopShows(data.data);
+    }
+    catch(e){
+        handleErrs(e)
+    }
+}
+async function getPopularMovies() {
+    try{
+    const url = "/movies?t=popular&page=" + randomInRange(1, 100);
+    const { data } = await localApi.get(url);
+    setPopularMovies(data.data);
+    }
+    catch(e){
+        handleErrs(e)
+    }
+}
+async function getTopMovies() {
+    try{
+    const url = "/movies?t=top&page=" + randomInRange(1, 100);
+    const { data } = await localApi.get(url);
+    setTopMovies(data.data);
+    }
+    catch(e){
+        handleErrs(e)
+    }
+}
+
+const getContent = async () => {
+    await getTopShows();
+    await getTopMovies();
+    await getPopularShows();
+    await getPopularMovies();
+};
+
+onMount(()=>{getContent()})
 </script>
 <div>
     <TMeta />
@@ -15,7 +68,7 @@
                 <div class="mt-10">
                     <h1 class="text-center fs-24 fw-7">
                         <b>
-                            Tuned<span class="color-orange"
+                            Tuned<span class="text-primary"
                                 >Streamz</span
                             ></b
                         >
@@ -23,15 +76,15 @@
                     <input type="text" class="hidden input-bordered">
                     <p class="text-center text-white mt-1">
                         Watch all your favorite
-                        <span class="color-orange">Movies</span> And
-                        <span class="color-orange">TV Shows</span> in
-                        <span class="color-orange"> HD</span>!
+                        <span class="text-primary">Movies</span> And
+                        <span class="text-primary">TV Shows</span> in
+                        <span class="text-primary"> HD</span>!
                     </p>
                     <div class="flex flex-col gap-3">
                         <section>
                         <h2 class="mb-2 he">Top Shows</h2>
                         <div class="">
-                            {#if _homeStore.topShows}
+                            {#if homeStore.topShows}
                                 <FixedMovieCard
                                 isShow={true}
                                 name="Prop"

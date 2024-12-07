@@ -1,4 +1,6 @@
-import { Schema, type InferSchemaType, Document } from "mongoose";
+import { connectMongo } from "@cmn/utils/bend/funcs";
+import mongoose, { Schema, type InferSchemaType, Document, Types } from "mongoose";
+const Watchlist = {movies: {type: [{}], default: []}, shows: {type: [{}], default: []}}
 
 const UserSchema = new Schema(
     {
@@ -31,11 +33,16 @@ const UserSchema = new Schema(
             type: String,
             required: true,
         },
-        watchlist: {type: [String], default: []},
+        watchlist: {type: Watchlist, default: {movies: [], shows: []}},
         is_pro:{type: Boolean, default: false}
     },
-    { timestamps: true }
+    { timestamps: true,}, 
 );
 
 export interface IUser extends Document, InferSchemaType<typeof UserSchema> {}
 export { UserSchema };
+
+
+  
+  
+  

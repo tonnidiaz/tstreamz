@@ -15,19 +15,34 @@
         setReady,
     } from "@/stores/app.svelte";
     import { localApi } from "@/lib/api";
-    import { setUser } from "@/stores/user.svelte";
+    import { setUser, setWatchlist } from "@/stores/user.svelte";
     import Navbar from "@/components/Navbar.svelte";
     import Sidebar from "@/components/Sidebar.svelte";
     import Loader from "@repo/ui/components/Loader.svelte";
     import axios from "axios";
+    import { handleErrs } from "@cmn/utils/funcs";
+    import { dev } from "$app/environment";
     let { children } = $props();
     let { ready } = $derived(appStore);
-
+    async function getWatchlist() {
+        try{
+            console.log("Getting watchlist...");
+            const r =await localApi.get("/user/watchlist")
+            setWatchlist(r.data)
+            console.log('Wtachlist updated');
+            if (dev) console.log(r.data);
+        }
+        catch(err){
+            handleErrs(err);
+        }
+    
+}
     const getUser = async () => {
         try {
             console.log("GETTING USER");
             const res = await localApi.post("/auth/login?q=token", {});
             setUser(res.data.user);
+            
         } catch (e) {
             console.log(e);
         }
@@ -35,6 +50,7 @@
     const init = async () => {
         //console.log(pagesWithLayout.indexOf(location.pathname ) == -1 );
         await getUser();
+        await getWatchlist()
         setReady(true);
     };
 
@@ -42,7 +58,6 @@
        
         init();
         const {data} = await axios.get("/api/genres");
-        console.log(data);
         setGenres(data.genres);
     });
 

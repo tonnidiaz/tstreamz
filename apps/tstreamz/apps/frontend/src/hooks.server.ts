@@ -23,13 +23,14 @@ main()
 
 const protectedRoutes = ["auth/logi"];
 
-async function authMed(event: RequestEvent, res: any) {
+async function authMed(event: RequestEvent, res: any, strict: boolean = true) {
     const req = event.request
     const authorization = req.headers.get("Authorization");
     if (dev) console.log({authorization})
     const tkn = authorization?.split(" ")[1];
     if (!tkn || tkn == "null") {
         console.log("Unauthorized");
+        if (strict)
         return tuErr(401, "Unautorized. Token missing!");
     } else {
         try {
@@ -45,6 +46,7 @@ async function authMed(event: RequestEvent, res: any) {
         } catch (e) {
             console.log("JWT ERR");
             handleErrs(e)
+            if (strict)
             return tuErr(401, "Bad token");
         }
     }
@@ -59,6 +61,8 @@ export const handle: Handle = async ({ resolve, event }) => {
     const loginCond = pathname == "/api/auth/login" && q == "token"
     if (loginCond || (req.method.toLowerCase() == "post" && req.url.includes("/user") )) {
         return authMed(event, resolve);
+    }else{
+        return authMed(event, resolve, false)
     }
 
     return resolve(event);
