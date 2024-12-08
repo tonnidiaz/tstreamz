@@ -9,6 +9,7 @@
     import UAvatar from "@repo/ui/components/UAvatar.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
     import Genres from "./Genres.svelte";
+    import { page } from "$app/stores";
     
     let ioConnected = $state(true);
     let menuOpen = $state(false);
@@ -143,7 +144,7 @@
             <div>
                 <UButton>
                     <TuLink
-                        to={`/auth/login?red=${location.pathname}`}
+                        to={`/auth/login?red=${$page.url.pathname.includes('auth') ? '/' : $page.url.pathname}`}
                         class="btn btn-sm btn-outline btn-primary"
                     >
                         Login

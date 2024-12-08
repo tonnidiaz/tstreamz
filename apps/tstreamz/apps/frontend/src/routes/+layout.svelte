@@ -22,6 +22,7 @@
     import axios from "axios";
     import { handleErrs } from "@cmn/utils/funcs";
     import { dev } from "$app/environment";
+    import Footer from "@/components/Footer.svelte";
     let { children } = $props();
     let { ready } = $derived(appStore);
     async function getWatchlist() {
@@ -81,9 +82,14 @@
         <Navbar />
         <div class="tu-app">
             <Sidebar/>
-            <main style="padding: 0 10px">
-                {@render children()}
+            <main  class="relative flex flex-col" style="padding: 0 10px">
+                <div style="flex: 1">
+               {@render children()}     
+                </div>
+                
+                <Footer/>
             </main>
         </div>
+        
     </div>
 {/if}

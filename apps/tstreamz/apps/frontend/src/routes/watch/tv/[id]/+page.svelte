@@ -13,6 +13,7 @@
     import { handleErrs } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
+    import UAccordion from "@repo/ui/components/UAccordion.svelte";
     import { onMount, untrack } from "svelte";
 
     const showFrame = true
@@ -379,10 +380,12 @@
                         style="margin: 0"
                     >
                         <div class="col-span-1">
-                            <fieldset
-                                class="pd-5 w-100p fieldset border-card no-el"
-                            >
-                                <legend>Seasons</legend>
+                            <UAccordion>
+                                {#snippet label()}
+                                    <h4 class="fw-6 text-white">{tv.seasons.length} Seasons</h4>
+                                {/snippet}
+                                {#snippet content()}
+         
 
                                 <div class="mt-2 flex wrap jistify-center">
                                     {#each tv?.seasons as season, i}
@@ -397,12 +400,17 @@
                                         >
                                     {/each}
                                 </div>
-                            </fieldset>
+                                {/snippet}
+                            </UAccordion>
+                            
                         </div>
                         <div class="col-span-2">
-                            <fieldset class="pd-4 fieldset no-el border-card">
-                                <legend class="">Episodes</legend>
-                                <div class="mt-2 flex wrap">
+                            <UAccordion>
+                                {#snippet label()}
+                                    <h4 class="fw-6 text-white">{episodes?.episodes?.length} Episodes</h4>
+                                {/snippet}
+                                {#snippet content()}
+                                <div class="flex wrap">
                                     {#if epsReady}
                                         {#if episodes}
                                         {#each episodes?.episodes as ep, i}
@@ -433,7 +441,9 @@
                                         </div>
                                     {/if}
                                 </div>
-                            </fieldset>
+                                {/snippet}
+                            </UAccordion>
+                     
                         </div>
                     </div>
 

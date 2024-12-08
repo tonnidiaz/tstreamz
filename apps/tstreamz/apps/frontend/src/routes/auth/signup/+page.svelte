@@ -152,7 +152,7 @@
     })
 </script>
 
-<div class="flex items-center justify-center w-100p h-80vh">
+<div class="flex items-center justify-center w-100p h-100p">
     <TMeta title={`Signup - ${SITE}`}/>
     {#if step == 0}
     <div bind:this={formRef}><UForm onsubmit={submitForm}  id="su-form" autocomplete="off">

@@ -50,10 +50,10 @@
     });
 </script>
 
-<div class="body">
+<div class="body h-100p flex">
     <TMeta title="My Profile - TunedStreamz" />
 
-    <div class="mt-40 p-2 br-3">
+    <div class="m-auto p-2 br-3">
         <UForm id="profile-form" onsubmit={saveChanges}>
             <fieldset class="formset m-auto fieldset">
                 <legend>My profile</legend>

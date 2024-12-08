@@ -1,6 +1,6 @@
 import { dev } from "$app/environment";
 
-export const SITE = "Tunedstreamz";
+export const SITE = "Tunedstreamz", email ="tunedstreamz@gmail.com";
 const __DEV__ = dev // typeof window == "undefined" || window.location.origin.includes("localhost")
 export const ROOT = __DEV__
     ? "http://localhost:3000"

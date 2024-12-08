@@ -28,7 +28,7 @@
             title="Contact us"
             innerClass="justify-center"
             icon="fi fi-rr-envelope"
-            to="/contact"
+            to="#contact"
         ></MenuItem>
     </ul>
 </aside>
