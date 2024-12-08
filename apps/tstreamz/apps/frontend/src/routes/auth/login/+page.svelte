@@ -12,6 +12,7 @@
     import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
     import UInput from "@repo/ui/components/UInput.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
+    import TuPassField from "@repo/ui/components/TuPassField.svelte";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);
@@ -56,7 +57,7 @@
                     ><TuLink to="/">{SITE}</TuLink></legend
                 >
                 <h2 class="text-cente my-3 fw-6">Login</h2>
-                <div class="mt-1 flex flex-col gap-2">
+                <div class="w-100p flex flex-col gap-2">
                     <UFormGroup label="Email/Username">
                         <UInput
                             placeholder="Enter email or username..."
@@ -65,32 +66,7 @@
                         />
                     </UFormGroup>
                     <UFormGroup label="Password">
-                        <UInput
-                            placeholder="Enter password..."
-                            type={passType}
-                            required
-                            bind:value={formState.password}
-                        >
-                            {#snippet trailing()}
-                                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                                <!-- svelte-ignore a11y_click_events_have_key_events -->
-                                <span
-                                    class="pointer"
-                                    onclick={() => {
-                                        console.log("object");
-                                        passType == "text"
-                                            ? setPassType("password")
-                                            : setPassType("text");
-                                    }}
-                                >
-                                    {#if passType == "password"}
-                                        <i class="fi fi-rr-eye"></i>
-                                    {:else}
-                                        <i class="fi fi-rr-eye-crossed"></i>
-                                    {/if}
-                                </span>
-                            {/snippet}
-                        </UInput>
+                        <TuPassField showValidation={false} required bind:value={formState.password} placeholder="Enter password..."/>
                     </UFormGroup>
                     {#if err.length}
                         <div
@@ -99,7 +75,14 @@
                             <p>{err?.replace("tuned:", "")}</p>
                         </div>
                     {/if}
-
+                    <div class="fs-12 mt-1 ml-1 text-center">
+                        <TuLink
+                            to="/auth/reset-password"
+                            class="text-primary text-center"
+                        >
+                            Forgot password?
+                        </TuLink>
+                    </div>
                     <UFormGroup class="mt-1">
                         <UButton
                             disabled={!formState.username?.length ||

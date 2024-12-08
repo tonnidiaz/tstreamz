@@ -77,7 +77,7 @@
     let p = $derived($page.url.href)
     $effect(()=>{
         // watch route
-        console.log({p});
+        console.log(p.length);
         untrack(()=>{open = false})
         
     })

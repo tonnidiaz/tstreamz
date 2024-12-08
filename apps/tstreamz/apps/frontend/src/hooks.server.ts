@@ -4,7 +4,7 @@ import { clearTerminal } from "@cmn/utils/funcs"
 import {config} from "dotenv"
 import { SITE } from "./lib/constants"
 
-import { type Handle, type RequestEvent } from "@sveltejs/kit";
+import { type Handle, type HandleServerError, type RequestEvent } from "@sveltejs/kit";
 import { handleErrs } from "@cmn/utils/funcs";
 import { tuErr } from "@/lib/server/funcs";
 import { User } from "@/lib/server/models";
@@ -67,3 +67,8 @@ export const handle: Handle = async ({ resolve, event }) => {
 
     return resolve(event);
 };
+
+export const handleError: HandleServerError = async ({ error, event, status, message }) => {
+    handleErrs(error)
+    return {message: "tu:Something went wrong", status}
+}

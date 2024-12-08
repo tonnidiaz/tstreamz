@@ -85,10 +85,10 @@
 
     @media screen and (max-width: #{$i}px) {
         .w-#{$i}px {
-          width: calc(100vw) !important;
+          width: calc(100vw - 20px) !important;
         }
         .min-w-#{$i} {
-            width: calc(100vw - 10px) !important;
+            width: calc(100vw - 20px) !important;
             min-width: 0 !important;
         }
       }

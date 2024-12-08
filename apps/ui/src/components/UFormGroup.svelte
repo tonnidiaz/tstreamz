@@ -1,10 +1,12 @@
     <label class={"label block " + _class} {...props}
-        ><div class={`mb-1 ml-1 ${labelClass}`}>
+        >
+        <div class={`mb-1 ml-1 ${labelClass}`}>
             {#if typeof label == 'string'}
                 {label}
             {:else}
             {@render label?.()}
             {/if}
+        </div>
         {@render children?.()}
     </label>
 

@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { IObj } from "@cmn/utils/interfaces";
-    import { onMount } from "svelte";
+    import { onMount, untrack } from "svelte";
     import jq from "jquery"
     import { localApi } from "@/lib/api";
     import { setUser } from "@/stores/user.svelte";
@@ -12,9 +12,10 @@
     import TMeta from "@/components/TMeta.svelte";
     import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
-    let pwd = $state("")
+    import TuPassField from "@repo/ui/components/TuPassField.svelte";
     let btnDisabled = $state(true),
-        passType = $state<"text" | "password">("password"),
+    pwdValid = $state(false),
+        
         err = $state(""),
         formData = $state<IObj>({}),
             step = $state(0);
@@ -39,14 +40,14 @@
             location.href = "/me/profile"
         }catch(e: any){
             console.log(e)
-            const _err = e.response?.data?.startsWith("tuned:") ? e.response.data.replace("tuned:", "") : "Something went wrong"
+            const _err = e.response?.data?.startsWith("tu:") ? e.response.data.replace("tu:", "") : "Something went wrong"
             err = (_err)
             btn.textContent = "Retry"
             btnDisabled = (false)
         }
      }
 
-     const validClass = "text-white fw-6", invalidClass = "text-error-2"
+     
 
      const submitForm = async (e:any)=>{
         try {
@@ -55,12 +56,7 @@
                 err = ("");
                 console.log("Signing up...");
                 jq("#su-btn").text("Signing up...");
-                let password = form["password"].value;
-                let email = form["email"].value;
-                let username = form["username"].value;
-                formData = ({...formData, email})
-                let fd = { password, email, username };
-                localApi.post("/auth/signup?method=custom", fd)
+                localApi.post("/auth/signup?method=custom", formData)
                     .then((res) => {
                         jq(".inProgress").hide();
                         err = ("");
@@ -85,70 +81,14 @@
                 jq("#su-btn").text("Error! Retry...");
             }
      }
-    onMount(()=>{
-        const form = formRef?.querySelector('form');
-        if (!form) return;
-        let pass: HTMLInputElement = form.querySelector("#pass")!;
-
-        const pwdInp = form["password"];
-        let letter = document.getElementById("letter")!;
-        let capital = document.getElementById("cap")!;
-        let number = document.getElementById("num")!;
-        let length = document.getElementById("len")!;
-
-        // pwdInp.onfocus = () => {
-        //     jq(".pwd-val").show();
-        // };
-        // pwdInp.onblur = () => {
-        //     jq(".pwd-val").hide();
-        // };
-        const checkPass = () => {
-            let lows = /[a-z]/g;
-            if (pwdInp.value.match(lows)) {
-                jq(letter).removeClass(invalidClass);
-                jq(letter).addClass(validClass);
-            } else {
-                jq(letter).addClass(invalidClass);
-                jq(letter).removeClass(validClass);
-            }
-
-            let caps = /[A-Z]/g;
-            if (pwdInp.value.match(caps)) {
-                jq(capital).removeClass(invalidClass);
-                jq(capital).addClass(validClass);
-            } else {
-                jq(capital).addClass(invalidClass);
-                jq(capital).removeClass(validClass);
-            }
-
-            let nums = /[0-9]/g;
-            if (pwdInp.value.match(nums)) {
-                jq(number).removeClass(invalidClass);
-                jq(number).addClass(validClass);
-            } else {
-                jq(number).addClass(invalidClass);
-                jq(number).removeClass(validClass);
-            }
-
-            if (pwdInp.value.length >= 8) {
-                jq(length).removeClass(invalidClass);
-                jq(length).addClass(validClass);
-            } else {
-                jq(length).addClass(invalidClass);
-                jq(length).removeClass(validClass);
-            }
-
-            const pwdVal: string = pwdInp.value;
-            const pwdValid =
-                pwdVal.match(lows) &&
-                pwdVal.match(caps) &&
-                pwdVal.match(nums) &&
-                pwdVal.length >= 8;
-            btnDisabled = (!pwdValid);
-            // if (pwdValid) jq(".pwd-val").hide();
-        }
-        checkPass()
-        pwdInp.onkeyup = checkPass;
+    
+    $effect(()=>{
+        // watch formstate
+        const {email, username} = formData
+        const _pwdValid = pwdValid
+        untrack(()=>{
+            btnDisabled = !(email && username && _pwdValid)
+        })
     })
 </script>
 
@@ -159,13 +99,15 @@
             <fieldset class="formset m-auto border-card border-1 p-4 pb-4">
             <legend class="text-primary"><TuLink to="/">{SITE}</TuLink></legend>
                 <h2 class="text-cente my-3 fw-6">Sign up</h2>
-                <UFormGroup label="Username">
+                <div class="w-100p flex flex-col gap-2">
+                    <UFormGroup label="Username">
                      
                         <UInput
                             type="text"
                             name="username"
                             required
                             class=""
+                            bind:value={formData.username}
                             placeholder="e.g. johndoe"
                         />
                 </UFormGroup>
@@ -174,94 +116,17 @@
                         <UInput
                             type="email"
                             name="email"
+                            bind:value={formData.email}
                             required
                             placeholder="e.g. johndoe@gmail.com"
                         />
                 </UFormGroup>
                 <UFormGroup label="Password">
-                     <UInput
-                                autocomplete="off"
-                                type={passType}
-                                id="pass"
-                                name="password"
-                                required
-                                class="grow"
-                                bind:value={pwd}
-                                placeholder="Enter password..."
-                                pattern={passPattern.source}
-                                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                            >
-                            {#snippet trailing()}
-                            {#if passType == "password"}
-                            <!-- svelte-ignore a11y_click_events_have_key_events -->
-                            <!-- svelte-ignore a11y_no_static_element_interactions -->
-                            <span
-                                onclick={() => {
-                                    passType = ("text");
-                                }}
-                                class="btn-none"
-                                title="show password"
-                            >
-                                <i class="fi fi-rr-eye"></i>
-                            </span>
-                        {:else}
-                            <!-- svelte-ignore a11y_click_events_have_key_events -->
-                            <!-- svelte-ignore a11y_no_static_element_interactions -->
-                            <span
-                                class="btn-none"
-                                onclick={() => {
-                                    passType = ("password");
-                                }}
-                                title="hide password"
-                            >
-                                <i class="fi fi-rr-eye-crossed"></i>
-                            </span>
-                        {/if}
-                            {/snippet}
-                        </UInput>
-                            
-                        <div class="pwd-val form-group my-2 ml-2 text-center ">
-                            <p class="fs-12">
-                                Must contain{" "}
-                                <span
-                                    id="letter"
-                                    class={`fw-5 ${invalidClass}`}
-                                >
-                                    a lowercase
-                                </span>
-                                ,{" "}
-                                <span
-                                    id="cap"
-                                    class={`fw-5 ${invalidClass}`}
-                                >
-                                    an uppercase
-                                </span>
-                                ,{" "}
-                                <span
-                                    id="num"
-                                    class={`fw-5 ${invalidClass}`}
-                                >
-                                    a number
-                                </span>
-                                , and{" "}
-                                <span
-                                    id="len"
-                                    class={`fw-5 ${invalidClass}`}
-                                >
-                                    at least 8 characters
-                                </span>
-                            </p>
+                    <TuPassField bind:valid={pwdValid} bind:value={formData.password} name="password" required placeholder="Enter password"/>
                        
                 </UFormGroup>
-                <div class="fs-14 mt-1 ml-1 text-center">
-                    <TuLink
-                        to="/auth/reset-password"
-                        class="text-primary text-center"
-                    >
-                        Forgot password?
-                    </TuLink>
-                </div>
-                {#if err?.length != 0} <div class="mt-2 ml-2 text-whit fs-12 text-center text-error"><p >{err?.replace("tuned:", "")}</p></div>{/if}
+                
+                {#if err?.length != 0} <div class="mt-2 ml-2 text-whit fs-12 text-center text-error"><p >{err?.replace("tu:", "")}</p></div>{/if}
                 <div class="mt-2 form-group ">
                     <UButton
                         type="submit"
@@ -283,6 +148,8 @@
                         </TuLink>
                     </p>
                 </div>
+                </div>
+                
             </fieldset>
         </UForm></div>
         
@@ -313,7 +180,7 @@
                         }}
                     />
                 </UFormGroup>
-                {#if err?.length != 0}  <p class="mt-2 ml-2 text-error fs-12 text-center">{err?.replace("tuned:", "")}</p>{/if}
+                {#if err?.length != 0}  <p class="mt-2 ml-2 text-error fs-12 text-center">{err?.replace("tu:", "")}</p>{/if}
                 <div class="my-2">
                     <UButton type="submit" disabled={formData.otp?.length < 4 || btnDisabled} class="w-100p btn btn-primary">
                         Submit

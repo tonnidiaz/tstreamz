@@ -2,7 +2,7 @@
     import type { Snippet } from "svelte";
     import type { HTMLInputAttributes } from "svelte/elements";
 
-    interface IProps extends HTMLInputAttributes {
+    export interface IUInputProps extends HTMLInputAttributes {
         value?: any;
         override?: string;
         inputClass?: string;
@@ -17,7 +17,7 @@
         trailing,
         leading, inputClass,
         ...props
-    }: IProps = $props();
+    }: IUInputProps = $props();
     const defClass = override.split(" ").find((el) => el == "class")
         ? ""
         : "flex gap-3 items-center input input-bordered input-sm ";
