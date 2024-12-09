@@ -24,6 +24,9 @@ export const POST = async ({ request, params }) => {
         return json({...user.toJSON(), token: genToken({id: user._id})});
     } else if (endpoint == "request") {
         if (newEmail) {
+            if (await User.findOne({email: newEmail}).exec()){
+                return tuErr(400, 'Account already exists')
+            }
             user.new_email = newEmail;
             user.new_email_verified = false;
         }

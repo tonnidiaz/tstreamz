@@ -14,6 +14,7 @@
     import { handleErrs, sleep } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui/components/TuPassField.svelte";
     import { isTuError } from "@cmn/utils/funcs2";
+    import OtpField from "@/components/OTPField.svelte";
     let btnDisabled = $state(true),
         pwdValid = $state(false),
         err = $state(""),
@@ -149,24 +150,7 @@
                     >
                     <div>{SITE} auth</div></legend
                 >
-                <p class="text-center fs-13 mb-3">
-                    Enter the 4-digit PIN sent to{" "}
-                    <span class="text-primary">
-                        {formData.email}
-                    </span>
-                </p>
-                <UFormGroup>
-                    <UInput
-                        type="text"
-                        placeholder="Enter OTP"
-                        maxlength={4}
-                        minlength={4}
-                        inputClass="text-center"
-                        required
-                        bind:value={formData.otp}
-                        
-                    />
-                </UFormGroup>
+                <OtpField email={formData.email} user={formData.email} bind:value={formData.otp}/>
                 {#if err}
                     <p class="mt-2 ml-2 text-error fs-12 text-center">
                         {err?.replace("tu:", "")}

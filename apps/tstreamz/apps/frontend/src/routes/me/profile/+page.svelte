@@ -1,6 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
+    import OtpField from "@/components/OTPField.svelte";
 
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
@@ -18,6 +19,7 @@
     import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
     import UInput from "@repo/ui/components/UInput.svelte";
     import { onMount, untrack } from "svelte";
+    import { preventDefault } from "svelte/legacy";
 
     let { user } = $derived(userStore);
     let formState = $state<IObj>({}),
@@ -371,8 +373,8 @@
             <TuModal bind:open={emailModalOpen}>
                 {#snippet content()}
                     <UForm
-                        onsubmit={async (e) =>
-                            await interceptor(e, formState.email)}
+                        onsubmit={async (e) => {e.preventDefault();
+                            await interceptor(e, formState.email)}}
                         class="flex flex-col gap-2"
                     >
                         {#if settingsStep == 0}
@@ -396,18 +398,7 @@
                                 />
                             </UFormGroup>
                         {:else}
-                            <OtpText email={_newEmail || user.email}/>
-                            <UFormGroup>
-                                <UInput
-                                    inputClass="text-center"
-                                    minlength={4}
-                                    maxlength={4}
-                                    required
-                                    class="w-150px m-auto"
-                                    bind:value={formState.otp}
-                                    placeholder="****"
-                                />
-                            </UFormGroup>
+                        <OtpField email={formState.email} user={user._id} bind:value={formState.otp}/>
                         {/if}
 
                         {#if err}
