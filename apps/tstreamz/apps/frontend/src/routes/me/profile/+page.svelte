@@ -8,6 +8,7 @@
     import { handleErrs, sleep } from "@cmn/utils/funcs";
     import { isTuError } from "@cmn/utils/funcs2";
     import type { IObj } from "@cmn/utils/interfaces";
+    import TuModal from "@repo/ui/components/TuModal.svelte";
     import TuPassField from "@repo/ui/components/TuPassField.svelte";
     import TuTabItem from "@repo/ui/components/TuTabItem.svelte";
     import TuTabs from "@repo/ui/components/TuTabs.svelte";
@@ -23,18 +24,23 @@
         err = $state("");
 
     let isUpdatingCreds = $derived(
-        formState.pwd ||
+        formState.newPwd ||
             formState.email != user.email ||
             formState.username != user.username
     );
     const saveChanges = async (e) => {
         console.log("saveChanges");
         try {
+            await sleep(2000)
+            console.log("Done");
+            return
             const res = await localApi.post(
                 `/user/${user._id}/update?f=info`,
                 formState
             );
+            err = "";
             setUser(res.data);
+
             alert("User details updated");
         } catch (er) {
             err = isTuError(er) || "Failed to update details";
@@ -48,6 +54,7 @@
         try {
             btn.disabled = true;
             const res = await localApi.post(`/user/${user._id}/delete`);
+            err = "";
             setUser(res.data);
             window.location.href = "/auth/logout";
         } catch (er) {
@@ -172,31 +179,51 @@
                                             bind:value={formState.email}
                                         />
                                     </UFormGroup>
-                                    <UFormGroup label="Current password">
-                                        <TuPassField
-                                            showValidation={false}
-                                            placeholder="Enter your password..."
-                                            required={isUpdatingCreds}
-                                            bind:value={formState.oldPwd}
-                                        />
-                                    </UFormGroup>
 
                                     <UFormGroup label="New password">
                                         <TuPassField
                                             autocomplete="off"
                                             autocorrect="off"
+                                            name="off"
                                             placeholder="Enter new password"
-                                            bind:value={formState.pwd}
+                                            bind:value={formState.newPwd}
                                         />
                                     </UFormGroup>
 
                                     <div class="w-full gap-2 grid grid-cols-2">
-                                        <UButton
-                                            type="submit"
-                                            class="btn-primary"
-                                            disabled={!isUpdatingCreds}
-                                            >Save changes</UButton
-                                        >
+                                        <TuModal>
+                                            {#snippet toggler()}
+                                                <UButton
+                                                    type="button"
+                                                    class="btn-primary"
+                                                    disabled={!isUpdatingCreds}
+                                                    >Save changes</UButton
+                                                >
+                                            {/snippet}
+                                            {#snippet content()}
+                                                <UForm onsubmit={saveChanges}
+                                                    class="flex flex-col gap-2"
+                                                >
+                                                    <UFormGroup
+                                                        label="Password"
+                                                    >
+                                                        <TuPassField
+                                                            showValidation={false}
+                                                            placeholder="Enter your password..."
+                                                            required={isUpdatingCreds}
+                                                            bind:value={formState.pwd}
+                                                        />
+                                                    </UFormGroup>
+                                                    <UButton
+                                                        type="submit"
+                                                        class="btn-primary btn-progress mt-1 w-150px"
+                                                        
+                                                        >Submit</UButton
+                                                    >
+                                                </UForm>
+                                            {/snippet}
+                                        </TuModal>
+
                                         <UButton
                                             type="button"
                                             class="btn-error"

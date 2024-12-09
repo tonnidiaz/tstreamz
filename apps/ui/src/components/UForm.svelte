@@ -10,18 +10,22 @@
     const _onSubmit = async (e: any) => {
         console.log("TuForm: onSubmit");
         e.preventDefault();
-        const btns = [...e.target.querySelectorAll("button[type=submit]")];
-        btns.forEach((btn: any) => {
-            btn.disabled = true;
-        });
+        // console.log({e});
+        // const btns = [...e.target.querySelectorAll("button[type=submit]")];
+        // const btn: HTMLButtonElement = btns[0]
+            // btn.onclick = async ()=> await onsubmit?.(e)
+        // btn.classList.add('btn-loading')
         await onsubmit?.(e);
-        btns.forEach((btn: any) => (btn.disabled = false));
+        // btn.classList.remove('btn-loading')
+        // btns.forEach((btn: any) => (btn.disabled = false));
     };
     onMount(()=>{
         // console.log('TuForm mounted');
         // console.log(formRef, onsubmit);
-        formRef.addEventListener('submit', _onSubmit)
-        return ()=> formRef.removeEventListener('submit', _onSubmit)
+
+        // formRef.addEventListener('submit', _onSubmit)
+        formRef.onsubmit = _onSubmit
+        // return ()=> formRef.removeEventListener('submit', _onSubmit)
     })
 </script>
 

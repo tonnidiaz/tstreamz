@@ -2,7 +2,7 @@ import { dev } from "$app/environment";
 import { SITE } from "@/lib/constants";
 import { tuErr } from "@/lib/server/funcs";
 import { User } from "@/lib/server/models/index.js";
-import { genToken, sendMail } from "@cmn/utils/bend/funcs";
+import { genToken, hashPass, sendMail } from "@cmn/utils/bend/funcs";
 import { handleErrs, randomInRange } from "@cmn/utils/funcs";
 import { json } from "@sveltejs/kit";
 import bcrypt from "bcrypt"
@@ -60,7 +60,7 @@ export const POST = async ({url, request: req}) => {
         const user = new User();
         for (let key of Object.keys(body)) {
             if (key == "password") {
-                user.password = bcrypt.hashSync(body.password, 10);
+                user.password = hashPass(body.password);
             } else {
                 user[key] = body[key];
             }

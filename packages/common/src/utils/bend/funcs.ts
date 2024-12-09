@@ -8,6 +8,7 @@ import {configDotenv} from "dotenv"
 import mongoose from "mongoose";
 import { handleErrs } from "../funcs";
 import { DEV } from "./consts";
+import bcrypt from "bcrypt"
 
 configDotenv();
 export const genToken = (data: IObj, exp?: string | number | undefined) => {
@@ -212,3 +213,5 @@ export async function connectMongo(DEV: boolean, db:string = "tb") {
         handleErrs(e);
     }
 }
+
+export const hashPass = (pwd: string) => bcrypt.hashSync(pwd, 10)
