@@ -6,7 +6,7 @@ import { developer, GMAIL_HOST, GMAIL_PORT } from "../consts";
 import path from "node:path";
 import {configDotenv} from "dotenv"
 import mongoose from "mongoose";
-import { handleErrs } from "../funcs";
+import { handleErrs, randomInRange } from "../funcs";
 import { DEV } from "./consts";
 import bcrypt from "bcrypt"
 
@@ -215,3 +215,14 @@ export async function connectMongo(DEV: boolean, db:string = "tb") {
 }
 
 export const hashPass = (pwd: string) => bcrypt.hashSync(pwd, 10)
+
+export const genOTP = () => {const pin = randomInRange(1000, 9999); console.log({pin}); return pin}
+export const sendOTPMail = async ({email, site, pin} : {email: string; site: string; pin: number})=>{
+    await sendMail(
+        {subject: site + " Verification Email", app: site,
+        body: `<h2 style="font-weight: 500; font-size: 1.2rem;">Here is your verification OTP:</h2>
+                <p style="font-size: 20px; font-weight: 600">${pin}</p>
+            `,
+        clients: email}
+    );
+}

@@ -23,6 +23,8 @@
     import { handleErrs } from "@cmn/utils/funcs";
     import { dev } from "$app/environment";
     import Footer from "@/components/Footer.svelte";
+    import { page } from "$app/stores";
+    import AuthLayout from "@/layouts/AuthLayout.svelte";
     let { children } = $props();
     let { ready } = $derived(appStore);
     async function getWatchlist() {
@@ -73,23 +75,34 @@
         console.error("err");
     }
     }
+
+    const authLayouts = ['/auth']
 </script>
 
 {#if !ready}
     <Loader />
 {:else}
-    <div>
-        <Navbar />
-        <div class="tu-app">
-            <Sidebar/>
-            <main  class="relative flex flex-col" style="padding: 0 10px">
-                <div style="flex: 1">
-               {@render children()}     
-                </div>
-                
-                <Footer/>
-            </main>
+    {#if authLayouts.find(el=> $page.route.id.startsWith(el))}
+        <AuthLayout
+        >
+        {@render children()}
+    </AuthLayout>
+
+        {:else}
+        <div>
+            <Navbar />
+            <div class="tu-app">
+                <Sidebar/>
+                <main  class="relative flex flex-col" style="padding: 0 10px">
+                    <div style="flex: 1">
+                   {@render children()}     
+                    </div>
+                    
+                    <Footer/>
+                </main>
+            </div>
+            
         </div>
-        
-    </div>
+    {/if}
+    
 {/if}

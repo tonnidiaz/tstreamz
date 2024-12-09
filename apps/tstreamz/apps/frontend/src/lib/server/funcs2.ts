@@ -18,12 +18,7 @@ export async function updateUser(id: string, body: IObj, f: string) {
     const isUpdatingEmail = body.email && body.email != user.email,
         isUpdatingUsername = body.username && body.username != user.username;
 
-    console.log({ pwd: body.pwd });
-    if (isUpdatingEmail || isUpdatingUsername || body.newPwd) {
-        if (!bcrypt.compareSync(body.pwd, user.password)) {
-            return tuErr(401, "Password is incorrect");
-        }
-    }
+ 
     if (f == "info") {
         if (existingEmail && existingEmail.id != user.id)
             return tuErr(400, "Email address already exists");

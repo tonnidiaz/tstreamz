@@ -13,6 +13,7 @@
     import UInput from "@repo/ui/components/UInput.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui/components/TuPassField.svelte";
+    import { isTuError } from "@cmn/utils/funcs2";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);
@@ -24,6 +25,7 @@
     let formState = $state<IObj>({});
 
     const submitForm = async (e: any) => {
+        e.preventDefault()
         try {
             setErr("");
 
@@ -31,24 +33,18 @@
             const res = await localApi.post("/auth/login", formData);
             setUser(res.data.user);
             localStorage.setItem(STORAGE_KEYS.authTkn, res.data.token);
-            setTimeout(() => {
-                setBtnDisabled(false);
-            }, 1500);
-
+    
             const red = $page.url.searchParams.get("red");
             location.href = red || "/";
         } catch (e: any) {
             handleErrs(e);
-            console.log(e);
-            const _err = e.response?.data?.message?.startsWith?.("tu:")
-                ? e.response.data.message?.replace("tu:", "")
-                : "Something went wrong";
+            const _err = isTuError(e) || "Something went wrong";
             setErr(_err);
         }
     };
 </script>
 
-<div class="flex items-center justify-center h-100p">
+<div class="flex items-center justify-center h-100p w-100p">
     <TMeta title={`Login - ${SITE}`} />
     <div >
         <UForm state={formState} onsubmit={submitForm}>

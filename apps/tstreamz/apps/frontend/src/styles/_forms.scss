@@ -49,14 +49,16 @@ $form-w: 350px;
 
 }
 
-input:disabled, textarea:disabled {
+input:disabled, textarea:disabled, .input-bordered.disabled {
     opacity: .7 !important;
     border-color: revert !important;
+    cursor: not-allowed;
 }
 
 
 input, textarea, select {
    // color: $color-white-2;// !important;
+   background-color: inherit;
     &::placeholder{
     opacity: 0.4 !important;
     

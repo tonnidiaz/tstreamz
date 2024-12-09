@@ -31,7 +31,6 @@
         });
         originalContents = conts;
         labels.forEach((lbl, i) => {
-            console.log({ i });
             lbl.role = "tab";
             lbl.classList.add("tab");
             if (tab == i) lbl.classList.add("tab-active");

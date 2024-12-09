@@ -10,7 +10,7 @@
     import { onMount } from "svelte";
 
     onMount(()=>{
-        
+        // return
         setUser(null)
         localStorage.removeItem(STORAGE_KEYS.authTkn);
         location.href = "/";

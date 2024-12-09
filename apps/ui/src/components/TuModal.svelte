@@ -27,7 +27,7 @@
 
     <!-- Put this part before </body> tag -->
     <TuTeleport to="#ctx-overlay">
-        <div class={`modal modal-md flex items-center justify-center ${open ? "modal-open" : ""}`}>
+        <div class={`modal modal-md flex-col flex items-center justify-center ${open ? "modal-open" : ""}`}>
             <TuModalContainer bind:open={open} blank>
                 {#if open}
                    <div class="modal-box min-w-400">

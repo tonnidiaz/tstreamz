@@ -2,7 +2,7 @@ import { dev } from "$app/environment";
 import { SITE } from "@/lib/constants";
 import { tuErr } from "@/lib/server/funcs";
 import { User } from "@/lib/server/models/index.js";
-import { genToken, hashPass, sendMail } from "@cmn/utils/bend/funcs";
+import { genToken, hashPass, sendMail, genOTP, sendOTPMail } from "@cmn/utils/bend/funcs";
 import { handleErrs, randomInRange } from "@cmn/utils/funcs";
 import { json } from "@sveltejs/kit";
 import bcrypt from "bcrypt"
@@ -65,19 +65,13 @@ export const POST = async ({url, request: req}) => {
                 user[key] = body[key];
             }
         }
-        const otp = randomInRange(1000, 9999);
+        const otp = genOTP();
         if (true) {
             console.log(otp);
         }
         user.otp = otp;
 
-        await sendMail(
-            {subject: SITE + " Verification Email", app: SITE,
-            body: `<h2 style="font-weight: 500; font-size: 1.2rem;">Here is your signup verification OTP:</h2>
-                    <p style="font-size: 20px; font-weight: 600">${user.otp}</p>
-                `,
-            clients: user.email}
-        );
+        await sendOTPMail({email: user.email, site: SITE, pin: user.otp})
 
         await user.save();
         return json({ msg: "OTP Generated" });

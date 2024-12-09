@@ -36,7 +36,6 @@
                 const listener = async (e) => {
                     e.preventDefault();
                     const formSubmit = btn.form.onsubmit;
-                    console.log("submitta", formSubmit);
                     if (formSubmit && !submitHandler) {
                         submitHandler = formSubmit;
 
@@ -78,6 +77,7 @@
             handleErrs(err);
         } finally {
             // console.log('Finally');
+            if (!el) return
             el.disabled = false;
             loading = false;
         }

@@ -1,0 +1,24 @@
+import { SITE } from '@/lib/constants.js';
+import { tuErr } from '@/lib/server/funcs.js';
+import { User } from '@/lib/server/models/index.js';
+import { genOTP, sendOTPMail } from '@cmn/utils/bend/funcs';
+import { json } from '@sveltejs/kit';
+import bcrypt from 'bcrypt'
+export const POST = async ({request}) =>{
+    const data = await request.json()
+    const {user: _user, value, sendPin} = data;
+    if (!_user || !value) return tuErr(400, 'Provide all required fields');
+    const user = await User.findById(_user).exec()
+    if (!user) return tuErr(400, 'Specified user not found')
+    
+    const ok =  bcrypt.compareSync(value, user.password)
+    if (!ok) return tuErr(400, 'Password incorrect')
+    if (sendPin){
+        const pin = genOTP()
+        console.log({pin});
+        user.otp = pin
+        await sendOTPMail({email: user.email, site: SITE, pin})
+        await user.save()
+    }
+    return json('Ok')
+}
