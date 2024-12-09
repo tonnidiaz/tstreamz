@@ -116,7 +116,7 @@
 
     <div
         bind:this={validationCont}
-        class={"pwd-val form-group my-2 ml-2 text-center " + !showValidation && 'hidden'}
+        class={"pwd-val form-group my-2 ml-2 text-center " + ((!showValidation || valid) && 'hidden')}
     >
         <p class="fs-12">
             Must contain{" "}

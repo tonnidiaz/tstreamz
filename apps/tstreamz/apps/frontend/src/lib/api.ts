@@ -1,4 +1,3 @@
-import { dev } from "$app/environment";
 import { BEND_URL, STORAGE_KEYS, API_URL } from "./constants";
 import axios from "axios";
 export const api = axios.create({
@@ -22,7 +21,6 @@ export const localApi = axios.create({
 localApi.interceptors.request.use((config) => {
     config.data = config.data || {};
     config.headers.Authorization = typeof localStorage == "undefined" ? undefined : `Bearer ${localStorage.getItem(STORAGE_KEYS.authTkn)}`
-    if (dev)
-    console.log({Authorization: config.headers.Authorization})
+
     return config;
 });

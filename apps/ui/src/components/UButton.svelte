@@ -10,7 +10,7 @@
         children,
         class: _class,
         loading = $bindable(),
-        type: _type,
+        type: _type = 'button',
         onclick,
         ...props
     }: IProps = $props();

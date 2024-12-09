@@ -4,11 +4,12 @@
 
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
-    import { requestOTP } from "@/lib/funcs";
+    import { requestOTP, verifyOTP } from "@/lib/funcs";
     import { setUser, userStore } from "@/stores/user.svelte";
-    import { handleErrs } from "@cmn/utils/funcs";
+    import { handleErrs, parseDate } from "@cmn/utils/funcs";
     import { isTuError } from "@cmn/utils/funcs2";
     import type { IObj } from "@cmn/utils/interfaces";
+    import OtpText from "@repo/ui/components/OTPText.svelte";
     import TuModal from "@repo/ui/components/TuModal.svelte";
     import TuPassField from "@repo/ui/components/TuPassField.svelte";
     import TuTabs from "@repo/ui/components/TuTabs.svelte";
@@ -23,8 +24,9 @@
         err = $state(""),
         settingsStep = $state(0),
         passwordModalOpen = $state(false);
+    let _newEmail = $state("");
 
-        let emailModalOpen = $state(false)
+    let emailModalOpen = $state(false);
     let isUpdatingCreds = $derived(
         formState.newPwd ||
             formState.email != user.email ||
@@ -34,51 +36,63 @@
     let interceptorCb: Function;
 
     const openPwdModal = (cb: Function) => {
-        err = ""
-        settingsStep = 0
-        formState.otp = undefined
-        formState.pwd = undefined
-        passwordModalOpen = true; interceptorCb = cb
-    }
+        err = "";
+        settingsStep = 0;
+        formState.otp = undefined;
+        formState.pwd = undefined;
+        passwordModalOpen = true;
+        interceptorCb = cb;
+    };
 
-    const openEmailModal = ()=>{
-        interceptorCb = ()=>{
-            setUser({...user, email: formState.email})
-        }
-        emailModalOpen = true}
+    const openEmailModal = () => {
+        settingsStep = 0;
+        _newEmail = "";
+        interceptorCb = () => {
+            console.log({ _newEmail });
+            setUser({ ...user, email: _newEmail });
+            emailModalOpen = false;
+        };
+        emailModalOpen = true;
+    };
 
-    const interceptor = async(e, newEmail?: string)=>{
-        try{
-        e.preventDefault()
-        err = ""
-        if (settingsStep == 0) {
-            const pwdValid = await verifyPwd(!newEmail);
-            if (pwdValid) {
-                if (newEmail){
-                    const r = await requestOTP({user: user._id, newEmail})
-                    if (!r) {
-                        err = "Failed to request OTP"
-                        return}
+    const interceptor = async (e, newEmail?: string) => {
+        try {
+            e.preventDefault();
+            err = "";
+            if (settingsStep == 0) {
+                const pwdValid = await verifyPwd(!newEmail);
+                if (pwdValid) {
+                    if (newEmail) {
+                        const r = await requestOTP({
+                            user: user._id,
+                            newEmail,
+                        });
+                        if (!r) {
+                            err = "Failed to request OTP";
+                            return;
+                        }
+                        _newEmail = newEmail;
+                    }
+                    settingsStep = 1;
                 }
-                settingsStep = 1;
+                if (newEmail)
+                return;
             }
-            return;
-        
+            if (newEmail) {
+                const otpValid = await _verifyOTP(newEmail);
+                if (!otpValid) return;
+            }
+
+            formState.otp = undefined;
+            await interceptorCb?.();
+            return true;
+        } catch (er) {
+            console.log("object");
+            handleErrs(er);
+            err = isTuError(er) || "Something went wrong";
         }
-        const otpValid = await verifyOTP(newEmail)
-        if (!otpValid) return;
-        formState.otp = undefined
-        await interceptorCb?.()
-        return true
-    }catch(err){
-        handleErrs(err)
-        err = isTuError(err) || 'Something went wrong'
-    }
-    }
+    };
     const saveChanges = async (e) => {
-        
-        // if (!await interceptor()) return
-        console.log("saveChanges");
         try {
             err = "";
             const res = await localApi.post(
@@ -88,23 +102,24 @@
 
             setUser(res.data);
             passwordModalOpen = false;
-            formState.newPwd = undefined
+            formState.newPwd = undefined;
             alert("User details updated");
         } catch (er) {
             err = isTuError(er) || "Failed to update details";
             handleErrs(er);
-           
-        }finally{
-             settingsStep =0
+        } finally {
+            settingsStep = 0;
         }
     };
+
+    
 
     const verifyPwd = async (sendPin = true) => {
         try {
             const res = await localApi.post("/auth/verify-pwd", {
                 user: user._id,
                 value: formState.pwd,
-                sendPin
+                sendPin,
             });
             return true;
         } catch (er) {
@@ -113,13 +128,13 @@
             return false;
         }
     };
-    
-    const verifyOTP = async (newEmail?: string) => {
+
+    const _verifyOTP = async (newEmail?: string) => {
         try {
-            const res = await localApi.post("/auth/otp/verify", {
+            const res = await verifyOTP({
                 user: user._id,
                 value: formState.otp,
-                newEmail
+                newEmail,
             });
             return true;
         } catch (er) {
@@ -130,8 +145,6 @@
     };
 
     const delAccount = async (e) => {
-       
-        // if (!await interceptor()) return;
         try {
             const res = await localApi.post(`/user/${user._id}/delete`);
             err = "";
@@ -140,17 +153,15 @@
         } catch (er) {
             err = isTuError(er) || "Failed to delete account";
             handleErrs(er);
-            
         } finally {
-            settingsStep = 0
-            
+            settingsStep = 0;
         }
     };
     onMount(() => {
         if (!user?.username) {
             goto(`/auth/login?red=${location.pathname}`);
         }
-        formState = { username: user.username};
+        formState = { username: user.username, first_name: user.first_name, last_name: user.last_name };
         const hash = $page.url.hash?.toLowerCase?.();
         if (hash == "#settings") tab = 1;
     });
@@ -193,6 +204,7 @@
                         <UForm id="profile-form" onsubmit={saveChanges}>
                             <fieldset class="formset m-auto fieldset">
                                 <legend>My profile</legend>
+                                <!-- {JSON.stringify(formState)} -->
                                 <div>
                                     <p class="err t-c fs-12">{err}</p>
                                 </div>
@@ -214,7 +226,7 @@
                                             placeholder="Enter username..."
                                             required
                                             disabled
-                                            bind:value={formState.username}
+                                            bind:value={user.username}
                                         />
                                     </UFormGroup>
 
@@ -223,7 +235,7 @@
                                             placeholder="Enter your email..."
                                             required
                                             disabled
-                                            bind:value={formState.email}
+                                            bind:value={user.email}
                                         />
                                     </UFormGroup>
 
@@ -239,7 +251,11 @@
                         </UForm>
                     </div>
                     <div class="tab-cont mt-4">
-                        <UForm id="setting-form" onsubmit={(e)=> e.preventDefault()} autocomplete="off">
+                        <UForm
+                            id="setting-form"
+                            onsubmit={(e) => e.preventDefault()}
+                            autocomplete="off"
+                        >
                             <fieldset class="formset m-auto fieldset">
                                 <legend>Account settings</legend>
 
@@ -254,21 +270,28 @@
                                     </UFormGroup>
 
                                     <UFormGroup label="Email address">
-                                        <div class="flex gap-2 justify-between"><UInput
-                                            placeholder="Enter your email..."
-                                            disabled
-                                            name="email"
-                                            bind:value={user.email}
-                                        />
-                                        <button onclick={openEmailModal} aria-label="change email" type="button" class="btn-outline btn-sm fs-12 btn text-primary"><i class="fi fi-br-pencil"></i></button></div>
-                                        
+                                        <div class="flex gap-2 justify-between">
+                                            <UInput
+                                                placeholder="Enter your email..."
+                                                disabled
+                                                name="email"
+                                                bind:value={user.email}
+                                            />
+                                            <button
+                                                onclick={openEmailModal}
+                                                aria-label="change email"
+                                                type="button"
+                                                class="btn-outline btn-sm fs-12 btn text-primary"
+                                                ><i class="fi fi-br-pencil"
+                                                ></i></button
+                                            >
+                                        </div>
                                     </UFormGroup>
-                                    
+
                                     <UFormGroup label="New password">
                                         <TuPassField
                                             autocomplete="new-password"
                                             name="unlocker"
-                                            
                                             placeholder="Enter new password"
                                             bind:value={formState.newPwd}
                                         ></TuPassField>
@@ -276,19 +299,24 @@
 
                                     <div class="w-full gap-2 grid grid-cols-2">
                                         <UButton
-                                                    type="button"
-                                                    class="btn-primary"
-                                                    disabled={!isUpdatingCreds}
-                                                    onclick={e=> openPwdModal(async ()=>await saveChanges(e)) }
-                                                    >Save changes</UButton
-                                                >
-                                        
+                                            type="button"
+                                            class="btn-primary"
+                                            disabled={!isUpdatingCreds}
+                                            onclick={(e) =>
+                                                openPwdModal(
+                                                    async () =>
+                                                        await saveChanges(e)
+                                                )}>Save changes</UButton
+                                        >
 
                                         <UButton
                                             type="button"
                                             class="btn-error"
-                                            onclick={(e) => openPwdModal(async ()=>await delAccount(e))}
-                                            >Delete account</UButton
+                                            onclick={(e) =>
+                                                openPwdModal(
+                                                    async () =>
+                                                        await delAccount(e)
+                                                )}>Delete account</UButton
                                         >
                                     </div>
                                 </div>
@@ -298,16 +326,10 @@
                 {/snippet}
             </TuTabs>
             <TuModal bind:open={passwordModalOpen}>
-                                            
                 {#snippet content()}
-                    <UForm
-                        onsubmit={interceptor}
-                        class="flex flex-col gap-2"
-                    >
-                        {#if settingsStep == 0}
-                            <UFormGroup
-                                label="Password"
-                            >
+                    <UForm onsubmit={interceptor} class="flex flex-col gap-2">
+                        {#if settingsStep == 0 || true}
+                            <UFormGroup label="Password">
                                 <TuPassField
                                     showValidation={false}
                                     placeholder="Enter your password..."
@@ -317,7 +339,7 @@
                                 />
                             </UFormGroup>
                         {:else}
-                        <p class="text-center fs-12">Enter the 4-didit one-time-pin sent to <span class="text-primary fw-6">{user.email}</span></p>
+                            
                             <UFormGroup>
                                 <UInput
                                     inputClass="text-center"
@@ -332,9 +354,7 @@
                         {/if}
 
                         {#if err}
-                            <p
-                                class="err t-c fs-12"
-                            >
+                            <p class="err t-c fs-12">
                                 {err}
                             </p>
                         {/if}
@@ -349,28 +369,24 @@
             </TuModal>
 
             <TuModal bind:open={emailModalOpen}>
-                                            
                 {#snippet content()}
                     <UForm
-                        onsubmit={async(e)=> await interceptor(e, formState.email)}
+                        onsubmit={async (e) =>
+                            await interceptor(e, formState.email)}
                         class="flex flex-col gap-2"
                     >
                         {#if settingsStep == 0}
-                            <UFormGroup
-                                label="New email"
-                            >
+                            <UFormGroup label="New email">
                                 <UInput
                                     placeholder="Enter new email address..."
                                     required
                                     type="email"
-                                    name="nmn"
-                                    autocomplete="off"
+                                    name="email"
+                                    autocomplete="email"
                                     bind:value={formState.email}
                                 />
                             </UFormGroup>
-                            <UFormGroup
-                                label="Password"
-                            >
+                            <UFormGroup label="Password">
                                 <TuPassField
                                     showValidation={false}
                                     placeholder="Enter your password..."
@@ -380,7 +396,7 @@
                                 />
                             </UFormGroup>
                         {:else}
-                        <p class="text-center fs-12">Enter the 4-didit one-time-pin sent to <span class="text-primary fw-6">{user.email}</span></p>
+                            <OtpText email={_newEmail || user.email}/>
                             <UFormGroup>
                                 <UInput
                                     inputClass="text-center"
@@ -395,9 +411,7 @@
                         {/if}
 
                         {#if err}
-                            <p
-                                class="err t-c fs-12"
-                            >
+                            <p class="err t-c fs-12">
                                 {err}
                             </p>
                         {/if}

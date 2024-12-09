@@ -50,7 +50,7 @@ $form-w: 350px;
 }
 
 input:disabled, textarea:disabled, .input-bordered.disabled {
-    opacity: .7 !important;
+    opacity: .85 !important;
     border-color: revert !important;
     cursor: not-allowed;
 }
@@ -60,7 +60,7 @@ input, textarea, select {
    // color: $color-white-2;// !important;
    background-color: inherit;
     &::placeholder{
-    opacity: 0.4 !important;
+    opacity: 0.5 !important;
     
 }
 }

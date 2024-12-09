@@ -4,25 +4,14 @@
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import { onMount } from "svelte";
     import MenuItem from "./MenuItem.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
     import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
     import UAvatar from "@repo/ui/components/UAvatar.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
     import Genres from "./Genres.svelte";
     import { page } from "$app/stores";
     
-    let ioConnected = $state(true);
-    let menuOpen = $state(false);
     let { user } = $derived(userStore);
     let menu: HTMLUListElement
-    const menuItems = [
-        [
-            {
-                label: "Profile",
-                icon: "i-heroicons-user-circle-20-solid",
-            },
-        ],
-    ];
             const onResize = () =>{
                 const w = window.innerWidth
                 const menuParent = document.getElementById("nav-menu")
@@ -129,10 +118,7 @@
                         to={`/me/watchlist`}
                         icon="fi fi-br-bookmark">Watchlist</MenuItem
                     >
-                    <MenuItem
-                        to={`/account`}
-                        icon="fi fi-br-user-robot-xmarks">Account</MenuItem
-                    >
+                   
                     <MenuItem to={`/auth/logout`} icon="fi fi-br-sign-out-alt"
                         >Logout</MenuItem
                     >
@@ -155,6 +141,3 @@
     </div>
 </div>
 
-<style>
-    
-</style>

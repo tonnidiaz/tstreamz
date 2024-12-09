@@ -231,6 +231,7 @@ td {@apply px-3}
 .disabled, :disabled{
     user-select: none;
     pointer-events: none;
+    opacity: .7;
 }
 
 .status-textarea{

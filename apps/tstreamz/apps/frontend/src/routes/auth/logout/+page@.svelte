@@ -6,13 +6,12 @@
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
     import { SITE, STORAGE_KEYS } from "@/lib/constants";
+    import { logout } from "@/lib/funcs";
     import { setUser } from "@/stores/user.svelte";
     import { onMount } from "svelte";
 
     onMount(()=>{
         // return
-        setUser(null)
-        localStorage.removeItem(STORAGE_KEYS.authTkn);
-        location.href = "/";
+        logout()
     })
 </script>

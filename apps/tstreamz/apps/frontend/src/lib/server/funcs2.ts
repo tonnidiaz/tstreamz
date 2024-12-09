@@ -5,6 +5,7 @@ import { User } from "./models";
 import { json } from "@sveltejs/kit";
 import bcrypt from "bcrypt";
 import { hashPass } from "@cmn/utils/bend/funcs";
+import { dev } from "$app/environment";
 
 export async function updateUser(id: string, body: IObj, f: string) {
     const user = await User.findById(id).exec();
@@ -28,6 +29,7 @@ export async function updateUser(id: string, body: IObj, f: string) {
         for (let k of Object.keys(body)) {
             const v = body[k];
             if (k == "newPwd") {
+                if (dev) console.log('Changing pwd to:', v);
                 user.set("password", hashPass(v));
             } else user.set(k, v);
         }
