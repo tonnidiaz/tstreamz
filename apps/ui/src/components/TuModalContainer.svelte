@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { onDestroy, onMount } from "svelte";
+    import { page } from "$app/stores";
+    import { onDestroy, onMount, untrack } from "svelte";
     import type { HTMLAttributes } from "svelte/elements";
 
     interface IProps extends HTMLAttributes<any> {
@@ -48,7 +49,13 @@
         };
     });
 
-    onDestroy(() => {});
+    let p = $derived($page.url.href)
+    $effect(()=>{
+        // watch route
+        console.log(p.length);
+        untrack(()=>{open = false})
+        
+    })
 </script>
 
 <div

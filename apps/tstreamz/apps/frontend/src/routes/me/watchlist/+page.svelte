@@ -27,7 +27,7 @@
                             {#if watchlist.movies}
                                 <FixedMovieCard
                                 name="Prop"
-                                movies={watchlist.movies}
+                                movies={watchlist.movies.toReversed()}
                             />
                             {:else}
                             <CardPh movies={[...Array(50)]} />
@@ -42,7 +42,7 @@
                                 <FixedMovieCard
                                 isShow={true}
                                 name="Prop"
-                                movies={watchlist.shows}
+                                movies={watchlist.shows.toReversed()}
                             />
                             {:else}
                             <CardPh movies={[...Array(50)]} />

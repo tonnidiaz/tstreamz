@@ -64,11 +64,7 @@
             <b>movies</b>
         </h1>
 
-        {#if !genres?.movies}
-            <div class="skel">
-                <h2 class="fs-10 skel-text">genre grenre genre</h2>
-            </div>
-        {/if}
+        
     </div>
     <div
         style="flex-direction: row; flex-wrap: nowrap"
@@ -90,11 +86,11 @@
             {/each}
         </div>
     </div>
-    <div class="">
+    <div class="mt-4">
         {#if movies}
             <FixedMovieCard wrap {movies} />
         {:else}
-            <div class="mt-4">
+            <div>
                 <div style="margin-top: 20vh" class="loading-div flex items-center justify-center w-100p bg-">
                     <p class="fs-20"><spa class="loading loading-lg"></spa></p>
                 </div>

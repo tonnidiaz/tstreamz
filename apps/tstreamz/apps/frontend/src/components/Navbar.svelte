@@ -9,6 +9,7 @@
     import UButton from "@repo/ui/components/UButton.svelte";
     import Genres from "./Genres.svelte";
     import { page } from "$app/stores";
+    import TuModal from "@repo/ui/components/TuModal.svelte";
     
     let { user } = $derived(userStore);
     let menu: HTMLUListElement
@@ -83,12 +84,15 @@
                 <TuLink to="/tv">Shows</TuLink>
             </li>
             <li>
-                <CtxMenu2 anchor="top" class="pd-0">
+                <TuModal>
                     {#snippet toggler()}
-                        Genre
+                        Genres
                     {/snippet}
-                    <Genres />
-                </CtxMenu2>
+                    {#snippet content()}
+                        <Genres />
+                    {/snippet}
+                    
+                </TuModal>
             </li>
         </ul> 
         </div>

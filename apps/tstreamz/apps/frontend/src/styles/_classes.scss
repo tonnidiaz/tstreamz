@@ -10,7 +10,7 @@
     .w-#{$i}px {
         width: #{$i}px !important;
     }
-    .max-h#{$i} {
+    .max-h-#{$i} {
         max-height: #{$i}px !important;
     }
     .max-w-#{$i} {
@@ -164,4 +164,17 @@
 }
 .wp-nowrap{
     white-space: nowrap !important;
+}
+
+$list-types: (
+  disc,
+  square,
+  decimal,
+  lower-roman
+);
+
+@each $type in $list-types {
+  .list-#{$type} {
+    list-style-type: $type;
+  }
 }
