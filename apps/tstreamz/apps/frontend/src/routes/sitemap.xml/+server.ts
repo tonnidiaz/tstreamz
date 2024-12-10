@@ -13,7 +13,6 @@ const staticPages = (url: string) =>
                 .replace("/+page.md", "")
         );
 
-export const prerender = true;
 const date = new Date().toISOString();
 export const GET = async ({ url: _url }): Promise<Response> => {
     const url = _url.origin;
@@ -51,3 +50,4 @@ export const GET = async ({ url: _url }): Promise<Response> => {
         { headers: headers }
     );
 };
+export const prerender = false;

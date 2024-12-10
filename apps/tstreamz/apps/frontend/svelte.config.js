@@ -29,17 +29,7 @@ const config = {
                 }
             }
         },
-        prerender: {
-			handleHttpError: ({ path, referrer, message }) => {
-				// ignore deliberate link to shiny 404 page
-				if (path === '/sitemap.xml') {
-					return;
-				}
-
-				// otherwise fail the build
-				throw new Error(message);
-			}
-		}
+        
 	
 	},
     ssr: {
