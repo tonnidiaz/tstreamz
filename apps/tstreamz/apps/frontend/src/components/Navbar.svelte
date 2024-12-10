@@ -10,8 +10,10 @@
     import Genres from "./Genres.svelte";
     import { page } from "$app/stores";
     import TuModal from "@repo/ui/components/TuModal.svelte";
+    import { appStore } from "@/stores/app.svelte";
     
     let { user } = $derived(userStore);
+    let { ready } = $derived(appStore);
     let menu: HTMLUListElement
             const onResize = () =>{
                 const w = window.innerWidth
@@ -132,13 +134,16 @@
             </div>
         {:else}
             <div>
-                <UButton>
+                <UButton loading={!ready}>
+                    {#if ready}
                     <TuLink
                         to={`/auth/login?red=${$page.url.pathname.includes('auth') ? '/' : $page.url.pathname}`}
                         class="btn btn-sm btn-outline btn-primary"
                     >
                         Login
-                    </TuLink></UButton
+                    </TuLink>
+                    {/if}
+                </UButton
                 >
             </div>
         {/if}

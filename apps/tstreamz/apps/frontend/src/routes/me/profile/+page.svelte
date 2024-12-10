@@ -7,6 +7,7 @@
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
     import { requestOTP, verifyOTP } from "@/lib/funcs";
+    import { appStore } from "@/stores/app.svelte";
     import { setUser, userStore } from "@/stores/user.svelte";
     import { handleErrs, parseDate } from "@cmn/utils/funcs";
     import { isTuError } from "@cmn/utils/funcs2";
@@ -23,6 +24,8 @@
     import { preventDefault } from "svelte/legacy";
 
     let { user } = $derived(userStore);
+    let { ready } = $derived(appStore);
+
     let formState = $state<IObj>({}),
         err = $state(""),
         settingsStep = $state(0),
@@ -32,8 +35,8 @@
     let emailModalOpen = $state(false);
     let isUpdatingCreds = $derived(
         formState.newPwd ||
-            formState.email != user.email ||
-            formState.username != user.username
+            formState.email != user?.email ||
+            formState.username != user?.username
     );
 
     let interceptorCb: Function;
@@ -78,8 +81,7 @@
                     }
                     settingsStep = 1;
                 }
-                if (newEmail)
-                return;
+                if (newEmail) return;
             }
             if (newEmail) {
                 const otpValid = await _verifyOTP(newEmail);
@@ -115,8 +117,6 @@
         }
     };
 
-    
-
     const verifyPwd = async (sendPin = true) => {
         try {
             const res = await localApi.post("/auth/verify-pwd", {
@@ -138,7 +138,7 @@
                 user: user._id,
                 value: formState.otp,
                 newEmail,
-            }
+            };
             const res = await verifyOTP(fd);
             return true;
         } catch (er) {
@@ -161,13 +161,22 @@
             settingsStep = 0;
         }
     };
-    onMount(() => {
+    $effect(() => {
+        if (!ready) return;
+        console.log({ready});
         if (!user?.username) {
             goto(`/auth/login?red=${location.pathname}`);
         }
-        formState = { username: user.username, first_name: user.first_name, last_name: user.last_name };
-        const hash = $page.url.hash?.toLowerCase?.();
-        if (hash == "#settings") tab = 1;
+
+        untrack(() => {
+            formState = {
+                username: user.username,
+                first_name: user.first_name,
+                last_name: user.last_name,
+            };
+            const hash = $page.url.hash?.toLowerCase?.();
+            if (hash == "#settings") tab = 1;
+        });
     });
 
     let tab = $state(0);
@@ -175,9 +184,9 @@
 
 <div class="body h-100p w-500px flex m-auto">
     <TMeta title="My Profile - TunedStreamz" />
-
-    <div class="m-auto h-100p w-100p p-2 br-3">
-        <!-- <TuTabsCont>
+    {#if ready}
+        <div class="m-auto h-100p w-100p p-2 br-3">
+            <!-- <TuTabsCont>
             <TuTabItem bind:tab i={0}>
                 {#snippet label()}
                     Tab 1
@@ -197,228 +206,245 @@
                 {/snippet}
             </TuTabItem>
         </TuTabsCont> -->
-        <div class="h-100p w-100p">
-            <TuTabs bind:tab>
-                {#snippet label()}
-                    <a href="#profile" class="tab-label">Profile</a>
-                    <a href="#settings" class="tab-label">Settings</a>
-                {/snippet}
-                {#snippet content()}
-                    <div class="tab-cont mt-4">
-                        <UForm id="profile-form" onsubmit={saveChanges}>
-                            <fieldset class="formset m-auto fieldset">
-                                <legend>My profile</legend>
-                                <!-- {JSON.stringify(formState)} -->
-                                <div>
-                                    <p class="err t-c fs-12">{err}</p>
-                                </div>
-                                <div class="flex flex-col w-100p gap-3">
-                                    <UFormGroup label="First name">
-                                        <UInput
-                                            placeholder="e.g. John"
-                                            bind:value={formState.first_name}
-                                        />
-                                    </UFormGroup>
-                                    <UFormGroup label="Last name">
-                                        <UInput
-                                            placeholder="e.g. Doe"
-                                            bind:value={formState.last_name}
-                                        />
-                                    </UFormGroup>
-                                    <UFormGroup label="Username">
-                                        <UInput
-                                            placeholder="Enter username..."
-                                            required
-                                            disabled
-                                            bind:value={user.username}
-                                        />
-                                    </UFormGroup>
-
-                                    <UFormGroup label="Email address">
-                                        <UInput
-                                            placeholder="Enter your email..."
-                                            required
-                                            disabled
-                                            bind:value={user.email}
-                                        />
-                                    </UFormGroup>
-
-                                    <div class="w-full">
-                                        <UButton
-                                            type="submit"
-                                            class="btn-primary"
-                                            >Save changes</UButton
-                                        >
+            <div class="h-100p w-100p">
+                <TuTabs bind:tab>
+                    {#snippet label()}
+                        <a href="#profile" class="tab-label">Profile</a>
+                        <a href="#settings" class="tab-label">Settings</a>
+                    {/snippet}
+                    {#snippet content()}
+                        <div class="tab-cont mt-4">
+                            <UForm id="profile-form" onsubmit={saveChanges}>
+                                <fieldset class="formset m-auto fieldset">
+                                    <legend>My profile</legend>
+                                    <!-- {JSON.stringify(formState)} -->
+                                    <div>
+                                        <p class="err t-c fs-12">{err}</p>
                                     </div>
-                                </div>
-                            </fieldset>
-                        </UForm>
-                    </div>
-                    <div class="tab-cont mt-4">
-                        <UForm
-                            id="setting-form"
-                            onsubmit={(e) => e.preventDefault()}
-                            autocomplete="off"
-                        >
-                            <fieldset class="formset m-auto fieldset">
-                                <legend>Account settings</legend>
+                                    <div class="flex flex-col w-100p gap-3">
+                                        <UFormGroup label="First name">
+                                            <UInput
+                                                placeholder="e.g. John"
+                                                bind:value={formState.first_name}
+                                            />
+                                        </UFormGroup>
+                                        <UFormGroup label="Last name">
+                                            <UInput
+                                                placeholder="e.g. Doe"
+                                                bind:value={formState.last_name}
+                                            />
+                                        </UFormGroup>
+                                        <UFormGroup label="Username">
+                                            <UInput
+                                                placeholder="Enter username..."
+                                                required
+                                                disabled
+                                                bind:value={user.username}
+                                            />
+                                        </UFormGroup>
 
-                                <div class="flex flex-col w-100p gap-3">
-                                    <UFormGroup label="Username">
-                                        <UInput
-                                            placeholder="Enter username..."
-                                            required
-                                            name="username"
-                                            bind:value={formState.username}
-                                        />
-                                    </UFormGroup>
-
-                                    <UFormGroup label="Email address">
-                                        <div class="flex gap-2 justify-between">
+                                        <UFormGroup label="Email address">
                                             <UInput
                                                 placeholder="Enter your email..."
+                                                required
                                                 disabled
-                                                name="email"
                                                 bind:value={user.email}
                                             />
-                                            <button
-                                                onclick={openEmailModal}
-                                                aria-label="change email"
-                                                type="button"
-                                                class="btn-outline btn-sm fs-12 btn text-primary"
-                                                ><i class="fi fi-br-pencil"
-                                                ></i></button
+                                        </UFormGroup>
+
+                                        <div class="w-full">
+                                            <UButton
+                                                type="submit"
+                                                class="btn-primary"
+                                                >Save changes</UButton
                                             >
                                         </div>
-                                    </UFormGroup>
-
-                                    <UFormGroup label="New password">
-                                        <TuPassField
-                                            autocomplete="new-password"
-                                            name="unlocker"
-                                            placeholder="Enter new password"
-                                            bind:value={formState.newPwd}
-                                        ></TuPassField>
-                                    </UFormGroup>
-
-                                    <div class="w-full gap-2 grid grid-cols-2">
-                                        <UButton
-                                            type="button"
-                                            class="btn-primary"
-                                            disabled={!isUpdatingCreds}
-                                            onclick={(e) =>
-                                                openPwdModal(
-                                                    async () =>
-                                                        await saveChanges(e)
-                                                )}>Save changes</UButton
-                                        >
-
-                                        <UButton
-                                            type="button"
-                                            class="btn-error"
-                                            onclick={(e) =>
-                                                openPwdModal(
-                                                    async () =>
-                                                        await delAccount(e)
-                                                )}>Delete account</UButton
-                                        >
                                     </div>
-                                </div>
-                            </fieldset>
+                                </fieldset>
+                            </UForm>
+                        </div>
+                        <div class="tab-cont mt-4">
+                            <UForm
+                                id="setting-form"
+                                onsubmit={(e) => e.preventDefault()}
+                                autocomplete="off"
+                            >
+                                <fieldset class="formset m-auto fieldset">
+                                    <legend>Account settings</legend>
+
+                                    <div class="flex flex-col w-100p gap-3">
+                                        <UFormGroup label="Username">
+                                            <UInput
+                                                placeholder="Enter username..."
+                                                required
+                                                name="username"
+                                                bind:value={formState.username}
+                                            />
+                                        </UFormGroup>
+
+                                        <UFormGroup label="Email address">
+                                            <div
+                                                class="flex gap-2 justify-between"
+                                            >
+                                                <UInput
+                                                    placeholder="Enter your email..."
+                                                    disabled
+                                                    name="email"
+                                                    bind:value={user.email}
+                                                />
+                                                <button
+                                                    onclick={openEmailModal}
+                                                    aria-label="change email"
+                                                    type="button"
+                                                    class="btn-outline btn-sm fs-12 btn text-primary"
+                                                    ><i class="fi fi-br-pencil"
+                                                    ></i></button
+                                                >
+                                            </div>
+                                        </UFormGroup>
+
+                                        <UFormGroup label="New password">
+                                            <TuPassField
+                                                autocomplete="new-password"
+                                                name="unlocker"
+                                                placeholder="Enter new password"
+                                                bind:value={formState.newPwd}
+                                            ></TuPassField>
+                                        </UFormGroup>
+
+                                        <div
+                                            class="w-full gap-2 grid grid-cols-2"
+                                        >
+                                            <UButton
+                                                type="button"
+                                                class="btn-primary"
+                                                disabled={!isUpdatingCreds}
+                                                onclick={(e) =>
+                                                    openPwdModal(
+                                                        async () =>
+                                                            await saveChanges(e)
+                                                    )}>Save changes</UButton
+                                            >
+
+                                            <UButton
+                                                type="button"
+                                                class="btn-error"
+                                                onclick={(e) =>
+                                                    openPwdModal(
+                                                        async () =>
+                                                            await delAccount(e)
+                                                    )}>Delete account</UButton
+                                            >
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </UForm>
+                        </div>
+                    {/snippet}
+                </TuTabs>
+                <TuModal bind:open={passwordModalOpen}>
+                    {#snippet content()}
+                        <UForm
+                            onsubmit={interceptor}
+                            class="flex flex-col gap-2"
+                        >
+                            {#if settingsStep == 0 || true}
+                                <UFormGroup label="Password">
+                                    <TuPassField
+                                        showValidation={false}
+                                        placeholder="Enter your password..."
+                                        required
+                                        autocomplete="current-password"
+                                        bind:value={formState.pwd}
+                                    />
+                                </UFormGroup>
+                            {:else}
+                                <UFormGroup>
+                                    <UInput
+                                        inputClass="text-center"
+                                        minlength={4}
+                                        maxlength={4}
+                                        required
+                                        class="w-150px m-auto"
+                                        bind:value={formState.otp}
+                                        placeholder="****"
+                                    />
+                                </UFormGroup>
+                            {/if}
+
+                            {#if err}
+                                <p class="err t-c fs-12">
+                                    {err}
+                                </p>
+                            {/if}
+
+                            <UButton
+                                type="submit"
+                                class="btn-primary btn-progress mt-1 ml-auto w-150px"
+                                >Submit</UButton
+                            >
                         </UForm>
-                    </div>
-                {/snippet}
-            </TuTabs>
-            <TuModal bind:open={passwordModalOpen}>
-                {#snippet content()}
-                    <UForm onsubmit={interceptor} class="flex flex-col gap-2">
-                        {#if settingsStep == 0 || true}
-                            <UFormGroup label="Password">
-                                <TuPassField
-                                    showValidation={false}
-                                    placeholder="Enter your password..."
-                                    required
-                                    autocomplete="current-password"
-                                    bind:value={formState.pwd}
-                                />
-                            </UFormGroup>
-                        {:else}
-                            
-                            <UFormGroup>
-                                <UInput
-                                    inputClass="text-center"
-                                    minlength={4}
-                                    maxlength={4}
-                                    required
-                                    class="w-150px m-auto"
+                    {/snippet}
+                </TuModal>
+
+                <TuModal bind:open={emailModalOpen}>
+                    {#snippet content()}
+                        <UForm
+                            onsubmit={async (e) => {
+                                e.preventDefault();
+                                await interceptor(e, formState.email);
+                            }}
+                            class="flex flex-col gap-2"
+                        >
+                            {#if settingsStep == 0}
+                                <UFormGroup label="New email">
+                                    <UInput
+                                        placeholder="Enter new email address..."
+                                        required
+                                        type="email"
+                                        name="email"
+                                        autocomplete="email"
+                                        bind:value={formState.email}
+                                    />
+                                </UFormGroup>
+                                <UFormGroup label="Password">
+                                    <TuPassField
+                                        showValidation={false}
+                                        placeholder="Enter your password..."
+                                        required
+                                        autocomplete="new-password"
+                                        bind:value={formState.pwd}
+                                    />
+                                </UFormGroup>
+                            {:else}
+                                <OtpField
+                                    email={formState.email}
+                                    user={user._id}
                                     bind:value={formState.otp}
-                                    placeholder="****"
                                 />
-                            </UFormGroup>
-                        {/if}
+                            {/if}
 
-                        {#if err}
-                            <p class="err t-c fs-12">
-                                {err}
-                            </p>
-                        {/if}
+                            {#if err}
+                                <p class="err t-c fs-12">
+                                    {err}
+                                </p>
+                            {/if}
 
-                        <UButton
-                            type="submit"
-                            class="btn-primary btn-progress mt-1 ml-auto w-150px"
-                            >Submit</UButton
-                        >
-                    </UForm>
-                {/snippet}
-            </TuModal>
-
-            <TuModal bind:open={emailModalOpen}>
-                {#snippet content()}
-                    <UForm
-                        onsubmit={async (e) => {e.preventDefault();
-                            await interceptor(e, formState.email)}}
-                        class="flex flex-col gap-2"
-                    >
-                        {#if settingsStep == 0}
-                            <UFormGroup label="New email">
-                                <UInput
-                                    placeholder="Enter new email address..."
-                                    required
-                                    type="email"
-                                    name="email"
-                                    autocomplete="email"
-                                    bind:value={formState.email}
-                                />
-                            </UFormGroup>
-                            <UFormGroup label="Password">
-                                <TuPassField
-                                    showValidation={false}
-                                    placeholder="Enter your password..."
-                                    required
-                                    autocomplete="new-password"
-                                    bind:value={formState.pwd}
-                                />
-                            </UFormGroup>
-                        {:else}
-                        <OtpField email={formState.email} user={user._id} bind:value={formState.otp}/>
-                        {/if}
-
-                        {#if err}
-                            <p class="err t-c fs-12">
-                                {err}
-                            </p>
-                        {/if}
-
-                        <UButton
-                            type="submit"
-                            class="btn-primary btn-progress mt-1 ml-auto w-150px"
-                            >Submit</UButton
-                        >
-                    </UForm>
-                {/snippet}
-            </TuModal>
+                            <UButton
+                                type="submit"
+                                class="btn-primary btn-progress mt-1 ml-auto w-150px"
+                                >Submit</UButton
+                            >
+                        </UForm>
+                    {/snippet}
+                </TuModal>
+            </div>
         </div>
-    </div>
+        {:else}
+        <div class="loading-div">
+            <span class="loading loading-lg"></span>
+        </div>
+    {/if}
 
     <!-- <Dialog :onOk="onOk" title="Enter your password to proceed" :onCancel="()=> showDialog = false" v-if="showDialog">
               <div class="form-group">

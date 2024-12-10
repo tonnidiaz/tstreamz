@@ -1,17 +1,22 @@
 <script>
+    import { goto } from "$app/navigation";
     import CardPh from "@/components/CardPH.svelte";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
-    import TerraBanner from "@/components/TerraBanner.svelte";
     import TMeta from "@/components/TMeta.svelte";
-    import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
-    import { homeStore as _homeStore, setPopularShows, setTopMovies, setPopularMovies, setTopShows } from "@/stores/home.svelte";
+    import { appStore } from "@/stores/app.svelte";
+    import { homeStore as _homeStore } from "@/stores/home.svelte";
     import { userStore } from "@/stores/user.svelte";
-    import { handleErrs, randomInRange } from "@cmn/utils/funcs";
-    import { onMount } from "svelte";
-
-    let {watchlist} = $derived(userStore)
-
+    
+    let {watchlist, user} = $derived(userStore)
+    let {ready} = $derived(appStore)
+    $effect(() => {
+        if (!ready) return;
+        console.log({ready});
+        if (!user?.username) {
+            goto(`/auth/login?red=${location.pathname}`);
+        }
+    })
 </script>
 <div>
     <TMeta title={`My Watchlist - ${SITE}`} />
@@ -20,6 +25,7 @@
             <div class="body">
                 <div class="mt-10">
                     <h1 class="title text-center mb-4">My Watchlist</h1>
+                    {#if ready && user?.username}
                     <div class="flex flex-col gap-3">
                         <section>
                         <h2 class="mb-2 he">Movies</h2>
@@ -53,7 +59,11 @@
                   
                     
                     </div>
-                    
+                    {:else}
+                    <div class="loading-div">
+                        <span class="loading loading-lg"></span>
+                    </div>
+                    {/if}
                 </div>
             </div>
         </div>

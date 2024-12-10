@@ -55,7 +55,7 @@ import { onMount } from "svelte";
 
 
 </script>
-{#if !ready}
+{#if !ready && false}
     <Loader />
     {:else}
 <div>
