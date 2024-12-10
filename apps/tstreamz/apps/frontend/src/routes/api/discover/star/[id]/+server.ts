@@ -2,6 +2,8 @@ import axios from "axios"
 import { error, json } from "@sveltejs/kit"
 import { tmdbUrl } from "@/lib/constants"
 import { tapiKey } from "@/lib/server/constants"
+import { tuErr } from "@/lib/server/funcs"
+import { handleErrs } from "@cmn/utils/funcs.js"
 
 const getByStar = async (star: string) => {
     const url = tmdbUrl + `discover/movie?api_key=${tapiKey}&with_cast=${star}`
@@ -16,7 +18,7 @@ const getByStar = async (star: string) => {
             star: person
         }
     } catch (err) {
-        console.log(err);
+        handleErrs(err);
         
     }
 }
@@ -24,5 +26,5 @@ const getByStar = async (star: string) => {
 export const GET = async ({params})=>{
     const { id } = params
     const data = await getByStar(id)
-    return data ? json(data) : error(500, "Could not get start")
+    return data ? json(data) : tuErr(500, "Could not get star")
 }

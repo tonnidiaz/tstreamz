@@ -1,16 +1,18 @@
 <script lang="ts">
-    import { handleErrs, sleep } from "@cmn/utils/funcs";
-    import { onMount, untrack } from "svelte";
+    import { handleErrs } from "@cmn/utils/funcs";
+    import { onMount } from "svelte";
     import type { HTMLButtonAttributes } from "svelte/elements";
 
     interface IProps extends HTMLButtonAttributes {
         loading?: boolean;
+        showLoader?: boolean;
     }
     let {
         children,
         class: _class,
         loading = $bindable(),
         type: _type = 'button',
+        showLoader = true,
         onclick,
         ...props
     }: IProps = $props();
@@ -90,7 +92,7 @@
 <button bind:this={el} class={`btn btn-sm ` + _class} type={_type} {...props}
     >{@render children?.()}
 
-    {#if loading || _class?.includes("btn-loading")}
+    {#if (showLoader && (loading || _class?.includes("btn-loading")))}
         <span class="loading loading-spinner loading-sm"></span>
     {/if}
 </button>

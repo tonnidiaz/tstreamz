@@ -1,5 +1,6 @@
 import { localApi } from "@/lib/api";
 import { handleErrs } from "@cmn/utils/funcs";
+import { isTuError } from "@cmn/utils/funcs2.js";
 import { error } from "@sveltejs/kit";
 import { AxiosError } from "axios";
 
@@ -18,6 +19,9 @@ export const load = async ({params, url}) =>{
             status = err.status
             msg = err.message
         }
+        // console.log(err);
+        msg = isTuError(err)
+        // console.log({status, msg});
         error(status || 500, msg || "Something went wrong")
     }
 }

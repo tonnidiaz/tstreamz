@@ -1,14 +1,16 @@
 <script lang="ts">
+    import { dev } from "$app/environment";
     import { page } from "$app/stores";
     import DillaBanner from "@/components/DillaBanner.svelte";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
+    import MovieArt from "@/components/MovieArt.svelte";
     import TerraBanner from "@/components/TerraBanner.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import TrailerBtn from "@/components/TrailerBtn.svelte";
     import WatchlistBtn from "@/components/WatchlistBtn.svelte";
     import { localApi } from "@/lib/api";
 
-    import { imgUrl, ROOT, SITE } from "@/lib/constants";
+    import { imgUrl, ROOT, showFrame, SITE } from "@/lib/constants";
     import { preventScroll } from "@/lib/funcs";
     import { handleErrs } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
@@ -16,8 +18,7 @@
     import UAccordion from "@repo/ui/components/UAccordion.svelte";
     import { onMount, untrack } from "svelte";
 
-    const showFrame = true
-    let {data} = $props()
+    let { data } = $props();
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);
     let server = $state(0),
@@ -50,69 +51,55 @@
     };
 
     const getEps = async (id: any, s: string) => {
+        console.log("Getting episodes...", id);
         const url = `/tv/${id}?s=${s}`;
 
         setEpsReady(false);
         try {
+            setEpisodes(null);
             const r = await localApi.get(url);
             const episodes = r.data;
             // console.log({episodes});
-            if (typeof episodes == "object")
-            return episodes;
+            if (typeof episodes == "object") return episodes;
         } catch (e) {
             handleErrs(e);
             setEpsReady(true);
-           
         }
     };
 
     const getMeta = async (id: any) => {
         const url = `/meta/tv/${id}`;
-        try{
-           const { data } = await localApi.get(url);
-        const { meta } = data;
-        // console.log({meta});
-        return meta; 
-        }
-        catch(e){
-            handleErrs(e)
+        console.log("Getting metadata...", id);
+        try {
+            setMeta(null);
+            const { data } = await localApi.get(url);
+            const { meta } = data;
+            // console.log({meta});
+            return meta;
+        } catch (e) {
+            handleErrs(e);
         }
     };
 
     const setupEps = async (s: any) => {
         // When season changes
         try {
-            const eps = await getEps(id, s);
-            if (eps)
-            {setEpisodes(eps);
-            setCurrEp(eps.episodes[0])};
+            const eps = await getEps($page.params.id, s);
+            if (eps) {
+                setEpisodes(eps);
+                setCurrEp(eps.episodes[0]);
+            }
             setEpsReady(true);
         } catch (e) {
             handleErrs(e);
         }
     };
-    onMount(() => {
-        // When show changes
-        scrollToTheTop();
+    onMount(() => {});
 
-        setupMeta();
-        setSNum(null);
-        if (tv.value) {
-            let { s, ep } = query;
-            s = s ?? "1";
-            ep = ep ?? "1";
-            setSNum(s);
-            setENum(ep);
-        }
-    });
-
- $effect(()=>{
-        console.log({tv});
-    })
     $effect(() => {
         // Watch episodes
         const val = episodes;
-        if (!val) return
+        if (!val) return;
         untrack(() => {
             const { ep } = Object.fromEntries($page.url.searchParams);
             const e = ep ?? "1";
@@ -128,7 +115,7 @@
     };
 
     let query = $derived(Object.fromEntries($page.url.searchParams));
-   
+
     $effect(() => {
         // watch rpute.query
         const v = query;
@@ -154,13 +141,32 @@
     };
 
     $effect(() => {
+        if (dev) console.log({ tv: tv?.name });
+    });
+
+    $effect(() => {
+        id;
+        // When show changes
+        untrack(() => {
+            scrollToTheTop();
+            setupMeta();
+            setSNum(null);
+            // if (tv.value) {
+                let { s, ep } = query;
+                s = s ?? "1";
+                ep = ep ?? "1";
+                setSNum(s);
+                setENum(ep);
+            // }
+        });
+    });
+    $effect(() => {
         const val = sNum;
+        id;
         untrack(() => {
             setupEps(val);
         });
     });
-
-    
 </script>
 
 <div class="h-100p">
@@ -209,24 +215,12 @@
                             height={500}
                             allowFullScreen
                             frameborder="0"
-                            src={showFrame ? embedUrls(server) : ''}
+                            src={showFrame ? embedUrls(server) : ""}
                         ></iframe>
                     </div>
 
                     <div class="md:flex md:gap-3 sandes br-10 p-3">
-                        <div
-                            style="flex-shrink: 0"
-                            class="w-225px h-280px pos-rel"
-                        >
-                            <img
-                                alt="Movie  banner"
-                                loading="lazy"
-                                class="br-4"
-                                width="100%"
-                                height="auto"
-                                src={imgUrl + tv?.poster_path}
-                            />
-                        </div>
+                        <MovieArt img={tv?.poster_path} />
 
                         <div class="movie-info mt-4">
                             <h1 class="title">{tv?.name}</h1>
@@ -245,7 +239,7 @@
                                 </div>
                                 <p class="plot mt-3">{tv?.overview}</p>
                             </div>
-                            {#if meta}
+                            {#if tv}
                                 <div
                                     style="textoverflow: ellipsis; overflow: hidden"
                                     class="mt-2 meta grid sm:grid-cols-2 gap-2"
@@ -253,7 +247,9 @@
                                     <ul class="fs-14">
                                         <li>
                                             <p>
-                                                <span class="key">Genre(s): </span>
+                                                <span class="key"
+                                                    >Genre(s):
+                                                </span>
                                                 {#if tv?.genres}
                                                     {#each tv?.genres as it, i}
                                                         <span>
@@ -296,13 +292,17 @@
                                     <ul class="col-md-7 col-lg-6">
                                         <li>
                                             <p>
-                                                <span class="key">Status: </span>
+                                                <span class="key"
+                                                    >Status:
+                                                </span>
                                                 {tv?.status}
                                             </p>
                                         </li>
                                         <li>
                                             <p>
-                                                <span class="key">Language(s): </span>
+                                                <span class="key"
+                                                    >Language(s):
+                                                </span>
                                                 {#each tv?.spoken_languages as it, i}
                                                     <span>
                                                         {#if i !== tv?.spoken_languages.length - 1}
@@ -321,11 +321,13 @@
                                     </ul>
                                 </div>
                             {:else}
-                            <div class="mt-4 w-100p">
-                                <div class="w-100p h-100p _row jc-center">
-                                    <span class="loading loading-bars loading-md"></span>
+                                <div class="mt-4 w-100p">
+                                    <div class="w-100p h-100p _row jc-center">
+                                        <span
+                                            class="loading loading-bars loading-md"
+                                        ></span>
+                                    </div>
                                 </div>
-                            </div>
                             {/if}
                         </div>
                     </div>
@@ -335,115 +337,135 @@
                         <TerraBanner />
                     </div>
                     <!-- 167 -->
-                    <div
-                        class="mt- sandes br-10 pd-4 flex mb-2"
-                    >
+                    <div class="mt- sandes br-10 pd-4 flex mb-2">
                         {#if epsReady}
                             {#if episodes}
-                               <div class="w-100p">
-                                {#if currEp}
-                                    <div>
-                                        <h5 class="fs-18 text-white">
-                                            S{sNum}Ep{eNum}: &nbsp;{currEp.name}
-                                        </h5>
-                                        <div class="mt-2 mb-2">
-                                            <p><span class="key">Date:</span> <span class="text-secondary"> {currEp.air_date}</span></p>
+                                <div class="w-100p">
+                                    {#if currEp}
+                                        <div>
+                                            <h5 class="fs-18 text-white">
+                                                S{sNum}Ep{eNum}: &nbsp;{currEp.name}
+                                            </h5>
+                                            <div class="mt-2 mb-2">
+                                                <p>
+                                                    <span class="key"
+                                                        >Date:</span
+                                                    >
+                                                    <span
+                                                        class="text-secondary"
+                                                    >
+                                                        {currEp.air_date}</span
+                                                    >
+                                                </p>
+                                            </div>
+                                            <p>
+                                                {currEp.overview}
+                                            </p>
                                         </div>
-                                        <p>
-                                            {currEp.overview}
-                                        </p>
-                                    </div>
-                                {:else}
-                                    <div class="loading-div w-100p h-100p m-0">
-                                        <span class="fs-30 flex ai-center mt-4">
-                                            <i class="fi fi-rr-sad-tear"></i>
-                                        </span>
-                                    </div>
-                                {/if}
-                            </div> 
+                                    {:else}
+                                        <div
+                                            class="loading-div w-100p h-100p m-0"
+                                        >
+                                            <span
+                                                class="fs-30 flex ai-center mt-4"
+                                            >
+                                                <i class="fi fi-rr-sad-tear"
+                                                ></i>
+                                            </span>
+                                        </div>
+                                    {/if}
+                                </div>
                             {:else}
-                            <div class="loading-div w-100p h-100p m-0">
-                                <span class="fs-30 flex ai-center mt-4">
-                                    <i class="fi fi-rr-sad-tear"></i>
-                                </span>
-                            </div>
+                                <div class="loading-div w-100p h-100p m-0">
+                                    <span class="fs-30 flex ai-center mt-4">
+                                        <i class="fi fi-rr-sad-tear"></i>
+                                    </span>
+                                </div>
                             {/if}
-                            
                         {:else}
                             <div class="loading-div">
-                                <span class="loading loading-lg loading-bars"></span>
+                                <span class="loading loading-lg loading-bars"
+                                ></span>
                             </div>
                         {/if}
                     </div>
                     <div
-                        class="mt-13 sandes br-10 md:grid md:grid-cols-3 gap-2 mb-3 pd-5 pdb-10"
+                        class="mt-13 sandes br-10 grid md:grid-cols-3 gap-2 mb-3 pd-5 pdb-10"
                         style="margin: 0"
                     >
-                        <div class="col-span-1">
+                        <div class="md:col-span-1">
                             <UAccordion>
                                 {#snippet label()}
-                                    <h4 class="fw-6 text-white">{tv.seasons.length} Seasons</h4>
+                                    <h4 class="fw-6 text-white">
+                                        {tv.seasons.length} Seasons
+                                    </h4>
                                 {/snippet}
                                 {#snippet content()}
-         
-
-                                <div class="mt-2 flex wrap jistify-center">
-                                    {#each tv?.seasons as season, i}
-                                        <TuLink
-                                            class={`col m-1 btn btn-sm btn-outline btn-neutral ${
-                                                `${sNum}` === `${i + 1}`
-                                                    ? "text-secondary"
-                                                    : ""
-                                            }`}
-                                            to={`/watch/tv/${tv?.id}?s=${i + 1}&ep=1`}
-                                            >Season {i + 1}</TuLink
-                                        >
-                                    {/each}
-                                </div>
-                                {/snippet}
-                            </UAccordion>
-                            
-                        </div>
-                        <div class="col-span-2">
-                            <UAccordion>
-                                {#snippet label()}
-                                    <h4 class="fw-6 text-white">{episodes?.episodes?.length} Episodes</h4>
-                                {/snippet}
-                                {#snippet content()}
-                                <div class="flex wrap">
-                                    {#if epsReady}
-                                        {#if episodes}
-                                        {#each episodes?.episodes as ep, i}
+                                    <div class="mt-2 flex wrap jistify-center">
+                                        {#each tv?.seasons as season, i}
                                             <TuLink
-                                                title={ep.name}
-                                                class={`col-md-3 m-1 w-nowrap btn btn-sm btn-outline btn-neutral  ${
-                                                    eNum ===
-                                                    `${ep.episode_number}`
+                                                class={`col m-1 btn btn-sm btn-outline btn-neutral ${
+                                                    `${sNum}` === `${i + 1}`
                                                         ? "text-secondary"
                                                         : ""
                                                 }`}
-                                                to={`/watch/tv/${tv?.id}?s=${ep.season_number}&ep=${ep.episode_number}`}
-                                            >
-                                                Episode {i + 1} :
-                                                {ep.name}</TuLink
+                                                to={`/watch/tv/${tv?.id}?s=${i + 1}&ep=1`}
+                                                >Season {i + 1}</TuLink
                                             >
                                         {/each}
-                                                {:else}
-                                                <div class="loading-div w-100p h-100p m-0">
-                                                    <span class="fs-30 flex ai-center mt-4">
-                                                        <i class="fi fi-rr-sad-tear"></i>
-                                                    </span>
-                                                </div>
-                                        {/if}
-                                    {:else}
-                                        <div class="loading-div">
-                                            <span class="loading loading-bars"></span>
-                                        </div>
-                                    {/if}
-                                </div>
+                                    </div>
                                 {/snippet}
                             </UAccordion>
-                     
+                        </div>
+                        <div class="md:col-span-2">
+                            <UAccordion>
+                                {#snippet label()}
+                                    <h4 class="fw-6 text-white">
+                                        {episodes?.episodes?.length} Episodes
+                                    </h4>
+                                {/snippet}
+                                {#snippet content()}
+                                    <div class="flex wrap">
+                                        {#if epsReady}
+                                            {#if episodes}
+                                                {#each episodes?.episodes as ep, i}
+                                                    <TuLink
+                                                        title={ep.name}
+                                                        class={`col-md-3 m-1 w-nowrap btn btn-sm btn-outline btn-neutral  ${
+                                                            eNum ===
+                                                            `${ep.episode_number}`
+                                                                ? "text-secondary"
+                                                                : ""
+                                                        }`}
+                                                        to={`/watch/tv/${tv?.id}?s=${ep.season_number}&ep=${ep.episode_number}`}
+                                                    >
+                                                        Episode {i + 1} :
+                                                        {ep.name}</TuLink
+                                                    >
+                                                {/each}
+                                            {:else}
+                                                <div
+                                                    class="loading-div w-100p h-100p m-0"
+                                                >
+                                                    <span
+                                                        class="fs-30 flex ai-center mt-4"
+                                                    >
+                                                        <i
+                                                            class="fi fi-rr-sad-tear"
+                                                        ></i>
+                                                    </span>
+                                                </div>
+                                            {/if}
+                                        {:else}
+                                            <div class="loading-div">
+                                                <span
+                                                    class="loading loading-bars"
+                                                ></span>
+                                            </div>
+                                        {/if}
+                                    </div>
+                                {/snippet}
+                            </UAccordion>
                         </div>
                     </div>
 
@@ -457,7 +479,9 @@
                                 <FixedMovieCard movies={meta.similar} isShow />
                             {:else}
                                 <div class="loading-div">
-                                    <span class="loading loading-lg loading-bars"></span>
+                                    <span
+                                        class="loading loading-lg loading-bars"
+                                    ></span>
                                 </div>
                             {/if}
                         </div>

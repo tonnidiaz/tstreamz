@@ -4,6 +4,7 @@ import { tapiKey } from "@/lib/server/constants";
 import { handleErrs } from "@cmn/utils/funcs";
 import { offline } from "@/lib/constants.js";
 import { dummyEps } from "@/lib/consts2.js";
+import { tuErr } from "@/lib/server/funcs.js";
 
 const getEps = async (id: any, sNum: any) => {
     //return eps
@@ -23,5 +24,5 @@ export const GET = async ({params, url}) => {
     const { s, ep } = Object.fromEntries(url.searchParams);
     const data = offline ? dummyEps : await getEps(id, s);
     if (data) return json(data)
-    error(500, "Could not get tv show");
+    tuErr(500, "Could not get tv show");
 }

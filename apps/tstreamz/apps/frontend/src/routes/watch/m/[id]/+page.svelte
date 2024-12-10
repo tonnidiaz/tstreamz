@@ -2,20 +2,20 @@
     import { page } from "$app/stores";
     import DillaBanner from "@/components/DillaBanner.svelte";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
+    import MovieArt from "@/components/MovieArt.svelte";
     import TerraBanner from "@/components/TerraBanner.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import TrailerBtn from "@/components/TrailerBtn.svelte";
     import WatchlistBtn from "@/components/WatchlistBtn.svelte";
     import { localApi } from "@/lib/api";
 
-    import { imgUrl, ROOT, SITE } from "@/lib/constants";
+    import { imgUrl, ROOT, showFrame, SITE } from "@/lib/constants";
     import { preventScroll } from "@/lib/funcs";
     import { handleErrs } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
-    import axios from "axios";
     import { onMount, untrack } from "svelte";
-    const showFrame = true
+
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);
     let server = $state(0),
@@ -64,11 +64,6 @@
         })
        
     })
-  onMount(() => {
-        
-    });
-
-    //api.123movies.cc
 </script>
 
 <div class="h-100p">
@@ -123,19 +118,10 @@
                     </div>
 
                     <div class=" md:flex md:gap-3 sandes br-10 p-3 justify-start">
-                        <div
-                            style="flex-shrink: 0"
-                            class="w-225px h-280px pos-rel"
-                        >
-                            <img
-                                alt="Movie  banner"
-                                loading="lazy"
-                                class="br-4"
-                                width="100%"
-                                height="auto"
-                                src={imgUrl + movie?.poster_path}
+                      
+                            <MovieArt
+                                img={movie?.poster_path}
                             />
-                        </div>
 
                         <div class="movie-info mt-4">
                             <h1 class="title">{movie?.title}</h1>

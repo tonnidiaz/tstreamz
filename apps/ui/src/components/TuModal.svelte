@@ -4,7 +4,7 @@
     import TuTeleport from "./TuTeleport.svelte";
 
     let id = $state("");
-    let { open = $bindable(false), content, toggler }: { open?: boolean; content?: Snippet; toggler?: Snippet } = $props();
+    let { open = $bindable(false), content, toggler, class: _class }: { open?: boolean; content?: Snippet; toggler?: Snippet; class?: string } = $props();
 
     onMount(() => {
         id = `modal-${Date.now()}`;
@@ -30,7 +30,7 @@
         <div class={`modal modal-md flex-col flex items-center justify-center ${open ? "modal-open" : ""}`}>
             <TuModalContainer bind:open={open} blank>
                 {#if open}
-                   <div class="modal-box min-w-400">
+                   <div class={"modal-box min-w-400 " + _class}>
                     {@render content?.()}
                 </div> 
                 {/if}

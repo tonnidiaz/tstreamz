@@ -1,7 +1,7 @@
 import { offline, tmdbUrl } from "@/lib/constants";
 import { dummyShows } from "@/lib/consts2.js";
 import { tapiKey } from "@/lib/server/constants";
-import { getMovieData } from "@/lib/server/funcs";
+import { getMovieData, tuErr } from "@/lib/server/funcs";
 import { error, json } from "@sveltejs/kit";
 
 const getTopShows = async (page: number) => {
@@ -50,6 +50,6 @@ const getTopShows = async (page: number) => {
     
         return json({data})
       } else {
-        error(401, "Bad request")
+        tuErr(401, "Bad request")
       }
   }

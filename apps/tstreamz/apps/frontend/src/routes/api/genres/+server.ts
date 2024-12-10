@@ -4,6 +4,7 @@ import { offline, tmdbUrl } from "@/lib/constants";
 import { tapiKey } from "@/lib/server/constants";
 import { handleErrs } from "@cmn/utils/funcs";
 import { dummyGenres } from "@/lib/consts2";
+import { tuErr } from "@/lib/server/funcs";
 
 const getMGenres = async () => {
     try{
@@ -38,5 +39,5 @@ export const GET = async()=>{
     // console.log({tapiKey});
     const genres = offline ? dummyGenres : await getGenres();
     
-    return  genres ? json({ genres }) : error(500, "Could not get genres")
+    return  genres ? json({ genres }) : tuErr(500, "Could not get genres")
 }

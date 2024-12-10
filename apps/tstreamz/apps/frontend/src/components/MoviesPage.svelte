@@ -52,7 +52,7 @@
         if (data2 === "err") return;
         trending = data2;
 
-        console.log({popular: {...data}, topRated: {...data1}, trending: {...data2}})
+        // console.log({popular: {...data}, topRated: {...data1}, trending: {...data2}})
     }
 
     onMount(() => {

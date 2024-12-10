@@ -1,4 +1,5 @@
 import { tapiKey } from "@/lib/server/constants";
+import { tuErr } from "@/lib/server/funcs.js";
 import { handleErrs } from "@cmn/utils/funcs";
 import { error, json } from "@sveltejs/kit";
 import axios from "axios";
@@ -25,6 +26,6 @@ export const GET = async ({ params }) => {
     if (typeof data !== 'number') {
         return json({ movie: data });
     } else {
-        error(data, "Could not get movie");
+        tuErr(data, "Could not get movie");
     }
 };

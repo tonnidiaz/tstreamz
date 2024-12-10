@@ -57,7 +57,7 @@
                 <legend class="text-primary text-xl text-cente"
                     ><TuLink to="/">{SITE}</TuLink></legend
                 >
-                <h2 class="text-cente my-3 fw-6">Reset password</h2>
+                <h2 class="text-cente mb-2 text-center fw-6">Reset password</h2>
                 <div class="w-100p flex flex-col gap-2">
                     {#if step == 0}
                         <UFormGroup label="Email">
@@ -92,6 +92,14 @@
                             >Submit</UButton
                         >
                     </UFormGroup>
+                    <div class="my-1 text-center fs-13">
+                        <TuLink
+                            to="/auth/login"
+                            class="text-primary text-center"
+                        >
+                            Back to login
+                        </TuLink>
+                    </div>
                 </div>
             </fieldset>
         </UForm>

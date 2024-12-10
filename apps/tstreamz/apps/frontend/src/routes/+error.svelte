@@ -1,20 +1,22 @@
-<TMeta title={`${$page.status}: ${$page.error.message} - ${SITE}`}/>
+<TMeta title={`${$page.status}: ${$page.error.message.replace("tu:", "")} - ${SITE}`}/>
 <div class="tu-error-page">
     <div class="error">
         <span class="status">{$page.status}</span>
         <div class="message">
-            <h1>{$page.error.message}</h1>
+            <h1>{$page.error.message.replace("tu:", "")}</h1>
         </div>
     </div>
 </div>
 
 <script lang="ts">
+    import { dev } from "$app/environment";
     import {page} from "$app/stores"
     import TMeta from "@/components/TMeta.svelte";
     import { SITE } from "@/lib/constants";
     import { onMount } from "svelte";
 
     onMount(()=>{
+        if (dev)
         console.log($page);
     })
 </script>

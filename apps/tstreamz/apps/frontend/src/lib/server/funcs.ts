@@ -55,18 +55,22 @@ export const getMeta = async (id: string, tv?: boolean) => {
     }
 };
 export const getTrailer = async (id: string, tv: boolean = false) => {
-    const m = tv ? "tv" : "movie";
+    try {
+        const m = tv ? "tv" : "movie";
 
-    const url = tmdbUrl + `${m}/${id}/videos?api_key=${tapiKey}`;
-    const { data } = await axios.get(url);
+        const url = tmdbUrl + `${m}/${id}/videos?api_key=${tapiKey}`;
+        const { data } = await axios.get(url);
 
-    let d = data.results.filter(
-        (it) => it.type === "Trailer" && it.official
-    )[0];
-    d = d ?? data.results.filter((it) => it.type === "Trailer")[0];
+        let d = data.results.filter(
+            (it) => it.type === "Trailer" && it.official
+        )[0];
+        d = d ?? data.results.filter((it) => it.type === "Trailer")[0];
 
-    return d;
+        return d;
+    } catch (err) {
+        handleErrs(err);
+    }
 };
 
-
-export const tuErr = (status: number, msg: string) => error(status, `tu:${msg}`)
+export const tuErr = (status: number, msg: string) =>
+    error(status, `tu:${msg}`);

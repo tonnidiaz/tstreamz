@@ -1,9 +1,10 @@
+
 @for $i from 1 to 50{
     .br-#{$i} {
         border-radius: #{$i}px !important;
     }
 }
-@for $i from 1 through 700 {
+@for $i from 1 through 900 {
     .h-#{$i}px {
         height: #{$i}px !important;
     }

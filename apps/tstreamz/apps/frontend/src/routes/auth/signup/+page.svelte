@@ -79,7 +79,7 @@
                     <legend class="text-primary"
                         ><TuLink to="/">{SITE}</TuLink></legend
                     >
-                    <h2 class="text-cente my-3 fw-6">Sign up</h2>
+                    <h2 class="text-cente mb-2 text-center fw-6">Create an account</h2>
                     <div class="w-100p flex flex-col gap-2">
                         <UFormGroup label="Username">
                             <UInput

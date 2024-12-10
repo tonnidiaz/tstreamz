@@ -52,7 +52,7 @@
                 <legend class="text-primary text-xl text-cente"
                     ><TuLink to="/">{SITE}</TuLink></legend
                 >
-                <h2 class="text-cente my-3 fw-6">Login</h2>
+                <h2 class="text-cente mb-2 text-center fw-6">Login to your account</h2>
                 <div class="w-100p flex flex-col gap-2">
                     <UFormGroup label="Email/Username">
                         <UInput

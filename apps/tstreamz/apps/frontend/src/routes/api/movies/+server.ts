@@ -1,8 +1,8 @@
 import { offline, tmdbUrl } from "@/lib/constants";
 import { dummyMovieData } from "@/lib/consts2.js";
 import { tapiKey } from "@/lib/server/constants";
-import { getMovieData } from "@/lib/server/funcs";
-import { error, json } from "@sveltejs/kit";
+import { getMovieData, tuErr } from "@/lib/server/funcs";
+import { json } from "@sveltejs/kit";
 const getTopMovies = async (page: number) => {
     if (offline) return Object.values(dummyMovieData.topRated)
     const url = tmdbUrl + `movie/top_rated?page=${page}&api_key=` + tapiKey;
@@ -53,7 +53,7 @@ export const GET = async ({url}) => {
     
         return json({data})
       } else {
-        error( 401,
+        tuErr( 401,
             "Bad request"
         )
       }

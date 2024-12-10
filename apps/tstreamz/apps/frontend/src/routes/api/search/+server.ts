@@ -1,8 +1,9 @@
 import { offline, tmdbUrl } from "@/lib/constants";
 import { dummyMovieData, dummyShows } from "@/lib/consts2.js";
 import { tapiKey } from "@/lib/server/constants";
+import { tuErr } from "@/lib/server/funcs";
 import { handleErrs } from "@cmn/utils/funcs";
-import { error, json } from "@sveltejs/kit";
+import {  json } from "@sveltejs/kit";
 import axios from "axios";
 
 const search = async (q : string) => {
@@ -39,6 +40,6 @@ const searchMovie = async (q : string) => {
   export const GET = async ({url})=>{
     const { q } = Object.fromEntries(url.searchParams)
     const data = await search(`${q}`);
-    return data ? json({data}) : error(500, "Failed to search")
+    return data ? json({data}) : tuErr(500, "Failed to search")
   }
    

@@ -1,5 +1,6 @@
 import { tmdbUrl } from "@/lib/constants";
 import { tapiKey } from "@/lib/server/constants.js";
+import { tuErr } from "@/lib/server/funcs.js";
 import { handleErrs } from "@cmn/utils/funcs";
 import { error, json } from "@sveltejs/kit";
 import axios from "axios";
@@ -21,5 +22,5 @@ const getData = async (id : string, page : number, isShow : any) => {
     const { id } = params
     const { page, isShow} = Object.fromEntries(url.searchParams)
     const data = await getData(id, Number(page), isShow)
-    return data ? json({ data }) : error(500, "Could not get genre")
+    return data ? json({ data }) : tuErr(500, "Could not get genre")
   }

@@ -1,6 +1,7 @@
 import { offline } from "@/lib/constants.js";
 import { dummyShow } from "@/lib/consts2.js";
 import { tapiKey } from "@/lib/server/constants";
+import { tuErr } from "@/lib/server/funcs.js";
 import { handleErrs } from "@cmn/utils/funcs";
 import { error, json } from "@sveltejs/kit";
 import axios from "axios";
@@ -25,6 +26,6 @@ export const GET = async ({params}) =>{
     if (typeof data !== 'number') {
         return json({ tv: data });
     } else {
-        error(data, "Could not get show");
+        tuErr(data, "Could not get show");
     }
 }

@@ -23,13 +23,13 @@
         const { id } = $page.params;
         const url = "/movie/genre/" + id + "?page=" + _page;
         const { data } = await localApi.get(url);
-        console.log(data);
+        // console.log(data);
         setMovies(data.data);
     }
  
     $effect(() => {
-        let _p = p;
-        console.log("Watch P", { _p });
+         p;
+        // console.log("Watch P", { _p });
         untrack(() => {
             getMovies();
         });
