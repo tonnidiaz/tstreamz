@@ -1,3 +1,4 @@
+
 const staticPages = (url: string) =>
     Object.keys(import.meta.glob("/src/routes/**/+page.(svelte|md)"))
         .filter(
@@ -14,8 +15,8 @@ const staticPages = (url: string) =>
         );
 
 const date = new Date().toISOString();
-export const GET = async ({ url: _url }): Promise<Response> => {
-    const url = _url.origin;
+export const GET = async ({url: _url}): Promise<Response> => {
+    const url = _url.pathname;
     const headers: Record<string, string> = {
         "Cache-Control": "max-age=3600",
         "Content-Type": "application/xml",
@@ -50,4 +51,4 @@ export const GET = async ({ url: _url }): Promise<Response> => {
         { headers: headers }
     );
 };
-export const prerender = false;
+export const prerender = true;

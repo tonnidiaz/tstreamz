@@ -55,16 +55,19 @@ async function authMed(event: RequestEvent, res: any, strict: boolean = true) {
     }
     return res(event);
 }
+
+const prerenderRoutes = ["/sitemap.xml", "/robots.txt"];
 export const handle: Handle = async ({ resolve, event }) => {
     console.log("\nSERVER MIDDLEWARE\n");
- 
-        const req = event.request
 
-    const { pathname, searchParams } = event.url;
+    const req = event.request;
+    const pathname = event.url.pathname;
+    if (prerenderRoutes.includes(pathname)) return resolve(event);
+    const { searchParams } = event.url;
     const { q, token } = Object.fromEntries(searchParams);
     const loginCond = pathname == "/api/auth/login" && q == "token";
-    if (token){
-        event.request.headers.set('Authorization', `Bearer ${token}`)
+    if (token) {
+        event.request.headers.set("Authorization", `Bearer ${token}`);
     }
     const strictCond =
         loginCond ||

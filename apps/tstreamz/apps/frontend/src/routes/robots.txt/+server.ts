@@ -16,3 +16,4 @@ Host: ${host}
 Sitemap: ${host}/sitemap.xml
 `);
 };
+export const prerender = true

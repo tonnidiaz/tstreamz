@@ -7,7 +7,7 @@
 
     let {
         title = SITE,
-        src = ROOT + "/assets/images/meta/home.png",
+        src = ROOT + "/assets/images/logo.png",
         desc = `${SITE} site`,
         keywords = SITE.toLowerCase(),
         url
@@ -18,6 +18,7 @@
         url?: string;
         keywords?: string;
     } = $props();
+    let __title = $derived((title || _title).trim())
 
     
 
@@ -44,18 +45,18 @@
 
 <svelte:head>
     <title>
-       {title || _title}
+       {__title}
     </title>
     <meta name="description" content={`${desc}\n${_description}`} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />
-    <meta property="og:title" content={title || _title} />
+    <meta property="og:title" content={__title} />
     <meta property="og:description" content={`${desc}\n${_description}`} />
     <meta property="og:image" content={src} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
-    <meta property="twitter:title" content={title || _title} />
+    <meta property="twitter:title" content={__title} />
     <meta property="twitter:description" content={`${desc}\n${_description}`} />
     <meta property="twitter:image" content={src} />
 
