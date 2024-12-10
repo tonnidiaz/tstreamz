@@ -9,14 +9,16 @@ export function preventScroll(e: any) {
 export const requestOTP = async ({
     user,
     newEmail,
+    action
 }: {
     user: string;
     newEmail?: string;
+    action?: string;
 }) => {
     const res = await localApi.post("/auth/otp/request", {
         user,
         newEmail,
-    });
+    }, {params: {action}});
     return res;
 };
 export const verifyOTP = async ({

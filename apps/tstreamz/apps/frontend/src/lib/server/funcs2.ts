@@ -4,8 +4,10 @@ import { tuErr } from "./funcs";
 import { User } from "./models";
 import { json } from "@sveltejs/kit";
 import bcrypt from "bcrypt";
-import { hashPass } from "@cmn/utils/bend/funcs";
+import { hashPass, sendMail } from "@cmn/utils/bend/funcs";
 import { dev } from "$app/environment";
+import { SITE } from "../constants";
+import { OTPBody, OTPSubject } from "@cmn/utils/bend/consts";
 
 export async function updateUser(id: string, body: IObj, f: string) {
     const user = await User.findById(id).exec();
@@ -43,4 +45,9 @@ export async function delUser(id: string) {
     if (!user) return tuErr(400, "User does not exist");
 
     return json({ message: "User account deleted" });
+}
+
+
+export const sendSignupMail = async ({pin, email}:{pin: number; email: string}) =>{
+    return await sendMail({clients: email, app: SITE, name: 'New user', body: OTPBody(pin, `<p>To finish creating your account use the OTP below:</p>`,), subject: OTPSubject(pin, SITE), heading: `Welcome to ${SITE}`})
 }

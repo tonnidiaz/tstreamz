@@ -17,7 +17,7 @@ export const BEND_URL = __DEV__
 export const API_URL = "/api";
 
 export const STORAGE_KEYS = { authTkn: "TB_AUTH_TOKEN" };
-export const SITE_SLOGAN = "A Tunedbass site";
+export const SITE_SLOGAN = "A free movie & series streaming site";
 export const DEVELOPER = "Tonni Diaz"
 
 
@@ -27,4 +27,4 @@ export const year = new Date().getFullYear()
 export const imgUrl = "https://image.tmdb.org/t/p/w500"
 export const tmdbUrl = "https://api.themoviedb.org/3/"
 export const offline = false
-export const showFrame = false
+export const showFrame = true

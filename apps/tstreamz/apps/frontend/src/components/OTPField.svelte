@@ -8,38 +8,39 @@
     import UInput from "@repo/ui/components/UInput.svelte";
     import { onMount } from "svelte";
 
-    const MAX = dev ? 10 : 60
+    const MAX = dev ? 10 : 60;
     let min = $state(MAX);
 
     interface IProps {
         email: string;
         user: string;
         value: any;
+        action?: string;
     }
-    let { email, user, value = $bindable() }: IProps = $props();
+    let { email, user, value = $bindable(), action }: IProps = $props();
 
-    function startTimer(){
-        min = MAX
-        const int = setInterval(()=>{
-            
-            min -= 1
-            if (min <= 0) clearInterval(int)
-        }, 1000)
+    function startTimer() {
+        min = MAX;
+        const int = setInterval(() => {
+            min -= 1;
+            if (min <= 0) clearInterval(int);
+        }, 1000);
     }
 
-    async function _requestOTP(e:any) {
+    async function _requestOTP(e: any) {
         try {
-            const r = await requestOTP({user})
-            startTimer()
+            if (dev) console.log({ user, action });
+            const r = await requestOTP({ user, action });
+            startTimer();
         } catch (err) {
-            handleErrs(err)
-            alert('Failed to request OTP')
+            handleErrs(err);
+            alert("Failed to request OTP");
         }
     }
-    onMount(()=>{
-        startTimer()
-        return ()=> min = MAX
-    })
+    onMount(() => {
+        startTimer();
+        return () => (min = MAX);
+    });
 </script>
 
 <OtpText {email} />
@@ -53,7 +54,7 @@
         bind:value
     />
 </UFormGroup>
-<div class={`m-auto ${min > 0 ? 'disabled' : ''}`}>
+<div class={`m-auto ${min > 0 ? "disabled" : ""}`}>
     <UButton class="btn-none fs-13" onclick={_requestOTP}>
         <span class="text-primary">Resend OTP</span>
         {#if min > 0}

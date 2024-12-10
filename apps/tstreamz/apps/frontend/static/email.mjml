@@ -1,0 +1,139 @@
+<mjml>
+  <mj-head>
+    <mj-style>
+      .section {
+        background-color: white !important;
+        padding: 20px !important;
+        max-width: 800px !important;
+        margin: 0 auto !important;
+        border: 0.336601px solid rgba(19, 18, 18, 0.1) !important;
+        border-radius: 7px !important;
+        width: 500px
+      }
+
+      .text-center * {
+        text-align: center !important;
+      }
+
+      .tu-mail-body {
+        background: #f4f5f7 !important;
+
+        width: 100% !important;
+        margin: auto;
+        height: 100% !important;
+        box-sizing: border-box !important;
+        padding: 10px !important;
+        padding-top: 50px !important;
+      }
+    .tu-mail-body p {margin: 0 !important;}
+      .tu-mail-body * {
+        font: medium/1.5 Arial, Helvetica, sans-serif !important;
+        color: black !important;
+      }
+
+      .font-body {
+        font: medium/1.5 Arial, Helvetica, sans-serif !important
+      }
+
+      @media screen and (max-width: 510px) {
+        .section {
+          width: calc(100% - 20px);
+          padding: 10px !important
+        }
+
+      }
+
+      .tu-mail-body h1,
+      .tu-mail-body h2,
+      .tu-mail-body h3,
+      .tu-mail-body h4 {
+        font-weight: 600;
+        margin: 2.5% !important;
+      }
+
+      .tu-mail-body h3,
+      .tu-mail-body h1 {
+        font-weight: 700 !important;
+        font-size: 1.5rem !important;
+        line-height: 120% !important;
+        color: #17191c !important;
+      }
+
+      .tu-mail-body h1 {
+        font-size: 1.2rem !important;
+      }
+
+      .fw-5 {
+        font-weight: 500 !important;
+      }
+
+      .fw-6 {
+        font-weight: 600 !important;
+      }
+
+      .fs-14 {
+        font-size: 14px !important;
+      }
+
+      .fs-16 {
+        font-size: 16px !important;
+      }
+
+      .fs-18 {
+        font-size: 18px !important;
+      }
+
+      .fs-20 {
+        font-size: 20px !important;
+      }
+
+      .fs-22 {
+        font-size: 22px !important;
+      }
+
+      .fs-24 {
+        font-size: 24px !important;
+      }
+
+      .font-monospace {
+        font-family: monospace !important
+      }
+
+      .m-auto {
+        margin: auto !important
+      }
+
+      .text-primary {
+        color: rgb(76, 222, 128) !important
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#ffffff" css-class="tu-mail-body">
+    <mj-section css-class="text-center section">
+      <mj-group>
+        <mj-column width="100%">
+          <mj-text>
+            <h1 style="font-size: 22px">{%site%}</h1>
+            <p>Hello {%name%}</p>
+            <h3>{%heading%}</h3>
+            <div class="tu-body">{%body%}</div>
+
+          </mj-text>
+        </mj-column>
+
+      </mj-group>
+
+
+    </mj-section>
+    <mj-section css-class="text-center">
+      <mj-column width="100%">
+        <mj-text>
+          <p>For support, please contact us at <a href="mailto:{%email%}" class="text-primary fw-6">{%email%}</a></p>
+        </mj-text>
+      </mj-column>
+
+
+    </mj-section>
+
+  </mj-body>
+</mjml>

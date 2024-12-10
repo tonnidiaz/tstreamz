@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { dev } from "$app/environment";
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
     import OtpField from "@/components/OTPField.svelte";
@@ -133,11 +134,12 @@
 
     const _verifyOTP = async (newEmail?: string) => {
         try {
-            const res = await verifyOTP({
+            const fd = {
                 user: user._id,
                 value: formState.otp,
                 newEmail,
-            });
+            }
+            const res = await verifyOTP(fd);
             return true;
         } catch (er) {
             err = isTuError(er) || "Failed to verify OTP";

@@ -7,7 +7,8 @@
 		"build": "vite build",
 		"preview": "vite preview  --port 3000 --host 0.0.0.0",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+        "gen-mail-temp": "mjml -r ./static/email.mjml -o ../../../../packages/common/src/static/mj-email-skeleton.html"
 	},
 	"devDependencies": {
 		"@flydotio/dockerfile": "^0.5.9",

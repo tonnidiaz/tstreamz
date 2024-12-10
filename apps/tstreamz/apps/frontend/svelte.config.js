@@ -24,7 +24,7 @@ const config = {
             config: (c)=>{
                 return {...c,
                     exclude: [...c.exclude, root +"/packages/common/node_modules", root +"/node_modules", root +"/**/*.js", root +"/*.d.ts"],
-                    include: [...c.include, root +"/packages/common/**/*.ts", root +"/node_modules/svelte/elements.d.ts", root + "/apps/ui/src"],
+                    include: [...c.include, root +"/packages/common/**/*.ts", root +"/node_modules/svelte/elements.d.ts", root + "/apps/ui/src", '../rf/**/*.ts'],
                     
                 }
             }

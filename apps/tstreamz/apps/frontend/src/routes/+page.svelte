@@ -4,6 +4,7 @@
     import TerraBanner from "@/components/TerraBanner.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
+    import { SITE } from "@/lib/constants";
     import { homeStore as _homeStore, setPopularShows, setTopMovies, setPopularMovies, setTopShows } from "@/stores/home.svelte";
     import { handleErrs, randomInRange } from "@cmn/utils/funcs";
     import { onMount } from "svelte";
@@ -61,7 +62,7 @@ const getContent = async () => {
 onMount(()=>{getContent()})
 </script>
 <div>
-    <TMeta />
+    <TMeta title={`${SITE} - A free movie & series streaming site`}/>
     <div>
         <div>
             <div class="body">

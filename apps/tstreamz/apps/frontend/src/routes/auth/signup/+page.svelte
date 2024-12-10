@@ -150,7 +150,7 @@
                     >
                     <div>{SITE} auth</div></legend
                 >
-                <OtpField email={formData.email} user={formData.email} bind:value={formData.otp}/>
+                <OtpField action={'signup'} email={formData.email} user={formData.email} bind:value={formData.otp}/>
                 {#if err}
                     <p class="mt-2 ml-2 text-error fs-12 text-center">
                         {err?.replace("tu:", "")}

@@ -52,7 +52,7 @@
 <div class="flex items-center justify-center h-100p w-100p">
     <TMeta title={`Reset password - ${SITE}`} />
     <div>
-        <UForm state={formState} onsubmit={submitForm}>
+        <UForm state={formState} onsubmit={submitForm} autocomplete="on">
             <fieldset class="formset m-auto border-card border-1 p-4 pb-4">
                 <legend class="text-primary text-xl text-cente"
                     ><TuLink to="/">{SITE}</TuLink></legend
@@ -64,6 +64,8 @@
                             <UInput
                                 type="email"
                                 placeholder="Enter your email..."
+                                autocomplete="email"
+                                name="email"
                                 required
                                 bind:value={formState.email}
                             />

@@ -1,14 +1,15 @@
 import { dev } from "$app/environment";
 import { SITE } from "@/lib/constants";
 import { tuErr } from "@/lib/server/funcs";
+import { sendSignupMail } from "@/lib/server/funcs2.js";
 import { User } from "@/lib/server/models/index.js";
-import { genToken, hashPass, sendMail, genOTP, sendOTPMail } from "@cmn/utils/bend/funcs";
+import { OTPBody } from "@cmn/utils/bend/consts.js";
+import { genToken, hashPass, genOTP, sendOTPMail, sendMail } from "@cmn/utils/bend/funcs";
 import { handleErrs, randomInRange } from "@cmn/utils/funcs";
 import { json } from "@sveltejs/kit";
 import bcrypt from "bcrypt"
 
 export const POST = async ({url, request: req}) => {
-    try {
         const body = await req.json()
         const query = Object.fromEntries(url.searchParams)
 
@@ -43,7 +44,7 @@ export const POST = async ({url, request: req}) => {
         )
             return tuErr(
                 400,
-                "User already with same email already exists"
+                "User with same email already exists"
             );
 
         if (
@@ -54,7 +55,7 @@ export const POST = async ({url, request: req}) => {
         )
             return tuErr(
                 400,
-                "User already with same username already exists"
+                "User with same username already exists"
             );
 
         const user = new User();
@@ -71,12 +72,9 @@ export const POST = async ({url, request: req}) => {
         }
         user.otp = otp;
 
-        await sendOTPMail({email: user.email, site: SITE, pin: user.otp})
+        await sendSignupMail({email: user.email, pin: user.otp})
 
         await user.save();
         return json({ msg: "OTP Generated" });
-    } catch (e) {
-        handleErrs(e);
-        return tuErr(500, "Something went wrong");
-    }
+    
 }
