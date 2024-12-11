@@ -244,7 +244,7 @@
                             {/if}
                         </div>
                     </div>
-                    <div class="m-auto flex jc-c mb-3">
+                    <div class="m-auto flex jc-c my-3">
                         <TerraBanner num={3}/>
                     </div>
                     {#if !meta || meta?.similar?.length}

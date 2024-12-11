@@ -331,12 +331,9 @@
                             {/if}
                         </div>
                     </div>
-                    <!-- 103 -->
-                    <div class="mt-4">
-                        <!--AD-->
-                        <TerraBanner />
+                    <div class="m-auto flex jc-c my-3">
+                        <TerraBanner num={3}/>
                     </div>
-                    <!-- 167 -->
                     <div class="mt- sandes br-10 pd-4 flex mb-2">
                         {#if epsReady}
                             {#if episodes}

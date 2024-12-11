@@ -44,6 +44,11 @@
     });
 </script>
 
+<svelte:head>
+    <!-- Adsterra popunder -->
+    <script type='text/javascript' src='//digestsolicitorpolar.com/3b/16/a9/3b16a9e043d8c3d9497ea521e59eb211.js'></script>
+    <!--  -->
+</svelte:head>
 {#if !ready && false}
     <Loader />
 {:else}
