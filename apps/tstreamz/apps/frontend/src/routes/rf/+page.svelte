@@ -1,6 +1,5 @@
 <script>
-    import PellerBanner from "@/components/PellerBanner.svelte";
-    import PellerBanner2 from "@/components/PellerBanner2.svelte";
+    
     import PellerPopunder from "@/components/PellerPopunder.svelte";
     import PellerPush from "@/components/PellerPush.svelte";
 import TMeta from "@/components/TMeta.svelte";
