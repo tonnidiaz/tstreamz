@@ -4,12 +4,12 @@
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import CardPh from "./CardPH.svelte";
     import FixedMovieCard from "./FixedMovieCard.svelte";
-    import TerraBanner from "./TerraBanner.svelte";
     import TMeta from "./TMeta.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
     import { onMount } from "svelte";
     import { localApi } from "@/lib/api";
     import ShareIcons from "./ShareIcons.svelte";
+    import TerraBanner from "./TerraBanner.svelte";
 
     let trending = $state<any>(null);
     let popular = $state<any>(null);
@@ -119,7 +119,7 @@
                     {/if}
                 </div>
             </section>
-            <TerraBanner />
+            <TerraBanner num={3} />
             <section>
                 <h2 class="he">Popular {isShow ? "shows" : "movies"}</h2>
                 <div class="">
@@ -130,6 +130,8 @@
                     {/if}
                 </div>
             </section>
+                <TerraBanner num={1}/>
+            
         </div>
     </div>
 </div>

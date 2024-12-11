@@ -111,7 +111,7 @@ onMount(()=>{getContent()})
                         </div>
 
                     </section>
-                    <TerraBanner />
+                    <TerraBanner num={3} />
                     <section>
                         <h3 class="he">popular Shows</h3>
                         <div class="">
@@ -141,7 +141,7 @@ onMount(()=>{getContent()})
                             
                         </div>
                     </section>
-                    <TerraBanner />
+                    <TerraBanner num={1}/>
                     </div>
                     
                 </div>

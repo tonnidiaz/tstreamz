@@ -1,6 +1,7 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
+    import TerraBanner from "@/components/TerraBanner.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
@@ -83,6 +84,9 @@
         </div>
     </div>
     <div class="mt-4">
+        <div class="m-auto flex jc-c mb-3">
+            <TerraBanner num={1}/>
+        </div>
         {#if movies}
             <FixedMovieCard wrap {movies} />
         {:else}
@@ -95,5 +99,8 @@
                 </div>
             </div>
         {/if}
+        <div class="m-auto flex jc-c my-3">
+            <TerraBanner num={3}/>
+        </div>
     </div>
 </div>

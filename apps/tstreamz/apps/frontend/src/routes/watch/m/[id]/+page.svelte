@@ -244,9 +244,8 @@
                             {/if}
                         </div>
                     </div>
-                    <div class="mt-4">
-                        <!--AD-->
-                        <TerraBanner />
+                    <div class="m-auto flex jc-c mb-3">
+                        <TerraBanner num={3}/>
                     </div>
                     {#if !meta || meta?.similar?.length}
                         <section class="mt-1">
@@ -267,7 +266,9 @@
                     </section> 
                     {/if}
                    
-                    <DillaBanner />
+                    <div class="m-auto flex jc-c mt-3">
+                        <TerraBanner num={1}/>
+                    </div>
                 </div>
             {:else}
                 <div

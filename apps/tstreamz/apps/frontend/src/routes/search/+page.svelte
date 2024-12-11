@@ -85,7 +85,9 @@
                 <SearchForm value={`${query || ""}`} />
             </div>
         </div>
-
+        <div class="m-auto flex jc-c mb-3">
+            <TerraBanner num={3}/>
+        </div>
         <!---
   <ShareNetwork
           network="facebook"
@@ -224,7 +226,7 @@
         {/if}
     </div>
     <DillaBanner />
-    <TerraBanner />
+    
 </div>
 
 <style lang="scss">

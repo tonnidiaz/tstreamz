@@ -469,8 +469,8 @@
                         </div>
                     </div>
 
-                    <div class="mt-4">
-                        <TerraBanner />
+                    <div class="m-auto flex jc-c mt-3">
+                        <TerraBanner num={3}/>
                     </div>
                     <div class="mt-4">
                         <h3 class="he">Similar Shows</h3>
@@ -485,6 +485,9 @@
                                 </div>
                             {/if}
                         </div>
+                    </div>
+                    <div class="m-auto flex jc-c mt-3">
+                        <TerraBanner num={1}/>
                     </div>
                 </div>
             {:else}
