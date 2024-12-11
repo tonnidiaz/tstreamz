@@ -116,11 +116,13 @@
                     {/snippet}
                     <ul>
                         <MenuItem
+                        reload
                         to="/me/profile"
                         icon="fi fi-br-circle-user"
                         >Profile</MenuItem
                     >
                     <MenuItem
+                        reload
                         to={`/me/watchlist`}
                         icon="fi fi-br-bookmark">Watchlist</MenuItem
                     >
@@ -137,6 +139,7 @@
                 <UButton loading={!ready}>
                     {#if ready}
                     <TuLink
+                        reload
                         to={`/auth/login?red=${$page.url.pathname.includes('auth') ? '/' : $page.url.href.replace($page.url.origin, '')}`}
                         class="btn btn-sm btn-outline btn-primary"
                     >

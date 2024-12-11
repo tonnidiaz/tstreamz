@@ -215,6 +215,7 @@
                             height={500}
                             allowFullScreen
                             frameborder="0"
+                            class="tu"
                             src={showFrame ? embedUrls(server) : ""}
                         ></iframe>
                     </div>

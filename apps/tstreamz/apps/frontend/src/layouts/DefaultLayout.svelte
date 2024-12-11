@@ -11,6 +11,9 @@
     import Footer from "@/components/Footer.svelte";
     import Navbar from "@/components/Navbar.svelte";
     import Sidebar from "@/components/Sidebar.svelte";
+    import { page } from "$app/stores";
+    import PellerPopunder from "@/components/PellerPopunder.svelte";
+    import { enablePopunderAds } from "@/lib/constants";
 
     let { ready } = $derived(appStore);
     let { children } = $props();
@@ -42,13 +45,22 @@
         const { data } = await axios.get("/api/genres");
         setGenres(data.genres);
     });
+
+    $effect(()=>{
+        const p =$page.url.pathname;
+        p;
+        console.log({p});
+    })
 </script>
 
 <svelte:head>
     <!-- Adsterra popunder -->
-    <script type='text/javascript' src='//digestsolicitorpolar.com/3b/16/a9/3b16a9e043d8c3d9497ea521e59eb211.js'></script>
+    <!-- <script type='text/javascript' src='//digestsolicitorpolar.com/3b/16/a9/3b16a9e043d8c3d9497ea521e59eb211.js'></script> -->
     <!--  -->
 </svelte:head>
+{#if !$page.url.pathname.includes('/me') && enablePopunderAds}
+    <PellerPopunder/>
+{/if}
 {#if !ready && false}
     <Loader />
 {:else}
@@ -67,4 +79,4 @@
     </div>
 {/if}
 
->
+

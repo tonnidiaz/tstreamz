@@ -5,6 +5,7 @@
       bind:this={frame}
       width="100%"
       src="/site/dillabanner"
+      class="tu"
       frameborder="0"
       loading="lazy"
     ></iframe>

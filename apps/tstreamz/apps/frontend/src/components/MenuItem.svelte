@@ -7,6 +7,7 @@
         title?: string;
         innerClass?: string;
         icon?: string;
+        reload?: boolean
     }
     const {
         to,
@@ -14,6 +15,7 @@
         children,
         title,
         icon,
+        reload,
         class: _class,
         ...props
     }: IProps = $props();
@@ -21,7 +23,7 @@
 
 <li class={"tooltip tooltip-right " + _class} data-tip={title} {...props}>
     {#if to}
-        <TuLink {to} class={`${innerClass}`}>
+        <TuLink {reload} {to} class={`${innerClass}`}>
             {#if icon}
                 <i class={icon}></i>
             {/if}

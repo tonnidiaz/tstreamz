@@ -111,7 +111,7 @@
                             width="100%"
                             height={500}
                             allowFullScreen
-                            
+                            class="tu"
                             frameborder="0"
                             src={!showFrame ? '' : embedUrls(server)}
                         ></iframe>

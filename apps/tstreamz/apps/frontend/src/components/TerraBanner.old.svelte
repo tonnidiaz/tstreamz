@@ -6,6 +6,7 @@
         width="100%"
         src="/site/terrabanner"
         frameborder="0"
+        class="tu"
         loading="lazy"
       ></iframe>
     </div>

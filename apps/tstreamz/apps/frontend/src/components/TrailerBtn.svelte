@@ -70,7 +70,7 @@
                         title="Trailer frame"
                         width="100%"
                         height="100%"
-                        class="rounded-md"
+                        class="tu rounded-md"
                         allowFullScreen
                         frameborder="0"
                         src={"https://www.youtube.com/embed/" +
