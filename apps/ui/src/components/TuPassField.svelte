@@ -75,6 +75,10 @@
         checkPass();
         pwdInp.onkeyup = checkPass;
     });
+
+    $effect(()=>{
+        // console.log({passType})
+    })
 </script>
 
 <div bind:this={parent}>

@@ -84,7 +84,8 @@
                         <UFormGroup label="Username">
                             <UInput
                                 type="text"
-                                name="username"
+                                name="vito"
+                                autocomplete="username"
                                 required
                                 class=""
                                 bind:value={formData.username}
@@ -98,6 +99,7 @@
                                 bind:value={formData.email}
                                 required
                                 placeholder="e.g. johndoe@gmail.com"
+                                autocomplete="email"
                             />
                         </UFormGroup>
                         <UFormGroup label="Password">
@@ -106,6 +108,7 @@
                                 bind:value={formData.password}
                                 name="password"
                                 required
+                                autocomplete="new-password"
                                 placeholder="Enter password"
                             />
                         </UFormGroup>

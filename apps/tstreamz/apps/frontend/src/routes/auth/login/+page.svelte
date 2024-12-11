@@ -47,7 +47,7 @@
 <div class="flex items-center justify-center h-100p w-100p">
     <TMeta title={`Login - ${SITE}`} desc="Signin to your account."/>
     <div >
-        <UForm state={formState} onsubmit={submitForm}>
+        <UForm state={formState} onsubmit={submitForm} autocomplete="on">
             <fieldset class="formset m-auto border-card border-1 p-4 pb-4">
                 <legend class="text-primary text-xl text-cente"
                     ><TuLink to="/">{SITE}</TuLink></legend
@@ -58,11 +58,12 @@
                         <UInput
                             placeholder="Enter email or username..."
                             required
+                            name="username"
                             bind:value={formState.username}
                         />
                     </UFormGroup>
                     <UFormGroup label="Password">
-                        <TuPassField showValidation={false} required bind:value={formState.password} placeholder="Enter password..."/>
+                        <TuPassField autocomplete="current-password" name="password" showValidation={false} required bind:value={formState.password} placeholder="Enter password..."/>
                     </UFormGroup>
                     {#if err.length}
                         <div
