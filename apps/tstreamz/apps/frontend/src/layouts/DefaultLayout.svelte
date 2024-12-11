@@ -1,14 +1,9 @@
 <script lang="ts">
-import Loader from "@repo/ui/components/Loader.svelte";
-import { onMount } from "svelte";
-    import {
-        appStore,
-        setGenres,
-        setReady,
-    } from "@/stores/app.svelte";
+    import Loader from "@repo/ui/components/Loader.svelte";
+    import { onMount } from "svelte";
+    import { appStore, setGenres, setReady } from "@/stores/app.svelte";
     import { localApi } from "@/lib/api";
     import { setUser, setWatchlist } from "@/stores/user.svelte";
-    
 
     import axios from "axios";
     import { handleErrs } from "@cmn/utils/funcs";
@@ -16,59 +11,55 @@ import { onMount } from "svelte";
     import Footer from "@/components/Footer.svelte";
     import Navbar from "@/components/Navbar.svelte";
     import Sidebar from "@/components/Sidebar.svelte";
-    
+
     let { ready } = $derived(appStore);
-    let {children} = $props()
+    let { children } = $props();
 
     async function getWatchlist() {
-        try{
-            const r =await localApi.get("/user/watchlist")
-            setWatchlist(r.data)
-        }
-        catch(err){
+        try {
+            const r = await localApi.get("/user/watchlist");
+            setWatchlist(r.data);
+        } catch (err) {
             handleErrs(err);
         }
-    
-}
+    }
     const getUser = async () => {
         try {
             const res = await localApi.post("/auth/login?q=token", {});
             setUser(res.data.user);
-            
         } catch (e) {
             console.log(e);
         }
     };
     const init = async () => {
         await getUser();
-        await getWatchlist()
+        await getWatchlist();
         setReady(true);
     };
 
-    onMount(async() => {
-       
+    onMount(async () => {
         init();
-        const {data} = await axios.get("/api/genres");
+        const { data } = await axios.get("/api/genres");
         setGenres(data.genres);
     });
-
-
-
 </script>
+
 {#if !ready && false}
     <Loader />
-    {:else}
-<div>
-    <Navbar />
-    <div class="tu-app">
-        <Sidebar />
-        <main class="relative flex flex-col" style="padding: 0 10px">
-            <div style="flex: 1">
-                {@render children()}
-            </div>
+{:else}
+    <div>
+        <Navbar />
+        <div class="tu-app">
+            <Sidebar />
+            <main class="relative flex flex-col" style="padding: 0 10px">
+                <div style="flex: 1">
+                    {@render children()}
+                </div>
 
-            <Footer />
-        </main>
+                <Footer />
+            </main>
+        </div>
     </div>
-</div>
 {/if}
+
+>

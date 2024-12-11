@@ -45,7 +45,7 @@
 </script>
 
 <div class="flex items-center justify-center h-100p w-100p">
-    <TMeta title={`Login - ${SITE}`} />
+    <TMeta title={`Login - ${SITE}`} desc="Signin to your account."/>
     <div >
         <UForm state={formState} onsubmit={submitForm}>
             <fieldset class="formset m-auto border-card border-1 p-4 pb-4">

@@ -87,7 +87,7 @@
                 <div class="loading-div">
                     <div class="t-c">
                         <p style="margin-bottom: 0">404</p>
-                        <p class="text-white fs-20">Could not get trailer</p>
+                        <p class="he">Could not get trailer</p>
                     </div>
                 </div>
             {/if}

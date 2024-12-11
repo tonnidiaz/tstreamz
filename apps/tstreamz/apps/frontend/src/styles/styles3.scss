@@ -254,11 +254,7 @@ img {
     color: $color-yellow;
 }
 
-.he {
-    font-size: 24px!important;
-    font-weight: 500;
-    color: rgb(241, 241, 241)
-}
+
 
 .sandes, .tu-card {
     background-color: $color-card ;//#1e1e1e;
@@ -324,3 +320,18 @@ img {
 
 .text-error-2, .err2{color: #af5a5a}
 .modal-backdrop{width: 0;}
+
+.he {
+    font-size: 20px !important;
+    font-weight: 600;
+    color: rgb(241, 241, 241);
+    &:not(.mb-0){
+        margin-bottom: 10px !important;
+    }
+    
+}
+.sections{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}

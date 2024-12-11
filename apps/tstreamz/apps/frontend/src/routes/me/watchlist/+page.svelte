@@ -26,9 +26,9 @@
                 <div class="mt-10">
                     <h1 class="title text-center mb-4">My Watchlist</h1>
                     {#if ready && user?.username}
-                    <div class="flex flex-col gap-3">
+                    <div class="sections">
                         <section>
-                        <h2 class="mb-2 he">Movies</h2>
+                        <h2 class="he">Movies</h2>
                         <div class="">
                             {#if watchlist.movies}
                                 <FixedMovieCard
@@ -42,7 +42,7 @@
                         </div>
                     </section>
                         <section>
-                        <h2 class="mb-2 he">TV shows</h2>
+                        <h2 class="he">TV shows</h2>
                         <div class="">
                             {#if watchlist.shows}
                                 <FixedMovieCard

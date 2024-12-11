@@ -50,7 +50,7 @@
 </script>
 
 <div class="flex items-center justify-center h-100p w-100p">
-    <TMeta title={`Reset password - ${SITE}`} />
+    <TMeta title={`Reset password - ${SITE}`} desc={`Reset your password if you have forgotten it.`}/>
     <div>
         <UForm state={formState} onsubmit={submitForm} autocomplete="on">
             <fieldset class="formset m-auto border-card border-1 p-4 pb-4">

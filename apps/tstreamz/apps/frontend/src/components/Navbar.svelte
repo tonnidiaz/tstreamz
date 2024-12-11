@@ -137,7 +137,7 @@
                 <UButton loading={!ready}>
                     {#if ready}
                     <TuLink
-                        to={`/auth/login?red=${$page.url.pathname.includes('auth') ? '/' : $page.url.pathname}`}
+                        to={`/auth/login?red=${$page.url.pathname.includes('auth') ? '/' : $page.url.href.replace($page.url.origin, '')}`}
                         class="btn btn-sm btn-outline btn-primary"
                     >
                         Login

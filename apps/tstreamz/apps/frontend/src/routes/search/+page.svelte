@@ -8,6 +8,7 @@
     import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
     import { handleErrs } from "@cmn/utils/funcs";
+    import UAccordion from "@repo/ui/components/UAccordion.svelte";
     import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
     import { untrack } from "svelte";
     let query = $derived($page.url.searchParams.get("q"));
@@ -34,7 +35,6 @@
             checked,
             name,
         }: { checked: boolean; name: "movies" | "shows" } = e.currentTarget;
-        console.log(checked, name);
         let newFilter = filter;
         newFilter[name] = checked;
         setFilter(newFilter);
@@ -49,27 +49,22 @@
             .get("/search?q=" + q)
             .then((r) => {
                 const { shows, movies } = r.data.data;
-                console.log({shows, movies});
                 setMovies(movies);
                 setShows(shows);
                 setReady(true);
             })
             .catch((err) => {
-                handleErrs(err)
+                handleErrs(err);
                 setReady(true);
             });
     }
 
-
-    $effect(
-        ()  => {
-            const q = query
-            if (q) {
-                untrack(()=>search(`${q}`))
-                
-            }
+    $effect(() => {
+        const q = query;
+        if (q) {
+            untrack(() => search(`${q}`));
         }
-    );
+    });
     // onBeforeMount(() => {
     //     const { q } = route.query;
     //     if (q) {
@@ -105,48 +100,100 @@
         {#if query}
             <div class="m-auto">
                 <section class="filter-sec m-0">
-                    <fieldset class="formset fieldset">
-                        <legend class="fs-20 fw-5">
-                            Search results for:
-                            <span class="text-secondary">{query}</span>
-                        </legend>
-                        <div class="flex gap-3 jc-center pd-10">
-                           <div class="flex flex-col gap-1 ai-center">
+                    <h3 class="he text-center mb-0">
+                        Search results for:
+                        <span class="text-secondary">{query}</span>
+                    </h3>
+                    <div class="flex gap-3 jc-center pd-10">
+                        <div class="flex flex-col gap-1 ai-center">
                             <input
-                            onchange={handleCheck}
-                            name="movies"
-                            checked={filter.movies}
-                            id="checkbox-1"
-                            type="checkbox" class="toggle toggle-secondary bg-secondary"
-                        />
-                        <label for="checkbox-1">Movies</label>
+                                onchange={handleCheck}
+                                name="movies"
+                                checked={filter.movies}
+                                id="checkbox-1"
+                                type="checkbox"
+                                class="toggle toggle-secondary bg-secondary"
+                            />
+                            <label for="checkbox-1">Movies</label>
                         </div>
                         <div class="flex flex-col gap-1 ai-center">
                             <input
-                            onchange={handleCheck}
-                            name="shows"
-                            checked={filter.shows}
-                            id="checkbox-2"
-                            type="checkbox" class="toggle toggle-secondary bg-secondary"
-                        />
-                        <label for="checkbox-2">TV shows</label>
-                        </div> 
+                                onchange={handleCheck}
+                                name="shows"
+                                checked={filter.shows}
+                                id="checkbox-2"
+                                type="checkbox"
+                                class="toggle toggle-secondary bg-secondary"
+                            />
+                            <label for="checkbox-2">TV shows</label>
                         </div>
-                        
-                        
-                        
-                    </fieldset>
+                    </div>
                 </section>
-                {#if filter.movies}
-                    <section class="mt-4 my-50">
-                            <h4 class="title">Movies</h4>
-                            <div class="no-wrap ai-center">
-                                {#if ready}
-                                    <div>
-                                        {#if movies.length}
+                <div class="flex flex-col gap-2 mb-4">
+                    {#if filter.movies}
+                        <UAccordion class="mt-4 my-50" open>
+                            {#snippet label()}
+                                <div class="flex justify-between ai-c he mb-0">
+                                    <h4 class="">Movies</h4>
+                                    <span class="font-monospace text-secondary">{movies.length || 0}</span>
+                                </div>
+                                
+                            {/snippet}
+
+                            {#snippet content()}
+                                <div class="no-wrap ai-center">
+                                    {#if ready}
+                                        <div>
+                                            {#if movies.length}
+                                                <div>
+                                                    {#each movies as it, i}
+                                                        <SearchRes movie={it} />
+                                                    {/each}
+                                                </div>
+                                            {:else}
+                                                <div
+                                                    class="loading-div w-100p h-100p m-0"
+                                                >
+                                                    <span
+                                                        class="fs-30 flex ai-center mt-4"
+                                                    >
+                                                        <i
+                                                            class="fi fi-rr-sad-tear"
+                                                        ></i>
+                                                    </span>
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    {:else}
+                                        <div class="loading-div">
+                                            <span
+                                                class="loading loading-lg loading-bars"
+                                            ></span>
+                                        </div>
+                                    {/if}
+                                </div>
+                            {/snippet}
+                        </UAccordion>
+                    {/if}
+                    {#if filter.shows}
+                        <UAccordion>
+                            {#snippet label()}
+                                <div class="flex justify-between ai-c he mb-0">
+                                    <h4>TV shows</h4>
+                                    <span class="font-monospace text-secondary">{shows.length || 0}</span>
+                                </div>
+                                
+                            {/snippet}
+                            {#snippet content()}
+                                <div class="no-wrap ai-center">
+                                    {#if ready}
+                                        {#if shows.length}
                                             <div>
-                                                {#each movies as it, i}
-                                                    <SearchRes movie={it} />
+                                                {#each shows as it, i}
+                                                    <SearchRes
+                                                        movie={it}
+                                                        isShow
+                                                    />
                                                 {/each}
                                             </div>
                                         {:else}
@@ -161,50 +208,18 @@
                                                 </span>
                                             </div>
                                         {/if}
-                                    </div>
-                                {:else}
-                                    <div class="loading-div">
-                                        <span
-                                            class="loading loading-lg loading-bars"
-                                        ></span>
-                                    </div>
-                                {/if}
-                            </div>
-                    </section>
-                {/if}
-                {#if filter.shows}
-                    <section class="mt-4 my-50">
-                            <h4 class="title">TV shows</h4>
-                            <div class="mt-4 no-wrap ai-center">
-                                {#if ready}
-                                    {#if shows.length}
-                                        <div>
-                                            {#each shows as it, i}
-                                                <SearchRes movie={it} isShow />
-                                            {/each}
-                                        </div>
                                     {:else}
-                                        <div
-                                            class="loading-div w-100p h-100p m-0"
-                                        >
+                                        <div class="loading-div">
                                             <span
-                                                class="fs-30 flex ai-center mt-4"
-                                            >
-                                                <i class="fi fi-rr-sad-tear"
-                                                ></i>
-                                            </span>
+                                                class="loading loading-lg loading-bars"
+                                            ></span>
                                         </div>
                                     {/if}
-                                {:else}
-                                    <div class="loading-div">
-                                        <span
-                                            class="loading loading-lg loading-bars"
-                                        ></span>
-                                    </div>
-                                {/if}
-                            </div>
-                    </section>
-                {/if}
+                                </div>
+                            {/snippet}
+                        </UAccordion>
+                    {/if}
+                </div>
             </div>
         {/if}
     </div>

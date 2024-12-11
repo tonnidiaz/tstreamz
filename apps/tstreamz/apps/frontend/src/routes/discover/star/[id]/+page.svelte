@@ -22,7 +22,7 @@
         <TMeta
             title={"Discover movies with " + star?.name + " - " + SITE}
             desc={`Discover some of the best movies with ${star?.name}.`}
-            url={ROOT + `/discover/star/${star?.id}`}
+            url={`/discover/star/${star?.id}`}
             src={imgUrl + star?.profile_path}
         />
 

@@ -15,7 +15,7 @@
     let popular = $state<any>(null);
     let topRated = $state<any>(null);
 
-    const {num, isShow} : {num: string; isShow?: boolean} = $props()
+    const { num, isShow }: { num: string; isShow?: boolean } = $props();
 
     const getData = async (url: string) => {
         try {
@@ -63,7 +63,8 @@
 <div class="styles-container">
     <TMeta
         title={`${isShow ? "TV shows " : "Movies"} - ${SITE}`}
-        url={ROOT + isShow ? "/shows" : "/movies"}
+        url={isShow ? "/shows" : "/movies"}
+        desc={`Browse through all the popular, top-rated, as well as latest ${isShow ? "series" : "movies"}`}
     />
 
     <div class="mt-4">
@@ -89,41 +90,47 @@
                 {/each}
             </div>
         </div>
-        <div class="flex flex-col gap-3">
-        <section>
-            <h2 class="mb-2 he">Top rated {isShow ? "shows" : "movies"}</h2>
-            <div class="">
-                {#if topRated}
-                    <FixedMovieCard {isShow} name="Prop" movies={topRated} />
-                {:else}
-                    <CardPh movies={[...Array(50)]} />
-                {/if}
-            </div>
-        </section>
-        <section>
-            <h2 class="mb-2 he">Trending {isShow ? "shows" : "movies"}</h2>
-            <div class="">
-                {#if trending}
-                    <FixedMovieCard {isShow} name="Prop" movies={trending} />
-                {:else}
-                    <CardPh movies={[...Array(50)]} />
-                {/if}
-            </div>
-        </section>
-        <div class="mt-2">
+        <div class="sections">
+            <section>
+                <h2 class="he">Top rated {isShow ? "shows" : "movies"}</h2>
+                <div class="">
+                    {#if topRated}
+                        <FixedMovieCard
+                            {isShow}
+                            name="Prop"
+                            movies={topRated}
+                        />
+                    {:else}
+                        <CardPh movies={[...Array(50)]} />
+                    {/if}
+                </div>
+            </section>
+            <section>
+                <h2 class="he">Trending {isShow ? "shows" : "movies"}</h2>
+                <div class="">
+                    {#if trending}
+                        <FixedMovieCard
+                            {isShow}
+                            name="Prop"
+                            movies={trending}
+                        />
+                    {:else}
+                        <CardPh movies={[...Array(50)]} />
+                    {/if}
+                </div>
+            </section>
             <TerraBanner />
+            <section>
+                <h2 class="he">Popular {isShow ? "shows" : "movies"}</h2>
+                <div class="">
+                    {#if popular}
+                        <FixedMovieCard {isShow} name="Prop" movies={popular} />
+                    {:else}
+                        <CardPh movies={[...Array(50)]} />
+                    {/if}
+                </div>
+            </section>
         </div>
-        <section>
-            <h2 class="mb-2 he">Popular {isShow ? "shows" : "movies"}</h2>
-            <div class="">
-                {#if popular}
-                    <FixedMovieCard {isShow} name="Prop" movies={popular} />
-                {:else}
-                    <CardPh movies={[...Array(50)]} />
-                {/if}
-            </div>
-        </section>    
-        </div>
-        
     </div>
 </div>
+

@@ -1,16 +1,16 @@
 <script lang="ts">
-    import { SITE, SITE_SLOGAN, ROOT, DEVELOPER } from "@/lib/constants";
-
+    import { page } from "$app/stores";
+    import { SITE, SITE_SLOGAN, DEVELOPER, siteDesc } from "@/lib/constants";
+    const ROOT = $page.url.origin
 
     const _title = `${SITE} - ${SITE_SLOGAN}`;
-    const _description = `${SITE} is a Tunedbass site`;
 
     let {
-        title = SITE,
+        title = _title,
         src = ROOT + "/assets/images/logo.png",
-        desc = `${SITE} site`,
+        desc = ``,
         keywords = SITE.toLowerCase(),
-        url
+        url: _url
     }: {
         title?: string;
         src?: string;
@@ -20,7 +20,8 @@
     } = $props();
     let __title = $derived((title || _title).trim())
 
-    
+    const _description = $derived(((desc || '') + '\n' + siteDesc).trim());
+    const url = $derived($page.url.href)
 
     // useHead({
     //     script: [
@@ -47,20 +48,20 @@
     <title>
        {__title}
     </title>
-    <meta name="description" content={`${desc}\n${_description}`} />
+    <meta name="description" content={`${_description}`} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />
     <meta property="og:title" content={__title} />
-    <meta property="og:description" content={`${desc}\n${_description}`} />
+    <meta property="og:description" content={`${_description}`} />
     <meta property="og:image" content={src} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={url} />
     <meta property="twitter:title" content={__title} />
-    <meta property="twitter:description" content={`${desc}\n${_description}`} />
+    <meta property="twitter:description" content={`${_description}`} />
     <meta property="twitter:image" content={src} />
 
     <meta name="author" content={DEVELOPER} />
     <meta name="publisher" content={DEVELOPER} />
-    <meta name="copyright" content="{SITE}" />
+    <meta name="copyright" content={SITE} />
 </svelte:head>

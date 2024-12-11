@@ -62,7 +62,7 @@ const getContent = async () => {
 onMount(()=>{getContent()})
 </script>
 <div>
-    <TMeta title={`${SITE} - A free movie & series streaming site`}/>
+    <TMeta/>
     <div>
         <div>
             <div class="body">
@@ -80,9 +80,9 @@ onMount(()=>{getContent()})
                         <span class="text-primary">TV Shows</span> in
                         <span class="text-primary"> HD</span>!
                     </p>
-                    <div class="flex flex-col gap-3">
+                    <div class="sections">
                         <section>
-                        <h2 class="mb-2 he">Top Shows</h2>
+                        <h2 class="he">Top Shows</h2>
                         <div class="">
                             {#if homeStore.topShows}
                                 <FixedMovieCard
@@ -97,7 +97,7 @@ onMount(()=>{getContent()})
                         </div>
                     </section>
                     <section>
-                        <h2 class="mb-2 he">Top Movies</h2>
+                        <h2 class="he">Top Movies</h2>
                         <div class="">
                             {#if  homeStore.topMovies}
                             <FixedMovieCard
@@ -113,7 +113,7 @@ onMount(()=>{getContent()})
                     </section>
                     <TerraBanner />
                     <section>
-                        <h3 class="mb-2 he">popular Shows</h3>
+                        <h3 class="he">popular Shows</h3>
                         <div class="">
                             {#if homeStore.popularShows}
                                 <FixedMovieCard
@@ -128,7 +128,7 @@ onMount(()=>{getContent()})
                         </div>
                     </section>
                     <section>
-                        <h2 class="mb-2 he">popular Movies</h2>
+                        <h2 class="he">popular Movies</h2>
                         <div class="">
                             {#if homeStore.popularMovies}
                                 <FixedMovieCard
