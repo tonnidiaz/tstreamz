@@ -4,7 +4,7 @@ export const SITE = "Tunedstreamz", email ="tunedstreamz@gmail.com";
 const __DEV__ = dev // typeof window == "undefined" || window.location.origin.includes("localhost")
 export const ROOT = __DEV__
     ? "http://localhost:3000"
-    : "https://tstreamz-sv.vercel.app";
+    : "https://tstreamz.xyz";
 const heroku = false,
     koyeb = true;
 export const BEND_URL = __DEV__
