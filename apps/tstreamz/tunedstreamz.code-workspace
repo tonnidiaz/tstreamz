@@ -1,0 +1,28 @@
+{
+	"folders": [
+        {
+            "path": "../.."
+        },
+        {
+            "path": "."
+        },
+        {
+            "path": "../../../turbo-one/apps/tu-trader-sv"
+        },
+        {
+            "path": "../../packages/common"
+        },
+        {
+            "path": "../../../turbo-one/packages/common"
+        },
+        {
+            "path": "../../../../../../GitHub/tunedstreamz"
+        },
+        {
+            "path": "../tu-ads"
+        }
+    ],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "tunedstreamz"
+    }
+}

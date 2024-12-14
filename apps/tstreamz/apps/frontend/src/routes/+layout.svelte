@@ -8,17 +8,20 @@
     import "@/styles/daisy.scss";
     import "@/styles/scrollbar.scss";
     import "@/styles/components.scss";
-    
+
     import { page } from "$app/stores";
     import AuthLayout from "@/layouts/AuthLayout.svelte";
     import DefaultLayout from "@/layouts/DefaultLayout.svelte";
+    import { onMount } from "svelte";
 
     let { children } = $props();
-    
 
     const authLayouts = ["/auth"];
-</script>
 
+    onMount(() => {
+        
+    });
+</script>
 
 {#if authLayouts.find((el) => $page.route.id.startsWith(el))}
     <AuthLayout>

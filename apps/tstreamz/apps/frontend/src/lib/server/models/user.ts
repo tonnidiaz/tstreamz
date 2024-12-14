@@ -34,7 +34,8 @@ const UserSchema = new Schema(
             required: true,
         },
         watchlist: {type: Watchlist, default: {movies: [], shows: []}},
-        is_pro:{type: Boolean, default: false}
+        is_pro:{type: Boolean, default: false},
+        is_admin:{type: Boolean, default: false}
     },
     { timestamps: true,}, 
 );

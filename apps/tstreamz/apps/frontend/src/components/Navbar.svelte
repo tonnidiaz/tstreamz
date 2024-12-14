@@ -107,7 +107,7 @@
                 <!-- <div class="avatar ring rounded-full"></div> -->
                 <CtxMenu2 class="relative mr-4">
                     {#snippet toggler()}
-                        <UAvatar class="pointer ring-neutral"
+                        <UAvatar class={`pointer ring-${user.is_admin ? "success" : "neutral"}`}
                         
                             ><span class="text-md fw-7"
                                 >{user.username.slice(0, 1).toUpperCase()}</span
@@ -126,6 +126,10 @@
                         to={`/me/watchlist`}
                         icon="fi fi-br-bookmark">Watchlist</MenuItem
                     >
+                    {#if user.is_admin}
+                       <MenuItem reload to="/admin/contact" icon="fi fi-br-envelope">Admin:contact</MenuItem> 
+                    {/if}
+                    
                    
                     <MenuItem to={`/auth/logout`} icon="fi fi-br-sign-out-alt"
                         >Logout</MenuItem

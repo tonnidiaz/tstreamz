@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello</h1><script>
+    // Configuration: Set your PropellerAds direct link here
+    const propellerAdsLink = 'https://directlink.propellerads.com/your-link-id'; // Replace with your actual direct link
+    
+    // Random trigger settings
+    const triggerProbability = 0.5; // Probability of triggering popunder (0.0 to 1.0)
+    const minDelay = 2000; // Minimum delay before showing popunder (in milliseconds)
+    const maxDelay = 5000; // Maximum delay before showing popunder (in milliseconds)
+    
+    // Utility to check if a popunder should be triggered
+    function shouldTriggerPopunder() {
+        return Math.random() < triggerProbability;
+    }
+
+    // Function to create the popunder
+    function createPopunder() {
+        if (!shouldTriggerPopunder()) return;
+
+        const popunder = window.open(
+            propellerAdsLink,
+            '_blank',
+            'width=1,height=1,left=0,top=0,scrollbars=no'
+        );
+
+        if (popunder) {
+            // Move the popunder behind the main window
+            popunder.blur();
+            window.focus();
+        } else {
+            console.error('Popunder blocked by browser. Consider checking popup permissions.');
+        }
+    }
+
+    // Event listener for user interaction
+    document.addEventListener('click', () => {
+        const delay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+        setTimeout(createPopunder, delay);
+    });
+
+    // Optionally trigger on page load after a random delay
+    window.addEventListener('load', () => {
+        const delay = Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay;
+        setTimeout(createPopunder, delay);
+    });
+</script>
+</body>
+</html>
+
