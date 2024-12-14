@@ -47,7 +47,7 @@
             {#each directLinks as link, i}
                 <UButton
                     onclick={async () => await handleLinkClick(link)}
-                    class="btn-primary">Link {i + 1}</UButton
+                    class="btn-primary link-btn">Link {i + 1}</UButton
                 >
             {/each}
         </div>
