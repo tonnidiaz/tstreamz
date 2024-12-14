@@ -8,9 +8,9 @@
     "noEmit": true,
     // "baseUrl": ".",
     "outDir": "./dist",
-    //     "paths": {
-    //     "@repo/ui/*": ["./src/*"]
-    // },
+        "paths": {
+        "@cmn/*": ["../../packages/common/src/*"]
+    },
     // "target": "ESNext",
     "types": ["vite/client"],
     // From svelte
@@ -23,8 +23,8 @@
 		"module": "esnext",
 		// "noEmit": true,
 		"target": "esnext"
-  }
-//   "include": ["./src/**/*.ts", "**/*.ts"],
-//   "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
+  },
+  "include": ["./src/**/*.ts", "**/*.ts", "../../packages/common/src/**/*.ts"],
+  "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
 }
  

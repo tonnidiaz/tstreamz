@@ -1,0 +1,337 @@
+@import "colors3";
+@import "colors";
+@import "tw-vars";
+.fmc {
+    width: 150px;
+    height: 194px;
+    flex-shrink: 0;
+}
+
+@media screen and (max-width: 580px) {
+    .row {
+        &.mc {
+            .movie-card-container {
+                width: 150px !important;
+              
+            }
+        }
+    }
+}
+.movie-card {
+    border: $card-border;
+    box-shadow: 0 2px 5px #000;
+    // margin: 20px 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 4px;
+    border-radius: 4px;
+    p {
+        font-size: 0.9rem !important;
+        * {
+            font-size: 0.9rem !important;
+        }
+    }
+    .info {
+        border-radius: 4px;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.811);
+        opacity: 0;
+        &:hover {
+            opacity: 1;
+        }
+        * {
+            color: white;
+        }
+        .playBtn {
+            font-size: 40px;
+            color: rgb(209, 209, 209);
+        }
+    }
+}
+
+.btn-none {
+    border: none;
+    background: none;
+    border-radius: 5px;
+    outline: none;
+    &:focus{
+        outline: 0;
+       box-shadow:  0 0 0 .2rem rgba(24, 24, 24, 0.699)//rgba(0,123,255,.5)
+    }
+    cursor: pointer;
+    &:hover {
+        opacity: 0.7 !important;
+    }
+}
+
+.video-frame {
+    height: 60vh;
+    margin-top: 0px;
+    background-color: $color-card;
+    box-shadow: 0 1px 5px $color-card;
+
+    
+    iframe {
+        background-color: $color-card;
+        //width: 70%;
+        padding: 5px;
+        height: 100%;
+    }
+}
+
+
+.skel {
+    // background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    animation: 1.5s shine linear infinite;
+    //width: 30px;
+    padding: 0 2px;
+    white-space: nowrap;
+    color: transparent;
+    user-select: none;
+    .skel-text {
+        border-radius: 5px;
+        background-image: linear-gradient( 120deg, rgb(30, 38, 51) 8%, rgb(20, 28, 41) 18%, rgb(15, 23, 36) 33%);
+        animation: 1.5s shine linear infinite;
+        background-size: 200% 100%;
+        height: 10px;
+        text-indent: -9999px;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+.loading-div, .loada, .loda {
+    margin: 30px auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row, ._row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pos-rel{position: relative !important;}
+.pos-abs{position: absolute !important;}
+.mcard-img {
+    width: 100%;
+    height: 270px;
+    background-color: #1e1e1e;
+    *,
+    img {
+        width: 100%;
+        height: 100% !important;
+    }
+}
+
+.search-res {
+    img {
+        width: 90px !important;
+        height: 90px !important;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 415px) {
+    .search-res {
+        h2, a{
+            font-size: 15px !important;
+        }
+        a{
+            font-size: 13px !important;
+        }
+        img{
+            width: 65px !important;
+            height: 65px !important;
+        }
+    }
+}
+
+.ttl {
+    font-weight: 600;
+}
+
+.search-bar {
+  position: fixed;
+    padding: 30px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.876);
+    top: 0;
+    left: 0; //calc(50% + #{$sidenav-w}/2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    input{
+        padding-right: 30px !important;
+    }
+    .form-group {
+        position: relative;
+    } 
+}
+
+.blur {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #0000008d;
+    z-index: 9999999;
+    top: 0;
+    left: 0;
+}
+
+.search-bar {
+    z-index: 999999;
+    .sch {
+        box-shadow: 0 1px 5px #000000;
+        background-color: $color-card;
+        padding: 30px 0px 30px 30px !important;
+    }
+    display: none;
+    &.active {
+        display: flex;
+    }
+}
+
+.blur {
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+.top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.soon {
+    z-index: 99999999;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: black;
+}
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+
+img {
+    height: 100%!important;
+    position: relative!important;
+}
+
+.text-ellipsis{
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.oh{overflow: hidden;}
+.wp-nowrap{overflow: hidden;}
+
+.color-yellow {
+    color: $color-yellow;
+}
+
+
+
+.sandes, .tu-card {
+    background-color: $color-card ;//#1e1e1e;
+    border: $card-border;
+}
+
+.dflex {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.d-flex{
+    display: flex;
+}
+.ai-center {
+    align-items: center;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.title {
+    font-weight: 600; 
+    color: white;
+    font-size: 2.5rem;
+}
+@media screen and (max-width: $small-width) {
+    .title{
+        font-size: 28px;
+    }
+}
+.key{
+    color: white;
+    font-size: 15px;
+}
+.t-c{text-align: center;}
+
+.wrap{flex-wrap: wrap !important;}
+
+
+.genres {
+    max-height: 300px !important;
+    overflow-y: scroll;
+    h3{color: white; font-size: 25px;}
+
+    ul {
+        list-style-position: inside !important;
+        display: flex !important;
+        flex-wrap: wrap;
+        flex-direction: row !important;
+        li{
+            width: fit-content !important;
+        }
+    }
+    width: 400px;
+}
+
+
+.err{
+    @apply text-error
+}
+
+.text-error-2, .err2{color: #af5a5a}
+.modal-backdrop{width: 0;}
+
+.he {
+    font-size: 20px !important;
+    font-weight: 600;
+    color: rgb(241, 241, 241);
+    &:not(.mb-0){
+        margin-bottom: 10px !important;
+    }
+    
+}
+.sections{
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
