@@ -5,7 +5,7 @@
     import axios from "axios";
     import { onMount } from "svelte";
     import { getRandomBoolean } from "$lib/funcs";
-    import { directLinks } from "@/lib/consts";
+    import { directLinks, pellerLinks } from "@/lib/consts";
 
 
     const ipUrl = "https://api.ipify.org/?format=json";
@@ -44,7 +44,7 @@
     <div class="my-4">
         <h3>Links</h3>
         <div class="flex gap-2">
-            {#each directLinks as link, i}
+            {#each pellerLinks as link, i}
                 <UButton
                     onclick={async () => await handleLinkClick(link)}
                     class="btn-primary link-btn">Link {i + 1}</UButton

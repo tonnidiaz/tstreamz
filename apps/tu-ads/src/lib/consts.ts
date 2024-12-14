@@ -5,3 +5,15 @@ export const directLinks = [
     "https://www.profitablecpmrate.com/rx5j161d?key=beac1f9bfc39dad78ed24568077e45bd",
     "https://www.profitablecpmrate.com/qsxm2q75u?key=3a6bcef5c0acbfd997a6763c59347d1c"
 ];
+
+export const pellerLinks = [
+    "https://luglawhaulsano.net/4/8655464",
+    "https://luglawhaulsano.net/4/8655482",
+    "https://luglawhaulsano.net/4/8655485",
+    "https://luglawhaulsano.net/4/8655486",
+
+    "https://luglawhaulsano.net/4/8655487",
+    "https://luglawhaulsano.net/4/8655488",
+    "https://luglawhaulsano.net/4/8655490",
+    "https://luglawhaulsano.net/4/8655491"
+]
