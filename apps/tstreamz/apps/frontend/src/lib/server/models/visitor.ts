@@ -6,6 +6,12 @@ const VisitorSchema = new Schema(
         visits: {type: Number, default: 0},
         time: {type: Number, default: 0},
         entered_at: {type: Number, default: 0},
+        left_at: {type: Number, default: 0},
+        location: {type: String},
+        device: {type: {
+            user_agent: String, is_mobile: Boolean, browser: String, platform: String, _id: false
+        }},
+
     },
     { timestamps: true,}, 
 );

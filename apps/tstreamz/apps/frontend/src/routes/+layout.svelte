@@ -15,7 +15,7 @@
     import { onMount } from "svelte";
     import axios from "axios";
     import { handleErrs } from "@cmn/utils/funcs";
-    import { appStore, setIp } from "@/stores/app.svelte";
+    import { appStore, setDeviceInfo } from "@/stores/app.svelte";
     import { localApi } from "@/lib/api";
 
     let { children } = $props();
@@ -25,22 +25,36 @@
     const addVisitor = async () => {
         try {
             let _ip = "anonymous";
-            const ts = Date.now()
+            let location = "unknown";
+            const ua = navigator.userAgent;
+            let device = {
+                user_agent: ua,
+                platform: navigator.platform,
+                is_mobile: /Mobi|Android/i.test(ua),
+                browser: (() => {
+                    if (ua.includes("Chrome")) return "Chrome";
+                    if (ua.includes("Firefox")) return "Firefox";
+                    if (ua.includes("Safari") && !ua.includes("Chrome"))
+                        return "Safari";
+                    if (ua.includes("Edge")) return "Edge";
+                    return "Unknown";
+                })(),
+            };
+            const ts = Date.now();
             try {
-                const res = await axios.get(
-                    "https://api.ipify.org/?format=json"
-                );
+                const res = await axios.get("https://ipapi.co/json/");
+                const data = res.data;
                 _ip = res.data.ip;
+                location = `${data.org}, ${data.city}, ${data.region}, ${data.country_name}`;
             } catch (e) {
                 console.log("Failed to get IP");
                 handleErrs(e);
             } finally {
-                setIp(_ip);
+                setDeviceInfo({device, ip: _ip, location})
             }
-
+            
             const r = await localApi.post("/visitors?act=add", {
-                ip: _ip,
-                ts,
+                ...deviceInfo, ts
             });
             console.log("Visitor added");
         } catch (err) {
@@ -49,16 +63,18 @@
     };
     onMount(() => {
         addVisitor();
-        window.addEventListener("unload", onWindowClose)
-        return ()=> {
+        window.addEventListener("beforeunload", onWindowClose);
+        return () => {
             // onWindowClose();
-            window.removeEventListener("unload", onWindowClose)}
+            window.removeEventListener("beforeunload", onWindowClose);
+        };
     });
 
-    let {ip} = $derived(appStore)
+    let { deviceInfo } = $derived(appStore);
     async function onWindowClose() {
-        console.log('WIndow closing...');
-        await localApi.post("/visitors?act=update", {ip, ts: Date.now()})
+        const ts = Date.now()
+        console.log("WIndow closing...");
+        await localApi.post("/visitors?act=update", { ...deviceInfo, ts });
     }
 </script>
 
