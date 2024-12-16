@@ -33,6 +33,10 @@
     });
 </script>
 
+<svelte:head>
+    <script type='text/javascript' src='//pl25294344.profitablecpmrate.com/e8/5d/b2/e85db2bde7e084526ac6b268e5df2816.js'></script>
+
+</svelte:head>
 <div class="p-4 min-h-80p overflow-y-scroll no-scrollbar">
     <h1 class="text-center ttl text-white my-4">
         <span class="text-accent font-monospace"
@@ -45,13 +49,18 @@
                 <HeadlinesCard index={i} headlines={_headlines} />
                 {#if (i + 1) % 3 === 0}
                     <div
-                        class="w-100p p-1 overflow-x-scroll ad-space m-auto md:col-span-3 flex items-center justify-center"
+                        class="w-100p overflow-x-scroll ad-space m-auto md:col-span-3 flex items-center justify-center"
 
                     >
+                    {#if i + 1 == 3 || i + 1 == 12}
                     <div class="grid grid-cols-1 md:grid-cols-3  gap-2 justify-center align-center">
-                      <div class="md:col-span-2 bg-base-300 p-1"><TerraBanner/></div>
-                      <div class="col-span- bg-base-300 p-1"><TerraBanner num={2}/></div>
-                    </div>
+                        <div class="md:col-span-2 bg-base-300"><TerraBanner/></div>
+                        <div class="col-span- bg-base-300"><TerraBanner num={2}/></div>
+                      </div>
+                      {:else if i + 1 == 9 || i + 1 == 18}
+                        <TerraBanner num={3}/>
+                    {/if}
+                    
                     
                     </div>
                 {/if}
