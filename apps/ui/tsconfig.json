@@ -1,6 +1,4 @@
 {
-    "$schema": "/media/tonni/win/src/Mint/Documents/RF/Web/tuxpress-gen/out/foo/tsconfig.json",
-  "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     // "module": "commonjs",
     "declaration": true,
