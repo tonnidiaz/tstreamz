@@ -20,6 +20,12 @@
         },
         {
             "path": "../tu-ads"
+        },
+        {
+            "path": "../ui"
+        },
+        {
+            "path": "../tuheadlines"
         }
     ],
     "settings": {

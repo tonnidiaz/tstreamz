@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech News Hub</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #0078d7;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #cce7ff;
+        }
+
+        .banner-ad {
+            margin: 1rem auto;
+            text-align: center;
+            max-width: 728px;
+        }
+
+        .banner-ad img {
+            width: 100%;
+            max-width: 728px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .news-card:hover {
+            transform: scale(1.02);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .news-card-content {
+            padding: 0.5rem;
+        }
+
+        .news-card-content h2 {
+            font-size: 1rem;
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        .news-card-content p {
+            margin: 0 0 1rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .news-card-content a {
+            text-decoration: none;
+            background-color: #0078d7;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: background-color 0.2s;
+        }
+
+        .news-card-content a:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tech News Hub</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Tech</a>
+            <a href="#">Business</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <div class="banner-ad">
+        <img src="https://via.placeholder.com/728x90?text=Your+Ad+Here" alt="Banner Ad">
+    </div>
+
+    <div class="container" id="news-container">
+        <!-- News cards will be injected here dynamically -->
+    </div>
+
+    <div class="banner-ad">
+        <img src="https://via.placeholder.com/728x90?text=Your+Ad+Here" alt="Banner Ad">
+    </div>
+
+    <script>
+        const placeholderData = [
+            {
+                title: "AI Revolution: How Technology is Shaping the Future",
+                description: "Artificial intelligence is transforming industries, from healthcare to finance.",
+                url: "https://example.com/ai-revolution",
+                urlToImage: "https://via.placeholder.com/400x200?text=AI+Revolution"
+            },
+            {
+                title: "The Rise of Quantum Computing",
+                description: "Quantum computing promises to solve problems beyond the reach of classical computers.",
+                url: "https://example.com/quantum-computing",
+                urlToImage: "https://via.placeholder.com/400x200?text=Quantum+Computing"
+            },
+            {
+                title: "5G Networks: What You Need to Know",
+                description: "5G technology is rolling out globally, bringing faster internet speeds and new opportunities.",
+                url: "https://example.com/5g-networks",
+                urlToImage: "https://via.placeholder.com/400x200?text=5G+Networks"
+            }
+        ];
+
+        const newsContainer = document.getElementById('news-container');
+
+        function renderNews(articles) {
+            articles.forEach(article => {
+                const newsCard = document.createElement('div');
+                newsCard.classList.add('news-card');
+
+                newsCard.innerHTML = `
+                    <img src="${article.urlToImage}" alt="${article.title}">
+                    <div class="news-card-content">
+                        <h2>${article.title}</h2>
+                        <p>${article.description}</p>
+                        <a href="${article.url}" target="_blank">Read More</a>
+                    </div>
+                `;
+
+                newsContainer.appendChild(newsCard);
+            });
+        }
+
+        // Render placeholder data on page load
+        renderNews(placeholderData);
+    </script>
+</body>
+</html>

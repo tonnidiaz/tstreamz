@@ -1,0 +1,64 @@
+@import "@repo/ui/styles/vars";
+@import "@repo/ui/styles/colors";
+@import "@repo/ui/styles/classes";
+
+.bg-cardo{
+    background-color: var(--fallback-b2,oklch(var(--b2)/1));
+}
+.headlines-card {
+   
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    // height: fit-content;
+    position: relative;
+}
+
+.headlines-card:hover {
+    transform: scale(1.02);
+}
+
+.headlines-card img {
+    width: 100%;
+    height: 150px !important;
+    object-fit: cover;
+    display: block;
+    border: none !important;
+    padding: 8px;
+    padding-bottom: 0;
+    border-radius: 8px;
+}
+
+.headlines-card-content {
+    padding: 0 .5rem;
+    padding-top: 0;
+}
+
+.headlines-card-content h2 {
+    font-size: 1rem;
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.headlines-card-content p {
+    margin: 0 0 1rem;
+    color: #dadada;
+    font-size: 0.9rem;
+}
+
+.headlines-card-content a {
+    // text-decoration: none;
+    // background-color: #0078d7;
+    // color: white;
+    // padding: 0.3rem 0.8rem;
+    // border-radius: 5px;
+    // font-size: 0.8rem;
+    // transition: background-color 0.2s;
+}
+
+.headlines-card-content a:hover {
+    // background-color: #005bb5;
+        }
+
+        
