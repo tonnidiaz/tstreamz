@@ -14,6 +14,7 @@
 
 <svelte:head>
     <title>{SITE}</title>
+    <script type='text/javascript' src='//pl25294344.profitablecpmrate.com/e8/5d/b2/e85db2bde7e084526ac6b268e5df2816.js'></script>
 </svelte:head>
 <div class="w-100p h-100p flex flex-col">
     <Navbar />

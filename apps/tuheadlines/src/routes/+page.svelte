@@ -7,6 +7,7 @@
     import { api, localApi } from "@/lib/api";
     import { onMount } from "svelte";
     import { dev } from "$app/environment";
+    import TerraBanner from "@/components/TerraBanner.svelte";
 
     const MAX_NEWS_PER_PAGE = 20;
 
@@ -44,8 +45,14 @@
                 <HeadlinesCard index={i} headlines={_headlines} />
                 {#if (i + 1) % 3 === 0}
                     <div
-                        class="ad-space w-468px m-auto bg-base-300 md:col-span-3 flex items-center justify-center"
+                        class="w-100p p-1 overflow-x-scroll ad-space m-auto md:col-span-3 flex items-center justify-center"
+
                     >
+                    <div class="grid grid-cols-1 md:grid-cols-3  gap-2 justify-center align-center">
+                      <div class="md:col-span-2 bg-base-300 p-1"><TerraBanner/></div>
+                      <div class="col-span- bg-base-300 p-1"><TerraBanner num={2}/></div>
+                    </div>
+                    
                     </div>
                 {/if}
             {/each}
