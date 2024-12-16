@@ -37,6 +37,7 @@
     <script type='text/javascript' src='//pl25294344.profitablecpmrate.com/e8/5d/b2/e85db2bde7e084526ac6b268e5df2816.js'></script>
 
 </svelte:head>
+
 <div class="p-4 min-h-80p overflow-y-scroll no-scrollbar">
     <h1 class="text-center ttl text-white my-4">
         <span class="text-accent font-monospace"
