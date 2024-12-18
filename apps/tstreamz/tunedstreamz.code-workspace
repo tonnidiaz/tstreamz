@@ -26,6 +26,9 @@
         },
         {
             "path": "../tuheadlines"
+        },
+        {
+            "path": "../../../../../Bots/Node/Likes4likes"
         }
     ],
     "settings": {

@@ -34,7 +34,14 @@
 </script>
 
 <svelte:head>
-    <script type='text/javascript' src='//pl25294344.profitablecpmrate.com/e8/5d/b2/e85db2bde7e084526ac6b268e5df2816.js'></script>
+    <!-- <script type='text/javascript' src='//pl25294344.profitablecpmrate.com/e8/5d/b2/e85db2bde7e084526ac6b268e5df2816.js'></script> -->
+     <!-- Popads -->
+      <script type="text/javascript" data-cfasync="false">
+/*<![CDATA[/* */
+(function(){var x=window,i="f59fdfd67ff2582f42fe4ede2cf90220",o=[["siteId",353+54+615*713*201-82978854],["minBid",0],["popundersPerIP","0"],["delayBetween",0],["default",false],["defaultPerDay",0],["topmostLayer","auto"]],e=["d3d3LmNkbjRhZHMuY29tL2ZsaWdodGJveC5taW4uY3Nz","ZDNnNW92Zm5nanc5YncuY2xvdWRmcm9udC5uZXQveGp1eW8vZWNsb3VkaW5hcnktY29yZS5taW4uanM=","d3d3LmRsdHl2cG90LmNvbS9lbGlnaHRib3gubWluLmNzcw==","d3d3LnRyc3pwa2RoaHhrbS5jb20vUC9wY2xvdWRpbmFyeS1jb3JlLm1pbi5qcw=="],k=-1,j,l,z=function(){clearTimeout(l);k++;if(e[k]&&!(1760448875000<(new Date).getTime()&&1<k)){j=x.document.createElement("script");j.type="text/javascript";j.async=!0;var t=x.document.getElementsByTagName("script")[0];j.src="https://"+atob(e[k]);j.crossOrigin="anonymous";j.onerror=z;j.onload=function(){clearTimeout(l);x[i.slice(0,16)+i.slice(0,16)]||z()};l=setTimeout(z,5E3);t.parentNode.insertBefore(j,t)}};if(!x[i]){try{Object.freeze(x[i]=o)}catch(e){}z()}})();
+/*]]>/* */
+</script>
+     <!-- End Popads -->
 
 </svelte:head>
 

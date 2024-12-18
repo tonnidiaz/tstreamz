@@ -1,3 +1,4 @@
+import { dev } from "$app/environment";
 import { dummyHeadlines } from "@/lib/constants";
 import { newsApi } from "@/lib/server/models/api.js";
 import { Headline } from "@/lib/server/models/index.js";
@@ -20,7 +21,8 @@ export const GET = async ({}) => {
     } else {
         // Delete all headlines in db
         // Fetch new headlines and store to db
-        await Headline.deleteMany({}).exec();
+        if (!dev){
+            await Headline.deleteMany({}).exec();
         console.log("Old headlines deleted");
         try {
             const r = false ? dummyHeadlines.data  : (await newsApi.get("/topic-headlines")).data.data
@@ -38,7 +40,9 @@ export const GET = async ({}) => {
         } catch (err) {
             handleErrs(err);
             return tuErr(500, "Failed to fetch headlines");
+        }    
         }
+        
     }
 
     const headlines = await Headline.find({}).exec();
