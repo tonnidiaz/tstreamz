@@ -392,7 +392,7 @@
                         style="margin: 0"
                     >
                         <div class="md:col-span-1">
-                            <UAccordion>
+                            <UAccordion open>
                                 {#snippet label()}
                                     <h4 class="fw-6 text-white">
                                         {tv.seasons.length} Seasons
@@ -416,7 +416,7 @@
                             </UAccordion>
                         </div>
                         <div class="md:col-span-2">
-                            <UAccordion>
+                            <UAccordion open>
                                 {#snippet label()}
                                     <h4 class="fw-6 text-white">
                                         {episodes?.episodes?.length} Episodes

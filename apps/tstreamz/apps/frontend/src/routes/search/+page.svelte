@@ -178,7 +178,7 @@
                         </UAccordion>
                     {/if}
                     {#if filter.shows}
-                        <UAccordion>
+                        <UAccordion open>
                             {#snippet label()}
                                 <div class="flex justify-between ai-c he mb-0">
                                     <h4>TV shows</h4>

@@ -29,6 +29,9 @@
         },
         {
             "path": "../../../../../Bots/Node/Likes4likes"
+        },
+        {
+            "path": "../../../../../Bots"
         }
     ],
     "settings": {

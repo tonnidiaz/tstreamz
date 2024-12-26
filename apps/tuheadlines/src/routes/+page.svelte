@@ -22,7 +22,7 @@
             console.log("Getting headlines....");
             const r = await localApi.get("/headlines");
             headlines = r.data;
-            if (dev) console.log(r.data);
+            // if (dev) console.log(r.data);
         } catch (err) {
             handleErrs(err);
         }
