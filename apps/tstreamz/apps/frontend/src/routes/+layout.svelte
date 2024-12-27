@@ -62,6 +62,7 @@
         }
     };
     onMount(() => {
+        document.onpop
         addVisitor();
         window.addEventListener("beforeunload", onWindowClose);
         return () => {
