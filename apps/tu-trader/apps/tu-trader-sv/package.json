@@ -27,6 +27,8 @@
 		"@codemirror/lang-vue": "^0.1.3",
 		"@flaticon/flaticon-uicons": "^3.3.1",
 		"@repo/common": "1.0.0",
+        "@tu-trader/common": "*",
+        "@repo/ui": "*",
 		"@sveltejs/adapter-vercel": "^5.4.7",
 		"axios": "^1.7.7",
 		"bcrypt": "^5.1.1",
