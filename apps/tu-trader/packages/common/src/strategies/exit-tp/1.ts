@@ -143,7 +143,7 @@ export const strategy = ({
         
 
         _fillSellOrder(ret);
-        _cnt = 0;
+        cnt = 0;
         base -= _base
 
         console.log(`\nAFTER SELL: bal = ${balance}, base = ${base}\n`);
@@ -165,7 +165,7 @@ export const strategy = ({
             amt = toFixed(amt, pricePrecision)
             return _fillBuy({amt, _entry, _row})
         }
-        _cnt = 0;
+        cnt = 0;
         if (!entryLimit) entryLimit = entry;
         const ret = fillBuyOrder({
             entry: _entry,
