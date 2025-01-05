@@ -13,6 +13,9 @@ export default defineConfig({
         commonjsOptions: {
             include: [/@repo\/common/, /node_modules/],
           },
+          rollupOptions: {
+            external: ["node-schedule"]
+          }
     },
     define: {
         // process: {...import.meta, env: import.meta.env},
