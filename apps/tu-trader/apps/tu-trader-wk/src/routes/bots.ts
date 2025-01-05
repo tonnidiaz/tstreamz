@@ -1,16 +1,16 @@
 
 import { authMid } from "@/middleware/auth.mid";
 import { addBotToArbitWs, tunedErr } from "@/utils/funcs";
-import { superMegaBots, TuMegaWs } from "@cmn/classes/tu-mega-ws";
-import { triArbitWsList, crossArbitWsList } from "@cmn/classes/tu-ws";
-import { Bot } from "@cmn/models";
-import { IBot } from "@cmn/models/bot";
-import { clearOrders, parseBot } from "@cmn/utils/bend/funcs";
-import { botLog } from "@cmn/utils/bend/functions";
-import { jobs, botJobSpecs } from "@cmn/utils/constants";
-import { handleErrs, parseDate, timedLog } from "@cmn/utils/functions";
-import { createChildBots } from "@cmn/utils/functions/bots-funcs";
-import { addBotJob } from "@cmn/utils/orders/funcs";
+import { superMegaBots, TuMegaWs } from "@pkg/cmn/classes/tu-mega-ws";
+import { triArbitWsList, crossArbitWsList } from "@pkg/cmn/classes/tu-ws";
+import { Bot } from "@pkg/cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
+import { clearOrders, parseBot } from "@pkg/cmn/utils/bend/funcs";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
+import { jobs, botJobSpecs } from "@pkg/cmn/utils/constants";
+import { handleErrs, parseDate, timedLog } from "@cmn/utils/funcs";
+import { createChildBots } from "@pkg/cmn/utils/functions/bots-funcs";
+import { addBotJob } from "@pkg/cmn/utils/orders/funcs";
 import express, {type Response} from "express"
 
 const router = express.Router();

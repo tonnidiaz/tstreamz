@@ -1,5 +1,5 @@
-import { Strategy } from "@cmn/classes/strategy"
-import { ICandle } from "@cmn/utils/interfaces"
+import { Strategy } from "@pkg/cmn/classes/strategy"
+import { ICandle } from "@pkg/cmn/utils/interfaces"
 
 class Str4 extends Strategy{
     name: string = "Strategy 4"

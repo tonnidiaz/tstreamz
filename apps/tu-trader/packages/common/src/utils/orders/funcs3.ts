@@ -1,17 +1,17 @@
-import { IBot } from "@cmn/models/bot";
+import { IBot } from "@pkg/cmn/models/bot";
 import {
     getCoinPrecision,
     getMinAmt,
     getMinSz,
     getPricePrecision,
 } from "../functions";
-import { botLog } from "@cmn/utils/bend/functions";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
 import { objPlats } from "../consts2";
 import {
     getExactDate,
     parseKlines,
 } from "../funcs2";
-import { Bot } from "@cmn/models";
+import { Bot } from "@pkg/cmn/models";
 import { placeArbitOrders, placeArbitOrdersFlipped } from "./funcs4";
 
 export const afterOrderUpdateArbit = async ({ bot }: { bot: IBot }) => {

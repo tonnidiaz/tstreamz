@@ -1,21 +1,20 @@
 import { Socket ,Server} from "socket.io";
-import { IObj, IRetData } from "../interfaces";
+import {  IRetData } from "../interfaces";
 import { ARBIT_ZERO_FEES, ARBIT_MIN_PERC } from "../constants";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
-import { readJson, ensureDirExists } from "@cmn/utils/bend/functions";
+import { readJson, ensureDirExists } from "@pkg/cmn/utils/bend/functions";
 import {
-    calcPerc,
-    clearTerminal,
     getCoinPrecision,
     getMinAmt,
     getMinSz,
     getPricePrecision,
     getSymbol,
-    toFixed,
 } from "../functions";
 import { existsSync, writeFileSync } from "node:fs";
 import { parseKlines } from "../funcs2";
 import { test_platforms } from "../consts";
+import { clearTerminal, calcPerc, toFixed } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
 enum startAt {
     A,

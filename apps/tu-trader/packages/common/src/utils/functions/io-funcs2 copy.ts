@@ -12,7 +12,7 @@ import {
     getSymbol,
     toFixed,
 } from "../functions";
-import { readJson, ensureDirExists, } from "@cmn/utils/bend/functions";
+import { readJson, ensureDirExists, } from "@pkg/cmn/utils/bend/functions";
 import { existsSync, writeFileSync } from "node:fs";
 import { parseKlines } from "../funcs2";
 import { test_platforms } from "../consts";

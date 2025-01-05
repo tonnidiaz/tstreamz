@@ -1,3 +1,4 @@
+import { capitalizeFirstLetter } from "@cmn/utils/funcs";
 import type { RequestHandler } from "./$types";
 
 function fixAttr(attr: string) {

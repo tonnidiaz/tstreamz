@@ -1,4 +1,4 @@
-import { IOrder } from "@cmn/models/order";
+import { IOrder } from "@pkg/cmn/models/order";
 import {
     tuCE,
     heikinAshi,
@@ -7,25 +7,25 @@ import {
     getLastOrder,
     getExactDate,
 } from "../funcs2";
-import { IBot } from "@cmn/models/bot";
-import { Bot } from "@cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
+import { Bot } from "@pkg/cmn/models";
 import { placeTrade } from "./funcs";
 import {
     getCoinPrecision,
     getPricePrecision,
-    timedLog,
-    toFixed, parseDate
+  
 } from "../functions";
-import { botLog } from "@cmn/utils/bend/functions";
+import { ceil, toFixed,parseDate, timedLog } from "@cmn/utils/funcs";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
 import { ICandle, IOrderDetails } from "../interfaces";
 import { objPlats } from "../consts2";
 import { DEV } from "../constants";
-import { Bybit } from "@cmn/classes/bybit";
+import { Bybit } from "@pkg/cmn/classes/bybit";
 import { ImprProd } from "./strategies/impr.prod";
 import { afterOrderUpdateArbit } from "./funcs3";
 import mongoose from "mongoose";
 
-//import { wsOkx } from "@cmn/classes/main-okx";
+//import { wsOkx } from "@pkg/cmn/classes/main-okx";
 
 const useDef5 = false,
     useDef60 = true;

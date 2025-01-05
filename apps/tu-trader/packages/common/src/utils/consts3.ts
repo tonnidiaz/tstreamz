@@ -1,5 +1,7 @@
-import { timedLog } from "./functions";
+import { timedLog } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 import { ITask } from "./interfaces";
+
 
 export const platList = [
     "binance",

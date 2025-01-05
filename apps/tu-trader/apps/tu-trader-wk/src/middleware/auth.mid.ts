@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import { NextFunction, Response, Request } from "express";
-import { User } from "@cmn/models";
+import { User } from "@pkg/cmn/models";
 import { IObj } from "@cmn/utils/interfaces";
 
 const authMid = async (req: Request, res: Response, next: NextFunction) => {

@@ -1,6 +1,6 @@
-import { triArbitWsList, crossArbitWsList } from "@cmn/classes/tu-ws";
-import { IBot } from "@cmn/models/bot";
-import { botLog } from "@cmn/utils/bend/functions";
+import { triArbitWsList, crossArbitWsList } from "@pkg/cmn/classes/tu-ws";
+import { IBot } from "@pkg/cmn/models/bot";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
 import { Response } from "express";
 export const tunedErr = (res: Response, status: number, msg: string, e?: any) => {
     if (e) {

@@ -1,15 +1,15 @@
 <script lang="ts">
     import { listToOpt, toSelectStrategies } from "@/lib/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
-    import TuCard from "./TuCard.svelte";
-    import TuModal from "./TuModal.svelte";
-    import UButton from "./UButton.svelte";
-    import UCheckbox from "./UCheckbox.svelte";
-    import UDivider from "./UDivider.svelte";
-    import UForm from "./UForm.svelte";
-    import UFormGroup from "./UFormGroup.svelte";
-    import UInput from "./UInput.svelte";
-    import UTextarea from "./UTextarea.svelte";
+    import TuCard from "@repo/ui/components/TuCard.svelte";
+    import TuModal from "@repo/ui/components/TuModal.svelte";
+    import UButton from "@repo/ui/components/UButton.svelte";
+    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
+    import UDivider from "@repo/ui/components/UDivider.svelte";
+    import UForm from "@repo/ui/components/UForm.svelte";
+    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UInput from "@repo/ui/components/UInput.svelte";
+    import UTextarea from "@repo/ui/components/UTextarea.svelte";
     import { appStore } from "@/stores/app.svelte";
     import type { HTMLAttributes } from "svelte/elements";
     import { onMount, untrack, type Snippet } from "svelte";
@@ -17,9 +17,9 @@
     import { api, localApi } from "@/lib/api";
     import { botTypes, arbitTypes, selectIntervals, selectSymbols } from "@/lib/constants";
     import TriArbitForm from "./TriArbitForm.svelte";
-    import TuSelect from "./TuSelect.svelte";
-    import UAccordion from "./UAccordion.svelte";
-    import { handleErrs, isTuError } from "@cmn/utils/functions";
+    import TuSelect from "@repo/ui/components/TuSelect.svelte";
+    import UAccordion from "@repo/ui/components/UAccordion.svelte";
+    import { handleErrs, isTuError } from "@cmn/utils/funcs";
 
     let { strategies, platforms } = $derived(appStore);
 

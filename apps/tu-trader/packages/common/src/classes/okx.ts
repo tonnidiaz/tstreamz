@@ -1,18 +1,17 @@
-import { IBot } from "@cmn/models/bot";
+import { IBot } from "@pkg/cmn/models/bot";
 import {
     getInterval,
     parseFilledOrder,
     getExactDate,
-} from "@cmn/utils/funcs2";
-import {  getSymbol, handleErrs, sleep, timedLog } from "@cmn/utils/functions";
-import { writeFileSync } from "node:fs";
+} from "@pkg/cmn/utils/funcs2";
+import {  getSymbol, } from "@pkg/cmn/utils/functions";
 import { RestClient, WebsocketClient } from "okx-api";
 import type { AlgoOrderResult, OrderDetails, OrderResult } from "okx-api";
-import { DEV } from "@cmn/utils/constants";
+import { DEV } from "@pkg/cmn/utils/constants";
 import { configDotenv } from "dotenv";
-import { IOrderDetails, IOrderbook } from "@cmn/utils/interfaces";
+import { IOrderDetails, IOrderbook } from "@pkg/cmn/utils/interfaces";
 import { Platform } from "./platforms";
-import { parseDate } from "@cmn/utils/functions";
+import { handleErrs, parseDate, sleep } from "@cmn/utils/funcs";
 configDotenv();
 
 const { env } = process;

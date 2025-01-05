@@ -1,20 +1,19 @@
 import axios, { Axios } from "axios";
 import { unlinkSync, writeFileSync } from "node:fs";
 import { TestPlatform } from "./test-platforms";
-import { ICoinNets, IOrderbook, ITrade } from "@cmn/utils/interfaces";
+import { ICoinNets, IOrderbook, ITrade } from "@pkg/cmn/utils/interfaces";
 import { MainClient } from "binance";
-import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
+import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@pkg/cmn/utils/bend/functions";
 import {
     getSymbol,
-    sleep,
-} from "@cmn/utils/functions";
+} from "@pkg/cmn/utils/functions";
 import type { AssetDetail, SymbolPrice } from "binance";
-import { genSignature, safeJsonParse } from "@cmn/utils/funcs3";
+import { genSignature, safeJsonParse } from "@pkg/cmn/utils/funcs3";
 import { configDotenv } from "dotenv";
 import binanceApiNode from 'binance-api-node';
 
 import type {CoinInformation} from 'binance-api-node'
+import { parseDate, sleep } from "@cmn/utils/funcs";
 configDotenv()
 export class TestBinance extends TestPlatform {
     client: MainClient;

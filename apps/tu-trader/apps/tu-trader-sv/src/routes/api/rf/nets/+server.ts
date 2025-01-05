@@ -1,4 +1,4 @@
-import { test_platforms } from '@cmn/utils/consts.js'
+import { test_platforms } from '@pkg/cmn/utils/consts.js'
 import { error, json } from '@sveltejs/kit'
 
 export const GET = async ({url}) =>{

@@ -1,19 +1,19 @@
-import { getInterval } from "@cmn/utils/funcs2";
+import { getInterval } from "@pkg/cmn/utils/funcs2";
 import { TestPlatform } from "./test-platforms";
 import { writeFileSync } from "node:fs";
-import { getSymbol, sleep } from "@cmn/utils/functions";
+import { getSymbol, } from "@pkg/cmn/utils/functions";
 import {
     readJson,
     writeJson,
     ensureDirExists,
     existsSync,
-} from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
-import { ICoinNets, IOrderbook } from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/bend/functions";
+import { ICoinNets, IOrderbook } from "@pkg/cmn/utils/interfaces";
 import { Axios } from "axios";
-import { genSignature, safeJsonParse } from "@cmn/utils/funcs3";
+import { genSignature, safeJsonParse } from "@pkg/cmn/utils/funcs3";
 import Mexc from "node-mexc-apis";
-import { DEV } from "@cmn/utils/constants";
+import { DEV } from "@pkg/cmn/utils/constants";
+import { parseDate, sleep } from "@cmn/utils/funcs";
 
 type Spot = typeof Mexc.prototype.spot;
 function test() {

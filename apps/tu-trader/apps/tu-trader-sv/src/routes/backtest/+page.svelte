@@ -298,27 +298,27 @@
     import BacktestTable from "@/components/BacktestTable.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import TuDatePicker from "@/components/TuDatePicker.svelte";
-    import TuModalContainer from "@/components/TuModalContainer.svelte";
-    import TuSelect from "@/components/TuSelect.svelte";
-    import TuStats from "@/components/TuStats.svelte";
-    import UButton from "@/components/UButton.svelte";
-    import UCheckbox from "@/components/UCheckbox.svelte";
-    import UDivider from "@/components/UDivider.svelte";
-    import UForm from "@/components/UForm.svelte";
-    import UFormGroup from "@/components/UFormGroup.svelte";
-    import UInput from "@/components/UInput.svelte";
+    import TuModalContainer from "@repo/ui/components/TuModalContainer.svelte";
+    import TuSelect from "@repo/ui/components/TuSelect.svelte";
+    import UButton from "@repo/ui/components/UButton.svelte";
+    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
+    import UDivider from "@repo/ui/components/UDivider.svelte";
+    import UForm from "@repo/ui/components/UForm.svelte";
+    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UInput from "@repo/ui/components/UInput.svelte";
     import { socket, SITE, selectPlatforms, selectIntervals, selectSymbols, selectParents } from "@/lib/constants";
     import { formatter, toSelectStrategies } from "@/lib/funcs";
     import { appStore } from "@/stores/app.svelte";
-    import { parseDate } from "@cmn/utils/functions";
+    import { parseDate } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import { onMount } from "svelte";
+    import TuStats from "@repo/ui/components/TuStats.svelte";
 
 
 const initRes = { data: {} };
 
 let res = $state<IObj>(initRes);
-let { strategies, platforms, parents } = $derived(appStore);
+let { strategies, platforms, parents } = $derived(appStore); 
 
 let _state = $state({
     parent: "",

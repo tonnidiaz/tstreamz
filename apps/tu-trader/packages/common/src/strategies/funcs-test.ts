@@ -11,7 +11,7 @@ import {
     rf,
     useAnyBuy,
     useSwindLow,
-} from "@cmn/utils/constants";
+} from "@pkg/cmn/utils/constants";
 
 import {
     ceil,
@@ -23,8 +23,8 @@ import {
     getPricePrecision,
     randomNum,
     toFixed,
-} from "@cmn/utils/functions";
-import { IObj, ICandle } from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/functions";
+import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
 import { strategy as strFallbackSL } from "./funcs-test-fallback-sl";
 import { strategy as strNoClass } from "./funcs-test-no-class";
 import { strategy as strTrExitTP } from "./fb/tr-exit-tp";

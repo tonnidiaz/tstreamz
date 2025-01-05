@@ -1,12 +1,12 @@
-import { IBot } from "@cmn/models/bot";
-import { botLog } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
-import { getExactDate, parseFilledOrder } from "@cmn/utils/funcs2";
-import { capitalizeFirstLetter, getSymbol } from "@cmn/utils/functions";
+import { IBot } from "@pkg/cmn/models/bot";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
+import { getExactDate, parseFilledOrder } from "@pkg/cmn/utils/funcs2";
+import { getSymbol } from "@pkg/cmn/utils/functions";
 import { RestClientV5 } from "bybit-api";
-import { DEV } from "@cmn/utils/constants";
-import { IOrderDetails, IOrderbook } from "@cmn/utils/interfaces";
+import { DEV } from "@pkg/cmn/utils/constants";
+import { IOrderDetails, IOrderbook } from "@pkg/cmn/utils/interfaces";
 import { Platform } from "./platforms";
+import { capitalizeFirstLetter, parseDate } from "@cmn/utils/funcs";
 
 export class Bybit extends Platform {
     apiKey: string;

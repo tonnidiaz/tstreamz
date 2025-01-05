@@ -1,15 +1,13 @@
 import { TestPlatform } from "./test-platforms";
 import { SpotClient } from "kucoin-api";
 import type { CurrencyInfo, Kline } from "kucoin-api";
-import { MAKER_FEE_RATE, TAKER_FEE_RATE } from "@cmn/utils/constants";
-import { getInterval } from "@cmn/utils/funcs2";
-import { getSymbol, sleep } from "@cmn/utils/functions";
-import { botLog, readJson, writeJson, ensureDirExists } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
-import axios, { AxiosError, AxiosResponse, isAxiosError } from "axios";
+import { getInterval } from "@pkg/cmn/utils/funcs2";
+import { getSymbol } from "@pkg/cmn/utils/functions";
+import { botLog, readJson, writeJson, ensureDirExists } from "@pkg/cmn/utils/bend/functions";
 import { existsSync, writeFileSync } from "node:fs";
-import { ICoinNets, IOrderbook, TPlatName } from "@cmn/utils/interfaces";
-import { safeJsonParse } from "@cmn/utils/funcs3";
+import { ICoinNets, IOrderbook, TPlatName } from "@pkg/cmn/utils/interfaces";
+import { safeJsonParse } from "@pkg/cmn/utils/funcs3";
+import { parseDate, sleep } from "@cmn/utils/funcs";
 
 export class TestKucoin extends TestPlatform {
     maker: number = 0.1 / 100;

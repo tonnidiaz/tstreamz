@@ -3,10 +3,10 @@
     let modalOpen = $state(false);
 
     // import "v-calendar/dist/style.css";
-    import UInput from "./UInput.svelte";
+    import UInput from "@repo/ui/components/UInput.svelte";
     import { untrack } from "svelte";
     import { isValidDate } from "@/lib/funcs";
-    import CtxMenu2 from "./CtxMenu2.svelte";
+    import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
 
     interface IProps {
         value?: { start: string; end: string };

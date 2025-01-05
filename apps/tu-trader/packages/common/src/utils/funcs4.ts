@@ -2,26 +2,14 @@ import { Job, scheduleJob } from "node-schedule";
 import { test_platforms } from "./consts";
 import { __DEV__, pairsOfInterest, taskManager } from "./consts3";
 import { IOrderbook, TPlatName } from "./interfaces";
-import { timedLog } from "./functions";
 import { bookJobs, botJobSpecs, DEV, instrusRootDir, localApi } from "./constants";
-import { TuBook, TuConfig } from "@cmn/models";
+import { TuBook, TuConfig } from "@pkg/cmn/models";
 import { configDotenv } from "dotenv";
-import mongoose from "mongoose";
-import { ITuConfig } from "@cmn/models/config";
+import { ITuConfig } from "@pkg/cmn/models/config";
+import { timedLog } from "@cmn/utils/funcs";
 
 configDotenv();
-export async function connectMongo(DEV: boolean, db:string = "tb") {
-    console.log("Connecting mongo...", { DEV });
-    let mongoURL = (DEV ? process.env.MONGO_URL_LOCAL : process.env.MONGO_URL)!;
-    try {
-        console.log(mongoURL);
-        await mongoose.connect(mongoURL, { dbName: db });
-        console.log("\nConnection established\n");
-    } catch (e) {
-        console.log("Could not establish connection");
-        console.log(e);
-    }
-}
+
 export const funcs4Var = "This is funcs 4"
 
 export function addBooksTask(config: ITuConfig){

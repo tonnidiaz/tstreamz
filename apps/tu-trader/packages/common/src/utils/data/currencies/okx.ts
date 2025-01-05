@@ -1,4 +1,4 @@
-import { ICcy } from "@cmn/utils/interfaces";
+import { ICcy } from "@pkg/cmn/utils/interfaces";
 
 
 export const okxCurrencies: ICcy[] = 

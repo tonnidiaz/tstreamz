@@ -1,6 +1,5 @@
-import { ceil } from "@cmn/utils/functions";
+import { ceil } from "@cmn/utils/funcs";
 import { Backtest } from "./class";
-import { WCS1 } from "@cmn/utils/constants";
 
 export class Legacy extends Backtest {
     inloop({ i }: { i: number }): void {

@@ -1,6 +1,6 @@
 import { tuErr } from "@/lib/server/funcs";
-import { Bot, TriArbitOrder, TuOrder } from "@cmn/models/index.js";
-import { parseArbitOrder } from "@cmn/utils/funcs3.js";
+import { Bot, TriArbitOrder, TuOrder } from "@pkg/cmn/models/index.js";
+import { parseArbitOrder } from "@pkg/cmn/utils/funcs3.js";
 import type { IObj } from "@cmn/utils/interfaces";
 import { json } from "@sveltejs/kit";
 

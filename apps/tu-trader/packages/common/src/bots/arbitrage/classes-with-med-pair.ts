@@ -1,6 +1,7 @@
-import { MAKER_FEE_RATE, TAKER_FEE_RATE, MAX_QUOTE, IMMEDIATE_SELL } from "@cmn/utils/constants";
-import { toFixed } from "@cmn/utils/functions";
-import { IPlat, ICandle, IObj } from "@cmn/utils/interfaces";
+import { toFixed } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+import { MAKER_FEE_RATE, TAKER_FEE_RATE, MAX_QUOTE, IMMEDIATE_SELL } from "@pkg/cmn/utils/constants";
+import { IPlat, ICandle } from "@pkg/cmn/utils/interfaces";
 
 export class Arbit {
     bal: number = 0;

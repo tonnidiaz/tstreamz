@@ -1,7 +1,5 @@
-import { ceil, toFixed } from "@cmn/utils/functions";
 import { Backtest } from "./class";
-import { isMarket, WCS1 } from "@cmn/utils/constants";
-
+import { ceil, toFixed } from "@cmn/utils/funcs";
 export class Impr5 extends Backtest {
     inloop({ i }: { i: number }): void {
         console.log("inloop");

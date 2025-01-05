@@ -1,4 +1,4 @@
-import { IUser } from "@cmn/models/user";
+import { IUser } from "@pkg/cmn/models/user";
 
 
 export {};

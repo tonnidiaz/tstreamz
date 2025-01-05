@@ -2,7 +2,7 @@ import { Server, Socket } from "socket.io";
 import { IObj } from "../interfaces";
 import { ARBIT_ZERO_FEES, ARBIT_MIN_PERC } from "../constants";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
-import {  ensureDirExists, readJson } from "@cmn/utils/bend/functions";
+import {  ensureDirExists, readJson } from "@pkg/cmn/utils/bend/functions";
 import {
     ceil,
     getCoinPrecision,

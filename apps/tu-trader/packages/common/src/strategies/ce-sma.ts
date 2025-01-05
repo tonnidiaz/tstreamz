@@ -1,5 +1,5 @@
-import { Strategy } from "@cmn/classes/strategy";
-import { ICandle } from "@cmn/utils/interfaces";
+import { Strategy } from "@pkg/cmn/classes/strategy";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 const fastRSI = 30
 export class RSI_ONLY extends Strategy {
     desc: string = `Enter: macd > 0 && sma20 >  sma50, Exit: oposite`;

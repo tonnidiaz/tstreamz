@@ -1,4 +1,4 @@
-import { logTypes, platList } from "@cmn/utils/consts3";
+import { logTypes, platList } from "@pkg/cmn/utils/consts3";
 import { Schema, type HydratedDocumentFromSchema } from "mongoose";
 
 

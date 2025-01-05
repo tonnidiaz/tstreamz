@@ -1,12 +1,12 @@
-import { User } from "@cmn/models";
-import { __DEV__ } from "@cmn/utils/consts3";
-import { connectMongo } from "@cmn/utils/funcs4";
-import { clearTerminal, handleErrs } from "@cmn/utils/functions";
-import { captureLogs } from "@cmn/utils/functions2";
+import { User } from "@pkg/cmn/models";
+import { __DEV__ } from "@pkg/cmn/utils/consts3";
+import { captureLogs } from "@pkg/cmn/utils/functions2";
 import type { IObj } from "@cmn/utils/interfaces";
 import { error, type Handle, type HandleServerError, type RequestEvent, type ResolveOptions } from "@sveltejs/kit";
 import jwt from "jsonwebtoken";
 import { isObjectIdOrHexString } from "mongoose";
+import { clearTerminal, handleErrs } from "@cmn/utils/funcs";
+import { connectMongo } from "@cmn/utils/bend/funcs";
 clearTerminal()
 const fn = async () => {
 

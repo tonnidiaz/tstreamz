@@ -1,6 +1,7 @@
-import { parentStrategies } from "@cmn/strategies";
-import { MAKER_FEE_RATE, TAKER_FEE_RATE } from "@cmn/utils/constants";
-import { IObj, ICandle } from "@cmn/utils/interfaces";
+import { IObj } from "@cmn/utils/interfaces";
+import { parentStrategies } from "@pkg/cmn/strategies";
+import { MAKER_FEE_RATE, TAKER_FEE_RATE } from "@pkg/cmn/utils/constants";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 
 export class Strategy {
     name: string;

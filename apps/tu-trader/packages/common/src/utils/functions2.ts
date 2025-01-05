@@ -1,8 +1,8 @@
 import { ILog } from "./interfaces";
-import { parseDate, clearTerminal, msToMin } from "./functions";
-import { TuLog } from "@cmn/models";
+import { TuLog } from "@pkg/cmn/models";
 import { DEV } from "./constants";
-
+import { clearTerminal, parseDate } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 let logs : ILog[] = [];
 const logsFilename = "logs.json"
 const MIN_LOGS = 1000, SAVE_INTERVAL = DEV ? 1 : 5;
@@ -85,4 +85,8 @@ process.stderr.write = errWrite
 // process.stderr.write('Direct STDERR message\n');
 }
 
+
+function msToMin(arg0: number) {
+    return 9
+}
 

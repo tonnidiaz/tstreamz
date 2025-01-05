@@ -1,5 +1,5 @@
-import { Strategy } from "@cmn/classes/strategy";
-import { ICandle } from "@cmn/utils/interfaces";
+import { Strategy } from "@pkg/cmn/classes/strategy";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 import { RSI_ONLY } from "./ce-sma";
 
 export class MACD_ONLY extends Strategy {

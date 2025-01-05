@@ -1,8 +1,8 @@
-import { noFees } from "@cmn/utils/constants";
-import { toFixed } from "@cmn/utils/functions";
-import { IObj, ICandle } from "@cmn/utils/interfaces";
+import { toFixed } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+import { noFees } from "@pkg/cmn/utils/constants";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 import BigNumber from 'bignumber.js'
-
 export function fillBuyOrder({
     entry,
     prevrow: row,

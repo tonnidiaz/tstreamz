@@ -1,9 +1,7 @@
-import { MAKER_FEE_RATE, TAKER_FEE_RATE } from "@cmn/utils/constants";
-import { getInterval } from "@cmn/utils/funcs2";
-import { botLog, readJson, writeJson, ensureDirExists } from "@cmn/utils/bend/functions";
-import { handleErrs, parseDate } from "@cmn/utils/functions";
-import {  getSymbol, sleep } from "@cmn/utils/functions";
-import axios, { AxiosResponse, isAxiosError } from "axios";
+import { MAKER_FEE_RATE, TAKER_FEE_RATE } from "@pkg/cmn/utils/constants";
+import { getInterval } from "@pkg/cmn/utils/funcs2";
+import { botLog, readJson, writeJson, ensureDirExists } from "@pkg/cmn/utils/bend/functions";
+import {  getSymbol, } from "@pkg/cmn/utils/functions";
 import crypto from "crypto";
 
 import { writeFileSync } from "node:fs";
@@ -17,10 +15,11 @@ import {
 } from "bybit-api";
 import { Candle, RestClient, Trade } from "okx-api";
 import dotenv from "dotenv";
-import { ICoinNets, IOrderbook, ITrade, TPlatName } from "@cmn/utils/interfaces";
+import { ICoinNets, IOrderbook, ITrade, TPlatName } from "@pkg/cmn/utils/interfaces";
 import { existsSync } from "node:fs";
-import { netsRootDir } from "@cmn/utils/consts2";
-import { safeJsonParse } from "@cmn/utils/funcs3";
+import { netsRootDir } from "@pkg/cmn/utils/consts2";
+import { safeJsonParse } from "@pkg/cmn/utils/funcs3";
+import { handleErrs, parseDate, sleep } from "@cmn/utils/funcs";
 
 dotenv.config();
 

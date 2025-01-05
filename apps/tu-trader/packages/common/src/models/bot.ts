@@ -1,4 +1,4 @@
-import { arbitTypes, platList } from "@cmn/utils/consts3";
+import { arbitTypes, platList } from "@pkg/cmn/utils/consts3";
 import {
     type Document,
     InferSchemaType,

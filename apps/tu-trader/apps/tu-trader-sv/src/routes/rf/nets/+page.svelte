@@ -1,16 +1,15 @@
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
 
-    import TuCard from "@/components/TuCard.svelte";
-    import TuSelect from "@/components/TuSelect.svelte";
-    import UButton from "@/components/UButton.svelte";
-    import UCheckbox from "@/components/UCheckbox.svelte";
-    import UForm from "@/components/UForm.svelte";
-    import UFormGroup from "@/components/UFormGroup.svelte";
-    import UInput from "@/components/UInput.svelte";
+    import TuCard from "@repo/ui/components/TuCard.svelte";
+    import TuSelect from "@repo/ui/components/TuSelect.svelte";
+    import UButton from "@repo/ui/components/UButton.svelte";
+    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
+    import UForm from "@repo/ui/components/UForm.svelte";
+    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UInput from "@repo/ui/components/UInput.svelte";
     import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
-    import { sleep } from "@cmn/utils/functions";
     import type { IObj } from "@cmn/utils/interfaces";
     import { untrack } from "svelte";
 

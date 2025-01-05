@@ -1,6 +1,6 @@
 import ViteExpress from "vite-express";
 import { app } from "./app";
-import io from "@cmn/utils/io";
+import io from "@pkg/cmn/utils/io";
 
 const port = process.env.PORT ? Number(process.env.PORT) : 8000;
 

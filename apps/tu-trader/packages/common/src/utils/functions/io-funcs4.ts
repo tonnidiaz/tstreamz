@@ -1,21 +1,22 @@
 import { Socket ,Server} from "socket.io";
 import { ARBIT_ZERO_FEES, ARBIT_MIN_PERC } from "../constants";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
-import { IObj, IRetData } from "../interfaces";
+import { IRetData } from "../interfaces";
 import { heikinAshi, parseKlines, tuCE } from "../funcs2";
 import {
     getPricePrecision,
     getCoinPrecision,
-    clearTerminal,
     getSymbol,
 } from "../functions";
 import { writeFileSync, existsSync } from "node:fs";
 import { test_platforms } from "../consts";
-import { TestPlatform } from "@cmn/classes/test-platforms";
-import { objStrategies } from "@cmn/strategies";
+import { TestPlatform } from "@pkg/cmn/classes/test-platforms";
+import { objStrategies } from "@pkg/cmn/strategies";
 import { ensureDirExists, writeJson, readJson } from "../bend/functions";
-import { ArbitComp } from "@cmn/bots/arbitrage/classes-comp";
-import { Strategy } from "@cmn/classes/strategy";
+import { ArbitComp } from "@pkg/cmn/bots/arbitrage/classes-comp";
+import { Strategy } from "@pkg/cmn/classes/strategy";
+import { clearTerminal } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 // "cross-compare-arbit-cointest"
 export const onCrossCompareArbitCointest = async (
     data: IObj,

@@ -1,32 +1,27 @@
-import { IBot } from "@cmn/models/bot";
+import { IBot } from "@pkg/cmn/models/bot";
 import { TuWs } from "./tu-ws";
 import {
     botLog,
     getBookChannelName,
     getWsUrl,
-} from "@cmn/utils/bend/functions";
-import {
-    ceil,
-    getPricePrecision,
-    getSymbol,
-    parseDate,
-    sleep,
-    timedLog,
-} from "@cmn/utils/functions";
-import { getInstrus, KUCOIN_WS_URL, safeJsonParse } from "@cmn/utils/funcs3";
-import { DEV } from "@cmn/utils/constants";
+} from "@pkg/cmn/utils/bend/functions";
+
+import { getInstrus, KUCOIN_WS_URL, safeJsonParse } from "@pkg/cmn/utils/funcs3";
+import { DEV } from "@pkg/cmn/utils/constants";
 import { RawData } from "ws";
 import {
     IBook,
-    IObj,
     IOrderbook,
     IOrderpage,
     ITriArbitBot,
     TPlatName,
-} from "@cmn/utils/interfaces";
-import { Bot } from "@cmn/models";
-import { placeArbitOrders, placeArbitOrdersFlipped } from "@cmn/utils/orders/funcs4";
+} from "@pkg/cmn/utils/interfaces";
+import { Bot } from "@pkg/cmn/models";
+import { placeArbitOrders, placeArbitOrdersFlipped } from "@pkg/cmn/utils/orders/funcs4";
 import { Socket } from "socket.io";
+import { parseDate, sleep, ceil } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+import { getPricePrecision, getSymbol } from "../utils/functions";
 
 
 const PAUSE_MS = 2 * 1000;

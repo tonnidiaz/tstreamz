@@ -1,7 +1,7 @@
-import { DEV } from '@cmn/utils/constants';
-import { binanceInstrus, bitgetInstrus, bybitInstrus, kucoinInstrus, mexcInstrus, okxInstrus } from '@cmn/utils/data/instrus';
-import { fetchAllInstrus } from '@cmn/utils/fetch-instrus';
-import { clearTerminal } from '@cmn/utils/functions';
+import { DEV } from '@pkg/cmn/utils/constants';
+import { binanceInstrus, bitgetInstrus, bybitInstrus, kucoinInstrus, mexcInstrus, okxInstrus } from '@pkg/cmn/utils/data/instrus';
+import { fetchAllInstrus } from '@pkg/cmn/utils/fetch-instrus';
+import { clearTerminal } from '@cmn/utils/funcs';
 import express from 'express';
 
 const router = express.Router();

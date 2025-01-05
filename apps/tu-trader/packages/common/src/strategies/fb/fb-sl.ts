@@ -11,7 +11,7 @@ import {
     rf,
     useAnyBuy,
     useSwindLow,
-} from "@cmn/utils/constants";
+} from "@pkg/cmn/utils/constants";
 
 import {
     findAve,
@@ -22,8 +22,8 @@ import {
     getPricePrecision,
     randomNum,
     toFixed,
-} from "@cmn/utils/functions";
-import { IObj, ICandle} from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/functions";
+import { IObj, ICandle} from "@pkg/cmn/utils/interfaces";
 let _cnt = 0;
 
 const d = useSwindLow ? 20 : 0;

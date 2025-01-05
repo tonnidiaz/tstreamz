@@ -1,7 +1,7 @@
-import { IBot } from "@cmn/models/bot";
-import { getSymbol } from "@cmn/utils/functions";
-import { botLog} from "@cmn/utils/bend/functions";
-import { IOrderDetails, IOrderbook } from "@cmn/utils/interfaces";
+import { IBot } from "@pkg/cmn/models/bot";
+import { getSymbol } from "@pkg/cmn/utils/functions";
+import { botLog} from "@pkg/cmn/utils/bend/functions";
+import { IOrderDetails, IOrderbook } from "@pkg/cmn/utils/interfaces";
 
 export class Platform {
     name: string;

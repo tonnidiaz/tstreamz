@@ -1,5 +1,5 @@
-// import { Bot, TriArbitOrder } from "@cmn/models";
-// import { IBot } from "@cmn/models/bot";
+// import { Bot, TriArbitOrder } from "@pkg/cmn/models";
+// import { IBot } from "@pkg/cmn/models/bot";
 // import { botLog } from "../bend/functions";
 // import { objPlats } from "../consts2";
 // import { getLastOrder } from "../funcs2";

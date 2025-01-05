@@ -23,7 +23,7 @@
     import Loader from "@/components/Loader.svelte";
     import Navbar from "@/components/Navbar.svelte";
     import Sidebar from "@/components/Sidebar.svelte";
-    import { handleErrs } from "@cmn/utils/functions";
+    import { handleErrs } from "@cmn/utils/funcs";
     let { children } = $props();
     let { ready } = $derived(appStore);
 

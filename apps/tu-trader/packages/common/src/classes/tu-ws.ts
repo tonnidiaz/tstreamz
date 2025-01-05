@@ -1,11 +1,12 @@
-import { sleep, timedLog } from "@cmn/utils/functions";
 import { TuArbitWs } from "./tu";
-import { DEV } from "@cmn/utils/constants";
-import { IObj, TPlatName } from "@cmn/utils/interfaces";
-import { platList } from "@cmn/utils/consts3";
+import {  TPlatName } from "@pkg/cmn/utils/interfaces";
+import { platList } from "@pkg/cmn/utils/consts3";
 import { ClientRequestArgs } from "node:http";
 import ws, { ClientOptions } from "ws";
-import { WS } from "@cmn/utils/bend/consts";
+import { WS } from "@pkg/cmn/utils/bend/consts";
+import { timedLog, sleep } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+
 const crossList: IObj = {};
 const triList: IObj = {};
 

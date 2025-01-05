@@ -1,7 +1,8 @@
-import { MAKER_FEE_RATE, TAKER_FEE_RATE, MAX_QUOTE } from "@cmn/utils/constants";
-import { crossCoinFees } from "@cmn/utils/consts3";
-import { toFixed, ceil, sleep } from "@cmn/utils/functions";
-import { IPlat, ICandle, IObj } from "@cmn/utils/interfaces";
+import { toFixed, ceil, sleep } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+import { MAKER_FEE_RATE, TAKER_FEE_RATE, MAX_QUOTE } from "@pkg/cmn/utils/constants";
+import { crossCoinFees } from "@pkg/cmn/utils/consts3";
+import { IPlat, ICandle, } from "@pkg/cmn/utils/interfaces";
 
 export class Arbit {
     bal: number = 0;

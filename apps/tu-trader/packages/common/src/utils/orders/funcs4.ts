@@ -1,23 +1,21 @@
-import { IBot } from "@cmn/models/bot";
+import { IBot } from "@pkg/cmn/models/bot";
 import { getLastOrder } from "../funcs2";
 import {
-    parseDate,
     getCoinPrecision,
     getMinAmt,
     getMinSz,
     getPricePrecision,
-    sleep,
-    toFixed,
+  
 } from "../functions";
 import { placeTrade } from "./funcs";
-import { Bot, TuOrder, TriArbitOrder } from "@cmn/models";
+import { Bot, TuOrder, TriArbitOrder } from "@pkg/cmn/models";
 import { objPlats } from "../consts2";
 import { updateBuyOrder } from "./funcs2";
-import { botLog } from "@cmn/utils/bend/functions";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
 import { DEV } from "../constants";
 
 const SLEEP_MS = 500;
-
+import { ceil, parseDate, toFixed, sleep } from "@cmn/utils/funcs";
 export const placeArbitOrders = async ({
     bot,
     pairA,

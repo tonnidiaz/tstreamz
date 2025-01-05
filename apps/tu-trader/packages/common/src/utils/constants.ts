@@ -31,8 +31,8 @@ export const setBookJobs = (val: typeof bookJobs) => (bookJobs = val);
 export const test = false;
 export const botJobSpecs = (min: number) =>
     min == 60 ? "0 * * * *" : `*/${min} * * * *`; // = test ? "*/10 * * * * *" : "* * * * * *";
-export const dfsDir = "@cmn/data/dfs/binance",
-    klinesDir = "@cmn/data/klines/binance";
+export const dfsDir = "@pkg/cmn/data/dfs/binance",
+    klinesDir = "@pkg/cmn/data/klines/binance";
 
 export const MAKER_FEE_RATE = 0.1 / 100;
 export const TAKER_FEE_RATE = 0.1 / 100,

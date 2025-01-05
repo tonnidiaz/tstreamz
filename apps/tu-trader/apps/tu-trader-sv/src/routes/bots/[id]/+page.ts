@@ -1,5 +1,5 @@
 import { localApi } from "@/lib/api";
-import { handleErrs } from "@cmn/utils/functions";
+import { handleErrs } from "@cmn/utils/funcs";
 import { error } from "@sveltejs/kit";
 import { AxiosError } from "axios";
 

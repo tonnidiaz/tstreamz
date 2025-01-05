@@ -1,11 +1,12 @@
-import { IBot } from "@cmn/models/bot";
-import { DEV } from "@cmn/utils/constants";
-import { getInterval, parseFilledOrder } from "@cmn/utils/funcs2";
-import { parseDate, getSymbol } from "@cmn/utils/functions";
-import { botLog } from "@cmn/utils/bend/functions";
-import { IOrderDetails } from "@cmn/utils/interfaces";
+import { IBot } from "@pkg/cmn/models/bot";
+import { DEV } from "@pkg/cmn/utils/constants";
+import { getInterval, parseFilledOrder } from "@pkg/cmn/utils/funcs2";
+import { getSymbol } from "@pkg/cmn/utils/functions";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
+import { IOrderDetails } from "@pkg/cmn/utils/interfaces";
 import { SpotApi, ApiClient, Trade, Order } from "gate-api";
 import { Platform } from "./platforms";
+import { parseDate } from "@cmn/utils/funcs";
 
 export class Gateio extends Platform {
     name = "GATEIO";

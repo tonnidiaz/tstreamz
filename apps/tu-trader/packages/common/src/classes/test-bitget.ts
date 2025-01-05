@@ -1,17 +1,15 @@
-import { getInterval } from "@cmn/utils/funcs2";
+import { getInterval } from "@pkg/cmn/utils/funcs2";
 import { TestPlatform } from "./test-platforms";
 import { RestClientV2 } from "bitget-api";
-import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
+import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@pkg/cmn/utils/bend/functions";
 import { writeFileSync } from "node:fs";
-import { CompanyResultSortBy } from "indicatorts";
 import {
     getSymbol,
-    sleep
-} from "@cmn/utils/functions";
-import { ICoinNets, IOrderbook, TPlatName } from "@cmn/utils/interfaces";
-import { safeJsonParse } from "@cmn/utils/funcs3";
+} from "@pkg/cmn/utils/functions";
+import { ICoinNets, IOrderbook, TPlatName } from "@pkg/cmn/utils/interfaces";
+import { safeJsonParse } from "@pkg/cmn/utils/funcs3";
 import { Axios } from "axios";
+import { parseDate, sleep } from "@cmn/utils/funcs";
 
 export class TestBitget extends TestPlatform {
     maker: number = 0.1 / 100;

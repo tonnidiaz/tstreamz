@@ -1,9 +1,8 @@
 <script lang="ts">
     import type { IObj } from "@cmn/utils/interfaces";
+    import UTextarea from "@repo/ui/components/UTextarea.svelte";
     import { onMount } from "svelte";
     import type { HTMLAttributes } from "svelte/elements";
-    import UTextarea from "./UTextarea.svelte";
-
     let q = $state(""),
         notes = $state(""),
         data = $state<IObj>();

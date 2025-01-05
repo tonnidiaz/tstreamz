@@ -1,11 +1,10 @@
-import { exit } from "process";
+import { IObj } from "@cmn/utils/interfaces";
 import { isMarket, TP, SL, TRAILING_STOP_PERC, MAKER_FEE_RATE, PUT_ASIDE, TAKER_FEE_RATE, useSwindLow } from "../../utils/constants";
-import { getPricePrecision, getMinSz, getMaxSz, getMaxAmt, getCoinPrecision, toFixed } from "../../utils/functions";
-import { ICandle, IObj } from "../../utils/interfaces";
+import { getPricePrecision, getMinSz, getMaxSz, getMaxAmt, getCoinPrecision } from "../../utils/functions";
+import { ICandle, } from "../../utils/interfaces";
 import { fillSellOrder, fillBuyOrder } from "../utils/functions";
+import { toFixed } from "@cmn/utils/funcs";
 
-
-let _cnt = 0;
 
 const d = useSwindLow ? 20 : 0;
 export const strategy = ({
@@ -91,7 +90,7 @@ export const strategy = ({
         sellFees += ret.fee;
         exitLimit = null;
         entryLimit = null;
-        balance += ret.balance
+        balance += ret.balance as any
         const profitPerc = (balance - START_BAL) / START_BAL * 100
         if (profitPerc >= 100){
             putAside(balance/2.5)
@@ -103,11 +102,11 @@ export const strategy = ({
         if (maxSz == null  || minSz == null  || pricePrecision == null  || basePrecision == null) return
         (pos = ret.pos),
             (mData = ret.mData),
-            (_cnt = ret._cnt);
+            (cnt = ret._cnt);
         buyFees += ret.fee;
         tp = toFixed(entry * (1 + TP / 100), pricePrecision!);
         sl = toFixed(entry * (1 - SL / 100), pricePrecision!);
-        base += ret.base
+        base += ret.base as any
     };
 
     async function _fillSell({_exit, _base, _row, isSl} : {_exit: number, _row: ICandle, _base: number, isSl?: boolean}) {

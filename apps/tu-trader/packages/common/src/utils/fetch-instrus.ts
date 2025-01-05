@@ -1,8 +1,10 @@
 import axios from "axios";
-import { handleErrs, timedLog } from "./functions";
-import { okxInstrus } from "./data/instrus";
 import { writeJson } from "./bend/functions";
 import { instrusRootDir } from "./constants";
+import { timedLog, handleErrs } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+
+const o: IObj = {};
 
 export async function fetchAllInstrus () {
 

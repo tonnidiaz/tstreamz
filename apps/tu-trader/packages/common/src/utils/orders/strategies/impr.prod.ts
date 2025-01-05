@@ -2,18 +2,18 @@
  * WORKS BEST WITH THE 5min TIMEFRAME ON BYBIT
  */
 
-import { IBot } from "@cmn/models/bot";
-import { IOrder } from "@cmn/models/order";
+import { IBot } from "@pkg/cmn/models/bot";
+import { IOrder } from "@pkg/cmn/models/order";
 import {
     getBaseToSell,
     getBotPlat,
     getBotStrategy,
-} from "@cmn/utils/funcs2";
-import { ceil, toFixed } from "@cmn/utils/functions";
-import { botLog } from "@cmn/utils/bend/functions";
-import { ICandle } from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/funcs2";
+import { ceil, toFixed } from "@cmn/utils/funcs";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 import { placeTrade } from "../funcs";
-import { TuOrder } from "@cmn/models";
+import { TuOrder } from "@pkg/cmn/models";
 
 export const ImprProd = async ({
     pos,

@@ -1,12 +1,11 @@
-import { getInterval, parseFilledOrder } from "@cmn/utils/funcs2";
+import { getInterval, parseFilledOrder } from "@pkg/cmn/utils/funcs2";
 import { RestClientV2 } from "bitget-api";
-import { botLog } from "@cmn/utils/bend/functions";
-import { handleErrs, parseDate } from "@cmn/utils/functions";
-import { IBot } from "@cmn/models/bot";
-import { capitalizeFirstLetter, getSymbol, sleep } from "@cmn/utils/functions";
-import { IOrderDetails } from "@cmn/utils/interfaces";
-import { DEV } from "@cmn/utils/constants";
+import { IBot } from "@pkg/cmn/models/bot";
+import {  getSymbol } from "@pkg/cmn/utils/functions";
+import { IOrderDetails } from "@pkg/cmn/utils/interfaces";
+import { DEV } from "@pkg/cmn/utils/constants";
 import { Platform } from "./platforms";
+import { parseDate, sleep, handleErrs, capitalizeFirstLetter } from "@cmn/utils/funcs";
 
 export class Bitget extends Platform {
     name = "BITGET";

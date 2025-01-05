@@ -1,4 +1,4 @@
-import { platList } from "@cmn/utils/consts3";
+import { platList } from "@pkg/cmn/utils/consts3";
 import { Schema, type HydratedDocumentFromSchema } from "mongoose";
  const  TBook = {
     _id: false,

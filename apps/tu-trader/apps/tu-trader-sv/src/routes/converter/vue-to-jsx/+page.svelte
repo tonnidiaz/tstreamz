@@ -46,15 +46,14 @@
 
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
-    import UButton from "@/components/UButton.svelte";
-    import UForm from "@/components/UForm.svelte";
-    import UFormGroup from "@/components/UFormGroup.svelte";
-    import UTextarea from "@/components/UTextarea.svelte";
+    import UButton from "@repo/ui/components/UButton.svelte";
+    import UForm from "@repo/ui/components/UForm.svelte";
+    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UTextarea from "@repo/ui/components/UTextarea.svelte";
     import { SITE } from "@/lib/constants";
     import { onMount } from "svelte";
     import { page } from "$app/stores";
-    import { dev } from "$app/environment";
-    import UCheckbox from "@/components/UCheckbox.svelte";
+    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
     import { localApi } from "@/lib/api";
 
     const sessionStorageKey = `${$page.url.pathname}-code`;

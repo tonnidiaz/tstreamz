@@ -1,5 +1,5 @@
 import { tuErr } from '@/lib/server/funcs.js';
-import { DepInfo, User } from '@cmn/models';
+import { DepInfo, User } from '@pkg/cmn/models';
 import { json } from '@sveltejs/kit'
 
 export const GET = async ({request: req, params}) =>{

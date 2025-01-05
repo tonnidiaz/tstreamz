@@ -1,11 +1,11 @@
-import { IBot } from "@cmn/models/bot";
-import { getExactDate, getInterval, parseFilledOrder } from "@cmn/utils/funcs2";
-import {  getSymbol, handleErrs, sleep } from "@cmn/utils/functions";
+import { IBot } from "@pkg/cmn/models/bot";
+import { getExactDate, getInterval, parseFilledOrder } from "@pkg/cmn/utils/funcs2";
+import {  getSymbol, } from "@pkg/cmn/utils/functions";
 import { SpotClient } from "kucoin-api";
-import { parseDate } from "@cmn/utils/functions";
-import { DEV } from "@cmn/utils/constants";
+import { DEV } from "@pkg/cmn/utils/constants";
 import { Platform } from "./platforms";
-import { IOrderDetails } from "@cmn/utils/interfaces";
+import { IOrderDetails } from "@pkg/cmn/utils/interfaces";
+import { handleErrs, sleep, parseDate } from "@cmn/utils/funcs";
 
 export class Kucoin extends Platform {
     client: SpotClient;

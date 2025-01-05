@@ -1,7 +1,7 @@
-import { Bot, TriArbitOrder, TuOrder } from "@cmn/models";
-import { IBot } from "@cmn/models/bot";
-import { handleErrs } from "../functions";
+import { Bot, TriArbitOrder, TuOrder } from "@pkg/cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
 import { botLog } from "./functions";
+import { handleErrs } from "@cmn/utils/funcs";
 
 export const parseBot = async (bot: IBot, deep = true) => {
     //bot = await bot.populate("orders");

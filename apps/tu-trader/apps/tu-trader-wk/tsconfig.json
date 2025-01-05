@@ -19,10 +19,11 @@
     "paths": {
             "@/*": ["src/*"],
             "~/*": ["src/*"],
-            "@cmn/*": ["../../packages/common/src/*"],
+            "@pkg/cmn/*": ["../../packages/common/src/*"],
+            "@cmn/*": ["../../../../packages/common/src/*"],
 
         }
   },
-  "include": ["src", "../../packages/common/src/**/*.ts"],
+  "include": ["src", "../../packages/common/src/**/*.ts", "../../../../packages/common/src/**/*.ts"],
   "exclude": ["node_modules"]
 }

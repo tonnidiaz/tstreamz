@@ -5,16 +5,11 @@ import { Socket } from "socket.io";
 import mongoose from "mongoose";
 import { DEV } from "../utils/constants";
 import {
-    sleep,
-    timedLog,
     getSymbol,
-    ceil,
     getPricePrecision,
 } from "../utils/functions";
-import { botLog, getWsUrl } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
+import { botLog, getWsUrl } from "@pkg/cmn/utils/bend/functions";
 import {
-    IObj,
     TPlatName,
     IOrderpage,
     ICrossArbitBot,
@@ -22,17 +17,18 @@ import {
     IOrderbook,
     IBook,
 } from "../utils/interfaces";
-import { Bot } from "@cmn/models";
-import { IBot } from "@cmn/models/bot";
-import { test_platforms } from "@cmn/utils/consts";
-import { KUCOIN_WS_URL, safeJsonParse } from "@cmn/utils/funcs3";
+import { Bot } from "@pkg/cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
+import { test_platforms } from "@pkg/cmn/utils/consts";
+import { KUCOIN_WS_URL, safeJsonParse } from "@pkg/cmn/utils/funcs3";
 import {
     placeArbitOrdersFlipped,
     placeArbitOrders,
-} from "@cmn/utils/orders/funcs4";
+} from "@pkg/cmn/utils/orders/funcs4";
 import { TuWs } from "./tu-ws";
-import { WS } from "@cmn/utils/bend/consts";
-
+import { WS } from "@pkg/cmn/utils/bend/consts";
+import { timedLog, parseDate, sleep, ceil } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
 
 const PAUSE_MS = 2 * 1000;

@@ -4,13 +4,13 @@ import * as nfs from "node:fs";
 const { env } = process;
 import { Response } from "express";
 import path, { dirname } from "node:path";
-import { OTP } from "@cmn/models";
-import { IBot } from "@cmn/models/bot";
-import { randomInRange, parseDate } from "../functions";
-import { IObj, TPlatName } from "../interfaces";
+import { OTP } from "@pkg/cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
+import { TPlatName } from "../interfaces";
 import { fileURLToPath } from "node:url";
 import { OKX_WS_URL_DEMO, OKX_WS_URL, BYBIT_WS_URL_DEMO, BYBIT_WS_URL, BINANCE_WS_URL, BITGET_WS_URL, MEXC_WS_URL } from "../consts2";
-
+import { randomInRange, parseDate } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 export const ensureDirExists = (filePath: string) => {
     var dirname = path.dirname(filePath);
     if (nfs.existsSync(dirname)) {

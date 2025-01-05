@@ -1,14 +1,16 @@
-import { IBot } from "@cmn/models/bot";
-import { getInterval, parseFilledOrder } from "@cmn/utils/funcs2";
-import {  getSymbol, handleErrs } from "@cmn/utils/functions";
-import { DEV, MEXC_API_ROOT_URL } from "@cmn/utils/constants";
-import { botLog } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
-import { IObj, IOrderDetails } from "@cmn/utils/interfaces";
+import { IBot } from "@pkg/cmn/models/bot";
+import { getInterval, parseFilledOrder } from "@pkg/cmn/utils/funcs2";
+import {  getSymbol } from "@pkg/cmn/utils/functions";
+import { DEV, MEXC_API_ROOT_URL } from "@pkg/cmn/utils/constants";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
+import { IOrderDetails } from "@pkg/cmn/utils/interfaces";
 import Mexc2 from "node-mexc-apis";
 import { Platform } from "./platforms";
 import axios, { type AxiosInstance, type AxiosResponse } from "axios";
 import crypto from "crypto"
+
+import { parseDate, handleErrs } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
 type TSpot = typeof Mexc2.prototype.spot;
 

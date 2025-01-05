@@ -1,16 +1,16 @@
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
-    import TuLink from "@/components/TuLink.svelte";
-    import UButton from "@/components/UButton.svelte";
-    import UForm from "@/components/UForm.svelte";
-    import UFormGroup from "@/components/UFormGroup.svelte";
-    import UInput from "@/components/UInput.svelte";
+    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import UButton from "@repo/ui/components/UButton.svelte";
+    import UForm from "@repo/ui/components/UForm.svelte";
+    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UInput from "@repo/ui/components/UInput.svelte";
     import { localApi } from "@/lib/api";
     import { STORAGE_KEYS, SITE } from "@/lib/constants";
     import { setUser } from "@/stores/user.svelte";
     import type { IObj } from "@cmn/utils/interfaces";
     import { page } from "$app/stores";
-    import { handleErrs, isTuError } from "@cmn/utils/functions";
+    import { handleErrs, isTuError } from "@cmn/utils/funcs";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);

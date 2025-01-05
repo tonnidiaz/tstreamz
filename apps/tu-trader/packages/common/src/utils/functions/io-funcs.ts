@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { IObj, ICandle, TPlatName, IRetData } from "../interfaces";
+import {  ICandle, TPlatName, IRetData } from "../interfaces";
 import { tuCE, heikinAshi, parseKlines, tuPath } from "../funcs2";
 import {
     ETH_RATE,
@@ -9,20 +9,17 @@ import {
 } from "../constants";
 import { existsSync, writeFileSync } from "node:fs";
 import {
-    clog,
     getPricePrecision,
-    toFixed,
     getSymbol,
-    clearTerminal,
-    sleep,
-    parseDate,
 } from "../functions";
-import { objStrategies, strategies } from "@cmn/strategies";
+import { objStrategies, strategies } from "@pkg/cmn/strategies";
 import { test_platforms } from "../consts";
 import { getInstrus } from "../funcs3";
 import { onTriArbitCointest } from "./io-funcs2";
 import { onTriArbitCointestLimit as onTriArbitCointest2 } from "./io-funcs2-limit";
 import { readJson, ensureDirExists } from "../bend/functions";
+import { clearTerminal, parseDate, toFixed } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
 export const onBacktest = async (data: IObj, client?: Socket, io?: Server) => {
     const ep = "backtest";
@@ -82,7 +79,7 @@ export const onBacktest = async (data: IObj, client?: Socket, io?: Server) => {
         start = start ?? parseDate(new Date());
         const year = start.split("-")[0];
         const pth =
-            "@cmn/data/klines/binance/SOL-USDT_5m_2023-01-01 00 00 00+02:00_2023-10-31 23 59 00+02:00.json";
+            "@pkg/cmn/data/klines/binance/SOL-USDT_5m_2023-01-01 00 00 00+02:00_2023-10-31 23 59 00+02:00.json";
         const subPath = demo ? "demo" : "live";
         
         klinesPath = test

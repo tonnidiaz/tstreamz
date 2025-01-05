@@ -1,16 +1,9 @@
-import { IBot, ITriArbitOrder } from "@cmn/models/bot";
+import { IBot, ITriArbitOrder } from "@pkg/cmn/models/bot";
 import { klinesRootDir } from "./constants";
-import { bitgetInstrus } from "./data/instrus/bitget-instrus";
-import { bybitInstrus } from "./data/instrus/bybit-instrus";
-import { gateioInstrus } from "./data/instrus/gateio-instrus";
-import { mexcInstrus } from "./data/instrus/mexc-instrus";
-import { okxInstrus } from "./data/instrus/okx-instrus";
-import { parseDate, getSymbol } from "./functions";
 import { botLog } from "./bend/functions";
-import { kucoinInstrus } from "./data/instrus/kucoin-instrus";
-import { TriArbitOrder, TuOrder } from "@cmn/models";
-import { max } from "indicatorts";
+import { TriArbitOrder, TuOrder } from "@pkg/cmn/models";
 import axios from "axios";
+
 export const getKlinesPath = ({
     plat,
     demo = false,
@@ -124,8 +117,10 @@ export const safeJsonParse = <T>(str: any) => {
 };
 
 import crypto from "crypto";
-import { IObj, TPlatName } from "./interfaces";
-import { binanceInstrus } from "./data/instrus/binance-instrus";
+import { getSymbol } from "./functions";
+import { parseDate } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+import { TPlatName } from "./interfaces";
 export const getLastItem = (arr: any[]) => [...arr].pop();
 
 const rmEmptyParams = (p: IObj)=>{

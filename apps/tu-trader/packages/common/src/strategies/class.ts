@@ -5,8 +5,8 @@ import {
     SL,
     TAKER_FEE_RATE,
     TP,
-} from "@cmn/utils/constants";
-import { ICandle, IObj } from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/constants";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 import { fillBuyOrder, fillSellOrder } from "./utils/functions";
 import {
     getCoinPrecision,
@@ -14,10 +14,11 @@ import {
     getMaxSz,
     getMinSz,
     getPricePrecision,
-    sleep,
-    toFixed,
-} from "@cmn/utils/functions";
+} from "@pkg/cmn/utils/functions";
+import { toFixed } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
+const o: IObj = {}
 export class Backtest {
     pos = false;
     cnt = 0;

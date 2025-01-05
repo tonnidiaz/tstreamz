@@ -1,13 +1,7 @@
-import { mexcInstrus } from "./data/instrus/mexc-instrus";
-import { binanceInstrus } from "./data/instrus/binance-instrus";
-import { kucoinInstrus } from "./data/instrus/kucoin-instrus";
-import { bitgetInstrus } from "./data/instrus/bitget-instrus";
-import { bybitInstrus } from "./data/instrus/bybit-instrus";
-import { gateioInstrus } from "./data/instrus/gateio-instrus";
-import { okxInstrus } from "./data/instrus/okx-instrus";
-import { TPlatName } from "./interfaces";
-import { isAxiosError } from "axios";
+
 import { IObj } from "@cmn/utils/interfaces";
+import { binanceInstrus, bitgetInstrus, bybitInstrus, okxInstrus, gateioInstrus, mexcInstrus, kucoinInstrus } from "./data/instrus";
+import { TPlatName } from "./interfaces";
 
 const test = false;
 

@@ -1,9 +1,9 @@
-import { getInterval } from "@cmn/utils/funcs2";
+import { getInterval } from "@pkg/cmn/utils/funcs2";
 import { TestPlatform } from "./test-platforms";
-import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/functions";
-import { parseDate } from "@cmn/utils/functions";
+import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@pkg/cmn/utils/bend/functions";
 import { ApiClient, SpotApi } from "gate-api";
 import { writeFileSync } from "node:fs";
+import { parseDate } from "@cmn/utils/funcs";
 
 export class TestGateio extends TestPlatform {
     maker: number = 0.2 / 100;

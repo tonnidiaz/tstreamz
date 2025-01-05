@@ -1,13 +1,12 @@
-import { IBot } from "@cmn/models/bot";
-import { getExactDate, parseFilledOrder } from "@cmn/utils/funcs2";
+import { IBot } from "@pkg/cmn/models/bot";
+import { getExactDate, parseFilledOrder } from "@pkg/cmn/utils/funcs2";
 import {
-    capitalizeFirstLetter,
     getSymbol,
-    handleErrs,
-} from "@cmn/utils/functions";
-import { IOrderDetails, IOrderbook } from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/functions";
+import { IOrderDetails, IOrderbook } from "@pkg/cmn/utils/interfaces";
 import { Platform } from "./platforms";
 import { MainClient, SymbolPrice } from "binance";
+import { capitalizeFirstLetter, handleErrs } from "@cmn/utils/funcs";
 
 export class Binance extends Platform {
     apiKey: string;

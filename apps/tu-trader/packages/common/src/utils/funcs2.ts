@@ -1,4 +1,4 @@
-import { IObj, IOrderDetails, ICandle } from "./interfaces";
+import { IOrderDetails, ICandle } from "./interfaces";
 import {
     atr,
     ema,
@@ -12,18 +12,19 @@ import {
 import path from "node:path";
 import { SL, TP, useHaClose } from "./constants";
 import { OrderDetails } from "okx-api";
-import { IBot } from "@cmn/models/bot";
-import { TuOrder } from "@cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
+import { TuOrder } from "@pkg/cmn/models";
 import { AccountOrderV5 } from "bybit-api";
-import { IOrder } from "@cmn/models/order";
+import { IOrder } from "@pkg/cmn/models/order";
 import { objPlats } from "./consts2";
-import { objStrategies } from "@cmn/strategies";
+import { objStrategies } from "@pkg/cmn/strategies";
 import type { Order as GateOrder } from "gate-api";
 import type { SpotOrder as KucoinOrder } from "kucoin-api";
-import { parseDate } from "./functions";
 import { SpotOrder } from "binance";
+import { parseDate } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
-
+const o: IObj = {}
 export const getExactDate = (interval: number) => {
     // Validate the interval
     if (interval <= 0) {

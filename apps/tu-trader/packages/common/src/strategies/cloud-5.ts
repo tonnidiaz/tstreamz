@@ -2,7 +2,7 @@
  * WORKS BEST WITH 5min CLOUD-USDT from MEXC
  */
 
-import { ceil } from "@cmn/utils/functions";
+import { ceil } from "@cmn/utils/funcs";
 import { Backtest } from "./class";
 
 export class Cloud5 extends Backtest {

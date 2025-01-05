@@ -1,5 +1,5 @@
 import { Server, Socket } from "socket.io";
-import { IObj, ICandle, TPlatName, IRetData } from "../interfaces";
+import { ICandle, TPlatName, IRetData } from "../interfaces";
 import { tuCE, heikinAshi, parseKlines, tuPath } from "../funcs2";
 import {
     ARBIT_MIN_PERC,
@@ -11,23 +11,19 @@ import {
 } from "../constants";
 import { existsSync, writeFileSync } from "node:fs";
 import {
-    clog,
     getPricePrecision,
-    toFixed,
     getSymbol,
-    clearTerminal,
-    sleep,
-    parseDate,
-    calcPerc,
     getCoinPrecision,
     getMinAmt,
     getMinSz,
 } from "../functions";
-import { objStrategies, strategies } from "@cmn/strategies";
+import { objStrategies, strategies } from "@pkg/cmn/strategies";
 import { test_platforms } from "../consts";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
 
 import { readJson, ensureDirExists } from "../bend/functions";
+import { clearTerminal, toFixed, calcPerc } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
 
 enum startAt {

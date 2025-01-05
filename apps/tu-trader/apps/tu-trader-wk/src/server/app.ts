@@ -1,30 +1,30 @@
-import { DEV, setJobs } from "@cmn/utils/constants";
+import { DEV, setJobs } from "@pkg/cmn/utils/constants";
 import {
     addBooksTask,
-    connectMongo,
     scheduleAllTasks,
-} from "@cmn/utils/funcs4";
+} from "@pkg/cmn/utils/funcs4";
 import cookieParser from "cookie-parser";
 import express from "express";
 export const app = express();
 import cors from "cors";
 import logger from "morgan";
-import { TuArbitWs } from "@cmn/classes/tu";
+import { TuArbitWs } from "@pkg/cmn/classes/tu";
 import {
     initArbitWs,
     triArbitWsList,
     crossArbitWsList,
-} from "@cmn/classes/tu-ws";
-import { Bot, TuConfig } from "@cmn/models";
-import { botLog } from "@cmn/utils/bend/functions";
-import { captureLogs } from "@cmn/utils/functions2";
+} from "@pkg/cmn/classes/tu-ws";
+import { Bot, TuConfig } from "@pkg/cmn/models";
+import { botLog } from "@pkg/cmn/utils/bend/functions";
+import { captureLogs } from "@pkg/cmn/utils/functions2";
 import createError from "http-errors";
 
 import indexRouter from "@/routes";
 import botsRouter, { toggleMegaBot } from "@/routes/bots";
-import { clearTerminal } from "@cmn/utils/functions";
 import path from "node:path";
 import { _dirname } from "..";
+import { connectMongo } from "@cmn/utils/bend/funcs";
+import { clearTerminal } from "@cmn/utils/funcs";
 
 clearTerminal();
 console.log({ _dirname });

@@ -1,29 +1,28 @@
 import { Server } from "socket.io";
 import { CorsOptions } from "cors";
-import { IObj, IRetData } from "./interfaces";
+import { IRetData } from "./interfaces";
 import { tuCE, heikinAshi, parseKlines, tuPath } from "./funcs2";
 import { klinesDir, klinesRootDir, tradesRootDir, useLimitTri } from "./constants";
 import { existsSync } from "node:fs";
 import {
-    clearTerminal,
     getSymbol,
-    parseDate,
 } from "./functions";
-import { objStrategies, parentStrategies, strategies } from "@cmn/strategies";
-import { TestOKX } from "@cmn/classes/test-platforms";
+import { objStrategies, parentStrategies, strategies } from "@pkg/cmn/strategies";
+import { TestOKX } from "@pkg/cmn/classes/test-platforms";
 import { test_platforms } from "./consts";
 import { onArbitCointest, onBacktest, onCointest } from "./functions/io-funcs";
 import { onCompArbitCointest } from "./functions/io-funcs5";
 import { onCrossArbitCointest } from "./functions/io-funcs3";
 import { onCrossCompareArbitCointest } from "./functions/io-funcs4";
-import { CrossArbitData } from "@cmn/classes/tu";
-import { Bot } from "@cmn/models";
-import { crossArbitWsList, triArbitWsList } from "@cmn/classes/tu-ws";
+import { CrossArbitData } from "@pkg/cmn/classes/tu";
+import { Bot } from "@pkg/cmn/models";
+import { crossArbitWsList, triArbitWsList } from "@pkg/cmn/classes/tu-ws";
 import { readJson } from "./bend/functions";
 import { onTriArbitCointestLimit } from "./functions/io-funcs2-limit";
 import { onTriArbitCointest } from "./functions/io-funcs2";
 import { onTriArbitCointestGrids } from "./functions/io-funcs2-grids";
-
+import { clearTerminal, parseDate } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 const corsOptions: CorsOptions = { origin: "*" };
 const io = new Server({ cors: corsOptions }); // yes, no server arg here; it's not required
 let prevData: IRetData | undefined | null;

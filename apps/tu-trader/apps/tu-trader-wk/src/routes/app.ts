@@ -1,6 +1,6 @@
-import { TuConfig } from "@cmn/models";
-import { taskManager } from "@cmn/utils/consts3";
-import { addBooksTask } from "@cmn/utils/funcs4";
+import { TuConfig } from "@pkg/cmn/models";
+import { taskManager } from "@pkg/cmn/utils/consts3";
+import { addBooksTask } from "@pkg/cmn/utils/funcs4";
 import { Router } from "express";
 
 const router = Router()

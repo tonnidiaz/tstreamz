@@ -12,7 +12,7 @@ import {
     SELL_AT_LAST_BUY,
     useSwindLow,
     PUT_ASIDE,
-} from "@cmn/utils/constants";
+} from "@pkg/cmn/utils/constants";
 
 import {
     ceil,
@@ -23,8 +23,8 @@ import {
     getPricePrecision,
     toFixed,
     getMaxAmt,
-} from "@cmn/utils/functions";
-import { IObj, ICandle } from "@cmn/utils/interfaces";
+} from "@pkg/cmn/utils/functions";
+import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
 let _cnt = 0;
 
 const d = useSwindLow ? 20 : 0;

@@ -1,33 +1,27 @@
-import { OrderPlacer } from "@cmn/classes";
-import { Bot, TuOrder } from "@cmn/models";
-import { IBot } from "@cmn/models/bot";
+import { OrderPlacer } from "@pkg/cmn/classes";
+import { TuOrder } from "@pkg/cmn/models";
+import { IBot } from "@pkg/cmn/models/bot";
 import { scheduleJob } from "node-schedule";
 import {  botJobSpecs, jobs } from "../constants";
-import { OKX } from "@cmn/classes/okx";
 import {
-    ceil,
     getCoinPrecision,
     getMaxAmt,
     getMaxSz,
     getMinAmt,
     getMinSz,
     getPricePrecision,
-    sleep,
-    timedLog,
-    toFixed,
+ 
 } from "../functions";
-import { Bybit } from "@cmn/classes/bybit";
+import { ceil, toFixed, sleep } from "@cmn/utils/funcs";
 import {
     findBotOrders,
     getLastOrder,
     orderHasPos,
     getBotPlat,
 } from "../funcs2";
-import { objStrategies } from "@cmn/strategies";
 import { updateSellOrder, updateBuyOrder } from "./funcs2";
-import { objPlats } from "../consts2";
 import { botLog } from "../bend/functions";
-import { Platform } from "@cmn/classes/platforms";
+import { Platform } from "@pkg/cmn/classes/platforms";
 export const getJob = (id: string) => jobs.find((el) => el.id == id);
 
 export const tuJob = async (op: OrderPlacer, bot: IBot) => {
