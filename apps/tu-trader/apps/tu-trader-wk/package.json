@@ -1,0 +1,32 @@
+{
+    "name": "tu-trader-wk",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "nodemon -w src/server -x tsx src/server/main.ts",
+        "start": "NODE_ENV=production tsx src/server/main.ts",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "@types/express": "*",
+        "@types/morgan": "^1.9.9",
+        "@types/node": "*",
+        "nodemon": "^3.1.9",
+        "vite": "^5.4.11"
+    },
+    "dependencies": {
+        "@repo/common": "1.0.0",
+        "cookie-parser": "*",
+        "cors": "*",
+        "dotenv": "*",
+        "express": "*",
+        "http-errors": "*",
+        "kucoin-api": "^1.0.20",
+        "morgan": "*",
+        "pug": "*",
+        "tsx": "*",
+        "typescript": "*",
+        "vite-express": "*"
+    }
+}

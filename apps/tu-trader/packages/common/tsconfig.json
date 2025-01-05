@@ -1,0 +1,30 @@
+{
+    "extends": "../../../../tsconfig.json",
+    "compilerOptions": {
+        // "module": "commonjs",
+        "declaration": true,
+        "declarationMap": true,
+        "noEmit": false,
+        "baseUrl": ".",
+        "outDir": "./dist",
+        "paths": {
+            "@pkg/cmn/*": ["./src/*"],
+            "@cmn/*": ["../../../../packages/common/src/*"],
+        },
+        "types": ["./global.d.ts"],
+        "target": "ESNext",
+        // "types": ["vite/client"],
+        // From svelte
+        // "lib": [
+        // 		"esnext",
+        // 		"DOM",
+        // 		"DOM.Iterable"
+        // 	],
+        "moduleResolution": "node",
+        "module": "esnext"
+        // "noEmit": true,
+        // "target": "esnext"
+    },
+    "include": ["./src/**/*.ts", "**/*.ts", "./global.d.ts", "../../../../packages/common/**/*.ts"],
+    "exclude": ["dist", "out", ".out", "**/*.spec.ts"]
+}
