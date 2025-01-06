@@ -1,28 +1,34 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "useDefineForClassFields": true,
-    "outDir": "./dist",
-    "module": "ESNext",
-    "lib": ["ESNext", "DOM"],
-    "moduleResolution": "node",
-    "strict": false,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "noEmit": false,
-    "allowJs": true,
-    "noImplicitAny": false,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
+    "compilerOptions": {
+        "target": "ESNext",
+        "useDefineForClassFields": true,
+        "outDir": "./dist",
+        "module": "ESNext",
+        "lib": ["ESNext", "DOM"],
+        "moduleResolution": "node",
+        "strict": false,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "noEmit": false,
+        "allowJs": true,
+        "noImplicitAny": false,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
             "@/*": ["src/*"],
             "~/*": ["src/*"],
             "@pkg/cmn/*": ["../../packages/common/src/*"],
-            "@cmn/*": ["../../../../packages/common/src/*"],
-
+            "@cmn/*": ["../../../../packages/common/src/*"]
         }
-  },
-  "include": ["src", "../../packages/common/src/**/*.ts", "../../../../packages/common/src/**/*.ts", "server.ts"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+    },
+    "include": [
+        "src",
+        "../../packages/common/src/**/*.ts",
+        "../../../../packages/common/src/**/*.ts",
+        "server.ts"
+    ],
+    "exclude": ["node_modules", "**/*.spec.ts",
+"../../packages/common/src/**/*.spec.ts",
+        "../../../../packages/common/src/**/*.spec.ts",]
 }
