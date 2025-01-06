@@ -1,6 +1,6 @@
 {
     "name": "@tstreamz/app1",
-    "scripts":{
+    "scripts": {
         "dev": "tsx --watch index.ts"
     }
 }

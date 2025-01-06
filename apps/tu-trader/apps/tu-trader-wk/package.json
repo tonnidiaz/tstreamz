@@ -12,7 +12,6 @@
         "build": "rimraf dist && tsc && tsc-alias -f -fe .js && npm run cp",
         "start": "node ./dist/apps/tu-trader/apps/tu-trader-wk/server.js"
     },
-  
     "devDependencies": {
         "@types/express": "*",
         "@types/morgan": "^1.9.9",
@@ -20,7 +19,6 @@
         "copyfiles": "^2.4.1",
         "nodemon": "^3.1.9",
         "rimraf": "^6.0.1",
-        "tsc": "^2.0.4",
         "tsc-alias": "^1.8.10",
         "tsx": "^4.19.2",
         "typescript": "^5.7.2"
