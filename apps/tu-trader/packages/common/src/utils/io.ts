@@ -2,27 +2,22 @@ import { Server } from "socket.io";
 import { CorsOptions } from "cors";
 import { IRetData } from "./interfaces";
 import { tuCE, heikinAshi, parseKlines, tuPath } from "./funcs2";
-import { klinesDir, klinesRootDir, tradesRootDir, useLimitTri } from "./constants";
+import { klinesRootDir } from "./constants";
 import { existsSync } from "node:fs";
-import {
-    getSymbol,
-} from "./functions";
-import { objStrategies, parentStrategies, strategies } from "@pkg/cmn/strategies";
-import { TestOKX } from "@pkg/cmn/classes/test-platforms";
+import { getSymbol } from "./functions";
+import { parentStrategies, strategies } from "@pkg/cmn/strategies";
 import { test_platforms } from "./consts";
-import { onArbitCointest, onBacktest, onCointest } from "./functions/io-funcs";
+import { onBacktest, onCointest } from "./functions/io-funcs";
 import { onCompArbitCointest } from "./functions/io-funcs5";
 import { onCrossArbitCointest } from "./functions/io-funcs3";
 import { onCrossCompareArbitCointest } from "./functions/io-funcs4";
 import { CrossArbitData } from "@pkg/cmn/classes/tu";
 import { Bot } from "@pkg/cmn/models";
 import { crossArbitWsList, triArbitWsList } from "@pkg/cmn/classes/tu-ws";
-import { readJson } from "./bend/functions";
-import { onTriArbitCointestLimit } from "./functions/io-funcs2-limit";
 import { onTriArbitCointest } from "./functions/io-funcs2";
-import { onTriArbitCointestGrids } from "./functions/io-funcs2-grids";
 import { clearTerminal, parseDate } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
+import { readJson } from "@cmn/utils/bend/funcs";
 const corsOptions: CorsOptions = { origin: "*" };
 const io = new Server({ cors: corsOptions }); // yes, no server arg here; it's not required
 let prevData: IRetData | undefined | null;
@@ -60,14 +55,11 @@ io.on("connection", (client) => {
         "cointest",
         async (d) => (prevData = await onCointest(d, client))
     );
-    client.on(
-        "arbit-cointest",
-        async (d) => {
-            const ep = "arbit-cointest"
-            const fn = onTriArbitCointest//useLimitTri ? onTriArbitCointestLimit : onTriArbitCointest
-            prevData = await fn({...d, ep}, client)
-        }
-    );
+    client.on("arbit-cointest", async (d) => {
+        const ep = "arbit-cointest";
+        const fn = onTriArbitCointest; //useLimitTri ? onTriArbitCointestLimit : onTriArbitCointest
+        prevData = await fn({ ...d, ep }, client);
+    });
     client.on(
         "comp-arbit-cointest",
         async (d) => (prevData = await onCompArbitCointest(d, client))
@@ -93,19 +85,22 @@ io.on("connection", (client) => {
 
     client.on("/client-ws/kill", async (fd) => {
         console.log("KILLING BOT...");
-        const list = [...Object.values(triArbitWsList), ...Object.values(crossArbitWsList)]
+        const list = [
+            ...Object.values(triArbitWsList),
+            ...Object.values(crossArbitWsList),
+        ];
         for (let ws of list) {
             await ws.kill();
         }
-      
+
         console.log("KILLED");
-        client?.emit("/client-ws/kill", 'killed')
+        client?.emit("/client-ws/kill", "killed");
     });
     client.on("/client-ws/add-bot", async (fd) => {
         try {
             console.log("NEW CLIENT BOT");
             const { A, B, C, platform, type, platA, platB, pair } = fd;
-            const demo = true
+            const demo = true;
             let id = `bot-${Date.now()}`;
             if (type == "tri") {
                 const bot = new Bot({
@@ -119,20 +114,22 @@ io.on("connection", (client) => {
                 id = `${bot.id}`;
                 await triArbitWsList[platform].addBot(bot, client, demo);
             } else {
-                console.log({platA, platB, pair})
+                console.log({ platA, platB, pair });
                 const bot = new Bot({
                     name: `CROSS-${id}`,
                     platA,
                     platB,
-                    
-                    base: pair[0], ccy: pair[1],
+
+                    base: pair[0],
+                    ccy: pair[1],
                     arbit_settings: { _type: "cross" },
                 });
                 id = `${bot.id}`;
                 const data = new CrossArbitData();
-                data.pair = pair
-                data.platA = platA; data.platB = platB
-                await crossArbitWsList[platA].addBot(bot, client, demo ,data);
+                data.pair = pair;
+                data.platA = platA;
+                data.platB = platB;
+                await crossArbitWsList[platA].addBot(bot, client, demo, data);
                 await crossArbitWsList[platB].addBot(bot, client, demo, data);
             }
             console.log("CREATED");
@@ -219,8 +216,8 @@ io.on("connection", (client) => {
                 useFile && file
                     ? JSON.parse(file.toString("utf-8"))
                     : offline
-                    ? readJson(klinesPath!)
-                    : klines;
+                      ? readJson(klinesPath!)
+                      : klines;
             klines = parseKlines(klines);
 
             let df = tuCE(heikinAshi(klines));

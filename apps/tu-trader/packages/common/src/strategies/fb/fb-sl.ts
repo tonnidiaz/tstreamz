@@ -1,3 +1,4 @@
+import { toFixed } from "@cmn/utils/funcs";
 import { fillBuyOrder, fillSellOrder } from "../utils/functions";
 import {
     MAKER_FEE_RATE,
@@ -14,16 +15,14 @@ import {
 } from "@pkg/cmn/utils/constants";
 
 import {
-    findAve,
     getCoinPrecision,
     getMaxAmt,
     getMaxSz,
     getMinSz,
     getPricePrecision,
-    randomNum,
-    toFixed,
 } from "@pkg/cmn/utils/functions";
-import { IObj, ICandle} from "@pkg/cmn/utils/interfaces";
+import { ICandle} from "@pkg/cmn/utils/interfaces";
+import { IObj } from "@cmn/utils/interfaces";
 let _cnt = 0;
 
 const d = useSwindLow ? 20 : 0;

@@ -11,17 +11,8 @@ import { fileURLToPath } from "node:url";
 import { OKX_WS_URL_DEMO, OKX_WS_URL, BYBIT_WS_URL_DEMO, BYBIT_WS_URL, BINANCE_WS_URL, BITGET_WS_URL, MEXC_WS_URL } from "../consts2";
 import { randomInRange, parseDate } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
-export const ensureDirExists = (filePath: string) => {
-    var dirname = path.dirname(filePath);
-    if (nfs.existsSync(dirname)) {
-        return true;
-    }
-    ensureDirExists(dirname);
-    console.log("Creating directory");
-    nfs.mkdirSync(dirname);
-};
 
-
+ 
 export const genToken = (data: IObj, exp?: string | number | undefined) => {
     const { SECRET_KEY } = process.env;
     const _jwt: typeof jwt = (jwt as any).default
@@ -209,20 +200,7 @@ export const sendMail = async (
         return null;
     }
 };
-export const writeJson = (fp: string, data: any) => {
-    console.log("\nSaving....");
-    ensureDirExists(fp)
-    nfs.writeFileSync(fp, JSON.stringify(data));
-    console.log(fp)
-    console.log("SAVED!!\n");
-};
 
-export const existsSync = (fp: string) => nfs.existsSync(fp);
-export const readJson = (fp: string) => {
-    const data = nfs.readFileSync(fp, { encoding: "utf-8" });
-    return JSON.parse(data);
-};
- 
 export const botLog = (bot: IBot, ...data: any) => {
     console.log(`\n[${parseDate(new Date())}] [ ${bot.name} ]`, ...data, "\n");
 };

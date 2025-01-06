@@ -14,18 +14,17 @@ import {
 } from "@pkg/cmn/utils/constants";
 
 import {
-    ceil,
-    findAve,
+  
     getCoinPrecision,
     getMaxAmt,
     getMaxSz,
     getMinSz,
-    getPricePrecision,
-    randomNum,
-    toFixed,
+    getPricePrecision
 } from "@pkg/cmn/utils/functions";
-import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 import { strategy as strFbAdvanced} from "./funcs-test-fallback-advanced";
+import { toFixed, ceil } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 let _cnt = 0;
 
 const d = useSwindLow ? 20 : 0;

@@ -3,7 +3,7 @@ import { unlinkSync, writeFileSync } from "node:fs";
 import { TestPlatform } from "./test-platforms";
 import { ICoinNets, IOrderbook, ITrade } from "@pkg/cmn/utils/interfaces";
 import { MainClient } from "binance";
-import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@pkg/cmn/utils/bend/functions";
+import { readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/funcs";
 import {
     getSymbol,
 } from "@pkg/cmn/utils/functions";

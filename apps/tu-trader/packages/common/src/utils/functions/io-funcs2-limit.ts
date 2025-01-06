@@ -3,7 +3,7 @@ import ws from "ws";
 import { IRetData } from "../interfaces";
 import { ARBIT_ZERO_FEES, ARBIT_MIN_PERC } from "../constants";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
-import {   readJson, ensureDirExists } from "@pkg/cmn/utils/bend/functions";
+import { readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/funcs";
 import {
     getCoinPrecision,
     getMinAmt,
@@ -13,7 +13,7 @@ import {
    
 } from "../functions";
 import { ceil, sleep, toFixed } from "@cmn/utils/funcs";
-import { existsSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { parseKlines } from "../funcs2";
 import { test_platforms } from "../consts";
 import { IObj } from "@cmn/utils/interfaces";

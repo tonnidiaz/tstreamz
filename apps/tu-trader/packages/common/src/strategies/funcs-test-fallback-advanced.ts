@@ -1,3 +1,5 @@
+import { toFixed, ceil } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 import { fillBuyOrder, fillSellOrder } from "./utils/functions";
 import {
     MAKER_FEE_RATE,
@@ -13,17 +15,14 @@ import {
 } from "@pkg/cmn/utils/constants";
 
 import {
-    ceil,
-    findAve,
     getCoinPrecision,
     getMaxAmt,
     getMaxSz,
     getMinSz,
     getPricePrecision,
-    randomNum,
-    toFixed,
+
 } from "@pkg/cmn/utils/functions";
-import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 
 let _cnt = 0;
 

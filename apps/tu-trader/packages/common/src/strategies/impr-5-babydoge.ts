@@ -1,7 +1,7 @@
-import { ceil, toFixed } from "@pkg/cmn/utils/functions";
+import { ceil, toFixed } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 import { Backtest } from "./class";
-import { isMarket, WCS1 } from "@pkg/cmn/utils/constants";
-
+const o: IObj = {}
 export class Impr5 extends Backtest {
     inloop({ i }: { i: number }): void {
         console.log("inloop");

@@ -1,15 +1,11 @@
 import { Server, Socket } from "socket.io";
-import { ICandle, TPlatName, IRetData } from "../interfaces";
-import { tuCE, heikinAshi, parseKlines, tuPath } from "../funcs2";
+import { ICandle, IRetData } from "../interfaces";
+import { parseKlines } from "../funcs2";
 import {
     ARBIT_MIN_PERC,
     ARBIT_ZERO_FEES,
-    ETH_RATE,
-    klinesDir,
-    klinesRootDir,
-    tradesRootDir,
 } from "../constants";
-import { existsSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import {
     getPricePrecision,
     getSymbol,
@@ -17,11 +13,11 @@ import {
     getMinAmt,
     getMinSz,
 } from "../functions";
-import { objStrategies, strategies } from "@pkg/cmn/strategies";
 import { test_platforms } from "../consts";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
 
-import { readJson, ensureDirExists } from "../bend/functions";
+import { readJson, ensureDirExists, existsSync } from "@cmn/utils/bend/funcs";
+
 import { clearTerminal, toFixed, calcPerc } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
 

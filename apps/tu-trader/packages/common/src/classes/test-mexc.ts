@@ -2,12 +2,8 @@ import { getInterval } from "@pkg/cmn/utils/funcs2";
 import { TestPlatform } from "./test-platforms";
 import { writeFileSync } from "node:fs";
 import { getSymbol, } from "@pkg/cmn/utils/functions";
-import {
-    readJson,
-    writeJson,
-    ensureDirExists,
-    existsSync,
-} from "@pkg/cmn/utils/bend/functions";
+import { readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/funcs";
+
 import { ICoinNets, IOrderbook } from "@pkg/cmn/utils/interfaces";
 import { Axios } from "axios";
 import { genSignature, safeJsonParse } from "@pkg/cmn/utils/funcs3";

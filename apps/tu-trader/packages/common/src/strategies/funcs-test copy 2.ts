@@ -1,33 +1,12 @@
-import { fillBuyOrder, fillSellOrder } from "./utils/functions";
 import {
     MAKER_FEE_RATE,
-    MAX_PROFIT_PERC,
-    PUT_ASIDE,
-    SELL_AT_LAST_BUY,
-    SL,
     TAKER_FEE_RATE,
-    TP,
-    isMarket,
-    rf,
-    useAnyBuy,
     useSwindLow,
 } from "@pkg/cmn/utils/constants";
 
-import {
-    ceil,
-    findAve,
-    getCoinPrecision,
-    getMaxAmt,
-    getMaxSz,
-    getMinSz,
-    getPricePrecision,
-    randomNum,
-    toFixed,
-} from "@pkg/cmn/utils/functions";
-import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
-import { strategy as strFallbackSL } from "./funcs-test-fallback-sl";
-import { strategy as strTrExitTP } from "./fb/tr-exit-tp";
+import {  ICandle } from "@pkg/cmn/utils/interfaces";
 import { DefTester } from "./def";
+import { IObj } from "@cmn/utils/interfaces";
 
 let _cnt = 0;
 

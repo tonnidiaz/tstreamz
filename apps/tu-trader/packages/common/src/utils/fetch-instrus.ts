@@ -1,8 +1,8 @@
 import axios from "axios";
-import { writeJson } from "./bend/functions";
 import { instrusRootDir } from "./constants";
 import { timedLog, handleErrs } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
+import { writeJson } from "@cmn/utils/bend/funcs";
 
 const o: IObj = {};
 

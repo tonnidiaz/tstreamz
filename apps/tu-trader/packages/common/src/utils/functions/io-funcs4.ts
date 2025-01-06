@@ -8,11 +8,11 @@ import {
     getCoinPrecision,
     getSymbol,
 } from "../functions";
-import { writeFileSync, existsSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { test_platforms } from "../consts";
 import { TestPlatform } from "@pkg/cmn/classes/test-platforms";
 import { objStrategies } from "@pkg/cmn/strategies";
-import { ensureDirExists, writeJson, readJson } from "../bend/functions";
+import { readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/funcs";
 import { ArbitComp } from "@pkg/cmn/bots/arbitrage/classes-comp";
 import { Strategy } from "@pkg/cmn/classes/strategy";
 import { clearTerminal } from "@cmn/utils/funcs";

@@ -1,6 +1,6 @@
 import { getInterval } from "@pkg/cmn/utils/funcs2";
 import { TestPlatform } from "./test-platforms";
-import { botLog, readJson, writeJson, ensureDirExists, existsSync } from "@pkg/cmn/utils/bend/functions";
+import { readJson, writeJson, ensureDirExists, existsSync } from "@cmn/utils/bend/funcs";
 import { ApiClient, SpotApi } from "gate-api";
 import { writeFileSync } from "node:fs";
 import { parseDate } from "@cmn/utils/funcs";

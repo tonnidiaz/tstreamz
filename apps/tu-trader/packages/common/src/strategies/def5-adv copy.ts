@@ -1,4 +1,4 @@
-import { ceil } from "@pkg/cmn/utils/functions";
+import { ceil } from "@cmn/utils/funcs";
 import { Backtest } from "./class";
 
 export class Def5Adv extends Backtest {

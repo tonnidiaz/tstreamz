@@ -2,6 +2,7 @@
  * TRAILING TP
  */
 
+import { IObj } from "@cmn/utils/interfaces";
 import { fillBuyOrder, fillSellOrder } from "../utils/functions";
 import {
     MAKER_FEE_RATE,
@@ -15,16 +16,16 @@ import {
 } from "@pkg/cmn/utils/constants";
 
 import {
-    ceil,
-    findAve,
     getCoinPrecision,
     getMinSz,
     getMaxSz,
     getPricePrecision,
-    toFixed,
     getMaxAmt,
 } from "@pkg/cmn/utils/functions";
-import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
+
+
+import { ICandle } from "@pkg/cmn/utils/interfaces";
+import { ceil, toFixed } from "@cmn/utils/funcs";
 let _cnt = 0;
 
 const d = useSwindLow ? 20 : 0;

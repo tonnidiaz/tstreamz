@@ -1,6 +1,5 @@
-import { ceil, toFixed } from "@pkg/cmn/utils/functions";
+import { ceil, toFixed } from "@cmn/utils/funcs";
 import { Backtest } from "./class";
-import { isMarket, WCS1 } from "@pkg/cmn/utils/constants";
 
 export class Impr5 extends Backtest {
     inloop({ i }: { i: number }): void {

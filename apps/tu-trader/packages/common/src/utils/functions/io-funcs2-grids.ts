@@ -1,23 +1,22 @@
 import { Socket } from "socket.io";
 import ws from "ws";
-import { IObj, IRetData } from "../interfaces";
+import { IRetData } from "../interfaces";
 import { ARBIT_ZERO_FEES, ARBIT_MIN_PERC } from "../constants";
 import { getInstrus, getKlinesPath, getMakerFee, getTakerFee } from "../funcs3";
-import {   readJson, ensureDirExists } from "@pkg/cmn/utils/bend/functions";
 import {
-    calcPerc,
-    ceil,
     getCoinPrecision,
     getMinAmt,
     getMinSz,
     getPricePrecision,
     getSymbol,
-    sleep,
-    toFixed,
 } from "../functions";
 import { existsSync, writeFileSync } from "node:fs";
 import { parseKlines } from "../funcs2";
 import { test_platforms } from "../consts";
+import { toFixed, ceil } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
+import { ensureDirExists, readJson } from "@cmn/utils/bend/funcs";
+const o: IObj = {}
 
 enum startAt {
     A,

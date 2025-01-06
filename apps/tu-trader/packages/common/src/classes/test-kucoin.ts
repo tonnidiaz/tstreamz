@@ -3,7 +3,7 @@ import { SpotClient } from "kucoin-api";
 import type { CurrencyInfo, Kline } from "kucoin-api";
 import { getInterval } from "@pkg/cmn/utils/funcs2";
 import { getSymbol } from "@pkg/cmn/utils/functions";
-import { botLog, readJson, writeJson, ensureDirExists } from "@pkg/cmn/utils/bend/functions";
+import { readJson, writeJson, ensureDirExists } from "@cmn/utils/bend/funcs";
 import { existsSync, writeFileSync } from "node:fs";
 import { ICoinNets, IOrderbook, TPlatName } from "@pkg/cmn/utils/interfaces";
 import { safeJsonParse } from "@pkg/cmn/utils/funcs3";

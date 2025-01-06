@@ -14,19 +14,17 @@ import {
 } from "@pkg/cmn/utils/constants";
 
 import {
-    ceil,
-    findAve,
     getCoinPrecision,
     getMaxAmt,
     getMaxSz,
     getMinSz,
     getPricePrecision,
-    randomNum,
-    toFixed,
 } from "@pkg/cmn/utils/functions";
-import { IObj, ICandle } from "@pkg/cmn/utils/interfaces";
+import { ICandle } from "@pkg/cmn/utils/interfaces";
 import { strategy as strFallbackSL } from "./funcs-test-fallback-sl";
 import { strategy as strTrExitTP } from "./fb/tr-exit-tp";
+import { toFixed, ceil } from "@cmn/utils/funcs";
+import { IObj } from "@cmn/utils/interfaces";
 
 let _cnt = 0;
 

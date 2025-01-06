@@ -9,11 +9,11 @@ import {
     getBotPlat,
     getBotStrategy,
 } from "@pkg/cmn/utils/funcs2";
-import { ceil, toFixed } from "@pkg/cmn/utils/functions";
 import { botLog } from "@pkg/cmn/utils/bend/functions";
 import { ICandle } from "@pkg/cmn/utils/interfaces";
 import { placeTrade } from "../funcs";
 import { TuOrder } from "@pkg/cmn/models";
+import { ceil, toFixed } from "@cmn/utils/funcs";
 
 export const prodStrategy = async ({
     pos,

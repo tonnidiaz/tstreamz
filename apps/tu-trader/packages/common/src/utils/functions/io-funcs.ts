@@ -17,7 +17,7 @@ import { test_platforms } from "../consts";
 import { getInstrus } from "../funcs3";
 import { onTriArbitCointest } from "./io-funcs2";
 import { onTriArbitCointestLimit as onTriArbitCointest2 } from "./io-funcs2-limit";
-import { readJson, ensureDirExists } from "../bend/functions";
+import { readJson, writeJson, ensureDirExists, } from "@cmn/utils/bend/funcs";
 import { clearTerminal, parseDate, toFixed } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
 

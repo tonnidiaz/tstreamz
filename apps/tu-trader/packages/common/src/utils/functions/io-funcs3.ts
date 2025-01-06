@@ -13,7 +13,7 @@ import { test_platforms } from "../consts";
 import { TestPlatform } from "@pkg/cmn/classes/test-platforms";
 import { objStrategies } from "@pkg/cmn/strategies";
 import { Arbit } from "@pkg/cmn/bots/arbitrage/classes";
-import { ensureDirExists, writeJson, readJson } from "../bend/functions";
+import { readJson, writeJson, ensureDirExists } from "@cmn/utils/bend/funcs";
 import { clearTerminal } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
 // "cross-compare-arbit-cointest"
