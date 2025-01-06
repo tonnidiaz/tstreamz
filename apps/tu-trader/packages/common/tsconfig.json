@@ -1,7 +1,6 @@
 {
     "extends": "../../../../tsconfig.json",
     "compilerOptions": {
-        // "module": "commonjs",
         "declaration": true,
         "declarationMap": true,
         "noEmit": false,
@@ -13,17 +12,10 @@
         },
         "types": ["./global.d.ts"],
         "target": "ESNext",
-        // "types": ["vite/client"],
-        // From svelte
-        // "lib": [
-        // 		"esnext",
-        // 		"DOM",
-        // 		"DOM.Iterable"
-        // 	],
         "moduleResolution": "node",
-        "module": "esnext"
-        // "noEmit": true,
-        // "target": "esnext"
+        "module": "esnext",
+        "esModuleInterop": true,
+        "resolveJsonModule": true
     },
     "include": ["./src/**/*.ts", "**/*.ts", "./global.d.ts", "../../../../packages/common/**/*.ts"],
     "exclude": ["dist", "out", ".out", "**/*.spec.ts"]

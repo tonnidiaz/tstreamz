@@ -35,6 +35,7 @@ const instru = {
 }
 type Instru = typeof instru
 
-import instrus from "./okx-instrus.json" assert { type: "json" }
+
+import instrus from "./okx-instrus.json" with { type: "json" }
 export const okxInstrus: Instru[] =  instrus as any
 

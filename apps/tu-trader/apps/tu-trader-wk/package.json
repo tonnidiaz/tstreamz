@@ -9,7 +9,7 @@
         "dev": "tsx watch server.ts",
         "koyeb-logs": "koyeb services logs 66051f71-bbd0-4112-84b4-a679b355f8fb",
         "ngrok": "ngrok http 8000 --domain=arriving-repeatedly-raccoon.ngrok-free.app",
-        "build": "rimraf dist && tsc && tsc-alias -f -fe .js && npm run cp",
+        "build": "rimraf dist && tsc && tsc-alias -f && npm run cp",
         "start": "node ./dist/apps/tu-trader/apps/tu-trader-wk/server.js"
     },
     "devDependencies": {

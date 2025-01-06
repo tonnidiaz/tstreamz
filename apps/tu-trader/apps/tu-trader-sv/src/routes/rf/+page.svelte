@@ -11,6 +11,7 @@
     import type { PageData } from "../$types";
     import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
     import { page } from "$app/stores";
+    import { kucoinInstrus } from "@pkg/cmn/utils/data/instrus";
 
     let {cnt} = appStore
  
@@ -99,4 +100,6 @@ $effect(()=>{
             {/snippet}
         </UInput>
     </div>
+    <h3>Instrus</h3>
+    <div>{JSON.stringify(kucoinInstrus)}</div>
 </div>

@@ -27,7 +27,7 @@ const instru = {
     
 
     type Instru = typeof instru
-    import instrus from "./mexc-instrus.json" assert { type: "json" }
+    import instrus from "./mexc-instrus.json" with { type: "json" }
     export const mexcInstrus: Instru[] =  instrus as any
     
     
