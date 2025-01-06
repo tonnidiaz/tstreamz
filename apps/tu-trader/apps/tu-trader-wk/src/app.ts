@@ -22,7 +22,7 @@ import createError from "http-errors";
 import indexRouter from "@/routes";
 import botsRouter, { toggleMegaBot } from "@/routes/bots";
 import path from "node:path";
-import { _dirname } from "..";
+import { _dirname } from ".";
 import { connectMongo } from "@cmn/utils/bend/funcs";
 import { clearTerminal } from "@cmn/utils/funcs";
 

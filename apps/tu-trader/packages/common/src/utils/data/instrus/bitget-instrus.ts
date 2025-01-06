@@ -18,6 +18,6 @@ const instru = {
         }
         
         type Instru = typeof instru
-import instrus from "./bitget-instrus.json"
+import instrus from "./bitget-instrus.json" assert { type: "json" }
 export const bitgetInstrus: Instru[] =  instrus as any
 

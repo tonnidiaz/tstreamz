@@ -25,7 +25,7 @@ const instru = {
     
     type Instru = typeof instru
 
-    import instrus from "./bybit-instrus.json"
+    import instrus from "./bybit-instrus.json" assert { type: "json" }
     export const bybitInstrus: Instru[] =  instrus as any
     
     

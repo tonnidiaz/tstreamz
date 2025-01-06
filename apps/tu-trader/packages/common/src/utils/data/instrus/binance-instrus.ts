@@ -93,5 +93,5 @@ const instru = {
 
 type Instru = typeof instru
 
-import instrus from "./binance-instrus.json"
+import instrus from "./binance-instrus.json" assert { type: "json" }
 export const binanceInstrus: Instru[] =  instrus as any

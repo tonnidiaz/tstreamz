@@ -17,7 +17,7 @@ const instru = {
 
     type Instru = typeof instru
 
-    import instrus from "./gateio-instrus.json"
+    import instrus from "./gateio-instrus.json" assert { type: "json" }
     export const gateioInstrus: Instru[] =  instrus as any
     
     

@@ -10,10 +10,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
+    "noEmit": false,
+    "allowJs": true,
     "noImplicitAny": false,
     "skipLibCheck": true,
     "baseUrl": ".",
@@ -25,6 +23,6 @@
 
         }
   },
-  "include": ["src", "../../packages/common/src/**/*.ts", "../../../../packages/common/src/**/*.ts"],
+  "include": ["src", "../../packages/common/src/**/*.ts", "../../../../packages/common/src/**/*.ts", "server.ts"],
   "exclude": ["node_modules"]
 }

@@ -3,21 +3,31 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "main": "./dist/apps/tu-trader/apps/tu-trader-wk/server.js",
     "scripts": {
-        "dev": "nodemon -w src/server -w @repo/common/src/**/*.ts -x tsx src/server/main.ts",
-        "dev2": "tsx watch src/server/main.ts",
-        "start": "NODE_ENV=production tsx src/server/main.ts",
-        "build": "vite build"
+        "cp": "copyfiles -u 1 ./src/views/**/* ./src/public/**/* ./src/assets/**/* ./dist/src",
+        "dev": "tsx watch server.ts",
+        "koyeb-logs": "koyeb services logs 66051f71-bbd0-4112-84b4-a679b355f8fb",
+        "ngrok": "ngrok http 8000 --domain=arriving-repeatedly-raccoon.ngrok-free.app",
+        "build": "rimraf dist && tsc && tsc-alias -f -fe .js && npm run cp",
+        "start": "node ./dist/apps/tu-trader/apps/tu-trader-wk/server.js"
     },
+  
     "devDependencies": {
         "@types/express": "*",
         "@types/morgan": "^1.9.9",
         "@types/node": "*",
+        "copyfiles": "^2.4.1",
         "nodemon": "^3.1.9",
-        "vite": "^5.4.11"
+        "rimraf": "^6.0.1",
+        "tsc": "^2.0.4",
+        "tsc-alias": "^1.8.10",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2"
     },
     "dependencies": {
         "@repo/common": "1.0.0",
+        "@tu-trader/common": "^1.0.0",
         "cookie-parser": "*",
         "cors": "*",
         "dotenv": "*",
@@ -25,9 +35,6 @@
         "http-errors": "*",
         "kucoin-api": "^1.0.20",
         "morgan": "*",
-        "pug": "*",
-        "tsx": "*",
-        "typescript": "*",
-        "vite-express": "*"
+        "pug": "*"
     }
 }
