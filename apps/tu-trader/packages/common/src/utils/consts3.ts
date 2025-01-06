@@ -112,7 +112,7 @@ export const crossCoinFees: { [key: string]: { [key: string]: number } } = {
  */
 export const pairsOfInterest: {
     [key: string]: { A: string; B?: string; C: string[] }[];
-} = {
+} = true ? {} : {
     binance: [
         { A: "USDT", B: "USDC", C: ["JUP", "FET", "CKB", "YGG", "PEOPLE"] },
         { A: "USDT", B: "BTC", C: ["PEOPLE", "ONE", "NULS", "DATA", "FIDA"] },
