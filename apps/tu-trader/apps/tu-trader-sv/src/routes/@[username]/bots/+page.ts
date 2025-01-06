@@ -7,7 +7,7 @@ export const load = async ({params, url})=>{
     const {username} = params;
     try{
         console.log({username,});
-        const r = await localApi().get(url.origin + "/api/bots?user=" + username)
+        const r = await localApi.get(url.origin + "/api/bots?user=" + username)
         console.log(r.data?.length);
         return {bots: r.data, username}
     }

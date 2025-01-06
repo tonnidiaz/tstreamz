@@ -23,7 +23,7 @@ export const activateBot = async (el: any, bot: IObj, updateBot?: any) => {
         const val = !bot.active; 
         const isSuperMega = bot.arbit_settings.super_mega
         const ep = isSuperMega ? 'toggle-mega-bot' : 'edit'
-        const res = await api(true).post(`/bots/${bot._id || bot.id}/${ep}`, {
+        const res = await api.post(`/bots/${bot._id || bot.id}/${ep}`, {
             key: "active",
             val: val,
         }, {params: isSuperMega ? {side: !bot.active ? 'activate' : 'deactivate'} : undefined });
@@ -46,7 +46,7 @@ export const clearBotOrders = async (el: any, bot: IObj, updateBot?: any) => {
     try {
         console.log(el, bot);
         el.innerHTML = `<span class="loading loading-dots loading-sm m-auto"></span>`;
-        const res = await localApi(true).post(`/bots/${bot._id}/clear-orders`, {});
+        const res = await localApi.post(`/bots/${bot._id}/clear-orders`, {});
 
         if (updateBot) updateBot(res.data);
         el.innerHTML = defHtml
@@ -64,7 +64,7 @@ export const delBot = async (el: any, bot: IObj, updateBot?: any) => {
     try {
         console.log(el, bot);
         el.innerHTML = `<span class="loading loading-dots loading-sm m-auto"></span>`;
-        const res = await localApi(true).post(`/bots/${bot._id}/delete`, {});
+        const res = await localApi.post(`/bots/${bot._id}/delete`, {});
 
         if (updateBot) updateBot(res.data);
         el.innerHTML = defHtml

@@ -8,7 +8,7 @@ export const load = async ({params, url}) =>{
         
         const root = url.origin
         const {id} = params
-         const r = await localApi().get(root + "/api/bots/" + id);
+         const r = await localApi.get(root + "/api/bots/" + id);
          return {bot: r.data}
     } catch (err) {
         handleErrs(err)
