@@ -267,6 +267,8 @@ export class TuMegaWs {
                         fn(channel1 + symbolC, this.plat);
                 }
             }
+
+            await sleep(3000)
         }
         return this.bot.id
     }
