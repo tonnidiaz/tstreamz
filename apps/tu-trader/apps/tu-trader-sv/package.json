@@ -3,8 +3,9 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev --port 3000",
-		"build": "vite build",
+        "preall": "tsx tool.ts",
+		"dev": "npm run preall && vite dev --port 3000",
+		"build": "npm run preall && vite build",
 		"preview": "vite preview  --port 3000 --host 0.0.0.0",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"

@@ -1,6 +1,6 @@
-@import "colors3";
-@import "colors";
-@import "tw-vars";
+@use "colors3";
+@use "colors";
+@use "tw-vars";
 .fmc {
     width: 150px;
     height: 194px;
@@ -18,7 +18,7 @@
     }
 }
 .movie-card {
-    border: $card-border;
+    border: colors3.$card-border;
     box-shadow: 0 2px 5px #000;
     // margin: 20px 5px;
     background-position: center;
@@ -72,12 +72,12 @@
 .video-frame {
     height: 60vh;
     margin-top: 0px;
-    background-color: $color-card;
-    box-shadow: 0 1px 5px $color-card;
+    background-color: colors3.$color-card;
+    box-shadow: 0 1px 5px colors3.$color-card;
 
     
     iframe {
-        background-color: $color-card;
+        background-color: colors3.$color-card;
         //width: 70%;
         padding: 5px;
         height: 100%;
@@ -199,7 +199,7 @@
     z-index: 999999;
     .sch {
         box-shadow: 0 1px 5px #000000;
-        background-color: $color-card;
+        background-color: colors3.$color-card;
         padding: 30px 0px 30px 30px !important;
     }
     display: none;
@@ -251,14 +251,14 @@ img {
 .wp-nowrap{overflow: hidden;}
 
 .color-yellow {
-    color: $color-yellow;
+    color: colors3.$color-yellow;
 }
 
 
 
 .sandes, .tu-card {
-    background-color: $color-card ;//#1e1e1e;
-    border: $card-border;
+    background-color: colors3.$color-card ;//#1e1e1e;
+    border: colors3.$card-border;
 }
 
 .dflex {
@@ -282,7 +282,7 @@ img {
     color: white;
     font-size: 2.5rem;
 }
-@media screen and (max-width: $small-width) {
+@media screen and (max-width: tw-vars.$small-width) {
     .title{
         font-size: 28px;
     }

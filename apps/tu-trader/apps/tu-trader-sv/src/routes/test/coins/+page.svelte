@@ -207,7 +207,7 @@
             };
             //msg.value = {msg: "GETTING KLINES..."};
             socket?.emit("cointest", fd);
-            /* const ret = await api().post('/cointest', fd)
+            /* const ret = await api.post('/cointest', fd)
         
         if (ret.data.err){
             msg.value = { msg: ret.data.err, err: true };

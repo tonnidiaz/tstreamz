@@ -1,16 +1,20 @@
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
+
+    import { localApi } from "@/lib/api";
+    import { SITE } from "@/lib/constants";
+    import { setUser } from "@/stores/user.svelte";
+    import type { IObj } from "@cmn/utils/interfaces";
+    import { page } from "$app/stores";
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
     import UForm from "@repo/ui/components/UForm.svelte";
     import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
     import UInput from "@repo/ui/components/UInput.svelte";
-    import { localApi } from "@/lib/api";
-    import { STORAGE_KEYS, SITE } from "@/lib/constants";
-    import { setUser } from "@/stores/user.svelte";
-    import type { IObj } from "@cmn/utils/interfaces";
-    import { page } from "$app/stores";
-    import { handleErrs, isTuError } from "@cmn/utils/funcs";
+    import { handleErrs } from "@cmn/utils/funcs";
+    import TuPassField from "@repo/ui/components/TuPassField.svelte";
+    import { isTuError } from "@cmn/utils/funcs2";
+    import { STORAGE_KEYS } from "@repo/ui/lib/consts";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);
@@ -22,84 +26,61 @@
     let formState = $state<IObj>({});
 
     const submitForm = async (e: any) => {
+        e.preventDefault()
         try {
             setErr("");
-            setBtnDisabled(true);
 
             const formData = formState;
-            console.log(formData);
-            const res = await localApi().post("/auth/login", formData);
-            console.log(res.data);
+            const res = await localApi.post("/auth/login", formData);
             setUser(res.data.user);
             localStorage.setItem(STORAGE_KEYS.authTkn, res.data.token);
-            setTimeout(() => {
-                setBtnDisabled(false);
-            }, 1500);
-
+    
             const red = $page.url.searchParams.get("red");
             location.href = red || "/";
         } catch (e: any) {
             handleErrs(e);
-            setBtnDisabled(false);
             const _err = isTuError(e) || "Something went wrong";
             setErr(_err);
         }
     };
 </script>
 
-<div>
-    <TMeta title={`Login - ${SITE}`} />
-    <div class="flex items-center justify-center w-100p h-80vh">
-        <UForm state={formState} onsubmit={submitForm}>
+<div class="flex items-center justify-center h-100p w-100p">
+    <TMeta title={`Login - ${SITE}`} desc="Signin to your account."/>
+    <div >
+        <UForm state={formState} onsubmit={submitForm} autocomplete="on">
             <fieldset class="formset m-auto border-card border-1 p-4 pb-4">
                 <legend class="text-primary text-xl text-cente"
                     ><TuLink to="/">{SITE}</TuLink></legend
                 >
-                <h2 class="text-cente my-3 fw-6">Login</h2>
-                <div class="mt-1 flex flex-col gap-2">
+                <h2 class="text-cente mb-2 text-center fw-6">Login to your account</h2>
+                <div class="w-100p flex flex-col gap-2">
                     <UFormGroup label="Email/Username">
                         <UInput
                             placeholder="Enter email or username..."
                             required
+                            name="username"
                             bind:value={formState.username}
                         />
                     </UFormGroup>
                     <UFormGroup label="Password">
-                        <UInput
-                            placeholder="Enter password..."
-                            type={passType}
-                            required
-                            bind:value={formState.password}
-                        >
-                            {#snippet trailing()}
-                                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                                <!-- svelte-ignore a11y_click_events_have_key_events -->
-                                <span
-                                    class="pointer"
-                                    onclick={() => {
-                                        console.log("object");
-                                        passType == "text"
-                                            ? setPassType("password")
-                                            : setPassType("text");
-                                    }}
-                                >
-                                    {#if passType == "password"}
-                                        <i class="fi fi-rr-eye"></i>
-                                    {:else}
-                                        <i class="fi fi-rr-eye-crossed"></i>
-                                    {/if}
-                                </span>
-                            {/snippet}
-                        </UInput>
+                        <TuPassField autocomplete="current-password" name="password" showValidation={false} required bind:value={formState.password} placeholder="Enter password..."/>
                     </UFormGroup>
                     {#if err.length}
                         <div
                             class="ml-2 text-whit fs-12 text-center text-error"
                         >
-                            <p>{err?.replace("tu:", "")}</p>
+                            <p>{err?.replace("tuned:", "")}</p>
                         </div>
                     {/if}
-
+                    <div class="fs-12 mt-1 ml-1 text-center">
+                        <TuLink
+                            to="/auth/reset-password"
+                            class="text-primary text-center"
+                        >
+                            Forgot password?
+                        </TuLink>
+                    </div>
                     <UFormGroup class="mt-1">
                         <UButton
                             disabled={!formState.username?.length ||

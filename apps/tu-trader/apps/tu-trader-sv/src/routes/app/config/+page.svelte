@@ -56,7 +56,7 @@ async function delBooks (e: any){
         const conf = confirm("You sure u wan delete all books??")
         if (!conf) return console.log("AYT")
         console.log("DELETING...")
-        const r = await localApi(true).post("/books/del")
+        const r = await localApi.post("/books/del")
         console.log("BOOKS DELETED")
     } catch (err) {
         console.log(err)
@@ -65,7 +65,7 @@ async function delBooks (e: any){
 async function handleSubmit(e: any) {
     try {
         let fd = { ...formState };
-        const r = await api(true).post("/app/config", fd);
+        const r = await api.post("/app/config", fd);
         console.log(r.data);
         alert('Config saved!!')
     } catch (err) {
@@ -75,7 +75,7 @@ async function handleSubmit(e: any) {
 onMount(async () => {
     //GET APP CONFIG
     try {
-        const r = await localApi().get("/app/config");
+        const r = await localApi.get("/app/config");
         formState = r.data;
     } catch (error) {
         console.log(error);

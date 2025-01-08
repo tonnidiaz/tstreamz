@@ -68,7 +68,7 @@
             const url =
                 mode == "Create" ? "/bots/create" : `/bots/${bot!.id}/edit`;
             const _api = mode == "Create" ? localApi : api
-            const res = await _api(true).post(url, data);
+            const res = await _api.post(url, data);
             onDone?.(res.data);
             btnLoading = false;
             open = false;

@@ -55,7 +55,7 @@
             }
             if (platA) {
                 
-                const res = await localApi().get("/rf/nets", {
+                const res = await localApi.get("/rf/nets", {
                     params: {
                         plat: platA,
                         offline,
@@ -66,7 +66,7 @@
             }
             if (platB) {
                 
-                const res = await localApi().get("/rf/nets", {
+                const res = await localApi.get("/rf/nets", {
                     params: {
                         plat: platB,
                         offline,

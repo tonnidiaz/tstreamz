@@ -1,7 +1,7 @@
-@import "@flaticon/flaticon-uicons/css/all/all";
-@import "./colors";
-@import "./vars";
-@import "./classes";
+// @import "@flaticon/flaticon-uicons/css/all/all";
+@use "colors";
+@use "vars";
+@use "classes";
 
 
 @font-face {
@@ -70,18 +70,18 @@ main {
 
 .tu-app {
     position: relative;
-    top: calc($sidenav-w);
+    top: calc(colors.$sidenav-w);
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    height: calc(100vh - $sidenav-w);
-    max-height: calc(100vh - $sidenav-w);
+    height: calc(100vh - colors.$sidenav-w);
+    max-height: calc(100vh - colors.$sidenav-w);
 }
 
 .navbar {
     position: fixed;
     border-radius: 0px;
-    z-index: $bottombar-z;
+    z-index: vars.$bottombar-z;
     border-bottom-width: 1px;
     
     i{
@@ -92,15 +92,15 @@ main {
 
 
 .shadow {
-    box-shadow: $shadow;
+    box-shadow: vars.$shadow;
 }
 .sidebar {
-    width: $sidenav-w;
+    width: colors.$sidenav-w;
     border-radius: 0;
     padding: 1.2rem 4px;
     border-right-width: 1px;
-    z-index: $bottombar-z;
-    height: calc(100vh - $sidenav-w);
+    z-index: vars.$bottombar-z;
+    height: calc(100vh - colors.$sidenav-w);
     i{
         font-size: 20px;
     }
@@ -130,7 +130,7 @@ fieldset{
         font-size: 20px;
     }
     &.fieldset{
-        border-color: $on-bg-tb;
+        border-color: colors.$on-bg-tb;
         border-width: 1px;
          padding: 20px;
          &:not(.no-el){box-shadow: 0px 1px 2px rgb(14, 14, 14);}
@@ -144,7 +144,7 @@ a.link{
 }
 
 .sidebar, .navbar, input, textarea, main{
-background-color: $bg-color;
+background-color: colors.$bg-color;
 }  
 
 input, textarea{

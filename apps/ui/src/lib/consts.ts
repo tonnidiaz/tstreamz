@@ -1,0 +1,1 @@
+export const STORAGE_KEYS = { authTkn: "TB_AUTH_TOKEN" };

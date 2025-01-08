@@ -107,7 +107,7 @@
                     await sleep(500);
                     try {
                         console.log('Getting orders...');
-                        const res = await localApi().get("/orders", {
+                        const res = await localApi.get("/orders", {
                             params: {
                                 limit,
                                 bot: __bot._id,

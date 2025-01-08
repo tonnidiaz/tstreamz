@@ -1,12 +1,13 @@
-import { User } from "@pkg/cmn/models";
-import type { RequestHandler } from "./$types";
+
 import  bcrypt from 'bcrypt'
 import { json } from "@sveltejs/kit";
+import { handleErrs, isEmail } from "@cmn/utils/funcs";
 import { tuErr } from "@/lib/server/funcs";
-import { isEmail } from "@cmn/utils/funcs";
+import { User } from "@pkg/cmn/models";
+
 import { genToken } from "@cmn/utils/bend/funcs";
 
-export const POST: RequestHandler = async ({request: req, locals})=>{
+export const POST = async ({request: req, locals})=>{
         const { username, password } = await req.json();
         if (locals.user && !password) {
             return json({ user: { ...(locals.user).toJSON() } });
@@ -27,3 +28,4 @@ export const POST: RequestHandler = async ({request: req, locals})=>{
         }
     
 }
+

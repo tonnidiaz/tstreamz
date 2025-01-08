@@ -52,7 +52,7 @@
                     netsA: undefined,
                     netA: undefined,
                 };
-                const res = await localApi().get("/rf/nets", {
+                const res = await localApi.get("/rf/nets", {
                     params: {
                         plat: platA,
                         offline,
@@ -69,7 +69,7 @@
                     netsB: undefined,
                     netB: undefined,
                 };
-                const res = await localApi().get("/rf/nets", {
+                const res = await localApi.get("/rf/nets", {
                     params: {
                         plat: platB,
                         offline,
@@ -120,7 +120,7 @@
 
     const getAddresses = async (username: string) => {
         try {
-            const r = await localApi(true).get(`/user/${username}/addresses`);
+            const r = await localApi.get(`/user/${username}/addresses`);
             addresses = r.data;
         } catch (err) {
             handleErrs(err);
@@ -146,7 +146,7 @@
 
     async function submitDepAddr(e: any) {
         try {
-            const r = await localApi(true).post("/user/address/add", {
+            const r = await localApi.post("/user/address/add", {
                 ...addrForm,
                 coin: mstate._coinA,
                 chain: mstate.chainA,

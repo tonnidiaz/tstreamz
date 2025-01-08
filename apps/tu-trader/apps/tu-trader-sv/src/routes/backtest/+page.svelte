@@ -475,7 +475,7 @@ const handleSubmit = async (e: any) => {
         };
         //msg = {msg: "GETTING KLINES..."};
         socket?.emit("backtest", fd);
-        /* const ret = await api().post('/backtest', fd)
+        /* const ret = await api.post('/backtest', fd)
         
         if (ret.data.err){
             msg = { msg: ret.data.err, err: true };

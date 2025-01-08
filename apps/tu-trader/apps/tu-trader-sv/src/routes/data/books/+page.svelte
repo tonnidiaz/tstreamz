@@ -25,7 +25,7 @@ let booksCount = $state(0),
     plats = $state<{ name: string; pairs: string[][] }[]>([]);
 
 async function getBookCount() {
-    const res = await localApi().get("/books?count=true");
+    const res = await localApi.get("/books?count=true");
     // plats.value = res.data.plats;
     booksCount = res.data.total;
 }
@@ -36,7 +36,7 @@ const handleSubmit = async (e: any) => {
         console.log({ fd });
         if (!fd.cpair && !fd.pair)
             return alert("ERR: Pair or custom pair not provided!!");
-        const res = await localApi().get(`/books/${fd.platform}`, {
+        const res = await localApi.get(`/books/${fd.platform}`, {
             params: {
                 pair: fd.cpair
                     ? fd.cpair.split("/").join("-")

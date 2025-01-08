@@ -16,7 +16,7 @@ const config = {
         adapter: adapter(),
         alias: {
             "@cmn/*": root2 + "/packages/common/src/*",
-            "@repo/ui/*": root2 + "/apps/ui/src/*",
+            "@repo/ui/*": root2 + "/apps/ui/src/*", 
             "@/*": "src/*",
             "@server/*": "src/lib/server/*",
         },

@@ -19,10 +19,10 @@
 		],
 		"moduleResolution": "bundler",
 		"module": "esnext",
-		// "noEmit": true,
+		// "noEmit": true, 
 		"target": "esnext"
   },
-  "include": ["./src/**/*.ts", "**/*.ts", "../../packages/common/src/**/*.ts"],
+  "include": ["src", "**/*.ts", "../../packages/common/src/**/*.ts", "svelte.d.ts"],
   "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
 }
  

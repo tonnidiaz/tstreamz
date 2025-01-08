@@ -1,9 +1,17 @@
-
-import { binanceInstrus, bitgetInstrus, bybitInstrus, gateioInstrus, kucoinInstrus, mexcInstrus, okxInstrus } from "@pkg/cmn/utils/data/instrus";
+import { dev } from "$app/environment";
+import {
+    binanceInstrus,
+    bitgetInstrus,
+    bybitInstrus,
+    gateioInstrus,
+    kucoinInstrus,
+    mexcInstrus,
+    okxInstrus,
+} from "@pkg/cmn/utils/data/instrus";
 import { Socket, io } from "socket.io-client";
 
 export const SITE = "TuTrader";
-const __DEV__ = process.env.NODE_ENV == "development";
+const __DEV__ = dev;
 
 export { __DEV__ };
 
@@ -110,9 +118,9 @@ export const BEND_URL = __DEV__
     : heroku
       ? "https://tu-trader-3996d65ded90.herokuapp.com"
       : koyeb
-        ? "tu-trader.koyeb.app"
+        ? "https://tu-trader-wk.onrender.com"
         : "https://tu-trader-mef0.onrender.com";
-export const API_URL = "/api"
+export const API_URL = "/api";
 
-    export const STORAGE_KEYS = { authTkn: "TB_AUTH_TOKEN" };
-    export const SITE_SLOGAN = "A Tunedbass site";
+
+export const SITE_SLOGAN = "A Tunedbass site";

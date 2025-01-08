@@ -70,7 +70,7 @@
         console.log("Submitting...");
         try {
             svCode = ("");
-            const res = await localApi().post("/convert/vue-to-sv", {
+            const res = await localApi.post("/convert/vue-to-sv", {
                 code: vueCode,full
             });
             svCode = (res.data);
