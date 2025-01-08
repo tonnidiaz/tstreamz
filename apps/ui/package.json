@@ -2,7 +2,6 @@
     "name": "@repo/ui",
     "type": "module",
     "scripts": {
-        "build": "vite build"
     },
     "devDependencies": {
         "@sveltejs/adapter-auto": "^3.3.1",
