@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.7.7",
+    "bcrypt": "^5.1.1",
     "bignumber.js": "*",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "rimraf": "*",
+    "typescript": "^5.7.3",
     "vite": "^5.4.11"
   }
 }
