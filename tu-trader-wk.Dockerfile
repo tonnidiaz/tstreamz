@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY ./package.json ./package-lock.json ./
 
 # Install Turborepo CLI globally
-RUN npm install turbo -g
+RUN npm install turbo rimraf -g
 
 # Copy the entire monorepo (adjust if you want to copy specific files/folders)
 COPY . .
