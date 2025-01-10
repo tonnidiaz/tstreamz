@@ -1,39 +1,34 @@
-# Base image
+# Stage 1: Build the application
 FROM node:18 AS builder
 
-# Set working directory
-WORKDIR /app
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Copy the root package.json and lock file (to install dependencies for the entire monorepo)
-COPY ./package.json ./package-lock.json* ./
+# Copy package.json and package-lock.json for the monorepo
+COPY ./package.json ./package-lock.json ./
 
-# Copy workspace configuration (if using pnpm or yarn workspaces)
-COPY ./turbo.json* ./
+# Install Turborepo CLI globally
+RUN npm install turbo -g
 
-# Install dependencies (for the entire monorepo)
-RUN npm install -w=tu-trader-wk
-
-# Copy the entire monorepo
+# Copy the entire monorepo (adjust if you want to copy specific files/folders)
 COPY . .
 
-# Navigate to the app directory and build the app
-WORKDIR /app/apps/my-app
-RUN npm run build # or 'yarn build' or 'pnpm build'
+# Build the app using Turborepo
+RUN turbo run build --filter=tu-trader-wk
 
-# -- Production image --
-FROM node:18 AS runner
+# Stage 2: Create a smaller production image
+FROM node:18-slim AS runner
 
-# Set working directory
-WORKDIR /app
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Copy only the necessary files from the build stage
-COPY --from=builder /app/apps/my-app /app
+# Copy only the built application and node_modules for the Express app
+COPY --from=builder /usr/src/app/apps/tu-trader/apps/tu-trader-wk ./apps/tu-trader/apps/tu-trader-wk
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/package.json ./package.json
 
-# Install only production dependencies
-RUN npm install --production # or 'yarn install --production' or 'pnpm install --prod'
+# Expose the port your Express app listens on
+EXPOSE 8000
 
-# Expose the app port
-EXPOSE 3000
-
-# Command to run the app
-CMD ["npm", "start"] # Replace with your app's start command
+# Set the default command to start the app
+CMD ["npm", "run", "start", "-w", "tu-trader-wk"]
