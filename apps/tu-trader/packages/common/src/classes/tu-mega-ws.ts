@@ -293,9 +293,9 @@ export class TuMegaWs {
                     this.plat == "mexc"
                 ) {
                     if (act == "sub" || unsubA)
-                        fn(channel1 + symbolA, this.plat);
+                        {fn(channel1 + symbolA, this.plat);};
                     if (act == "sub" || unsubB)
-                        fn(channel1 + symbolB, this.plat);
+                        {fn(channel1 + symbolB, this.plat);};
                     if (act == "sub" || unsubC)
                         fn(channel1 + symbolC, this.plat);
                 }

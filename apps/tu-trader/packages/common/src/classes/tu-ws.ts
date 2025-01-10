@@ -6,6 +6,7 @@ import ws, { ClientOptions } from "ws";
 import { WS } from "@pkg/cmn/utils/bend/consts";
 import { timedLog, sleep } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
+import { DEV } from "@cmn/utils/bend/consts";
 
 const crossList: IObj = {};
 const triList: IObj = {};
@@ -45,9 +46,10 @@ export const initArbitWs = async () => {
 
 
 export class TuWs {
-    channels: { channel: string; data: IObj; plat: string }[] = [];
+    channels: { name: string; data: IObj; plat: TPlatName }[] = [];
     plat: TPlatName;
     lastSub: number;
+    lastUnSub: number;
     ws: ws.WebSocket;
 
     constructor(
@@ -61,6 +63,7 @@ export class TuWs {
         this.ws = new WS(address);
 
         this.lastSub = Date.now();
+        this.lastUnSub = Date.now();
     }
 
     on(event: string, cb: (...data: any[]) => any) {
@@ -83,7 +86,7 @@ export class TuWs {
         if (plat == "mexc") channel += "@5";
         else if (plat == "binance")
             channel = channel.replace("ch", "").toLowerCase() + "@depth";
-
+        if (DEV)
         console.log(
             "\n",
             { channel, state: readyStateMap[this.ws.readyState] },
@@ -104,6 +107,12 @@ export class TuWs {
             //     }, 1000);
             // });
 
+            return
+        }
+        // Do not subscribe if already subscribed to channel
+        
+        if (-1 != this.channels.findIndex(el=> el.name == channel && el.plat == plat && JSON.stringify(el.data) == JSON.stringify(data))){
+            this._log(`Skipping ${channel}...`)
             return
         }
 
@@ -137,13 +146,18 @@ export class TuWs {
         }
         this.ws.send(JSON.stringify(json));
         this.lastSub = Date.now();
+        this.channels.push({name: channel, plat, data})
     }
 
-    unsub(channel: string, plat: TPlatName, data: IObj = {}) {
+    async unsub(channel: string, plat: TPlatName, data: IObj = {}) {
         if (plat == "mexc") channel += "@5";
         else if (plat == "binance")
             channel = channel.replace("ch", "").toLowerCase() + "@depth";
         console.log(`\nUNSUSCRIBING FROM ${channel}`, data, "\n");
+
+        if (Date.now() - this.lastUnSub < 3000) {
+            await sleep(3000);
+        }
 
         let json: IObj = {
             op: "unsubscribe",
@@ -170,6 +184,7 @@ export class TuWs {
                 break;
         }
         this.ws.send(JSON.stringify(json));
+        this.lastUnSub = Date.now()
     }
     _log(...args: any) {
         timedLog(`[WS][${this.plat}] `, ...args);
