@@ -195,6 +195,11 @@ export class TuMegaWs {
          */
         this._subUnsubLoopId = Date.now()
         if (!this.subUnsubLoopId) this.subUnsubLoopId = this._subUnsubLoopId
+
+        if (act == "unsub") {
+            this.ws.ws.close()
+            return
+        };
         // First check if pair [B,A] && [C, B] exist
         const { A, B } = this.bot;
         const pairs = getInstrus(this.plat).sort();
@@ -266,7 +271,7 @@ export class TuMegaWs {
             //    return;
             // }
 
-            if (act == "unsub") this.log({ unsubA, unsubB, unsubC });
+            
 
             if (channel1 && fn) {
                 // Orderbook channel, also returns ask n bid pxs
