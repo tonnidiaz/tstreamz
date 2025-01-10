@@ -1,0 +1,2794 @@
+GET /clear-terminal 304 3.375 ms - -
+IO: pqbNELgYe6ZsbgkvAAAB CONNECTED
+{ ep: undefined }
+
+[BOT_ID] 677fb3f253a14ebc8ca8217c
+ { superMegaBots: 0 }
+Adding new MegaBot...
+
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  
+SUPER CONSTRUCTOR
+ 
+
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  subUnsub() 
+
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  InitWs()... 
+
+{ plat: 'okx', address: 'wss://wspap.okx.com:8443/ws/v5/public' }
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  INIT WS: NOT OPEN 
+
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  SUBING... 
+
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  [1] [SUB] 1INCH,USDC { suId: 1736501615320, _suId: 1736501615320 } 
+
+
+[2025-01-10 11:33:35+02:00] [ Security ] [WS][okx]  [1] Adding 1INCH,USDC 1INCH,USDT { suId: 1736501615320, _suId: 1736501615320 } 
+
+
+ { channel: 'books5', state: 'CONNECTING' } 
+
+
+[2025-01-10 11:33:35+02:00] [WS][okx]  NOT OPEN: ADDING CHANNELS INSTEAD
+
+ { channel: 'books5', state: 'CONNECTING' } 
+
+
+[2025-01-10 11:33:35+02:00] [WS][okx]  NOT OPEN: ADDING CHANNELS INSTEAD
+
+ { channel: 'books5', state: 'CONNECTING' } 
+
+
+[2025-01-10 11:33:35+02:00] [WS][okx]  NOT OPEN: ADDING CHANNELS INSTEAD
+POST /bots/677fb3f253a14ebc8ca8217c/toggle-mega-bot?side=activate 200 136.140 ms - 925
+
+[2025-01-10 11:33:37+02:00] [ Security ] [WS][okx]  ON OPEN 
+
+
+[2025-01-10 11:33:37+02:00] [ Security ] [WS][okx]  Sarabacribing... 
+
+
+[2025-01-10 11:33:37+02:00] [ Security ] [WS][okx]  subUnsub() 
+
+
+[2025-01-10 11:33:37+02:00] [ Security ] [WS][okx]  SUBING... 
+
+
+[2025-01-10 11:33:37+02:00] [ Security ] [WS][okx]  [1] [SUB] 1INCH,USDC { suId: 1736501615320, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:37+02:00] [ Security ] [WS][okx]  [1] Adding 1INCH,USDC 1INCH,USDT { suId: 1736501615320, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:38+02:00] [ Security ] [WS][okx]  [2] [SUB] AAVE,USDC { suId: 1736501615320, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:38+02:00] [ Security ] [WS][okx]  [2] Loop cancelled 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  [2] [SUB] AAVE,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  [2] Adding AAVE,USDC AAVE,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: '1INCH-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"1INCH-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: '1INCH-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"1INCH-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: true,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] 
+TickerHandler Tri { plat: 'okx', A: 'USDC,USDT', B: '1INCH,USDC', C: '1INCH,USDT' } 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [ 'USDC', 'USDT' ] [ '1INCH', 'USDC' ] [ '1INCH', 'USDT' ] 
+ { pxA: 1.0001, pxB: 0.3878, pxC: 0.3855 } 
+ { fpxA: 1, fpxB: 0.3852, fpxC: 0.3859 } 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] { min_perc: 1, _perc: '-0.6%', _fperc: '-0.18%', flipped: true } 
+
+
+[2025-01-10 11:33:40+02:00] [ Security ] [WS][okx]  Hold... 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  [3] [SUB] ACA,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  [3] Adding ACA,USDC ACA,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'AAVE-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"AAVE-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'AAVE-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:43+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"AAVE-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:45+02:00] [ Security ] [WS][okx]  Go on! 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  [4] [SUB] ACE,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  [4] Adding ACE,USDC ACE,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:46+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:33:47+02:00] [ Security ] [WS][okx]  Resuming 2 mini bots... 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  [5] [SUB] ADA,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  [5] Adding ADA,USDC ADA,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ACE-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ACE-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ACE-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ACE-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:33:49+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  [6] [SUB] AERGO,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  [6] Adding AERGO,USDC AERGO,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ADA-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ADA-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ADA-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ADA-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:33:52+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  [7] [SUB] AEVO,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  [7] Adding AEVO,USDC AEVO,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:55+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  [8] [SUB] AGLD,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  [8] Adding AGLD,USDC AGLD,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'AEVO-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"AEVO-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'AEVO-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"AEVO-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:33:58+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+{ min: 34, tasks: [] }
+
+[2025-01-10 11:34:00+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: true,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:00+02:00] [ Security ] 
+TickerHandler Tri { plat: 'okx', A: 'USDC,USDT', B: '1INCH,USDC', C: '1INCH,USDT' } 
+
+
+[2025-01-10 11:34:00+02:00] [ Security ] [ 'USDC', 'USDT' ] [ '1INCH', 'USDC' ] [ '1INCH', 'USDT' ] 
+ { pxA: 1.0001, pxB: 0.3878, pxC: 0.3855 } 
+ { fpxA: 1, fpxB: 0.3852, fpxC: 0.3859 } 
+
+
+[2025-01-10 11:34:00+02:00] [ Security ] { min_perc: 1, _perc: '-0.6%', _fperc: '-0.18%', flipped: true } 
+
+
+[2025-01-10 11:34:00+02:00] [ Security ] [WS][okx]  Hold... 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  [9] [SUB] ALCX,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  [9] Adding ALCX,USDC ALCX,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:01+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  [10] [SUB] ALGO,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  [10] Adding ALGO,USDC ALGO,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:04+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:05+02:00] [ Security ] [WS][okx]  Go on! 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  Resuming 2 mini bots... 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: true,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] 
+TickerHandler Tri { plat: 'okx', A: 'USDC,USDT', B: '1INCH,USDC', C: '1INCH,USDT' } 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [ 'USDC', 'USDT' ] [ '1INCH', 'USDC' ] [ '1INCH', 'USDT' ] 
+ { pxA: 1.0001, pxB: 0.3878, pxC: 0.3855 } 
+ { fpxA: 1, fpxB: 0.3852, fpxC: 0.3859 } 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] { min_perc: 1, _perc: '-0.6%', _fperc: '-0.18%', flipped: true } 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  Hold... 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  [11] [SUB] ALPHA,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  [11] Adding ALPHA,USDC ALPHA,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ALGO-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ALGO-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ALGO-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ALGO-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:07+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  [12] [SUB] APE,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  [12] Adding APE,USDC APE,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ALPHA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ALPHA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ALPHA-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ALPHA-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:10+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:12+02:00] [ Security ] [WS][okx]  Go on! 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  [13] [SUB] API3,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  [13] Adding API3,USDC API3,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:APE-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:APE-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:APE-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:13+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:APE-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:14+02:00] [ Security ] [WS][okx]  Resuming 2 mini bots... 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  [14] [SUB] APT,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  [14] Adding APT,USDC APT,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:API3-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:API3-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'API3-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"API3-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:16+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  [15] [SUB] AR,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  [15] Adding AR,USDC AR,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:APT-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:APT-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'APT-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"APT-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:19+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  [16] [SUB] ARB,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  [16] Adding ARB,USDC ARB,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AR-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AR-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AR-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:22+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AR-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  [17] [SUB] ARG,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  [17] Adding ARG,USDC ARG,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ARB-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ARB-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ARB-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ARB-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:25+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  [18] [SUB] ARKM,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  [18] Adding ARKM,USDC ARKM,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:28+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  [19] [SUB] ARTY,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  [19] Adding ARTY,USDC ARTY,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ARKM-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ARKM-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ARKM-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ARKM-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:31+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  [20] [SUB] ASTR,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  [20] Adding ASTR,USDC ASTR,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:34+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  [21] [SUB] ATH,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  [21] Adding ATH,USDC ATH,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ASTR-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ASTR-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ASTR-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:37+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ASTR-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  [22] [SUB] ATOM,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  [22] Adding ATOM,USDC ATOM,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ATH-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ATH-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ATH-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ATH-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:40+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  [23] [SUB] AUCTION,USDC { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  [23] Adding AUCTION,USDC AUCTION,USDT { suId: 1736501617132, _suId: 1736501617132 } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+ { channel: 'books5', state: 'OPEN' } 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ATOM-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ATOM-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'ATOM-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"ATOM-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[2025-01-10 11:34:43+02:00] [ Security ] [WS][okx]  {
+  minBot: 'minibot-USDT-USDC-1INCH',
+  bookCond: false,
+  bookFieldsCond: { px: 0.3859, amt: 171266.946175, cnt: 1 }
+} 
+
+
+[BOT_ID] 677fb3f253a14ebc8ca8217c
+ { superMegaBots: 1 }
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  subUnsub() 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  UNSUBING... 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  [1] [UNSUB] 1INCH,USDC { suId: 1736501617132, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  [1] Removing 1INCH,USDC 1INCH,USDT { suId: 1736501617132, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: '1INCH-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: '1INCH-USDT', instType: 'SPOT' } 
+
+POST /bots/677fb3f253a14ebc8ca8217c/toggle-mega-bot?side=deactivate 200 24.114 ms - 926
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: '1INCH-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"1INCH-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: '1INCH-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:44+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"1INCH-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  [24] [SUB] AVAX,USDC { suId: 1736501617132, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  [24] Loop cancelled 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'AUCTION-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"AUCTION-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'subscribe',
+    arg: { channel: 'books5', instId: 'AUCTION-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:46+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"subscribe","arg":{"channel":"books5","instId":"AUCTION-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  [2] [UNSUB] AAVE,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  [2] Removing AAVE,USDC AAVE,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AAVE-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AAVE-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'AAVE-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"AAVE-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'AAVE-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:47+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"AAVE-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  [3] [UNSUB] ACA,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  [3] Removing ACA,USDC ACA,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ACA-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ACA-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:50+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ACA-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  [4] [UNSUB] ACE,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  [4] Removing ACE,USDC ACE,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ACE-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ACE-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ACE-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ACE-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ACE-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:53+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ACE-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  [5] [UNSUB] ADA,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  [5] Removing ADA,USDC ADA,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ADA-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ADA-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ADA-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ADA-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ADA-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:56+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ADA-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  [6] [UNSUB] AERGO,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  [6] Removing AERGO,USDC AERGO,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AERGO-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AERGO-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:34:59+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AERGO-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+{ min: 35, tasks: [] }
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  [7] [UNSUB] AEVO,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  [7] Removing AEVO,USDC AEVO,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AEVO-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AEVO-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'AEVO-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"AEVO-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'AEVO-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:02+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"AEVO-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  [8] [UNSUB] AGLD,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  [8] Removing AGLD,USDC AGLD,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AGLD-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AGLD-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:05+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AGLD-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  [9] [UNSUB] ALCX,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  [9] Removing ALCX,USDC ALCX,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ALCX-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ALCX-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:08+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ALCX-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  [10] [UNSUB] ALGO,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  [10] Removing ALGO,USDC ALGO,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ALGO-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ALGO-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ALGO-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ALGO-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ALGO-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:11+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ALGO-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  [11] [UNSUB] ALPHA,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  [11] Removing ALPHA,USDC ALPHA,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ALPHA-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ALPHA-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ALPHA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ALPHA-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ALPHA-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:14+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ALPHA-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  [12] [UNSUB] APE,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  [12] Removing APE,USDC APE,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'APE-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'APE-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:APE-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:APE-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:APE-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:17+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:APE-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  [13] [UNSUB] API3,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  [13] Removing API3,USDC API3,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'API3-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'API3-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:API3-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:API3-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'API3-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:20+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"API3-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  [14] [UNSUB] APT,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  [14] Removing APT,USDC APT,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'APT-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'APT-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:APT-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:APT-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'APT-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:23+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"APT-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  [15] [UNSUB] AR,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  [15] Removing AR,USDC AR,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AR-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'AR-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AR-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:26+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AR-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:27+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:AR-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:27+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:AR-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  [16] [UNSUB] ARB,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  [16] Removing ARB,USDC ARB,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARB-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARB-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ARB-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ARB-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ARB-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:29+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ARB-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  [17] [UNSUB] ARG,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  [17] Removing ARG,USDC ARG,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARG-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARG-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:32+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARG-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  [18] [UNSUB] ARKM,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  [18] Removing ARKM,USDC ARKM,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARKM-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARKM-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ARKM-USDC' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ARKM-USDC"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'ARKM-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:35+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"ARKM-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  [19] [UNSUB] ARTY,USDC { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  [19] Removing ARTY,USDC ARTY,USDT { suId: 1736501684579, _suId: 1736501684579 } 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  { unsubA: true, unsubB: true, unsubC: true } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'USDC-USDT', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARTY-USDC', instType: 'SPOT' } 
+
+
+UNSUSCRIBING FROM books5 { instId: 'ARTY-USDT', instType: 'SPOT' } 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'unsubscribe',
+    arg: { channel: 'books5', instId: 'USDC-USDT' },
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  {
+  resp: '{"event":"unsubscribe","arg":{"channel":"books5","instId":"USDC-USDT"},"connId":"4e6707b4"}'
+} 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDC doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  {
+  parsedResp: {
+    event: 'error',
+    msg: "Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.",
+    code: '60018',
+    connId: '4e6707b4'
+  }
+} 
+
+
+[2025-01-10 11:35:38+02:00] [ Security ] [WS][okx]  {
+  resp: `{"event":"error","msg":"Wrong URL or channel:books5,instType:SPOT,instId:ARTY-USDT doesn't exist. Please use the correct URL, channel and parameters referring to API document.","code":"60018","connId":"4e6707b4"}`
+} 
+
+^C
+tonni@tonni-OptiPlex-7010:/media/tonni/win/src/Mint/Documents/RF/Web/turbo-wp/tunedstreamz$ 

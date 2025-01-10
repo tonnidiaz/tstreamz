@@ -335,3 +335,17 @@ img {
     flex-direction: column;
     gap: 20px
 }
+
+.menu{
+    width: max-content;
+    li *{
+        align-self: stretch !important;
+    }
+}
+
+.devider{
+    pointer-events:none !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: 2px 0;
+}

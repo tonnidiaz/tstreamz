@@ -1,4 +1,3 @@
-
 import { authMid } from "@/middleware/auth.mid";
 import { addBotToArbitWs, tunedErr } from "@/utils/funcs";
 import { superMegaBots, TuMegaWs } from "@pkg/cmn/classes/tu-mega-ws";
@@ -11,49 +10,47 @@ import { jobs, botJobSpecs } from "@pkg/cmn/utils/constants";
 import { handleErrs, parseDate, timedLog } from "@cmn/utils/funcs";
 import { createChildBots } from "@pkg/cmn/utils/functions/bots-funcs";
 import { addBotJob } from "@pkg/cmn/utils/orders/funcs";
-import express, {type Response} from "express"
+import express, { type Response } from "express";
 
 const router = express.Router();
 
-export const toggleMegaBot = async (bot: IBot, side: 'activate' | 'deactivate', res?: Response) =>{
-    let megaBot = superMegaBots.find(el=> el.bot._id == bot._id)
-        
-        if (!megaBot)
-            {
-                megaBot = new TuMegaWs({bot})
-                superMegaBots.push(megaBot)
+export const toggleMegaBot = async (
+    bot: IBot,
+    side: "activate" | "deactivate",
+    res?: Response
+) => {
+    console.log(`\n[BOT_ID] ${bot.id}\n`, {superMegaBots: superMegaBots.length});
+    let megaBot = superMegaBots.find((el) => el.bot.id == bot.id);
+    if (!megaBot) {
+        console.log("Adding new MegaBot...\n");
+        megaBot = new TuMegaWs({ bot });
+        superMegaBots.push(megaBot);
     }
-        bot.set("active", side == "activate")
-        
+    bot.set("active", side == "activate");
 
-        if (side == "activate")
-            bot.activated_at = parseDate()
-        else
-            bot.deactivated_at = parseDate()
-        
+    if (side == "activate") bot.activated_at = parseDate();
+    else bot.deactivated_at = parseDate();
 
-        megaBot.bot = bot;
-        await bot.save()
-        const r = await megaBot.subUnsub(bot.active ? 'sub' : 'unsub')
-        timedLog("Done", {r})
-        if (!r) return !res ? undefined : tunedErr(res, 500, "Failed to activate/deactivate bot")
-}
-router.post("/:id/toggle-mega-bot", authMid, async (req, res)=>{
+    megaBot.bot = bot;
+    await bot.save();
+    megaBot.subUnsub(bot.active ? "sub" : "unsub");
+    // if (!r) return !res ? undefined : tunedErr(res, 500, "Failed to activate/deactivate bot")
+};
+router.post("/:id/toggle-mega-bot", authMid, async (req, res) => {
     try {
-        const {side} = req.query;
-        const bot = await Bot.findById(req.params.id).exec()
-        if (!bot) return tunedErr(res,400, "Bot not found")
-            
-        const r = await toggleMegaBot(bot, side as any, res)
+        const { side } = req.query;
+        const bot = await Bot.findById(req.params.id).exec();
+        if (!bot) return tunedErr(res, 400, "Bot not found");
+
+        const r = await toggleMegaBot(bot, side as any, res);
         if (r === null) return r;
-        
-        res.json(await parseBot(bot))
-    
+
+        res.json(await parseBot(bot));
     } catch (err) {
-        handleErrs(err)
-        return tunedErr(res, 500, "Failed to toggle megabot")
+        handleErrs(err);
+        return tunedErr(res, 500, "Failed to toggle megabot");
     }
-})
+});
 
 router.post("/:id/edit", authMid, async (req, res) => {
     try {
@@ -76,7 +73,7 @@ router.post("/:id/edit", authMid, async (req, res) => {
         const jobId = `${bot._id}`;
         const bool = jobs.find((el) => el.id == jobId);
         botLog(bot, "UNSUB TO PREV SYMBOL TICKERS...");
-        await rmvBotFromArbitWs(bot)
+        await rmvBotFromArbitWs(bot);
 
         const ts = parseDate(new Date());
 
@@ -152,50 +149,56 @@ router.post("/:id/edit", authMid, async (req, res) => {
                 if (k == "balance" && updateBal) {
                     bot.set("balCcy", bot.ccy);
                 }
-                if (bot.type == 'arbitrage' && !bot.arbit_settings.super_mega)
-                if (commonFields.includes(k)) {
-                    const childA = await Bot.findById(bot.children[0]).exec();
-                    const childB = await Bot.findById(bot.children[1]).exec();
-                    const childC = await Bot.findById(bot.children[2]).exec();
+                if (bot.type == "arbitrage" && !bot.arbit_settings.super_mega)
+                    if (commonFields.includes(k)) {
+                        const childA = await Bot.findById(
+                            bot.children[0]
+                        ).exec();
+                        const childB = await Bot.findById(
+                            bot.children[1]
+                        ).exec();
+                        const childC = await Bot.findById(
+                            bot.children[2]
+                        ).exec();
 
-                    if (!childA || !childB || !childC) {
-                        bot.active = false;
-                        await bot.save();
+                        if (!childA || !childB || !childC) {
+                            bot.active = false;
+                            await bot.save();
 
-                        botLog(bot, "ONE OF THE CHILD BOTS NOT FOUND");
-                        return tunedErr(
-                            res,
-                            400,
-                            "ONE OF THE CHILD BOTS NOT FOUND"
-                        );
-                    }
-                    const children = [childA, childB, childC];
-                    childA.name = `${bot.name} [A]`;
-                    childB.name = `${bot.name} [B]`;
-                    childC.name = `${bot.name} [C]`;
+                            botLog(bot, "ONE OF THE CHILD BOTS NOT FOUND");
+                            return tunedErr(
+                                res,
+                                400,
+                                "ONE OF THE CHILD BOTS NOT FOUND"
+                            );
+                        }
+                        const children = [childA, childB, childC];
+                        childA.name = `${bot.name} [A]`;
+                        childB.name = `${bot.name} [B]`;
+                        childC.name = `${bot.name} [C]`;
 
-                    childA.base = bot.B;
-                    childA.ccy = bot.A;
+                        childA.base = bot.B;
+                        childA.ccy = bot.A;
 
-                    childB.base = bot.C;
-                    childB.ccy = bot.B;
+                        childB.base = bot.C;
+                        childB.ccy = bot.B;
 
-                    childC.base = bot.C;
-                    childC.ccy = bot.A;
+                        childC.base = bot.C;
+                        childC.ccy = bot.A;
 
-                    if (k == "name" || k == "A" || k == "B" || k == "C") {
-                    } else {
+                        if (k == "name" || k == "A" || k == "B" || k == "C") {
+                        } else {
+                            for (let b of children) {
+                                if (k == "balance" && updateBal) {
+                                    b.set(k, v);
+                                    b.set("balCcy", bot.ccy);
+                                } else b!.set(k, v);
+                            }
+                        }
                         for (let b of children) {
-                            if (k == "balance" && updateBal) {
-                                b.set(k, v);
-                                b.set("balCcy", bot.ccy);
-                            } else b!.set(k, v);
+                            await b.save();
                         }
                     }
-                    for (let b of children) {
-                        await b.save();
-                    }
-                }
             }
         }
         await bot.save();
@@ -212,7 +215,7 @@ router.post("/:id/edit", authMid, async (req, res) => {
                 }
             }
             botLog(bot, "RE-SUB TO TICKERS...");
-            await addBotToArbitWs(bot)
+            await addBotToArbitWs(bot);
 
             // if (bot.orders.length) {
             //     const order = await Order.findById(
@@ -238,7 +241,8 @@ router.post("/:id/edit", authMid, async (req, res) => {
         const { A, B, C } = bot;
         botLog(bot, { oldA, oldB, oldC });
         botLog(bot, { A, B, C });
-        if (is_arb) {await bot.save()
+        if (is_arb) {
+            await bot.save();
             if (oldA != A || oldB != B || oldC != C) {
                 await createChildBots(bot);
             }
@@ -302,8 +306,8 @@ router.post("/:id/delete", authMid, async (req, res) => {
 
 const rmvBotFromArbitWs = async (bot: IBot) => {
     const { arbit_settings: settings } = bot;
-    if (bot.type == "arbitrage" ) {
-        botLog(bot, "Removng bot from ArbitWs...")
+    if (bot.type == "arbitrage") {
+        botLog(bot, "Removng bot from ArbitWs...");
         if (settings?._type == "tri")
             await triArbitWsList[bot.platform].rmvBot(bot.id);
         else {
@@ -312,7 +316,5 @@ const rmvBotFromArbitWs = async (bot: IBot) => {
         }
     }
 };
-
-
 
 export default router;

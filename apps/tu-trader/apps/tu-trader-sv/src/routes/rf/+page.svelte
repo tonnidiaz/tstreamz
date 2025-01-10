@@ -12,6 +12,8 @@
     import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
     import { page } from "$app/stores";
     import { kucoinInstrus } from "@pkg/cmn/utils/data/instrus";
+    import { getInstrus } from "@pkg/cmn/utils/functions";
+    import { sleep } from "@cmn/utils/funcs";
 
     let {cnt} = appStore
  
@@ -32,6 +34,31 @@
 
     let opt = $state(1)
     let opts = $state<ISelectItem[]>([{label: "Option 1", value: 1}, {label: 'Option 2', value: 2}])
+
+    let cancelLoop = false
+    let loopRunning = false
+    let invokedAt = 0, _invokedAt = 0;
+    const invokeFunc = async () =>{
+        
+        _invokedAt = Date.now();
+        if (!invokedAt) invokedAt = _invokedAt
+        cancelLoop = loopRunning
+        loopRunning = true
+        console.log("Func call\n");
+
+        let i = 0
+        for (let pair of getInstrus("okx").sort()){
+            i += 1
+            console.log(`\n[${i}] Adding ${pair}`, {invokedAt, _invokedAt}, "\n")
+            if (invokedAt < _invokedAt && i != 1){
+                invokedAt = _invokedAt
+                // loopToken = tkn
+                console.log(`[${i}] Loop cancelled\n`);
+                break;
+            }
+            await sleep(3000)
+        }
+    }
     onMount(()=>{
         // console.log($path);
         setTimeout(()=>{
@@ -54,7 +81,7 @@ $effect(()=>{
 <TMeta title="RF"/>
 <div class="p-4 flex flex-col gap-2" style="width: 500px;">
     <h1>Research Facility</h1>
-    <div class="p-2 border-1 border-card rounded-md bg-base-100 w-500px min-h-200px" id="portal">
+    <div class="p-2 border-1 flex flex-col gap-2 border-card rounded-md bg-base-100 w-500px min-h-200px" id="portal">
       <div class="p-2 border-1 border-card">
         <h2>Global state</h2>
         <UButton onclick={_=>{appStore.cnt += 1}}>Counter {appStore.cnt}</UButton>
@@ -99,7 +126,11 @@ $effect(()=>{
                 S
             {/snippet}
         </UInput>
+        <UButton class="btn-primary" onclick={()=>{invokeFunc(); console.log('Here');}}>Invoke function</UButton>
     </div>
-    <h3>Instrus</h3>
-    <div>{JSON.stringify(kucoinInstrus)}</div>
+    <div class="p-4">
+        <ul class="menu menu-menu menu-sm text-left justify-start open border-1 border-card dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-md s-h3e7SZQrEEpL">
+            <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/">Home<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/test/arbit/cross/coins">Cross-arbit cointest<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><div class="devider border-1 border-card w-100 undefined"></div><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/test/arbit/compare/cross/coins">Cross-comp arbit cointest<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/test/arbit/compare/coins">Tri-comp arbit cointest<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/rf/ws/book-ticker">RF Book Ticker<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/rf/nets">Networks<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/app/config">App config<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/data/books">Orderbooks<!----></a><!----></li> <li class="s-h3e7SZQrEEpL"><a data-sveltekit-reload="false" class="tu-link text- " href="/test/candles">Candletest<!----></a><!----></li>
+        </ul>
+    </div>
 </div>

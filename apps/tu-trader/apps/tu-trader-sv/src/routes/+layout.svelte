@@ -96,7 +96,7 @@
 
     function handleErrors(err: Error): void {
         // throw new Error("Function not implemented.");
-        console.log("Handle IO err");
+        // console.error("Handle IO err");
         return
         if (err.message.includes('ERR_CONNECTION_REFUSED')) {
         console.log('Suppressed connection error:', "err.message");

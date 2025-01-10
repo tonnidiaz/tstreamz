@@ -64,9 +64,6 @@ export class TuMegaWs {
     miniBots: IMiniBot[] = [];
     prevActiveMiniBots: IMiniBot[] = [];
 
-    private subUnsubLoopId = 0;
-    private _subUnsubLoopId = 0;
-
     constructor({ bot }: { bot: IBot }) {
         this.bot = bot;
 
@@ -76,11 +73,10 @@ export class TuMegaWs {
         this.arbitType = bot.arbit_settings._type;
         this.plat = bot.platform;
         this.wsUrl = getWsUrl(this.plat, bot.demo);
-        this.log(`\nSUPER CONSTRUCTOR\n`)
     }
 
     async initWs() {
-        this.log("InitWs()...");
+        this.log("Initializing Mega Ws...");
         if (!this.wsUrl) return this.log("WS URL UNDEFINED");
 
         if (this.plat.toLocaleLowerCase() == "kucoin") {
@@ -177,7 +173,7 @@ export class TuMegaWs {
         }
         await this.subUnsub("sub");
     }
-    private abortController: AbortController | null = null;
+    private cancellationToken: { cancelled: boolean } | null = null;
     
     async subUnsubTri(
         act: "sub" | "unsub",
@@ -193,8 +189,17 @@ export class TuMegaWs {
          * Subscribe to pair-specific channels
          * Save pairs to active pairs
          */
-        this._subUnsubLoopId = Date.now()
-        if (!this.subUnsubLoopId) this.subUnsubLoopId = this._subUnsubLoopId
+
+         // Cancel the previous loop if it's running
+    if (this.cancellationToken) {
+        this.cancellationToken.cancelled = true;
+      }
+  
+      // Create a new cancellation token
+      this.cancellationToken = { cancelled: false };
+  
+      const token = this.cancellationToken;
+
         // First check if pair [B,A] && [C, B] exist
         const { A, B } = this.bot;
         const pairs = getInstrus(this.plat).sort();
@@ -207,25 +212,17 @@ export class TuMegaWs {
 
         // PairB [B, C]
         let bPairs = pairs.filter((el) => el[1] == B);
-        if (DEV) bPairs = bPairs.slice(0, 50);
+        if (DEV) bPairs = bPairs.slice(0, 20);
         let i = 0
         for (let pairB of bPairs) {
             i += 1
-            // this.log(`[${i}] [${act.toUpperCase()}] ${pairB}`, {suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId})
-            if (i != 1 && this._subUnsubLoopId != this.subUnsubLoopId) {
+            if (token.cancelled) {
                 this.log(`[${i}] Loop cancelled`);
-                this.subUnsubLoopId = this._subUnsubLoopId
                 break;
             }
             const C = pairB[0];
             const pairA = [B, A],
                 pairC = [C, A];
-
-            // /* Remove this */
-            // await sleep(1500)
-            // this.log(`[${i}] [${act.toUpperCase()}] ${pairB} done\n`)
-            // continue
-            // /* Remove that */
 
             if (
                 !getPricePrecision(pairA, this.plat) ||
@@ -235,7 +232,7 @@ export class TuMegaWs {
                 continue;
             }
             this.log(
-                `[${i}] ${act == "sub" ? "Adding" : "Removing"} ${pairB} ${pairC}`,{suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId}
+                `[${i}] ${act == "sub" ? "Adding" : "Removing"} ${pairB} ${pairC}...`
             );
 
             
