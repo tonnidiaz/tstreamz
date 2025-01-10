@@ -7,14 +7,14 @@ WORKDIR /usr/src/app
 # Copy package.json and lock file for the monorepo
 COPY ./package.json ./package-lock.json ./
 
+# Copy the entire monorepo into the image
+COPY . .
+
 # Install dependencies for the monorepo
 RUN npm install
 
 # Install Turborepo CLI globally
 RUN npm install turbo -g
-
-# Copy the entire monorepo into the image
-COPY . .
 
 # Build the app and its dependencies
 RUN turbo run build --filter=tu-trader-wk
