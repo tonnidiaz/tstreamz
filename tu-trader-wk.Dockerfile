@@ -8,7 +8,10 @@ WORKDIR /usr/src/app
 COPY ./package.json ./package-lock.json ./
 
 # Copy the entire monorepo into the image
-COPY . .
+COPY turbo.json tsconfig.json ./
+COPY apps/tu-trader/apps/tu-trader-wk ./apps/tu-trader/apps/tu-trader-wk
+COPY apps/tu-trader/packages/common ./apps/tu-trader/packages/common
+COPY packages/common ./packages/common
 
 # Install dependencies for the monorepo
 RUN npm install

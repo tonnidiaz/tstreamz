@@ -115,11 +115,7 @@ const heroku = false,
     koyeb = true;
 export const BEND_URL = __DEV__
     ? "http://localhost:8000"
-    : heroku
-      ? "https://tu-trader-3996d65ded90.herokuapp.com"
-      : koyeb
-        ? "https://tu-trader-wk.onrender.com"
-        : "https://tu-trader-mef0.onrender.com";
+    : "https://tu-trader.koyeb.app";
 export const API_URL = "/api";
 
 
