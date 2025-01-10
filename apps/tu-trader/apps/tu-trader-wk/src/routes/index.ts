@@ -21,7 +21,7 @@ router.get('/clear-terminal', (req, res)=>{
 })
 
 router.get('/hello', (req, res)=>{
-    const i = 0
+    const i = 1
     res.json({hello: `World ${i}`})
 })
 router.get('/fetch-instrus', async (req, res)=>{

@@ -1,3 +1,5 @@
+import { tunedErr } from "@/utils/funcs";
+import { handleErrs } from "@cmn/utils/funcs";
 import { TuConfig } from "@pkg/cmn/models";
 import { taskManager } from "@pkg/cmn/utils/consts3";
 import { addBooksTask } from "@pkg/cmn/utils/funcs4";
@@ -30,8 +32,8 @@ router.post("/config", async function (req, res, next) {
         }
         res.json(config?.toJSON());
     } catch (e) {
-        console.log(e);
-        res.status(500).json({ msg: "Something went wrong!" });
+        handleErrs(e);
+        return tunedErr(res, 500, 'Something went wrong')
     }
 });
 

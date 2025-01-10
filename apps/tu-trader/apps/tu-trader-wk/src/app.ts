@@ -20,6 +20,7 @@ import { captureLogs } from "@pkg/cmn/utils/functions2";
 import createError from "http-errors";
 
 import indexRouter from "@/routes";
+import appRouter from "@/routes/app";
 import botsRouter, { toggleMegaBot } from "@/routes/bots";
 import path from "node:path";
 import { _dirname } from ".";
@@ -48,12 +49,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get("/hello", (_, res) => {
-    res.send("Hello Vite + TypeScript!");
-});
-
 app.use("/", indexRouter);
 app.use("/bots", botsRouter);
+app.use("/app", appRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

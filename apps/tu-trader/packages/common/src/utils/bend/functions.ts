@@ -1,15 +1,13 @@
 import * as jwt from "jsonwebtoken";
 import * as nodemailer from "nodemailer";
 import * as nfs from "node:fs";
-const { env } = process;
-import { Response } from "express";
 import path, { dirname } from "node:path";
 import { OTP } from "@pkg/cmn/models";
 import { IBot } from "@pkg/cmn/models/bot";
 import { TPlatName } from "../interfaces";
 import { fileURLToPath } from "node:url";
 import { OKX_WS_URL_DEMO, OKX_WS_URL, BYBIT_WS_URL_DEMO, BYBIT_WS_URL, BINANCE_WS_URL, BITGET_WS_URL, MEXC_WS_URL } from "../consts2";
-import { randomInRange, parseDate } from "@cmn/utils/funcs";
+import { randomInRange, parseDate, handleErrs } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
 
  
@@ -36,13 +34,7 @@ export const genOTP = async (phone?: string, email?: string) => {
     await otp.save();
     return otp;
 };
-export const tunedErr = (res: Response, status: number, msg: string, e?: any) => {
-    if (e) {
-        console.log(e);
-    }
-    res.status(status).send(`tuned:${msg}`);
-    return undefined
-};
+
 
 
 const __filename = fileURLToPath(import.meta.url);

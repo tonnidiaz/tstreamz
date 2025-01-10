@@ -2,6 +2,7 @@ import $ from "jquery";
 import type { IObj } from "@cmn/utils/interfaces";
 import { api, localApi } from "./api";
 import { handleErrs, isTuError } from "@cmn/utils/funcs";
+import { showToast } from "@repo/ui/lib/funcs";
 
 export const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -170,12 +171,3 @@ export function numToWords(number: number | string){
 }
 export const listToOpt  = (lst: string[]) => lst.map(el=>({label: el.toUpperCase(), value: el})) 
 
-export const showToast = ({msg, err, timeout = 3000} : {err?: boolean; msg: string; timeout?: number}) =>{
-    let div = document.createElement("div");
-    
-    div.classList.add("alert", `alert-${err ? 'error' : 'success' }`, err && 'bg-red-500', err && 'text-white' )
-    div.innerHTML = `<span>${msg}</span>`
-    document.getElementById("tu-toasts").prepend(div);
-
-    setTimeout(()=> div.remove(), timeout)
-}

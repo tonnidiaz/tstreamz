@@ -1,7 +1,6 @@
 <script lang="ts">
     import { ROOT, SITE, SITE_SLOGAN } from "@/lib/constants";
-    import { appStore } from "@/stores/app.svelte";
-    import { DEVELOPER } from "@pkg/cmn/utils/consts3";
+    import { DEVELOPER } from "@pkg/cmn/utils/consts4";
 
     const _title = `${SITE} - ${SITE_SLOGAN}`;
     const _description = `${SITE} is a Tunedbass site`;

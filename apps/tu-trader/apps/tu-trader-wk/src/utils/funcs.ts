@@ -1,10 +1,11 @@
+import { handleErrs } from "@cmn/utils/funcs";
 import { triArbitWsList, crossArbitWsList } from "@pkg/cmn/classes/tu-ws";
 import { IBot } from "@pkg/cmn/models/bot";
 import { botLog } from "@pkg/cmn/utils/bend/functions";
 import { Response } from "express";
 export const tunedErr = (res: Response, status: number, msg: string, e?: any) => {
     if (e) {
-        console.log(e);
+        handleErrs(e);
     }
       res.status(status).send(`tu:${msg}`);
       return null

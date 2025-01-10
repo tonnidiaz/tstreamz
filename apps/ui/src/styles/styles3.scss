@@ -349,3 +349,8 @@ img {
     padding: 0 !important;
     margin: 2px 0;
 }
+
+.bg-success{
+    --tw-text-opacity: 1;
+  background-color: var(--fallback-su,oklch(var(--su)/var(--tw-text-opacity, 1)));
+}

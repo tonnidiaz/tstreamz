@@ -48,3 +48,13 @@ export const logout = (red?: string, setUser?: (val: any)=> any) => {
     localStorage.removeItem(STORAGE_KEYS.authTkn);
     location.href = red || "/";
 };
+
+export const showToast = ({msg, err, timeout = 3000} : {err?: boolean; msg: string; timeout?: number}) =>{
+    let div = document.createElement("div");
+    
+    div.classList.add("alert", `alert-${err ? 'error' : 'success' }`, err && 'bg-red-500', 'text-white', !err && "bg-success" )
+    div.innerHTML = `<span>${msg}</span>`
+    document.getElementById("tu-toasts").prepend(div);
+
+    setTimeout(()=> div.remove(), timeout)
+}
