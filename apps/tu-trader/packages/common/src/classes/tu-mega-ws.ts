@@ -177,7 +177,6 @@ export class TuMegaWs {
         }
         await this.subUnsub("sub");
     }
-    private abortController: AbortController | null = null;
     
     async subUnsubTri(
         act: "sub" | "unsub",
@@ -193,11 +192,12 @@ export class TuMegaWs {
          * Subscribe to pair-specific channels
          * Save pairs to active pairs
          */
+        this.log(`\n[subUnsub] ${act.toUpperCase()}\n`)
         this._subUnsubLoopId = Date.now()
         if (!this.subUnsubLoopId) this.subUnsubLoopId = this._subUnsubLoopId
 
         if (act == "unsub") {
-            this.ws.ws.close()
+            this.ws?.ws?.close()
             return
         };
         // First check if pair [B,A] && [C, B] exist
@@ -216,9 +216,9 @@ export class TuMegaWs {
         let i = 0
         for (let pairB of bPairs) {
             i += 1
-            // this.log(`[${i}] [${act.toUpperCase()}] ${pairB}`, {suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId})
+            this.log(`[${i}] [${act.toUpperCase()}] ${pairB}`, {suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId})
             if (i != 1 && this._subUnsubLoopId != this.subUnsubLoopId) {
-                this.log(`[${i}] Loop cancelled`);
+                this.log(`[${i}] [${pairB}] Loop cancelled`);
                 this.subUnsubLoopId = this._subUnsubLoopId
                 break;
             }
@@ -240,7 +240,7 @@ export class TuMegaWs {
                 continue;
             }
             this.log(
-                `[${i}] ${act == "sub" ? "Adding" : "Removing"} ${pairB} ${pairC}`,{suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId}
+                `[${i}] [${act.toUpperCase()}] ${pairB} ${pairC}`,{suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId}
             );
 
             
