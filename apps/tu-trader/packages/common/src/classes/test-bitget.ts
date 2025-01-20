@@ -171,7 +171,7 @@ export class TestBitget extends TestPlatform {
             const r = await this.client.getSpotTicker({ symbol });
             return Number(r.data[0].lastPr);
         } catch (e) {
-            this._log("FAILED TO GET TICKER", e);
+            this.log("FAILED TO GET TICKER", e);
             return 0;
         }
     }
@@ -280,8 +280,8 @@ export class TestBitget extends TestPlatform {
 
             return nets.filter((el) => !ccy || el.coin == ccy);
         } catch (e) {
-            this._log("FAILED TO GET NETS");
-            this._err(e)
+            this.log("FAILED TO GET NETS");
+            this.err(e)
         }
     }
     async getBook(
@@ -297,7 +297,7 @@ export class TestBitget extends TestPlatform {
             const data = r.data;
 
             if (r.code != "00000")
-                return this._log(`FAILED TO GET BOOK FOR ${pair}`, data);
+                return this.log(`FAILED TO GET BOOK FOR ${pair}`, data);
 
             const ob: IOrderbook = {
                 ts,
@@ -312,8 +312,8 @@ export class TestBitget extends TestPlatform {
             };
             return ob;
         } catch (err) {
-            this._log("FAILED TO GET BOOK FOR", pair);
-            this._err(err);
+            this.log("FAILED TO GET BOOK FOR", pair);
+            this.err(err);
         }
     }
 }

@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"preall": "tsx tool.ts",
+		"preall": "tsx tu-sv-tool/index.ts",
 		"dev": "npm run preall && vite dev",
 		"build": "npm run preall && vite build",
 		"preview": "vite preview",
@@ -24,6 +24,11 @@
 	},
 	"dependencies": {
 		"@repo/common": "^1.0.0",
-		"@repo/ui": "*"
+		"@repo/ui": "*",
+		"@tensorflow/tfjs": "^4.22.0",
+		"@tensorflow/tfjs-node": "^4.22.0",
+		"install": "^0.13.0",
+		"metaapi.cloud-sdk": "^29.0.1",
+		"npm": "^11.0.0"
 	}
 }

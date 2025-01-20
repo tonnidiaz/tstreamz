@@ -1,0 +1,31 @@
+{
+	"name": "tu-math",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+        "preall": "tsx tu-sv-tool/index.ts",
+		"dev": "npm run preall && vite dev --port=3001",
+		"build": "npm run preall && vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^4.0.0",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"autoprefixer": "^10.4.20",
+		"svelte": "^5.0.0",
+		"svelte-check": "^4.0.0",
+		"tailwindcss": "^3.4.17",
+		"typescript": "^5.0.0",
+		"vite": "^5.4.11"
+	},
+	"dependencies": {
+		"@repo/common": "^1.0.0",
+		"@repo/ui": "*",
+		"katex": "^0.16.21",
+		"mathlive": "^0.103.0"
+	}
+}

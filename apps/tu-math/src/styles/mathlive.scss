@@ -1,0 +1,27 @@
+math-field,
+.math-field {
+    --selection-background-color: var(--fallback-p, oklch(var(--p) / 0.5));
+    --selection-color: white;
+    --text-font-family: monospace;
+    // --selection-background-color-focused: red;
+    --contains-highlight-background-color: var(
+        --fallback-p,
+        oklch(var(--p) / 0.35)
+    );
+    box-sizing: border-box !important;
+    font-family: monospace !important;
+    * {
+        font-family: monospace !important;
+    }
+}
+.math-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+math-field {
+    background-color: transparent;
+    border: none !important; outline: none !important;
+    &:focus, &:hover, :active{border: none !important;  outline: none !important;}
+}

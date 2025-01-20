@@ -2,6 +2,8 @@ import { IBot } from "@pkg/cmn/models/bot";
 import { getSymbol } from "@pkg/cmn/utils/functions";
 import { botLog} from "@pkg/cmn/utils/bend/functions";
 import { IOrderDetails, IOrderbook } from "@pkg/cmn/utils/interfaces";
+import { handleErrs, randomInRange, sleep } from "@cmn/utils/funcs";
+import { MAKER_FEE_RATE } from "@pkg/cmn/utils/constants";
 
 export class Platform {
     name: string;
@@ -11,12 +13,10 @@ export class Platform {
         this.name = this.constructor.name;
         this.bot = bot;
         this.pair = pair || [bot.base, bot.ccy]
-        botLog(bot, `${this.name}: INIT, MODE = ${bot.demo ? "demo" : "live"}`);
-        
-        botLog(bot, `[${this.name}] Initializer: ${pair}`)
+        this.log(`INIT, MODE = ${bot.demo ? "demo" : "live"}`);
     }
     async getOrderbook(symbol?: string) : Promise<IOrderbook | void | undefined | null> {
-        symbol = symbol ?? this._getSymbol();
+        symbol = symbol ?? this.getSymbol();
         this.log( `[${this.name}] GETTING ORDERBOOK FOR ${symbol}...`)
     }
     async getKlines({
@@ -41,7 +41,7 @@ export class Platform {
     _getPair() {
         return this.pair;
     }
-    _getSymbol() {
+    getSymbol() {
         return getSymbol(this._getPair(), this.bot.platform);
     }
 
@@ -84,5 +84,29 @@ export class Platform {
 
     log(...args: any[] ){
         botLog(this.bot, `[${this.name}]: [${this.pair}]`, ...args)
+    }
+    /**
+     * 
+     * @param sz is the base
+     * @param cTime is the order creation time
+     * @returns dummy order details
+     */
+    async getDummyOrder({orderId, side, symbol, sz, cTime} : {orderId: string, side: "buy" | "sell", symbol: string, sz: number, cTime: number}){
+        this.log(`[${symbol}] Getting dummy order [${orderId}]...`)
+        try {
+            await sleep(randomInRange(1000, 2000))
+            const orderBook = await this.getOrderbook(symbol)
+            if (!orderBook) return this.log(`[${symbol}] Dummy: Failed to get orderbook`)
+            const px = (side == "buy" ? orderBook.asks : orderBook.bids)[0].px
+            
+            // Because we use the quote amount to place buy orders
+            if (side == "buy") sz = sz / px;
+
+            let res: IOrderDetails = {id: orderId, fillPx: px, fillSz: sz, fee: sz * MAKER_FEE_RATE, fillTime: Date.now(), cTime }
+            return res
+        } catch (err) {
+            this.log(`Could not get dummy order [${orderId}]`)
+            handleErrs(err)
+        }
     }
 }

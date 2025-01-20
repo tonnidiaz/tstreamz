@@ -1,13 +1,18 @@
 import path, { dirname } from "path";
 import { SvelteTool } from "./sv-tool-class";
 
+/**
+ * 
+ * @param incl /absolute/path/to folders/files to include
+ */
 export function svTool({
     cwd,
     rootDir,
     svConfigFile,
     viteConfigFile,
-    packages,
+    packages = {},
     dirs = [],
+    incl = []
 }: {
     cwd: string;
     rootDir: string;
@@ -15,6 +20,7 @@ export function svTool({
     dirs?: string[];
     svConfigFile: string;
     viteConfigFile: string;
+    incl?: string[]
 }) {
     console.log({ rootDir, cwd });
     for (let [k, v] of Object.entries({
@@ -52,9 +58,10 @@ export function svTool({
             rootDir,
             cwd,
             packages,
-            dirs: dirsToInclude,
+            dirs: [...dirsToInclude],
             svConfigFile,
             viteConfigFile,
+            incl
         });
         svTool.main();
     } catch (err) {

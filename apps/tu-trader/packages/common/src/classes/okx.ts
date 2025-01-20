@@ -317,7 +317,7 @@ export class OKX extends Platform {
         symbol?: string | undefined
     ): Promise<void | IOrderbook | null | undefined> {
         try {
-            const res = await this.client.getOrderBook(this._getSymbol(), "1");
+            const res = await this.client.getOrderBook(this.getSymbol(), "1");
             const ob: IOrderbook = {
                 ts: parseDate(Number(res[0].ts)),
                 bids: res[0].bids.map((el) => ({ px: Number(el[0]), amt: Number(el[1]), cnt: Number(el[3]) })),

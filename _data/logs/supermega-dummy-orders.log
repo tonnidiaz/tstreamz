@@ -1,0 +1,603 @@
+GET /clear-terminal 200 1.262 ms - 16
+GET /favicon.ico 404 5730.312 ms - 1544
+
+[BOT_ID] 6789b7fb0c6f4e13fa4fe723
+ { superMegaBots: 1 }
+
+[2025-01-17 04:46:09+02:00] [ SuperMega ] [WS][kucoin]  subUnsub() 
+
+
+[2025-01-17 04:46:09+02:00] [ SuperMega ] [WS][kucoin]  InitWs()... 
+
+POST /bots/6789b7fb0c6f4e13fa4fe723/toggle-mega-bot?side=activate 200 86.086 ms - 1128
+{
+  plat: 'kucoin',
+  address: 'wss://ws-api-spot.kucoin.com/?token=2neAiuYvAU61ZDXANAGAsiL4-iAExhsBXZxftpOeh_55i3Ysy2q2LEsEWU64mdzUOPusi34M_wGoSf7iNyEWJ4WP1BmXyhhEUdWZh4S3d7mIuAw-FEOjatiYB9J6i9GjsxUuhPw3Blq6rhZlGykT3Vp1phUafnulOOpts-MEmEH-AFpcx9-MKPn8HXew3PTsJBvJHl5Vs9Y=.WXAX6kuY1ESwbcffATISAA=='
+}
+
+[2025-01-17 04:46:10+02:00] [ SuperMega ] [WS][kucoin]  INIT WS: NOT OPEN 
+
+
+[2025-01-17 04:46:10+02:00] [ SuperMega ] [WS][kucoin]  SUBING... 
+
+
+[2025-01-17 04:46:10+02:00] [ SuperMega ] [WS][kucoin]  
+[subUnsub] SUB
+ 
+
+
+[2025-01-17 04:46:10+02:00] [ SuperMega ] [WS][kucoin]  [1] [SUB] ADA,USDC { suId: 1737081960214, _suId: 1737081970108 } 
+
+
+[2025-01-17 04:46:10+02:00] [ SuperMega ] [WS][kucoin]  [1] [SUB] ADA,USDC ADA,USDT { suId: 1737081960214, _suId: 1737081970108 } 
+
+
+ { channel: '/spotMarket/level2Depth5:USDC-USDT', state: 'CONNECTING' } 
+
+
+[2025-01-17 04:46:10+02:00] [WS][kucoin]  NOT OPEN: ADDING CHANNELS INSTEAD
+
+ { channel: '/spotMarket/level2Depth5:ADA-USDC', state: 'CONNECTING' } 
+
+
+[2025-01-17 04:46:10+02:00] [WS][kucoin]  NOT OPEN: ADDING CHANNELS INSTEAD
+
+ { channel: '/spotMarket/level2Depth5:ADA-USDT', state: 'CONNECTING' } 
+
+
+[2025-01-17 04:46:10+02:00] [WS][kucoin]  NOT OPEN: ADDING CHANNELS INSTEAD
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  ON OPEN 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  Sarabacribing... 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { id: 'xwXiFerpeC', type: 'welcome' } } 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"id":"xwXiFerpeC","type":"welcome"}' } 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  subUnsub() 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  SUBING... 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  
+[subUnsub] SUB
+ 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  [1] [SUB] ADA,USDC { suId: 1737081960214, _suId: 1737081971907 } 
+
+
+[2025-01-17 04:46:11+02:00] [ SuperMega ] [WS][kucoin]  [1] [SUB] ADA,USDC ADA,USDT { suId: 1737081960214, _suId: 1737081971907 } 
+
+
+ { channel: '/spotMarket/level2Depth5:USDC-USDT', state: 'OPEN' } 
+
+
+ { channel: '/spotMarket/level2Depth5:ADA-USDC', state: 'OPEN' } 
+
+
+ { channel: '/spotMarket/level2Depth5:ADA-USDT', state: 'OPEN' } 
+
+
+[2025-01-17 04:46:13+02:00] [ SuperMega ] [WS][kucoin]  [2] [SUB] ALGO,USDC { suId: 1737081960214, _suId: 1737081971907 } 
+
+
+[2025-01-17 04:46:13+02:00] [ SuperMega ] [WS][kucoin]  [2] [ALGO,USDC] Loop cancelled 
+
+
+[2025-01-17 04:46:14+02:00] [ SuperMega ] [WS][kucoin]  [2] [SUB] ALGO,USDC { suId: 1737081971907, _suId: 1737081971907 } 
+
+
+[2025-01-17 04:46:14+02:00] [ SuperMega ] [WS][kucoin]  [2] [SUB] ALGO,USDC ALGO,USDT { suId: 1737081971907, _suId: 1737081971907 } 
+
+
+ { channel: '/spotMarket/level2Depth5:USDC-USDT', state: 'OPEN' } 
+
+
+[2025-01-17 04:46:14+02:00] [WS][kucoin]  Skipping /spotMarket/level2Depth5:USDC-USDT...
+
+ { channel: '/spotMarket/level2Depth5:ALGO-USDC', state: 'OPEN' } 
+
+
+ { channel: '/spotMarket/level2Depth5:ALGO-USDT', state: 'OPEN' } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  {
+  minBot: 'minibot-USDT-USDC-ADA',
+  bookCond: true,
+  bookFieldsCond: { px: 1.1154, amt: 1592.13, cnt: 1 }
+} 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] 
+TickerHandler Tri { plat: 'kucoin', A: 'USDC,USDT', B: 'ADA,USDC', C: 'ADA,USDT' } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] [ 'ADA', 'USDC' ] [ 'ADA', 'USDT' ] 
+ { pxA: 1.0002, pxB: 1.1159, pxC: 1.1153 } 
+ { fpxA: 1.0001, fpxB: 1.115, fpxC: 1.1154 } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] { min_perc: -0.3, _perc: '-0.07%', _fperc: '-0.03%', flipped: true } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [WS][kucoin]  [minibot-USDT-USDC-ADA] entry condition met. Pausing all miniBots....
+ 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] { pxA: 1.0001, pxB: 1.115, pxC: 1.1154 } 
+ { availSzA: 489665.21, availSzB: 896.86, availSzC: 1592.13 } 
+ {
+  szA: 49.98206921283845,
+  szB: 44.82696790389098,
+  szC: 44.82696790389098
+} 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] WS: ALL GOOD, GOING IN... 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] PLACING FLIPPED ORDERS...
+ 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] {
+  pairA: [ 'USDC', 'USDT' ],
+  pairB: [ 'ADA', 'USDC' ],
+  pairC: [ 'ADA', 'USDT' ]
+} 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [Kucoin]: [USDC,USDT] INIT, MODE = live 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [Kucoin]: [ADA,USDC] INIT, MODE = live 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [Kucoin]: [ADA,USDT] INIT, MODE = live 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] { _amt: 50, _base: 44.82696790389098, minAmtC: 0.1, minSzC: 1 } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] { _amt: 49.929700000000004, _base: 44.78, minAmtB: 0.1, minSzB: 1 } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] { _amt: 49.874987, _base: 49.87, minAmtA: 0.1, minSzA: 0.1 } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] PLACE_TRADE { amt: 50, price: 1.1154, side: 'buy' } 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] Placing a 50 buy  order at 1.1154... 
+
+
+[2025-01-17 04:46:15+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] Placing a Market 50 buy order at 1.1154... 
+
+
+[2025-01-17 04:46:16+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] CHECKING MARKET BUY ORDER... 
+
+
+[2025-01-17 04:46:16+02:00] [ SuperMega ] [Kucoin]: [ADA,USDT] [ADA-USDT] Getting dummy order [tuorder-1737081975714]... 
+
+
+[2025-01-17 04:46:17+02:00] [ SuperMega ] [WS][kucoin]  [3] [SUB] APE,USDC { suId: 1737081971907, _suId: 1737081971907 } 
+
+
+[2025-01-17 04:46:17+02:00] [ SuperMega ] [WS][kucoin]  [3] [SUB] APE,USDC APE,USDT { suId: 1737081971907, _suId: 1737081971907 } 
+
+
+ { channel: '/spotMarket/level2Depth5:USDC-USDT', state: 'OPEN' } 
+
+
+[2025-01-17 04:46:17+02:00] [WS][kucoin]  Skipping /spotMarket/level2Depth5:USDC-USDT...
+
+ { channel: '/spotMarket/level2Depth5:APE-USDC', state: 'OPEN' } 
+
+
+ { channel: '/spotMarket/level2Depth5:APE-USDT', state: 'OPEN' } 
+
+TS { i: '2025-01-17 04:46:15+02:00', o: '2025-01-17 04:46:18+02:00' }
+BUY ORDER UPDATED
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] buy order placed, Bot updated 
+
+TS { i: '2025-01-17 04:46:15+02:00', o: '2025-01-17 04:46:18+02:00' }
+BUY ORDER UPDATED
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] PLACE_TRADE { amt: 44.77, price: 1.115, side: 'sell' } 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] Placing a 44.77 sell  order at 1.115... 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] Placing a Market 44.77 sell order at 1.115... 
+
+
+[2025-01-17 04:46:18+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] CHECKING MARKET SELL STATUS... 
+
+
+[2025-01-17 04:46:19+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] CHECKING MARKET SELL ORDER... 
+
+
+[2025-01-17 04:46:19+02:00] [ SuperMega ] [Kucoin]: [ADA,USDC] [ADA-USDC] Getting dummy order [tuorder-1737081978851]... 
+
+SELL ORDER UPDATED
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] sell order placed, Bot updated 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [WS][kucoin]  { parsedResp: { type: 'ack' } } 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [WS][kucoin]  { resp: '{"type":"ack"}' } 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] PLACE_TRADE { amt: 49.87, price: 1.0001, side: 'sell' } 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] Placing a 49.87 sell  order at 1.0001... 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] Placing a Market 49.87 sell order at 1.0001... 
+
+
+[2025-01-17 04:46:21+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] CHECKING MARKET SELL STATUS... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] CHECKING MARKET SELL ORDER... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [Kucoin]: [USDC,USDT] [USDC-USDT] Getting dummy order [tuorder-1737081981686]... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [WS][kucoin]  {
+  minBot: 'minibot-USDT-USDC-APE',
+  bookCond: true,
+  bookFieldsCond: { px: 1.18, amt: 198, cnt: 1 }
+} 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] 
+TickerHandler Tri { plat: 'kucoin', A: 'USDC,USDT', B: 'APE,USDC', C: 'APE,USDT' } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] [ 'APE', 'USDC' ] [ 'APE', 'USDT' ] 
+ { pxA: 1.0002, pxB: 1.18, pxC: 1.1796 } 
+ { fpxA: 1.0001, fpxB: 1.179, fpxC: 1.18 } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] { min_perc: -0.3, _perc: '-0.05%', _fperc: '-0.07%', flipped: false } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [WS][kucoin]  [minibot-USDT-USDC-APE] entry condition met. Pausing all miniBots....
+ 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] { pxA: 1.0002, pxB: 1.18, pxC: 1.1796 } 
+ { availSzA: 986260.34, availSzB: 211.8644, availSzC: 253.5 } 
+ {
+  szA: 49.99000199960008,
+  szB: 42.36440847423736,
+  szC: 42.36440847423736
+} 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] WS: ALL GOOD, GOING IN... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] PLACING NORMAL ORDERS...
+ 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] {
+  pairA: [ 'USDC', 'USDT' ],
+  pairB: [ 'APE', 'USDC' ],
+  pairC: [ 'APE', 'USDT' ]
+} 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [Kucoin]: [USDC,USDT] INIT, MODE = live 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [Kucoin]: [APE,USDC] INIT, MODE = live 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [Kucoin]: [APE,USDT] INIT, MODE = live 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] { _amt: 49.8737, _base: 49.86372725454909, minAmtA: 0.1, minSzA: 0.1 } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'APE', 'USDC' ] 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] { _amt: 49.813, _base: 42.21440677966102, minAmtB: 0.1, minSzB: 0.1 } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'APE', 'USDT' ] 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] { _amt: 49.74620916, _base: 42.1721, minAmtC: 0.1, minSzC: 0.1 } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] PLACE_TRADE { amt: 49.8737, price: 1.0002, side: 'buy' } 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] Placing a 49.8737 buy  order at 1.0002... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] Placing a Market 49.87 buy order at 1.0002... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] CHECKING MARKET BUY ORDER... 
+
+
+[2025-01-17 04:46:22+02:00] [ SuperMega ] [Kucoin]: [USDC,USDT] [USDC-USDT] Getting dummy order [tuorder-1737081982453]... 
+
+SELL ORDER UPDATED
+
+[2025-01-17 04:46:24+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] sell order placed, Bot updated 
+
+TS { i: '2025-01-17 04:46:22+02:00', o: '2025-01-17 04:46:24+02:00' }
+BUY ORDER UPDATED
+
+[2025-01-17 04:46:24+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] buy order placed, Bot updated 
+
+
+[2025-01-17 04:46:25+02:00] [ SuperMega ] [ 'APE', 'USDC' ] PLACE_TRADE { amt: 49.81, price: 1.18, side: 'buy' } 
+
+
+[2025-01-17 04:46:25+02:00] [ SuperMega ] [ 'APE', 'USDC' ] Placing a 49.81 buy  order at 1.18... 
+
+
+[2025-01-17 04:46:25+02:00] [ SuperMega ] [ 'APE', 'USDC' ] Placing a Market 49.81 buy order at 1.18... 
+
+
+[2025-01-17 04:46:25+02:00] [ SuperMega ] [ 'APE', 'USDC' ] CHECKING MARKET BUY ORDER... 
+
+
+[2025-01-17 04:46:25+02:00] [ SuperMega ] [Kucoin]: [APE,USDC] [APE-USDC] Getting dummy order [tuorder-1737081985308]... 
+
+TS { i: '2025-01-17 04:46:22+02:00', o: '2025-01-17 04:46:27+02:00' }
+BUY ORDER UPDATED
+
+[2025-01-17 04:46:27+02:00] [ SuperMega ] [ 'APE', 'USDC' ] buy order placed, Bot updated 
+
+
+[2025-01-17 04:46:28+02:00] [ SuperMega ] [ 'APE', 'USDT' ] PLACE_TRADE { amt: 42.1696, price: 1.1796, side: 'sell' } 
+
+
+[2025-01-17 04:46:28+02:00] [ SuperMega ] [ 'APE', 'USDT' ] Placing a 42.1696 sell  order at 1.1796... 
+
+
+[2025-01-17 04:46:28+02:00] [ SuperMega ] [ 'APE', 'USDT' ] Placing a Market 42.1696 sell order at 1.1796... 
+
+
+[2025-01-17 04:46:28+02:00] [ SuperMega ] [ 'APE', 'USDT' ] CHECKING MARKET SELL STATUS... 
+
+
+[2025-01-17 04:46:28+02:00] [ SuperMega ] [ 'APE', 'USDT' ] CHECKING MARKET SELL ORDER... 
+
+
+[2025-01-17 04:46:28+02:00] [ SuperMega ] [Kucoin]: [APE,USDT] [APE-USDT] Getting dummy order [tuorder-1737081988259]... 
+
+
+[2025-01-17 04:46:29+02:00] [ SuperMega ] [WS][kucoin]  [minibot-USDT-USDC-ADA] ALL ORDERS PLACED SUCCESSFULLY!! 
+
+SELL ORDER UPDATED
+
+[2025-01-17 04:46:30+02:00] [ SuperMega ] [ 'APE', 'USDT' ] sell order placed, Bot updated 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [WS][kucoin]  Resuming 2 mini bots... 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [WS][kucoin]  {
+  minBot: 'minibot-USDT-USDC-ADA',
+  bookCond: false,
+  bookFieldsCond: { px: 1.1154, amt: 1592.13, cnt: 1 }
+} 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [WS][kucoin]  {
+  minBot: 'minibot-USDT-USDC-ADA',
+  bookCond: false,
+  bookFieldsCond: { px: 1.1154, amt: 1592.13, cnt: 1 }
+} 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [WS][kucoin]  {
+  minBot: 'minibot-USDT-USDC-ADA',
+  bookCond: false,
+  bookFieldsCond: { px: 1.1154, amt: 1592.13, cnt: 1 }
+} 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [WS][kucoin]  {
+  minBot: 'minibot-USDT-USDC-ADA',
+  bookCond: true,
+  bookFieldsCond: { px: 1.1154, amt: 1592.13, cnt: 1 }
+} 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] 
+TickerHandler Tri { plat: 'kucoin', A: 'USDC,USDT', B: 'ADA,USDC', C: 'ADA,USDT' } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] [ 'ADA', 'USDC' ] [ 'ADA', 'USDT' ] 
+ { pxA: 1.0002, pxB: 1.1159, pxC: 1.1153 } 
+ { fpxA: 1.0001, fpxB: 1.115, fpxC: 1.1154 } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] { min_perc: -0.3, _perc: '-0.07%', _fperc: '-0.03%', flipped: true } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [WS][kucoin]  [minibot-USDT-USDC-ADA] entry condition met. Pausing all miniBots....
+ 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] { pxA: 1.0001, pxB: 1.115, pxC: 1.1154 } 
+ { availSzA: 488923.78, availSzB: 896.86, availSzC: 1592.13 } 
+ {
+  szA: 49.691673390711856,
+  szB: 44.566523220369376,
+  szC: 44.566523220369376
+} 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] WS: ALL GOOD, GOING IN... 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] PLACING FLIPPED ORDERS...
+ 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] {
+  pairA: [ 'USDC', 'USDT' ],
+  pairB: [ 'ADA', 'USDC' ],
+  pairC: [ 'ADA', 'USDT' ]
+} 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [Kucoin]: [USDC,USDT] INIT, MODE = live 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [Kucoin]: [ADA,USDC] INIT, MODE = live 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [Kucoin]: [ADA,USDT] INIT, MODE = live 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] { _amt: 49.7095, _base: 44.566523220369376, minAmtC: 0.1, minSzC: 1 } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] { _amt: 49.6398, _base: 44.52, minAmtB: 0.1, minSzB: 1 } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] { _amt: 49.594959, _base: 49.59, minAmtA: 0.1, minSzA: 0.1 } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] PLACE_TRADE { amt: 49.7095, price: 1.1154, side: 'buy' } 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] Placing a 49.7095 buy  order at 1.1154... 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] Placing a Market 49.7 buy order at 1.1154... 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] CHECKING MARKET BUY ORDER... 
+
+
+[2025-01-17 04:46:31+02:00] [ SuperMega ] [Kucoin]: [ADA,USDT] [ADA-USDT] Getting dummy order [tuorder-1737081991450]... 
+
+TS { i: '2025-01-17 04:46:31+02:00', o: '2025-01-17 04:46:34+02:00' }
+BUY ORDER UPDATED
+
+[2025-01-17 04:46:34+02:00] [ SuperMega ] [ 'ADA', 'USDT' ] buy order placed, Bot updated 
+
+TS { i: '2025-01-17 04:46:31+02:00', o: '2025-01-17 04:46:34+02:00' }
+BUY ORDER UPDATED
+
+[2025-01-17 04:46:34+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] PLACE_TRADE { amt: 44.51, price: 1.115, side: 'sell' } 
+
+
+[2025-01-17 04:46:34+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] Placing a 44.51 sell  order at 1.115... 
+
+
+[2025-01-17 04:46:34+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] Placing a Market 44.51 sell order at 1.115... 
+
+
+[2025-01-17 04:46:34+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] CHECKING MARKET SELL STATUS... 
+
+
+[2025-01-17 04:46:35+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] CHECKING MARKET SELL ORDER... 
+
+
+[2025-01-17 04:46:35+02:00] [ SuperMega ] [Kucoin]: [ADA,USDC] [ADA-USDC] Getting dummy order [tuorder-1737081994657]... 
+
+
+[2025-01-17 04:46:35+02:00] [ SuperMega ] [WS][kucoin]  [minibot-USDT-USDC-APE] ALL ORDERS PLACED SUCCESSFULLY!! 
+
+SELL ORDER UPDATED
+
+[2025-01-17 04:46:36+02:00] [ SuperMega ] [ 'ADA', 'USDC' ] sell order placed, Bot updated 
+
+
+[2025-01-17 04:46:37+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] PLACE_TRADE { amt: 49.52, price: 1.0001, side: 'sell' } 
+
+
+[2025-01-17 04:46:37+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] Placing a 49.52 sell  order at 1.0001... 
+
+
+[2025-01-17 04:46:37+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] Placing a Market 49.52 sell order at 1.0001... 
+
+
+[2025-01-17 04:46:37+02:00] [ SuperMega ] [ 'USDC', 'USDT' ] CHECKING MARKET SELL STATUS... 
+
+^C
+tonni@tonni-OptiPlex-7010:/media/tonni/win/src/Mint/Documents/RF/Web/turbo-wp/turbo-two$  

@@ -104,7 +104,7 @@ export class TestKucoin extends TestPlatform {
             return Number(r.data.price)
         }
         catch(e){
-            this._log("FAILED TO GET TICKER", e)
+            this.log("FAILED TO GET TICKER", e)
             return 0
         }
     }
@@ -118,7 +118,7 @@ export class TestKucoin extends TestPlatform {
             });
             const data = r.data
 
-            if (r.code != "200000" || !r.data) return this._log(`FAILED TO GET BOOK FOR ${pair}`, data)
+            if (r.code != "200000" || !r.data) return this.log(`FAILED TO GET BOOK FOR ${pair}`, data)
             const ob: IOrderbook = {
                 ts,
                 asks: data.asks.slice(0, 5).map((el) => ({
@@ -132,8 +132,8 @@ export class TestKucoin extends TestPlatform {
             };
             return ob
         } catch (err) {
-            this._log("FAILED TO GET BOOK FOR", pair);
-            this._err(err)
+            this.log("FAILED TO GET BOOK FOR", pair);
+            this.err(err)
         }
     }
 
@@ -146,7 +146,7 @@ export class TestKucoin extends TestPlatform {
                     ? await readJson(this.netsPath)
                     : (await this.client.getCurrencies()));
 
-            if (res.code && res.code != "200000") return this._log(`FAILED TO GET NETS`, res)
+            if (res.code && res.code != "200000") return this.log(`FAILED TO GET NETS`, res)
             if (res.data) res = res.data;
             writeJson(
                 this.netsPath,
@@ -215,7 +215,7 @@ export class TestKucoin extends TestPlatform {
 
             return nets.filter((el) => !coin || el.coin == coin);
         } catch (e) {
-            this._log("FAILED TO GET NETS", e);
+            this.log("FAILED TO GET NETS", e);
         }
     }
 }

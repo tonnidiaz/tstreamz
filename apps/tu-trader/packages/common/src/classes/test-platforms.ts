@@ -39,20 +39,20 @@ export class TestPlatform {
         this.tickersPath = `${netsRootDir}/${this.name}/tickers.json`;
     }
     async getTicker(pair: string[]): Promise<number> {
-        this._log("GETTING TICKER FOR", pair);
+        this.log("GETTING TICKER FOR", pair);
         return 0;
     }
     async getBook(
         pair: string[]
     ): Promise<IOrderbook  | null | undefined> {
-        this._log("GETTING BOOK FOR", pair);
+        this.log("GETTING BOOK FOR", pair);
         return
     }
     async getNets(
         coin?: string,
         offline?: boolean
     ): Promise<ICoinNets[]  | null | undefined> {
-       return this._log("GETTING NETS FOR", coin ?? "ALL", {dir: this.netsPath});
+       return this.log("GETTING NETS FOR", coin ?? "ALL", {dir: this.netsPath});
     }
     async getKlines({
         start,
@@ -67,20 +67,20 @@ export class TestPlatform {
         symbol: string;
         savePath?: string;
     }): Promise<any[] | undefined > {
-        console.log(
-            `[${this.constructor.name}] GETTING KLINES FOR`,
+        this.log(
+            `GETTING KLINES FOR`,
             { symbol, interval },
             "\n"
         );
         return;
     }
-    _log(...args) {
+    log(...args: any[]) {
         console.log(`[${this.constructor.name}]`, ...args, "\n");
         return undefined
     }
 
-    _err(err: any){
-        this._log(handleErrs(err))
+    err(err: any){
+        this.log(handleErrs(err))
         return undefined
     }
     async getTrades({
@@ -269,7 +269,7 @@ export class TestOKX extends TestPlatform {
             console.log(d[d.length - 1]);
             return d;
         } catch (e) {
-            console.log(e);
+            handleErrs(e);
         }
     }
     async getTrades({
@@ -354,7 +354,7 @@ export class TestOKX extends TestPlatform {
             const r = await this.client.getTicker(symbo);
             return Number(r[0].last);
         } catch (e) {
-            this._log("FAILED TO GET TICKER", e);
+            this.log("FAILED TO GET TICKER", e);
             return 0;
         }
     }
@@ -419,8 +419,8 @@ export class TestOKX extends TestPlatform {
             };
             return ob;
         } catch (err) {
-            this._log("FAILED TO GET BOOK FOR", pair);
-            this._err(err)
+            this.log("FAILED TO GET BOOK FOR", pair);
+            this.err(err)
         }
     }
 }
@@ -582,7 +582,7 @@ export class TestBybit extends TestPlatform {
             );
             if (res.result?.rows) res = res.result.rows;
             else{
-                return this._log("FAILED TO GET NETS", res)
+                return this.log("FAILED TO GET NETS", res)
             }
             writeJson(
                 this.netsPath,
@@ -649,8 +649,8 @@ export class TestBybit extends TestPlatform {
 
             return nets.filter((el) => !coin || el.coin == coin);
         } catch (e) {
-            this._log("FAILED TO GET NETS");
-            this._err(e)
+            this.log("FAILED TO GET NETS");
+            this.err(e)
         }
     }
 } 

@@ -11,6 +11,7 @@ export const platList = [
     "okx",
     "mexc",
     "gateio",
+    "exness"
 ] as const;
 
 export const arbitTypes = ["tri", "cross", "comp"] as const;
@@ -208,3 +209,7 @@ try {
 export const taskManager = new TaskManager();
 
 
+export const CONFIG = {
+    testOrders: true
+}
+export const KUCOIN_SUCCESS_CODE = "200000"

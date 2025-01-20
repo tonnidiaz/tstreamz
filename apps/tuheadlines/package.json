@@ -24,7 +24,12 @@
 	"dependencies": {
 		"@flaticon/flaticon-uicons": "^3.3.1",
 		"@repo/ui": "*",
+		"@tensorflow/tfjs": "^4.22.0",
+		"@tensorflow/tfjs-node": "^4.22.0",
 		"axios": "^1.7.9",
-		"daisyui": "^4.12.22"
+		"daisyui": "^4.12.22",
+		"install": "^0.13.0",
+		"metaapi.cloud-sdk": "^29.0.1",
+		"npm": "^11.0.0"
 	}
 }

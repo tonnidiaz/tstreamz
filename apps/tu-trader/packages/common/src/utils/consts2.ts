@@ -66,6 +66,7 @@ import { Platform } from "@pkg/cmn/classes/platforms";
 import path from "node:path";
 import { currentFilePath } from "..";
 
+/**Real platforms */
 export const objPlats: {[k: string]: typeof Platform} = {
     okx: OKX,
     bybit: Bybit,

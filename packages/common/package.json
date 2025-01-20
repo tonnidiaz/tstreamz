@@ -11,14 +11,19 @@
   "author": "Tonni Diaz",
   "license": "ISC",
   "dependencies": {
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-node": "^4.22.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "bignumber.js": "*",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "install": "^0.13.0",
     "jsonwebtoken": "^9.0.2",
+    "metaapi.cloud-sdk": "^29.0.1",
     "mongoose": "^8.7.2",
-    "nodemailer": "^6.9.16"
+    "nodemailer": "^6.9.16",
+    "npm": "^11.0.0"
   },
   "devDependencies": {
     "rimraf": "*",

@@ -7,6 +7,7 @@ export class SvelteTool {
     cwd: string;
     packages: {[k: string]: string};
     dirs: string[];
+    incl: string[];
     rootDir: string
 
     constructor({
@@ -14,6 +15,7 @@ export class SvelteTool {
         viteConfigFile,
         cwd,
         packages = {},
+        incl = [],
         dirs = [],
         rootDir
     }: {
@@ -23,12 +25,14 @@ export class SvelteTool {
         cwd: string;
         packages?: {[k: string]: string};
         dirs?: string[];
+        incl?: string[]
     }) {
         this.svConfigFile = path.resolve(svConfigFile);
         this.viteConfigFile = path.resolve(viteConfigFile);
         this.cwd = cwd
         this.packages = packages
         this.dirs = dirs
+        this.incl = incl
         this.rootDir = rootDir
     }
 
@@ -47,7 +51,8 @@ export class SvelteTool {
                     ...c.include,
                     "**/*.ts",
                     "${path.join('../', this.rootDir, "node_modules/svelte/elements.d.ts")}",
-                    "${Object.values(this.packages).map(el=> path.join('../', el)).join('", "')}"
+                    "${Object.values(this.packages).map(el=> path.join('../', el)).join('", "')}",
+                    "${this.incl.join('", "')}"
                 ],
                 exclude: [
                     ...c.exclude,
@@ -95,7 +100,7 @@ export class SvelteTool {
                     `$1\n  kit: {\n${rawFieldsToAdd}},`
                 );
             }
-            const savePath = path.join(dirname(this.svConfigFile), "svelte.config.js")
+            const savePath = path.join(this.cwd, "svelte.config.js")
             // Write the updated configuration back to the file
             fs.writeFileSync(savePath, svelteConfig, "utf8");
             console.log(
@@ -153,7 +158,7 @@ export class SvelteTool {
                     );
                 }
             }
-            const savePath = path.join(dirname(this.viteConfigFile), "vite.config.ts")
+            const savePath = path.join(this.cwd, "vite.config.ts")
             // Write the updated configuration back to the file
             fs.writeFileSync(savePath, viteConfig, "utf8");
             console.log(

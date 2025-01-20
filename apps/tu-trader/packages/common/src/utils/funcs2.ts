@@ -10,7 +10,7 @@ import {
     sma,
 } from "indicatorts";
 import path from "node:path";
-import { SL, TP, useHaClose } from "./constants";
+import { MAKER_FEE_RATE, SL, TP, useHaClose } from "./constants";
 import { OrderDetails } from "okx-api";
 import { IBot } from "@pkg/cmn/models/bot";
 import { TuOrder } from "@pkg/cmn/models";
@@ -24,7 +24,7 @@ import { SpotOrder } from "binance";
 import { parseDate } from "@cmn/utils/funcs";
 import { IObj } from "@cmn/utils/interfaces";
 
-const o: IObj = {}
+const o: IObj = {};
 export const getExactDate = (interval: number) => {
     // Validate the interval
     if (interval <= 0) {
@@ -57,16 +57,12 @@ export const getExactDate = (interval: number) => {
  */
 export const tuMacd = (
     df: ICandle[],
-    _slow?: number,
-    _fast?: number,
-    _signal?: number
+    slow: number = 12,
+    fast: number = 8,
+    signal: number = 39
 ) => {
     const def = false;
     const faster = true;
-    const fast = _fast ?? (def ? 12 : (faster ? 1: 12)) /* 5 */,
-        slow = _slow ?? (def ? 26 : (faster ? 3: 45)) /* 12 */,
-        signal = _signal ?? (def ? 9 : (faster ? 3: 92)); /* 5 */
-
     const prices = df.map((el) => el[useHaClose ? "ha_c" : "c"]);
 
     const _macd = macd(prices, { slow, signal, fast });
@@ -75,11 +71,11 @@ export const tuMacd = (
         histogram.push(_macd.macdLine[i] - _macd.signalLine[i]);
     return { ..._macd, histogram };
 };
-export const tuPath = (pth: string) => pth// path.resolve(...pth.split("/"));
+export const tuPath = (pth: string) => pth; // path.resolve(...pth.split("/"));
 
 export const parseKlines = (
     klines: (string | number)[][],
-    useInvalid: boolean = false
+    useInvalid: boolean = false, isForex: boolean = false
 ) => {
     if (!klines.length) return [];
     try {
@@ -99,22 +95,25 @@ export const parseKlines = (
             const k = klines[i];
 
             const [ts, o, h, l, c, v] = k.map((e) => Number(e));
-            
+
             if (i > 0) {
                 const prev = Number(klines[i - 1][0]),
                     curr = Number(klines[i][0]);
+                    const estCurr = prev + interval * 60000
                 const _diff = Math.floor((Number(curr) - Number(prev)) / 60000);
-
-                if (_diff !== interval) {
+                const day = new Date(estCurr).getDay()
+                // console.log({day, _diff});
+                if (((!isForex || (day > 0 && day < 6)) && _diff !== interval)) {
                     invalid = true;
-                    console.log({
-                        _diff,
-                        i,
-                        len: klines.length,
-                        prev: parseDate(new Date(prev)),
-                        curr: parseDate(new Date(curr)),
-                    });
-                    console.log("KLINE DATA INVALID");
+                    // console.log({
+                    //     _diff,
+                    //     i,
+                    //     len: klines.length,
+                    //     prev: parseDate(new Date(prev)),
+                    //     curr: parseDate(new Date(curr)),
+                    //     estCurr: parseDate(estCurr)
+                    // });
+                    // console.log("KLINE DATA INVALID");
                     if (!useInvalid) break;
                 }
             }
@@ -170,13 +169,51 @@ export const heikinAshi = (df: ICandle[]) => {
     }));
 };
 
+export const tuCE1 = (
+    df: ICandle[],
+    { atrLen = 1, mult = 1.5 }: { atrLen?: number; mult?: number }
+) => {
+    const closings = df.map((el) => el.c),
+        highs = df.map((el) => el.h),
+        lows = df.map((el) => el.l);
+
+    const _atr = atr(highs, lows, closings, { period: atrLen }).atrLine;
+    let sir = 1;
+
+    for (let i = 0; i < df.length; i++) {
+        const ceClosings = closings.slice(i - atrLen, i);
+        const long_stop = Math.max(...ceClosings) - _atr[i] * mult;
+        const short_stop = Math.max(...ceClosings) + _atr[i] * mult;
+        df[i] = { ...df[i], long_stop, short_stop };
+
+        const cdf = df[i],
+            pdf = df[i - 1];
+
+        if (i > 0) {
+            const lsp = pdf.long_stop;
+            const ssp = pdf.short_stop;
+            if (closings[i - 1] > lsp)
+                df[i].long_stop = Math.max(cdf.long_stop, pdf.long_stop);
+            if (closings[i - 1] < ssp)
+                df[i].short_stop = Math.min(cdf.short_stop, pdf.short_stop);
+
+            if (closings[i] > ssp) sir = 1;
+            else if (closings[i] < lsp) sir = -1;
+
+            df[i].sir = sir;
+            df[i].ceLong = Number(cdf.sir == 1 && pdf.sir == -1);
+            df[i].ceShort = Number(cdf.sir == -1 && pdf.sir == 1);
+        }
+    }
+    return df;
+};
 export const tuCE = (df: ICandle[], _fast?: number, _slow?: number) => {
     const mult = 1.5,
         atrLen = 1;
-        const opens = df.map((e) => e[useHaClose ? "ha_o" : "o"]);
+    const opens = df.map((e) => e[useHaClose ? "ha_o" : "o"]);
     const highs = df.map((e) => e[useHaClose ? "ha_h" : "h"]);
     const lows = df.map((e) => e[useHaClose ? "ha_l" : "l"]);
-    
+
     const closings = df.map((e) => e[useHaClose ? "ha_c" : "c"]);
 
     console.log("BEGIN CE...");
@@ -273,6 +310,9 @@ export const getInterval = (m: number, plt: string) => {
         case "mexc":
             interval = `${m}m`;
             break;
+        default:
+            interval = m >= 60 ? `${Math.floor(m / 60)}h` : `${m}m`;
+            break;
     }
 
     return interval as any;
@@ -300,9 +340,12 @@ const testMexcOrderRes = {
 
 type MexcOrder = typeof testMexcOrderRes;
 
+/**
+ * fillSz is the base
+ */
 export const parseFilledOrder = (res: IObj, plat: string) => {
     let data: IOrderDetails;
-    //fillSz is the base
+    
     if (plat == "okx") {
         res = res as OrderDetails;
         data = {
@@ -323,8 +366,7 @@ export const parseFilledOrder = (res: IObj, plat: string) => {
             fillTime: Number(res.updatedTime),
             cTime: Number(res.createdTime),
         };
-    } 
-    else if (plat == "binance") {
+    } else if (plat == "binance") {
         const _res = res as SpotOrder;
         data = {
             id: `${_res.orderId}`,
@@ -334,9 +376,8 @@ export const parseFilledOrder = (res: IObj, plat: string) => {
             fillTime: Number(_res.updateTime),
             cTime: Number(_res.time),
         };
-        data.fee = data.fillSz * (.1/100)
-    }
-    else if (plat == "bitget") {
+        data.fee = data.fillSz * (MAKER_FEE_RATE);
+    } else if (plat == "bitget") {
         const feeDetail = JSON.parse(res.feeDetail);
         data = {
             id: res.orderId,
@@ -396,11 +437,13 @@ export const findBotOrders = async (bot: IBot) => {
     return orders;
 };
 
-export const getLastOrder = async (bot: IBot,  pair: string[]) => {
-    const orders = await TuOrder.find({ bot: bot.id, base: pair[0], ccy: pair[1] }).exec();
-    return orders.length 
-        ? [...orders].pop()
-        : null;
+export const getLastOrder = async (bot: IBot, pair: string[]) => {
+    const orders = await TuOrder.find({
+        bot: bot.id,
+        base: pair[0],
+        ccy: pair[1],
+    }).exec();
+    return orders.length ? [...orders].pop() : null;
 };
 
 export const getBotPlat = (bot: IBot) => {

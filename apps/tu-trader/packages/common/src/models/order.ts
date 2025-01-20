@@ -26,6 +26,8 @@ export const OrderSchema = new Schema(
         _entry: { type: Number, default: 0 },
         _exit: { type: Number, default: 0 },
         ccy_amt: { type: Number, default: 0 }, //START BALANCE
+        /**
+         * The fillPx * fillSz [inc. fees] */
         new_ccy_amt: { type: Number, default: 0 }, // BALANCE AFTER SELL, WITH FEES
         base_amt: { type: Number, default: 0 },
         is_closed: { type: Boolean, default: false },

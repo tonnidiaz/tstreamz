@@ -12,7 +12,7 @@ import { Bot, TuOrder, TriArbitOrder } from "@pkg/cmn/models";
 import { objPlats } from "../consts2";
 import { updateBuyOrder } from "./funcs2";
 import { botLog } from "@pkg/cmn/utils/bend/functions";
-import { DEV } from "../constants";
+import { DEV, TAKER_FEE_RATE } from "../constants";
 
 const SLEEP_MS = 500;
 import { ceil, parseDate, toFixed, sleep } from "@cmn/utils/funcs";
@@ -101,40 +101,35 @@ export const placeArbitOrders = async ({
     
     
     const A = pairA[1], B = pairB[1], C = pairC[0];
-    if (bot.balCcy != A)
+    if (!isSuperMega && bot.balCcy != A)
         return botLog(bot, "BAL_ERROR:", { last: bot.balCcy, A });
 
     let bal = bot.balance;
     bal = toFixed(bal, pxPrA);
-    const ts = parseDate(new Date());
+    const ts = parseDate();
     let _base = 0,
         _amt = 0;
     _amt = bal;
     _base = bal / cPxA;
 
-    const MAKER = 0.1 / 100,
-        TAKER = 0.1 / 100;
+    botLog(bot, pairA, { _amt, _base, minAmtA, minSzA });
 
-    botLog(bot, pairA);
-    botLog(bot, { _amt, _base, minAmtA, minSzA });
     if (_amt < minAmtA || _base < minSzA) {
         return botLog(bot, "LESS_ERROR: UNABLE TO PLACE BUY ORDER FOR A");
     }
 
-    _amt = toFixed((_base *= 1 - TAKER), pxPrB);
+    _amt = toFixed((_base *= 1 - TAKER_FEE_RATE), pxPrB);
     _base = _amt / cPxB;
 
-    botLog(bot, pairB);
-    botLog(bot, { _amt, _base, minAmtB, minSzB });
+    botLog(bot, pairB, { _amt, _base, minAmtB, minSzB });
     if (_amt < minAmtB || _base < minSzB) {
         return botLog(bot, "LESS_ERROR: UNABLE TO PLACE BUY ORDER FOR B");
     }
 
-    _base = toFixed((_base *= 1 - TAKER), basePrC);
+    _base = toFixed((_base *= 1 - TAKER_FEE_RATE), basePrC);
     _amt = _base * cPxC;
 
-    botLog(bot, pairC);
-    botLog(bot, { _amt, _base, minAmtC, minSzC });
+    botLog(bot, pairC, { _amt, _base, minAmtC, minSzC });
     if (_amt < minAmtC || _base < minSzC) {
         return botLog(bot, "LESS_ERROR: UNABLE TO PLACE SELL ORDER AT C");
     }
@@ -221,6 +216,7 @@ export const placeArbitOrders = async ({
 
     orderC.est_profit = perc;
     const currAmt = orderC.new_ccy_amt - Math.abs(orderC.sell_fee);
+    botLog(_botC, {currAmt})
     let profit = ((currAmt - orderC.ccy_amt) / orderC.ccy_amt) * 100;
     profit = Number(profit.toFixed(2));
     orderC.profit = profit;
@@ -326,16 +322,14 @@ if (DEV)
     const TAKER = 0.1 / 100,
         MAKER = 0.1 / 100;
 
-    botLog(bot, pairC);
-    botLog(bot, { _amt, _base, minAmtC, minSzC });
+    botLog(bot, pairC, { _amt, _base, minAmtC, minSzC });
     if (_amt < minAmtC || _base < minSzC) {
         return botLog(bot, "LESS_ERROR: UNABLE TO PLACE BUY ORDER AT C");
     }
 
     _base = toFixed((_base *= 1 - TAKER), basePrB);
     _amt = _base * cPxB;
-    botLog(bot, pairB);
-    botLog(bot, { _amt, _base, minAmtB, minSzB });
+    botLog(bot, pairB, { _amt, _base, minAmtB, minSzB });
     if (_amt < minAmtB || _base < minSzB) {
         return botLog(bot, "LESS_ERROR: UNABLE TO PLACE SELL ORDER AT B");
     }
@@ -343,8 +337,7 @@ if (DEV)
     _base = toFixed((_amt *= 1 - MAKER), basePrA);
     _amt = _base * cPxA;
 
-    botLog(bot, pairA);
-    botLog(bot, { _amt, _base, minAmtA, minSzA });
+    botLog(bot, pairA, { _amt, _base, minAmtA, minSzA });
     if (_amt < minAmtA || _base < minSzA) {
         return botLog(bot, "LESS_ERROR: UNABLE TO PLACE SELL ORDER AT A");
     }

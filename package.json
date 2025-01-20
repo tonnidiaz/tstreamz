@@ -16,8 +16,10 @@
   },
   "packageManager": "npm@10.8.2",
   "workspaces": [
-    "apps/tstreamz/apps/*","apps/tstreamz/packages/*",
-    "apps/tu-trader/apps/*","apps/tu-trader/packages/*",
+    "apps/tstreamz/apps/*",
+    "apps/tstreamz/packages/*",
+    "apps/tu-trader/apps/*",
+    "apps/tu-trader/packages/*",
     "apps/*",
     "packages/*"
   ]

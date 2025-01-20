@@ -1,8 +1,7 @@
 {
     "name": "@repo/ui",
     "type": "module",
-    "scripts": {
-    },
+    "scripts": {},
     "devDependencies": {
         "@sveltejs/adapter-auto": "^3.3.1",
         "@sveltejs/kit": "^2.0.0",
@@ -13,7 +12,12 @@
     "dependencies": {
         "@repo/common": "^1.0.0",
         "@sveltejs/adapter-vercel": "^5.4.7",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-node": "^4.22.0",
         "axios": "^1.7.9",
-        "jquery": "^3.7.1"
+        "install": "^0.13.0",
+        "jquery": "^3.7.1",
+        "metaapi.cloud-sdk": "^29.0.1",
+        "npm": "^11.0.0"
     }
 }

@@ -25,14 +25,19 @@
     },
     "dependencies": {
         "@repo/common": "1.0.0",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-node": "^4.22.0",
         "@tu-trader/common": "^1.0.0",
         "cookie-parser": "*",
         "cors": "*",
         "dotenv": "*",
         "express": "*",
         "http-errors": "*",
+        "install": "^0.13.0",
         "kucoin-api": "^1.0.20",
+        "metaapi.cloud-sdk": "^29.0.1",
         "morgan": "*",
+        "npm": "^11.0.0",
         "pug": "*"
     }
 }

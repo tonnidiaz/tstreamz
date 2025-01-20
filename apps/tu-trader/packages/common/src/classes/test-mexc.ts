@@ -193,12 +193,12 @@ export class TestMexc extends TestPlatform {
             const symbol = getSymbol(pair, "mexc");
             const r = await this.client.ticker({ symbol });
             if (!r.price) {
-                this._log("FAILED TO GET TICKER", r);
+                this.log("FAILED TO GET TICKER", r);
                 return 0;
             }
             return Number(r.price);
         } catch (e) {
-            this._log("FAILED TO GET TICKER", e);
+            this.log("FAILED TO GET TICKER", e);
             return 0;
         }
     }
@@ -214,7 +214,7 @@ export class TestMexc extends TestPlatform {
             );
             if (DEV) console.log(res);
             if (res.code && res.code != 200){
-                this._log("Failed to get nets", res)
+                this.log("Failed to get nets", res)
                 return
             }
             writeJson(
@@ -309,8 +309,8 @@ export class TestMexc extends TestPlatform {
 
             return nets.filter((el) => !ccy || el.coin == ccy);
         } catch (e) {
-            this._log("FAILED TO GET NETS");
-            this._err(e);
+            this.log("FAILED TO GET NETS");
+            this.err(e);
         }
     }
     async testAxios() {
@@ -344,8 +344,8 @@ export class TestMexc extends TestPlatform {
             };
             return ob;
         } catch (err) {
-            this._log("FAILED TO GET BOOK FOR", pair);
-            this._err(err);
+            this.log("FAILED TO GET BOOK FOR", pair);
+            this.err(err);
         }
     }
 }

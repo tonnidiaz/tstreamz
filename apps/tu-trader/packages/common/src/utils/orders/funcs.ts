@@ -10,6 +10,7 @@ import {
     getMinAmt,
     getMinSz,
     getPricePrecision,
+    getSymbol,
  
 } from "../functions";
 import { ceil, toFixed, sleep } from "@cmn/utils/funcs";
@@ -22,6 +23,7 @@ import {
 import { updateSellOrder, updateBuyOrder } from "./funcs2";
 import { botLog } from "../bend/functions";
 import { Platform } from "@pkg/cmn/classes/platforms";
+import { CONFIG } from "../consts3";
 export const getJob = (id: string) => jobs.find((el) => el.id == id);
 
 export const tuJob = async (op: OrderPlacer, bot: IBot) => {
@@ -294,7 +296,7 @@ export const placeTrade = async ({
         await order.save();
         const px = ordType == "Market" ? undefined : price;
 
-        const orderId = await plat.placeOrder({amt, price: px, side, sl, clOrderId, useBaseCcy});
+        const orderId = CONFIG.testOrders ? `tuorder-${Date.now()}`: await plat.placeOrder({amt, price: px, side, sl, clOrderId, useBaseCcy});
 
         if (!orderId) {
             botLog(bot, pair, "Failed to place order");
@@ -312,7 +314,7 @@ export const placeTrade = async ({
                 while (!_filled) {
                     await sleep(500);
                     botLog(bot, pair, "CHECKING MARKET BUY ORDER...");
-                    const res = await plat.getOrderbyId(orderId);
+                    const res = CONFIG.testOrders ? await plat.getDummyOrder({orderId, side, symbol: getSymbol(pair, bot.platform), sz: amt, cTime: Date.parse(ts)}) : await plat.getOrderbyId(orderId);
 
                     if (!res) {
                         _filled = true;
@@ -331,7 +333,7 @@ export const placeTrade = async ({
             while (!_filled) {
                 await sleep(500);
                 botLog(bot, pair, "CHECKING MARKET SELL ORDER...");
-                const res = await plat.getOrderbyId(orderId);
+                const res = CONFIG.testOrders ? await plat.getDummyOrder({orderId, side, symbol: getSymbol(pair, bot.platform), sz: amt, cTime: Date.parse(ts)}) : await plat.getOrderbyId(orderId);
 
                 if (!res) {
                     _filled = true;

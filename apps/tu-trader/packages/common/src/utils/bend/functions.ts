@@ -194,7 +194,7 @@ export const sendMail = async (
 };
 
 export const botLog = (bot: IBot, ...data: any) => {
-    console.log(`\n[${parseDate(new Date())}] [ ${bot.name} ]`, ...data, "\n");
+    console.log(`\n[${parseDate(new Date())}] [ ${bot.name} ]`, ...data);
 };
 
 

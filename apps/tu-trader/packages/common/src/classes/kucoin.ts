@@ -4,8 +4,10 @@ import {  getSymbol, } from "@pkg/cmn/utils/functions";
 import { SpotClient } from "kucoin-api";
 import { DEV } from "@pkg/cmn/utils/constants";
 import { Platform } from "./platforms";
-import { IOrderDetails } from "@pkg/cmn/utils/interfaces";
+import { IOrderbook, IOrderDetails } from "@pkg/cmn/utils/interfaces";
 import { handleErrs, sleep, parseDate } from "@cmn/utils/funcs";
+import { KUCOIN_SUCCESS_CODE } from "../utils/consts3";
+
 
 export class Kucoin extends Platform {
     client: SpotClient;
@@ -59,7 +61,7 @@ export class Kucoin extends Platform {
                 price: price?.toString(),
                 clientOid: clOrderId ?? `tb_ord_${Date.now()}`,
             });
-            if (res.code != "200000") {
+            if (res.code != KUCOIN_SUCCESS_CODE) {
                 this.log(res);
                 return;
             }
@@ -93,7 +95,7 @@ export class Kucoin extends Platform {
                 orderId: orderId,
             });
 
-            if (res.code != "200000") {
+            if (res.code != KUCOIN_SUCCESS_CODE) {
                 this.log(res);
                 return;
             }
@@ -195,7 +197,7 @@ export class Kucoin extends Platform {
             const res = await this.client.cancelOrderById({
                 orderId: ordId,
             });
-            if (res.code != "200000") {
+            if (res.code != KUCOIN_SUCCESS_CODE) {
                 this.log( "FAILED TO CANCEL ORDER");
                 this.log(res);
                 return;
@@ -206,45 +208,45 @@ export class Kucoin extends Platform {
 
 
 
-    // async getOrderbook(
-    //     symbol?: string | undefined
-    // ): Promise<void | IOrderbook | null | undefined> {
-    //     try {
-    //         const res = await this.client.getOrderbook({
-    //             symbol: this._getSymbol(),
-    //             category: "spot",
-    //         });
-    //         if (res.retCode != 0) {
-    //             this.log( res);
-    //             return this.log( "FAILED TO GET ORDERBOOK");
-    //         }
-    //         const data = res.result;
+    async getOrderbook(
+        symbol?: string | undefined
+    ): Promise<void | IOrderbook | null | undefined> {
+        symbol = symbol || this.getSymbol()
+        try {
+            const res = await this.client.getOrderBookLevel20({
+                symbol: symbol
+            });
+            if (res.code != KUCOIN_SUCCESS_CODE) {
+                throw new Error(`Failed to get orderbook for [${symbol}]`)
+            }
+            const data = res.data;
 
-    //         const ob: IOrderbook = {
-    //             ts: parseDate(Number(res.result.ts)),
-    //             bids: data.b.map((el) => ({
-    //                 px: Number(el[0]),
-    //                 amt: Number(el[1]),
-    //                 cnt: 1,
-    //             })),
-    //             asks: data.a.map((el) => ({
-    //                 px: Number(el[0]),
-    //                 amt: Number(el[1]),
-    //                 cnt: 1,
-    //             })),
-    //         };
-    //         return ob
-    //     } catch (e) {
-    //         this.log( "FAILED TO GET ORDERBOOK");
-    //     }
-    // }
+            const ob: IOrderbook = {
+                ts: parseDate(Number(data.time)),
+                bids: data.bids.slice(0, 5).map((el) => ({
+                    px: Number(el[0]),
+                    amt: Number(el[1]),
+                    cnt: 1,
+                })),
+                asks: data.asks.slice(0, 5).map((el) => ({
+                    px: Number(el[0]),
+                    amt: Number(el[1]),
+                    cnt: 1,
+                })),
+            };
+            return ob
+        } catch (e) {
+            this.log( "FAILED TO GET ORDERBOOK FOR", symbol);
+            handleErrs(e)
+        }
+    }
     async withdraw({ amt, coin, chain, addr }: { amt: number; coin: string; chain: string; addr: string; }) {
         super.withdraw({amt, coin, chain, addr})
         try {
             const res = await this.client.submitWithdraw({
                 currency: coin, chain, amount: amt, address: addr
             })
-            if (res.code != "200000") {
+            if (res.code != KUCOIN_SUCCESS_CODE) {
                 this.log( "FAILED TO WITHDRAW");
                 this.log(res);
                 return;

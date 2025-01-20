@@ -216,7 +216,7 @@ export class Bybit extends Platform {
     ): Promise<void | IOrderbook | null | undefined> {
         try {
             const res = await this.client.getOrderbook({
-                symbol: this._getSymbol(),
+                symbol: this.getSymbol(),
                 category: "spot",
             });
             if (res.retCode != 0) {
