@@ -1,18 +1,56 @@
-
-
 import path, { dirname } from "path";
 import type { Config } from "tailwindcss";
 import daisyThemes from "daisyui/src/theming/themes";
 import daisyUI from "daisyui";
 
-
+const themes = {
+    dark: [
+        "dark",
+        "synthwave",
+        "halloween",
+        "forest",
+        "aqua",
+        "black",
+        "luxury",
+        "dracula",
+        "business",
+        "night",
+        "coffee",
+        "dim",
+        "sunset",
+    ],
+    light: [
+        "light",
+        "cupcake",
+        "bumblebee",
+        "emerald",
+        "corporate",
+        "retro",
+        "cyberpunk",
+        "velentine",
+        "garden",
+        "lofi",
+        "pastel",
+        "fantasy",
+        "wireframe",
+        "cmyk",
+        "autumn",
+        "acid",
+        "lemonade",
+        "winter",
+        "nord",
+    ],
+};
 // export {}
 // const __dirname = import.meta.dirname;
 export const twConfig = (dir: string) => {
     console.log({ dir });
     return {
         content: [
-            path.join(path.relative(dir,__dirname) , "**/*.{html,js,svelte,ts}"),
+            path.join(
+                path.relative(dir, __dirname),
+                "**/*.{html,js,svelte,ts}"
+            ),
             path.join(path.relative(dir, dir), "src/**/*.{html,js,svelte,ts}"),
         ],
         // darkMode: true,
@@ -36,14 +74,7 @@ export const twConfig = (dir: string) => {
                         "base-100": "#111111",
                     },
                 },
-                "dark",
-                "bumblebee",
-                "halloween",
-                "forest",
-                "black",
-                "business",
-                "night",
-                "dracula",
+                ...themes.dark, ...themes.light
             ],
         },
         plugins: [daisyUI],
