@@ -4,7 +4,7 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-        "preall": "tsx tu-sv-tool/index.ts",
+		"preall": "tsx tu-sv-tool/index.ts",
 		"dev": "npm run preall && vite dev --port=3001",
 		"build": "npm run preall && vite build",
 		"preview": "vite preview",
@@ -23,9 +23,13 @@
 		"vite": "^5.4.11"
 	},
 	"dependencies": {
+		"@google/generative-ai": "^0.21.0",
 		"@repo/common": "^1.0.0",
 		"@repo/ui": "*",
+		"axios": "^1.7.9",
 		"katex": "^0.16.21",
-		"mathlive": "^0.103.0"
+		"marked": "^15.0.6",
+		"mathlive": "^0.103.0",
+		"openai": "^4.79.1"
 	}
 }

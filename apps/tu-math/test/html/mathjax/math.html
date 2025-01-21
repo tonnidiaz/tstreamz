@@ -1,0 +1,69 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script
+            type="text/javascript"
+            id="MathJax-script"
+            async
+            src="pkgs/mathjax/tex-chtml.js"
+        ></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script> -->
+
+    </head>
+    <body>
+        <p>
+            When `\(a != 0\)`, there are two solutions to `\(ax^2 + bx + c = 0\)` and
+            they are
+        </p>
+        <p>
+            Here is an inline math example: \(E = mc^2\).
+          </p>
+          <p>
+            And here is a block math example:
+          </p>
+          <div>
+            \[
+            \int_0^\infty x^2 dx = \frac{\pi}{2}
+            \]
+          </div>
+          <div>
+            \(\frac{\left(x^2+5\right)}{4}\)
+          </div>
+          <div>
+            To factorise the expression \(2x - 6x^2\), we can follow these steps:
+
+1. **Identify the common factors**: Both terms in the expression \(2x\) and \(-6x^2\) have a common factor of \(2x\).
+
+2. **Factor out the common factor**: We can factor \(2x\) out of the expression.
+
+    \[
+    2x - 6x^2 = 2x(1 - 3x)
+    \]
+
+3. **Write the final factored form**: Therefore, the factored form of the expression is 
+
+    \[
+    \boxed{2x(1 - 3x)}
+    \]
+          </div>
+        <!-- <script
+            type="text/javascript"
+            id="MathJax-script"
+            async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-mml-chtml.js"
+        ></script>
+         -->
+        <script>
+            window.MathJax = {
+                tex: {
+                    inlineMath: [
+                       ["$", "$"], 
+                        ["\\(", "\\)"],
+                    ],
+                },
+            };
+        </script>
+    </body>
+</html>

@@ -79,3 +79,8 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+
+
+
+
+To factorise the expression (2x - 6x^2), we can follow these steps: 1. **Identify the common factors**: Both terms in the expression (2x) and (-6x^2) have a common factor of (2x). 2. **Factor out the common factor**: We can factor (2x) out of the expression. [ 2x - 6x^2 = 2x(1 - 3x) ] 3. **Write the final factored form**: Therefore, the factored form of the expression is [ oxed{2x(1 - 3x)} ]

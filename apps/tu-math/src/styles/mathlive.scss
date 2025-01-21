@@ -24,4 +24,32 @@ math-field {
     background-color: transparent;
     border: none !important; outline: none !important;
     &:focus, &:hover, :active{border: none !important;  outline: none !important;}
+
+
 }
+.MathJax {
+    display: inline !important;
+  }
+html{
+    &.light{
+        --color-white-1: black;
+        --color-white-2: black;
+    }
+    &.dark{
+        --color-white-1: white;
+        --color-white-2: rgb(219, 219, 219);
+    }
+    
+}
+
+  strong, em, h1, h2, h3, h5, h5, h6{
+    color: var(--color-white-2)
+  }
+
+  mjx-container, .text-white-2{
+    color: var(--color-white-2)
+  }
+
+  .text-white-1{
+    color: var(--color-white-1)
+  }
