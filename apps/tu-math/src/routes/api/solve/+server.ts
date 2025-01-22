@@ -5,10 +5,10 @@ import { config } from "dotenv";
 
 config()
 
-console.log("\nDOTENV:", process.env)
+// console.log("\nDOTENV:", process.env)
 const { GEMINI_API_KEY, OPEN_API_API_KEY } = process.env;
 
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+const genAI = new GoogleGenerativeAI(GEMINI_API_KEY || "");
 const CONFIG = {
     instructions:
         "You are a math tutor who explains concepts clearly in simple steps like on an exam memorandum and writes any maths text in latex format so it can be rendered using mathjax. You always begin by showing the final answer in your responses.",
@@ -19,7 +19,7 @@ const geminiModel = genAI.getGenerativeModel({
     systemInstruction: CONFIG.instructions,
 });
 
-const openai = new OpenAI({ apiKey: OPEN_API_API_KEY });
+const openai = new OpenAI({ apiKey: OPEN_API_API_KEY || "" });
 
 const testPrompt = "Factorise: 2x - 6x^2";
 
