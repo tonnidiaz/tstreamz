@@ -230,9 +230,11 @@
                                     </span>
                                     ${_state.input.formula}$
                                 </p>
+                                {#if _state.input.additional}
                                 <p class="fs-13 fw-4">
                                     <i>({_state.input.additional || ""})</i>
                                 </p>
+                                {/if}
                             </div>
                         </div>
                         <UDivider />

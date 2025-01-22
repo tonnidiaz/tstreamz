@@ -10,6 +10,7 @@
 
     interface IProps {
         site: string;
+        /**The horizontal menu items(li TuLink) on the navbar*/
         menuItems?: Snippet;
         user?: IObj;
         ready: boolean;
