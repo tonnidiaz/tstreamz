@@ -45,3 +45,4 @@ export const POST = async ({ request }) => {
     }
     return json(await askGemini(data.q));
 };
+export const prerender = false;
