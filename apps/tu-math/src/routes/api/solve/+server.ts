@@ -1,13 +1,16 @@
 import OpenAI from "openai";
-import { GEMINI_API_KEY, OPEN_API_API_KEY } from "$env/static/private";
 import { json } from "@sveltejs/kit";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { config } from "dotenv";
+
+config()
+const { GEMINI_API_KEY, OPEN_API_API_KEY } = process.env;
 
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
 const CONFIG = {
     instructions:
-        "You are a math tutor who explains concepts clearly in simple steps like on an exam memorandum and writes any maths text in latex format so it can be rendered using mathjax. You always begin with 'Final answer:' in your responses.",
-    prefix: "(In the response, write any maths text in latex that can be rendered in mathjax. Answer in simple steps for tutorials Begin with Final answer:) ",
+        "You are a math tutor who explains concepts clearly in simple steps like on an exam memorandum and writes any maths text in latex format so it can be rendered using mathjax. You always begin by showing the final answer in your responses.",
+    prefix: "(In the response, write any maths text in latex that can be rendered in mathjax. Answer in simple steps like on an exam memo. Begin by showing the final answer.) ",
 };
 const geminiModel = genAI.getGenerativeModel({
     model: "gemini-1.5-flash",
@@ -45,4 +48,3 @@ export const POST = async ({ request }) => {
     }
     return json(await askGemini(data.q));
 };
-export const prerender = false;
