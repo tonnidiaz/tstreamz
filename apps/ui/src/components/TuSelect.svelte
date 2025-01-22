@@ -344,7 +344,7 @@
         <div class="container wrapper-column">
              <div   class="tu-select-form" bind:this={formRef}>
                 <div class="tu-select-form-group">
-                    <span class="tu-select-form-arrow"
+                    <span class="tu-select-form-arrow text-white-1"
                         ><i class="fi fi-br-angle-small-down"></i></span
                     >
                     <select

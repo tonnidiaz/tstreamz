@@ -36,16 +36,6 @@ math-field {
 .MathJax {
     display: inline !important;
 }
-html {
-    &.light {
-        --color-white-1: black;
-        --color-white-2: black;
-    }
-    &.dark {
-        --color-white-1: white;
-        --color-white-2: rgb(219, 219, 219);
-    }
-}
 
 strong,
 em,

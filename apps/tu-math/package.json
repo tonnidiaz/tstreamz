@@ -28,9 +28,11 @@
 		"@repo/common": "^1.0.0",
 		"@repo/ui": "*",
 		"axios": "^1.7.9",
+		"cheerio": "^1.0.0",
 		"katex": "^0.16.21",
 		"marked": "^15.0.6",
 		"mathlive": "^0.103.0",
+		"mongoose": "^8.9.5",
 		"openai": "^4.79.1"
 	}
 }

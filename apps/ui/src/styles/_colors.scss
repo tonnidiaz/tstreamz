@@ -35,4 +35,5 @@ $bg-color: oklch(var(--b1) / 1);
 $fg-color: rgb(var(--color-gray-300) / 1);
 $fg-color-2: rgb(var(--color-gray-400) / 1);
 $heading-color: rgb(var(--color-gray-300) / 1);
-$border-color : var(--fallback-bc,oklch(var(--bc)/0.2))//rgb(var(--color-gray-700));
+$border-color : var(--fallback-bc,oklch(var(--bc)/0.2));//rgb(var(--color-gray-700));
+

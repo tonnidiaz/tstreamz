@@ -10,7 +10,8 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
         
-	} interface Window {MathJax: MathJax}
+	} 
+    interface Window {MathJax: MathJax}
 }
 
 export {};
