@@ -54,7 +54,14 @@ export const showToast = ({msg, err, timeout = 3000} : {err?: boolean; msg: stri
     
     div.classList.add("alert", `alert-${err ? 'error' : 'success' }`, err && 'bg-red-500', 'text-white', !err && "bg-success" )
     div.innerHTML = `<span>${msg}</span>`
-    document.getElementById("tu-toasts").prepend(div);
+    let parent = document.getElementById("tu-toasts")
+    if (!parent){
+        parent = document.createElement("div")
+        parent.id = "tu-toasts"
+        parent.classList.add("toast", "toast-top", "toast-end")
+        document.body.appendChild(parent)
+    }
+    parent.prepend(div);
 
     setTimeout(()=> div.remove(), timeout)
 }

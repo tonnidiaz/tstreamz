@@ -16,6 +16,11 @@
     import { sleep } from "openai/core.mjs";
     import UInput from "@repo/ui/components/UInput.svelte";
     import UForm from "@repo/ui/components/UForm.svelte";
+    import UTextarea from "@repo/ui/components/UTextarea.svelte";
+    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UAccordion from "@repo/ui/components/UAccordion.svelte";
+    import UDivider from "@repo/ui/components/UDivider.svelte";
+    import { dev } from "$app/environment";
 
     const actions = [
         "solve for",
@@ -28,24 +33,41 @@
         "integrate",
     ] as const;
     type TAction = (typeof actions)[number];
-
+    
     const STATE_KEY = "TUTEX_STATE";
     let _state = $state<{
-        solution: string | undefined;
-        formula: string;
-        solutionKatex: string | undefined;
+        solution?: string;
+        additionalQuery?: string;
+        formula?: string;
+        solutionKatex?: string;
         act: TAction;
-        var: string | undefined;
+        var?: string;
+        input?: { formula: string; action: TAction; additional?: string };
     }>({
         formula: "",
         solution: "",
         solutionKatex: "",
         act: "simplify",
-        var: undefined,
     });
 
-    let mfe: mathlive.MathfieldElement | undefined;
+    let mfe: mathlive.MathfieldElement | undefined = $state();
+    onMount(() => {
+        // Configure mathlive fonts direcory
+        window.MathfieldElement.fontsDirectory = "/mathlive/fonts";
+        // Update state
+        _state = JSON.parse(
+            localStorage.getItem(STATE_KEY) || JSON.stringify(_state)
+        );
+        mfe.setValue(_state.formula);
+        setupMarked();
+        refreshMathJax();
+    });
 
+    $effect(() => {
+        // Update state in localStorage
+        _state;
+        localStorage.setItem(STATE_KEY, JSON.stringify(_state));
+    });
     const setAction = async (val: TAction) => {
         _state.act = val;
     };
@@ -54,15 +76,27 @@
             e.preventDefault();
             _state.solution = undefined;
             _state.solutionKatex = undefined;
+
+            _state.input = {
+                action: _state.act,
+                formula: _state.formula,
+                additional: _state.additionalQuery,
+            };
+            console.log(_state.formula);
+            await refreshMathJax();
             const res = await api.post("/solve", {
-                q: `${_state.act}${_state.act == "solve for" ? ` ${_state.var}` : ""}: ${mathlive.convertLatexToAsciiMath(_state.formula)}`,
+                q: `${_state.act}${_state.act == "solve for" ? ` ${_state.var}` : ""}: ${mathlive.convertLatexToAsciiMath(_state.formula)}\n${_state.additionalQuery || ""}`,
             });
             const data = res.data;
             if (typeof data == "string") _state.solution = data;
             else console.log({ data });
         } catch (err) {
+            _state.solution = "";
             handleErrs(err);
-            showToast({ msg: isTuError(err) || "Failed to solve. Retry..." });
+            showToast({
+                msg: isTuError(err) || "Failed to solve. Retry...",
+                err: true,
+            });
         }
     };
 
@@ -80,37 +114,15 @@
         console.log("Refreshing MathJax...");
         await sleep(100);
         // console.log({MathJax});
-        if (typeof MathJax !== "undefined") MathJax.typesetPromise();
+        if (typeof window.MathJax !== "undefined") window.MathJax.typesetPromise();
     };
 
     $effect.pre(() => {});
-    onMount(() => {
-        // Configure mathlive fonts direcory
-        console.log("object");
-        MathfieldElement.fontsDirectory = "/mathlive/fonts";
-        // Update state
-        _state = JSON.parse(
-            localStorage.getItem(STATE_KEY) || JSON.stringify(_state)
-        );
-        mfe.setValue(_state.formula);
-        setupMarked();
-        refreshMathJax();
-        mfe.applyStyle({
-            fontFamily: "monospace",
-            backgroundColor: "red",
-        });
-    });
-
-    $effect(() => {
-        // Update state in localStorage
-        _state;
-        localStorage.setItem(STATE_KEY, JSON.stringify(_state));
-    });
 
     $effect(() => {
         _state.solution;
         untrack(async () => {
-            _state.solutionKatex = parseMarkdown(_state.solution);
+            _state.solutionKatex = parseMarkdown(_state.solution || "");
             refreshMathJax();
             // solutionKatex = katex.renderToString(formula, {
             //     throwOnError: true,
@@ -125,7 +137,7 @@
 </script>
 
 <div class="p-4 w-full flex flex-col gap-3">
-    <div class="p-4 w-full rounded-md border-1 border-card">
+    <div class="md:p-4 p-2 w-full rounded-md border-1 border-card">
         <div class="flex gap-2 flex-wrap">
             {#each actions as action}
                 <UButton
@@ -136,57 +148,110 @@
             {/each}
         </div>
     </div>
-    <UForm
-        onsubmit={submit}
-        class="border-1 w-full border-card input input-borderd math-field"
+    <div
+        class="md:p-4 p-2 w-full rounded-md border-1 border-card flex flex-col gap-2"
     >
-        <div class="w-full flex items-center gap-4">
-            <span
-                class="wp-nowrap font-poppins fw-6 text-white-1 flex gap-2 items-center"
-                >{capitalizeFirstLetter(_state.act)}
-                {#if _state.act == "solve for"}
-                    <span class="flex items-center">
-                        <UInput
-                            required
-                            maxlength={1}
-                            minlength={1}
-                            placeholder="x"
-                            class="text-center input-sm"
-                            style="width: 20px;"
-                            bind:value={_state.var}
-                        />:
-                    </span>
-                {/if}</span
-            >
-
-            <math-field
-                oninput={(e) => {
-                    _state.formula = mfe.getValue();
-                }}
-                bind:this={mfe}
-                id="formula"
-                class="flex-1"
-            ></math-field>
-            <UButton type="submit" class="btn-primary btn-sm">Solve</UButton>
-        </div>
-    </UForm>
-    <div class="border-1 w-full border-card p-4 rounded-md">
-        <h3 class="text-white-1 fw-6 mb-4 fs-18">Solution</h3>
-        {#if !_state.solutionKatex}
-            <div class="w-100 loading-div">
-                <span><i class="loading loading-bars loading-lg"></i></span>
-            </div>
-        {:else}
-            <div>
-                <div class="mt-4">
-                    <div class="raw-sol my-4">
-                        <p
-                            bind:innerHTML={_state.solutionKatex}
-                            contenteditable="false"
-                        ></p>
-                    </div>
+        <UForm
+            onsubmit={submit}
+            class="flex flex-col gap-2 w-full"
+        >
+            <div class="w-full flex md:flex-row flex-col md:items-center gap-4">
+                <span
+                    class="wp-nowrap font-poppins fw-6 text-white-1 flex gap-2 items-center"
+                    >{capitalizeFirstLetter(_state.act)}
+                    {#if _state.act == "solve for"}
+                        <span class="flex items-center">
+                            <UInput
+                                required
+                                maxlength={1}
+                                minlength={1}
+                                placeholder="x"
+                                inputClass="text-center input-sm p-0"
+                                style="width: 15px;"
+                                bind:value={_state.var}
+                            />
+                        </span>
+                    {/if}</span
+                >
+                <div class="flex-1 input input-bordered border-box w-full">
+                    <math-field
+                        oninput={(e) => {
+                            _state.formula = mfe.getValue();
+                        }}
+                        bind:this={mfe}
+                        id="formula"
+                        class="fs-18 font-monospace w-full"
+                    ></math-field>
                 </div>
             </div>
-        {/if}
+            <UFormGroup class="w-full" label="Additional query">
+                <UTextarea
+                    bind:value={_state.additionalQuery}
+                    placeholder="e.g Round answer to 2 decimal places"
+                />
+            </UFormGroup>
+            <UButton type="submit" class="btn-primary btn-md w-200px ml-auto"
+                >Solve</UButton
+            >
+        </UForm>
     </div>
+
+    <UAccordion open class="max-w-500px rounded-md m-auto">
+        {#snippet label()}
+            <div class="flex gap-2 w-full justify-between">
+                <h3 class="text-white-1 fw-6 fs-18">Solution</h3>
+                <UButton
+                    class="btn-sm btn-primary"
+                    onclick={() => (_state.solution = "")}>Clear</UButton
+                >
+            </div>
+        {/snippet}
+        {#snippet content()}
+            {#if !_state.solution}
+                <div class="w-100 loading-div">
+                    {#if _state.solution == undefined}
+                        <span
+                            ><i class="loading loading-bars loading-lg"
+                            ></i></span
+                        >
+                    {:else}
+                        <p class="fs-20">No solution</p>
+                    {/if}
+                </div>
+            {:else}
+                <div>
+                    {#if _state.input}
+                        <div class="ml-4 mb-3">
+                            <h3 class="fs-18 fw-6">Input</h3>
+                            <div class="mt-2">
+                                <p>
+                                    <span class="fw-"
+                                        >{_state.input.action.toUpperCase()}:
+                                    </span>
+                                    ${_state.input.formula}$
+                                </p>
+                                <p class="fs-13 fw-4">
+                                    <i>({_state.input.additional || ""})</i>
+                                </p>
+                            </div>
+                        </div>
+                        <UDivider />
+                    {/if}
+                    <div class="mt-4">
+                        <div class="raw-sol my-4">
+                            <p
+                                bind:innerHTML={_state.solutionKatex}
+                                contenteditable="false"
+                            ></p>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+        {/snippet}
+    </UAccordion>
+    {#if dev}
+        <UButton class="btn-secondary" onclick={refreshMathJax}
+            >Refresh Mathjax</UButton
+        >
+    {/if}
 </div>

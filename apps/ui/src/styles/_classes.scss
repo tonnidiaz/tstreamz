@@ -182,3 +182,7 @@ $list-types: (
     list-style-type: $type;
   }
 }
+
+.border-box{
+    box-sizing: border-box !important;
+}

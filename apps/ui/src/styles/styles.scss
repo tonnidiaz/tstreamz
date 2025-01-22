@@ -74,8 +74,9 @@ main {
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    height: calc(100vh - colors.$sidenav-w);
-    max-height: calc(100vh - colors.$sidenav-w);
+    &:not(.h-full){height: calc(100vh - colors.$sidenav-w);
+        max-height: calc(100vh - colors.$sidenav-w);}
+    
 }
 
 .navbar {

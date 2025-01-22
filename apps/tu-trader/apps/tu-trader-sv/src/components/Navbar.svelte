@@ -9,16 +9,7 @@
     import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
     import UDivider from "@repo/ui/components/UDivider.svelte";
     let ioConnected = $state(false);
-    let menuOpen = $state(false);
     let { user } = $derived(userStore);
-    const menuItems = [
-        [
-            {
-                label: "Profile",
-                icon: "i-heroicons-user-circle-20-solid",
-            },
-        ],
-    ];
 
     onMount(() => {
         socket?.on("connect", () => (ioConnected = true));

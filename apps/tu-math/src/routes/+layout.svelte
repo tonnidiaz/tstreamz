@@ -1,8 +1,16 @@
 <script lang="ts">
-	import "@repo/ui/styles/all.scss";
+    import { SITE } from "@/lib/conts";
+	import Navbar from "@repo/ui/components/Navbar.svelte";
+import "@repo/ui/styles/all.scss";
 	let { children } = $props();
 </script>
 <svelte:head>
     <title>Tu mathematics</title>
 </svelte:head>
-{@render children()}
+
+<Navbar site={SITE} ready={true}/>
+<div class="tu-app full w-full justify-center oy-scroll">
+    {@render children()}
+</div>
+
+

@@ -7,6 +7,6 @@ import { sleep } from "@cmn/utils/funcs";
 
 </script>
 
-<div class="p-4">
+<div class="md:p-4 p-1 w-full">
     <TuTex/>
 </div>

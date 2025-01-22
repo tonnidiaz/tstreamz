@@ -3,6 +3,10 @@
     // "module": "commonjs",
     "declaration": true,
     "declarationMap": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
     "noEmit": true,
     // "baseUrl": ".",
     "outDir": "./dist",
@@ -25,4 +29,4 @@
   "include": ["src", "**/*.ts", "../../packages/common/src/**/*.ts", "svelte.d.ts"],
   "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
 }
- 
+  

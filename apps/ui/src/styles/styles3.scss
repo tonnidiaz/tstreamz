@@ -354,3 +354,7 @@ img {
     --tw-text-opacity: 1;
   background-color: var(--fallback-su,oklch(var(--su)/var(--tw-text-opacity, 1)));
 }
+
+#tu-toasts{
+    // @apply toast toast-top toast-end;
+}
