@@ -57,7 +57,7 @@
         <div class="mb-2 flex items-center justify-between gap-2 w-full">
             <h1>Past papers</h1>
             <TuSelect
-                class="w-100px"
+                class="min-w-100px"
                 placeholder="Select year"
                 innerHint="year"
                 bind:value={year}
@@ -79,11 +79,11 @@
                                     <div>
                                        <h5 class="fs-13 fw-5">{paper.date}</h5>
                                     <div class="mt-4 flex flex-col gap-1 flex-wrap">
-                                        {#each paper.docs as doc}
+                                        {#each paper.docs as doc, docIndex}
                                             <div class="p-2 border-1 border-card rounded-md flex flex-wrap gap-2">
-                                                <UButton class="btn-sm btn-secondary btn-outline">{doc.paper.name}</UButton>
+                                                <TuLink to={`/past-papers/${pastPaper._id}/${paper.date}/${docIndex + 1}/paper`} class="btn-sm btn btn-secondary btn-outline">{doc.paper.name}</TuLink>
                                                 {#if doc.memo.name}
-                                                <UButton class="btn-sm btn-secondary btn-outline">{doc.memo.name}</UButton>
+                                                <TuLink to={`/past-papers/${pastPaper._id}/${paper.date}/${docIndex + 1}/memo`} class="btn-sm btn btn-secondary btn-outline">{doc.memo.name}</TuLink>
                                                 {/if}
                                             </div>
                                         {/each}
