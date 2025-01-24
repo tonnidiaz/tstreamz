@@ -1,6 +1,7 @@
 import { dev } from "$app/environment"
 import { connectMongo } from "@cmn/utils/bend/funcs"
 import { handleErrs, isTuError, timedLog } from "@cmn/utils/funcs"
+import { handleError } from "@repo/ui/hooks.server"
 import type { HandleServerError } from "@sveltejs/kit"
 
 const main = async () =>{
@@ -8,15 +9,5 @@ const main = async () =>{
     await connectMongo(dev, "tu-math")
 }
 
-export const handleError: HandleServerError = async ({
-    error,
-    event,
-    status,
-    message,
-}) => {
-    handleErrs(error);
-    return { message: "tu:" + (isTuError(error) || "Something went wrong"), status };
-};
-
-
+export {handleError};
 main()

@@ -2,7 +2,7 @@
     <div class="error">
         <span class="status">{$page.status}</span>
         <div class="message">
-            <h1>{$page.error.message.replace("tu:", "")}</h1>
+            <!-- <h1>{$page.error.message.replaceAll("tu:", "")}</h1> -->
         </div>
     </div>
 </div>
