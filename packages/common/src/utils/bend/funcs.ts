@@ -142,6 +142,7 @@ export function createMongoConn(DEV: boolean, db: string = "tb") {
     let mongoURL = (DEV ? process.env.MONGO_URL_LOCAL : process.env.MONGO_URL)!;
     try {
         console.log({mongoURL});
+        if (!mongoURL) return
         return mongoose.createConnection(mongoURL, {dbName: db})
     } catch (e) {
         console.log("Could not establish connection");
