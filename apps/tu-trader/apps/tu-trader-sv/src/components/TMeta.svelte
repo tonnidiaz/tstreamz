@@ -19,27 +19,6 @@
         keywords?: string;
     } = $props();
 
-    
-
-    // useHead({
-    //     script: [
-
-    //         // Google Analyticts
-    //         {
-    //             async: true,
-    //             src: "https://www.googletagmanager.com/gtag/js?id=G-NMN9VWLJ6B"
-    //         },
-    //         {
-    //             innerHTML: `
-    //             window.dataLayer = window.dataLayer || [];
-    //             function gtag(){dataLayer.push(arguments);}
-    //             gtag('js', new Date());
-
-    //             gtag('config', 'G-NMN9VWLJ6B');
-    //             `
-    //         }
-    //     ]
-    // })
 </script>
 
 <svelte:head>

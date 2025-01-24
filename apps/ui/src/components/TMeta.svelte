@@ -1,27 +1,32 @@
 <script lang="ts">
-    import { page } from "$app/stores";
-    import { SITE, SITE_SLOGAN, DEVELOPER, siteDesc } from "@/lib/constants";
-    const ROOT = $page.url.origin
+    import { page } from "$app/state";
+    import { appData } from "../lib/consts";
+    const ROOT = page.url.origin
 
-    const _title = `${SITE} - ${SITE_SLOGAN}`;
-
-    let {
-        title = _title,
-        src = ROOT + "/assets/images/logo.png",
-        desc = ``,
-        keywords = SITE.toLowerCase(),
-        url: _url
-    }: {
+    export interface ITMetaProps {
         title?: string;
         src?: string;
         desc?: string;
         url?: string;
         keywords?: string;
-    } = $props();
+        site?: string;
+        slogan?: string;
+        siteDesc?: string;
+    }
+    let {
+        title,
+        src = ROOT + "/assets/images/logo.png",
+        desc = ``,
+        url: _url,
+        site = "Tu",
+        slogan = "Tu app",
+        siteDesc = "An app from Tu"
+    }: ITMetaProps = $props();
+    const _title = `${site} - ${slogan}`;
     let __title = $derived((title || _title).trim())
 
     const _description = $derived(((desc || '') + '\n' + siteDesc).trim());
-    const url = $derived($page.url.href)
+    const url = $derived(page.url.href)
 </script>
 
 <svelte:head>
@@ -41,7 +46,7 @@
     <meta property="twitter:description" content={`${_description}`} />
     <meta property="twitter:image" content={src} />
 
-    <meta name="author" content={DEVELOPER} />
-    <meta name="publisher" content={DEVELOPER} />
-    <meta name="copyright" content={SITE} />
+    <meta name="author" content={appData.author} />
+    <meta name="publisher" content={appData.author} />
+    <meta name="copyright" content={site} />
 </svelte:head>
