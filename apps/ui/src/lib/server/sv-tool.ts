@@ -66,10 +66,13 @@ export function svTool({
         svTool.main();
     } catch (err) {
         console.log(err);
+    }finally{
+        clearTerminal()
     }
 }
 
 import fs from "node:fs"
+import { clearTerminal } from "@cmn/utils/funcs";
  function _findTurboRoot(startDir: string) {
     let currentDir = startDir;
 
