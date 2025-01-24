@@ -1,5 +1,9 @@
 import path, { dirname } from "path";
 import { SvelteTool } from "./sv-tool-class";
+const clearTerminal = () => {
+    process.stdout.write("\x1Bc");
+};
+
 
 /**
  * 
@@ -72,7 +76,7 @@ export function svTool({
 }
 
 import fs from "node:fs"
-import { clearTerminal } from "@cmn/utils/funcs";
+// import { clearTerminal } from "@cmn/utils/funcs";
  function _findTurboRoot(startDir: string) {
     let currentDir = startDir;
 

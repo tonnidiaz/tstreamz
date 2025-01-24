@@ -38,6 +38,9 @@
     "socket.io": "*"
   },
   "devDependencies": {
+    "aws-sdk": "^2.1692.0",
+    "mock-aws-s3": "^4.0.2",
+    "nock": "^14.0.0",
     "rimraf": "*",
     "vite": "^5.4.11"
   }
