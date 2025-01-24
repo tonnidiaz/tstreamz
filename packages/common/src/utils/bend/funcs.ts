@@ -4,7 +4,7 @@ import nfs, { readFileSync, writeFileSync } from "node:fs";
 import nodemailer from "nodemailer";
 import { developer, GMAIL_HOST, GMAIL_PORT } from "../consts";
 import path from "node:path";
-import { configDotenv } from "dotenv";
+import { config, configDotenv } from "dotenv";
 import mongoose from "mongoose";
 import { handleErrs, randomInRange } from "../funcs";
 import { DEV } from "./consts";
@@ -138,11 +138,12 @@ export async function connectMongo(DEV: boolean, db: string = "tb") {
     }
 }
 export function createMongoConn(DEV: boolean, db: string = "tb") {
+config()
     console.log("Creating mongo connection...", { DEV, db });
     let mongoURL = (DEV ? process.env.MONGO_URL_LOCAL : process.env.MONGO_URL)!;
     try {
         console.log({mongoURL});
-        return mongoose.createConnection(mongoURL || '', {dbName: db})
+        return mongoose.createConnection(mongoURL, {dbName: db})
     } catch (e) {
         console.log("Could not establish connection");
         handleErrs(e);
