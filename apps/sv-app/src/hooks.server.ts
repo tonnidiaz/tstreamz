@@ -1,3 +1,2 @@
-import { clearTerminal } from "@cmn/utils/funcs";
-clearTerminal()
-// console.log(twConfig(import.meta.dirname));
+import {handleError} from '@repo/ui/src/hooks.server'
+export {handleError}

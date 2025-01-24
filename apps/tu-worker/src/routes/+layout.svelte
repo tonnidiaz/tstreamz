@@ -8,8 +8,8 @@
     let { children } = $props();
 </script>
 
-<TMeta/>
-<Navbar site={"Tu sv app"} ready={true}>
+<TMeta title={"Tu worker"}/>
+<Navbar site={"Tu worker"} ready={true}>
     {#snippet menuItems()}
         <li><TuLink to="/about">About</TuLink></li>
     {/snippet}
