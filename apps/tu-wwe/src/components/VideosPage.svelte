@@ -1,6 +1,5 @@
 <script lang="ts">
     import { api } from "@/lib/api";
-    import type { IVideo, IVideoSide } from "@/lib/interfaces";
     import { appStore } from "@/stores/app.svelte";
     import {
         capitalizeFirstLetter,
@@ -13,12 +12,13 @@
     import { goto } from "$app/navigation";
     import { page } from "$app/state";
     import { untrack } from "svelte";
+    import type { IVideoSide, IVideo } from "@cmn/utils/tu-wwe/interfaces";
 
     let { side = "all" }: { side?: IVideoSide } = $props();
     let { maxVidsPerPage, totalVids } = $derived(appStore);
     let _page = $state(1);
     let _totalVids = $derived(totalVids[side]);
-    let totalPages = $derived(Math.ceil(_totalVids / maxVidsPerPage));
+    let totalPages = $derived(Math.ceil(_totalVids / maxVidsPerPage) || 1);
 
     let videos: IVideo[] | undefined = $state();
 

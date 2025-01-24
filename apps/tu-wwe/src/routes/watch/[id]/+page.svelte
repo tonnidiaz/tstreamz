@@ -2,7 +2,7 @@
     import { page } from "$app/state";
     import TMeta from "@/components/TMeta.svelte";
     import { SITE } from "@/lib";
-    import type { IVideo } from "@/lib/interfaces";
+    import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
 

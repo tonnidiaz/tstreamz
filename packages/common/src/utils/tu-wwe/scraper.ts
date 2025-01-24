@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import type { IVideo, IVideoSide } from "../interfaces";
 import { handleErrs, timedLog } from "@cmn/utils/funcs";
+import { IVideoSide, IVideo } from "./interfaces";
 import { TuVid } from "./models";
 
 const getPageVideos = async (page: number, side: IVideoSide) => {
@@ -75,7 +75,7 @@ const getStremingSiteLinks = async (url: string) => {
     }
 };
 
-export const videsScraper = async ({
+export const wweVideoScraper = async ({
     side,
     maxPages = 2,
     vidsPerPage

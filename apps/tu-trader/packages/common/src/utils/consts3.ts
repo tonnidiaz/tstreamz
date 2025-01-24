@@ -174,19 +174,6 @@ export const coinVols = [
     },
 ];
 
-class TaskManager {
-    tasks: ITask[] = [];
-
-    addTask(task: ITask) {
-        this.tasks.push(task);
-    }
-    rmTask(id: string | undefined | null) {
-        if (!id) return;
-        timedLog(`Removing task ${id}....`);
-        this.tasks = this.tasks.filter((el) => el.id != id);
-        timedLog(`Task ${id} removed!!`);
-    }
-}
 
 import { configDotenv } from "dotenv";
 // clearTerminal
@@ -205,6 +192,19 @@ try {
     __DEV__ = location.hostname == 'localhost'
 }
 
+class TaskManager {
+    tasks: ITask[] = [];
+
+    addTask(task: ITask) {
+        this.tasks.push(task);
+    }
+    rmTask(id: string | undefined | null) {
+        if (!id) return;
+        timedLog(`Removing task ${id}....`);
+        this.tasks = this.tasks.filter((el) => el.id != id);
+        timedLog(`Task ${id} removed!!`);
+    }
+}
 
 export const taskManager = new TaskManager();
 

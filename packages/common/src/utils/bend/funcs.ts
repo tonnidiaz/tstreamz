@@ -137,6 +137,17 @@ export async function connectMongo(DEV: boolean, db: string = "tb") {
         handleErrs(e);
     }
 }
+export function createMongoConn(DEV: boolean, db: string = "tb") {
+    console.log("Creating mongo connection...", { DEV, db });
+    let mongoURL = (DEV ? process.env.MONGO_URL_LOCAL : process.env.MONGO_URL)!;
+    try {
+        console.log({mongoURL});
+        return mongoose.createConnection(mongoURL, {dbName: db})
+    } catch (e) {
+        console.log("Could not establish connection");
+        handleErrs(e);
+    }
+}
 
 export const hashPass = (pwd: string) => bcrypt.hashSync(pwd, 10);
 

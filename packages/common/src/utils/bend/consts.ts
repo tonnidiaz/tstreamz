@@ -1,3 +1,6 @@
+import { config } from "dotenv";
+
+config()
 export const DEV = process.env.ENV == "dev";
 export const OTPBody = (pin: number, msg = "Here is your OTP") => {
     return `<div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">

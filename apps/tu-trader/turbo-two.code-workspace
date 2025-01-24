@@ -8,6 +8,9 @@
         },
         {
             "path": "../tu-math"
+        },
+        {
+            "path": "../tu-wwe"
         }
     ],
     "settings": {

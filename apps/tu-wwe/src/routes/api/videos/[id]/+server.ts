@@ -1,4 +1,4 @@
-import { TuVid } from '@/lib/server/models/index.js'
+import { TuVid } from '@cmn/utils/tu-wwe/models'
 import { tuErr } from '@repo/ui/lib/funcs.js'
 import { json } from '@sveltejs/kit'
 

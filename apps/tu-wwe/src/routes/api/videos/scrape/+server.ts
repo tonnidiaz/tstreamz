@@ -1,6 +1,6 @@
-import { TuVid } from "@/lib/server/models/index.js";
-import { videsScraper } from "@/lib/server/scraper.js";
 import { clearTerminal } from "@cmn/utils/funcs";
+import { TuVid } from "@cmn/utils/tu-wwe/models";
+import { wweVideoScraper } from "@cmn/utils/tu-wwe/scraper";
 import { json } from "@sveltejs/kit";
 
 export const GET = async ({ url }) => {
@@ -11,10 +11,10 @@ export const GET = async ({ url }) => {
 
     if (!side || side == "all" || side == "raw")
         // Scrape Raw videos
-        await videsScraper({ side: "raw", maxPages,vidsPerPage });
+        await wweVideoScraper({ side: "raw", maxPages,vidsPerPage });
     if (!side || side == "all" || side == "smackdown")
         // Scrape smackdown videos
-        await videsScraper({ side: "smackdown", maxPages,vidsPerPage });
+        await wweVideoScraper({ side: "smackdown", maxPages,vidsPerPage });
 
     return json({msg: "Ok", videos: await TuVid.countDocuments()})
 };

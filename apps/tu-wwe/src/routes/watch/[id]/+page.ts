@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
-import type { IVideo } from "@/lib/interfaces";
 import { handleErrs, isTuError } from "@cmn/utils/funcs.js";
+import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
 import { error } from "@sveltejs/kit";
 import { AxiosError } from "axios";
 

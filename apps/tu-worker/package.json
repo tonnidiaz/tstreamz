@@ -8,6 +8,7 @@
 		"dev": "npm run preall && vite dev --port=3003",
 		"build": "npm run preall && vite build",
 		"preview": "vite preview",
+        "start":"node build/index.js",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
@@ -16,6 +17,7 @@
 		"@sveltejs/adapter-auto": "^4.0.0",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@types/node-schedule": "^2.1.7",
 		"autoprefixer": "^10.4.20",
 		"svelte": "^5.0.0",
 		"svelte-check": "^4.0.0",
@@ -28,6 +30,7 @@
 		"@repo/ui": "*",
 		"axios": "^1.7.9",
 		"cheerio": "^1.0.0",
-		"mongoose": "^8.9.5"
+		"mongoose": "^8.9.5",
+		"node-schedule": "^2.1.1"
 	}
 }
