@@ -38,7 +38,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "tonni-tstreamz-32"
-          entrypoint: "mod.ts"
-          root: "build"
+          entrypoint: ""
+          root: ""
           
           
