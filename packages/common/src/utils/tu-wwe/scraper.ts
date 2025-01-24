@@ -2,7 +2,6 @@ import axios from "axios";
 import * as cheerio from "cheerio";
 import { handleErrs, timedLog } from "@cmn/utils/funcs";
 import { IVideoSide, IVideo } from "./interfaces";
-import { TuVid } from "./models";
 
 const getPageVideos = async (page: number, side: IVideoSide) => {
     try {
@@ -24,7 +23,7 @@ const getPageVideos = async (page: number, side: IVideoSide) => {
         return data;
     } catch (err) {
         console.log("Failed to get page videos");
-        handleErrs(err)
+        handleErrs(err);
         return [];
     }
 };
@@ -69,8 +68,8 @@ const getStremingSiteLinks = async (url: string) => {
         }
         return finalData;
     } catch (err) {
-        console.log("Failed to get page videos",);
-        handleErrs(err)
+        console.log("Failed to get page videos");
+        handleErrs(err);
         return [];
     }
 };
@@ -78,12 +77,13 @@ const getStremingSiteLinks = async (url: string) => {
 export const wweVideoScraper = async ({
     side,
     maxPages = 2,
-    vidsPerPage
+    vidsPerPage,
 }: {
     side: IVideoSide;
     maxPages?: number;
-    vidsPerPage?: number
+    vidsPerPage?: number;
 }) => {
+    const { TuVid } = await import("@cmn/utils/tu-wwe/models");
     /**
      * # Stepts
      * - Visit url1 [https://watchwrestling.ec/wwe-raw/page/1]
@@ -93,25 +93,34 @@ export const wweVideoScraper = async ({
      *              - Get dailymotion links
      *                  - Go to each link and get video url
      */
-    timedLog(`\nBEGIN VIDEO SCRAPER FOR ${side.toUpperCase()}`, {maxPages, vidsPerPage});
+    timedLog(`\nBEGIN VIDEO SCRAPER FOR ${side.toUpperCase()}`, {
+        maxPages,
+        vidsPerPage,
+    });
     // const finalVidoes: IVideo[] = []
-    const log = (...args: any)=>{
-        timedLog(`[${side || ''}]`, ...args)
-    }
+    const log = (...args: any) => {
+        timedLog(`[${side || ""}]`, ...args);
+    };
     // Save old videos to be cleared once all is good
-    const oldVideos = (await TuVid.find({side}).exec()).map(el=> el.id)
+    const oldVideos = (await TuVid.find({ side }).exec()).map((el) => el.id);
     for (let page = 0; page < maxPages; page++) {
-        console.log(`\n[${side || ''}] SCRAPING PAGE ${page + 1}`);
+        console.log(`\n[${side || ""}] SCRAPING PAGE ${page + 1}`);
         const vids = await getPageVideos(page, side);
         for (let it of vids.slice(0, vidsPerPage)) {
             const links = await getStremingSiteLinks(it.url);
             let _title = it.title.split("–")[0].trim();
-            log({title: _title})
-            const splitTitle = _title.split(" ")
+            log({ title: _title });
+            const splitTitle = _title.split(" ");
 
-            let date = splitTitle.pop() || "0"
+            let date = splitTitle.pop() || "0";
 
-            const v: IVideo = { title: splitTitle.join(" ").trim().replaceAll("Adfree", ""), side, thumb: it.thumb, links, date };
+            const v: IVideo = {
+                title: splitTitle.join(" ").trim().replaceAll("Adfree", ""),
+                side,
+                thumb: it.thumb,
+                links,
+                date,
+            };
             const tuVid = new TuVid({ ...v });
             await tuVid.save();
             // console.log(tuVid.side);
@@ -121,8 +130,8 @@ export const wweVideoScraper = async ({
     }
 
     // Delete the old videos
-    for (let vidId of oldVideos){
-        await TuVid.findByIdAndDelete(vidId)
+    for (let vidId of oldVideos) {
+        await TuVid.findByIdAndDelete(vidId);
     }
     timedLog("VIDEO SCRAPER FINISHED");
     return await TuVid.countDocuments();
