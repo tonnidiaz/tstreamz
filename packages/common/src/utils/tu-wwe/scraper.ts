@@ -83,6 +83,12 @@ export const wweVideoScraper = async ({
     maxPages?: number;
     vidsPerPage?: number;
 }) => {
+
+    if (side == "all" || !side){
+        const rawRes = await wweVideoScraper({side: "raw", maxPages, vidsPerPage});
+        const smackdownRes = await wweVideoScraper({side: "smackdown", maxPages, vidsPerPage});
+        return rawRes + smackdownRes
+    }
     const { TuVid } = await import("@cmn/utils/tu-wwe/models");
     /**
      * # Stepts
@@ -134,5 +140,5 @@ export const wweVideoScraper = async ({
         await TuVid.findByIdAndDelete(vidId);
     }
     timedLog("VIDEO SCRAPER FINISHED");
-    return await TuVid.countDocuments();
+    return await TuVid.countDocuments({side});
 };
