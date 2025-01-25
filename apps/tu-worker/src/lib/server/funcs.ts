@@ -1,17 +1,17 @@
 import { dev } from "$app/environment";
 import { taskManager } from "@cmn/classes/task-manager";
-import { handleErrs, timedLog } from "@cmn/utils/funcs";
+import { handleErrs, timedLog, verifyCron } from "@cmn/utils/funcs";
 import { jobSpecs } from "@cmn/utils/funcs2";
-import { scheduleJob } from "node-schedule";
+import { scheduleJob,  } from "node-schedule";
 
 const globalJob = async () => {
     try {
         
         const now = new Date();
         const min = now.getMinutes();
-        if (dev) console.log({ min, tasks: taskManager.tasks.length });
+        timedLog({ min, tasks: taskManager.tasks.length });
         for (let task of taskManager.tasks) {
-            if (min % task.interval == 0) {
+            if (verifyCron(jobSpecs(task.interval), now)) {
                 // temporarilly pause the task
                 taskManager.pauseTask(task.id)
                 task.cb(task.id).then(r=>{

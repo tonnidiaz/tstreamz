@@ -16,4 +16,5 @@
 </Navbar>
 <div class="tu-app full w-full justify-center oy-scroll">
     {@render children()}
+    <div id="ctx-overlay"></div>
 </div>

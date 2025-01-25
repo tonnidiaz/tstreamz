@@ -18,6 +18,7 @@
     "bignumber.js": "*",
     "cheerio": "^1.0.0",
     "cors": "^2.8.5",
+    "cron-parser": "^4.9.0",
     "dotenv": "^16.4.5",
     "jsonwebtoken": "^9.0.2",
     "metaapi.cloud-sdk": "^29.0.1",

@@ -11,7 +11,7 @@
         children,
         class: _class,
         loading = $bindable(),
-        type: _type = 'button',
+        type: _type = "button",
         showLoader = true,
         onclick,
         ...props
@@ -56,14 +56,14 @@
                         cancelable: true,
                     });
                     // Dispatch the event on the form element
-                    const isDefaultPrevented =  true//!btn.form.dispatchEvent(event);
+                    const isDefaultPrevented = true; //!btn.form.dispatchEvent(event);
                     if (isDefaultPrevented)
                         // Invoke the onsubmit callback
-                            await caller(
-                                async () => await submitHandler.call(btn.form, event)
-                            );
+                        await caller(
+                            async () =>
+                                await submitHandler.call(btn.form, event)
+                        );
                 });
-              
             }
         } catch (err) {
             handleErrs(err);
@@ -79,7 +79,7 @@
             handleErrs(err);
         } finally {
             // console.log('Finally');
-            if (!el) return
+            if (!el) return;
             el.disabled = false;
             loading = false;
         }
@@ -92,7 +92,7 @@
 <button bind:this={el} class={`btn btn-sm ` + _class} type={_type} {...props}
     >{@render children?.()}
 
-    {#if (showLoader && (loading || _class?.includes("btn-loading")))}
+    {#if showLoader && (loading || _class?.includes("btn-loading"))}
         <span class="loading loading-spinner loading-sm"></span>
     {/if}
 </button>

@@ -21,7 +21,7 @@
     }: IProps = $props();
 </script>
 
-<li class={"tooltip tooltip-right " + _class} data-tip={title} {...props}>
+<li class={"tooltip tooltip-right tu-menu-item " + _class} data-tip={title} {...props}>
     {#if to}
         <TuLink {reload} {to} class={`${innerClass}`}>
             {#if icon}

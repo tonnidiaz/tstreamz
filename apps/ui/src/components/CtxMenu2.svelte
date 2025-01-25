@@ -3,11 +3,11 @@
     import type { HTMLAttributes } from "svelte/elements";
     import TuTeleport from "./TuTeleport.svelte";
     import { page } from "$app/stores";
-    
+
     interface IProps extends HTMLAttributes<any> {
         toggler?: Snippet;
         open?: boolean;
-        anchor?: 'top' | 'bottom'
+        anchor?: "top" | "bottom";
     }
     let {
         children,
@@ -19,10 +19,12 @@
     }: IProps = $props();
 
     let menuRef: HTMLDivElement = $state();
+    let menuContent: HTMLDivElement = $state();
     let togglerRef: HTMLDivElement;
     let pos = $state({ x: 0, y: 0 });
 
-    const otherClasses = "menu menu-menu menu-sm text-left justify-start shadow"
+    const otherClasses =
+        "menu menu-menu menu-sm text-left justify-start shadow";
 
     const toggleMenu = (e: any) => {
         e.preventDefault();
@@ -74,35 +76,47 @@
         }
     });
 
-    let p = $derived($page.url.href)
-    $effect(()=>{
+    let p = $derived($page.url.href);
+    $effect(() => {
         // watch route
         p;
-        untrack(()=>{open = false})
-        
-    })
+        untrack(() => {
+            open = false;
+        });
+    });
+
+    $effect(() => {
+        // Intercept all menu-items onclicks
+        children;
+        menuContent;
+        console.log(children);
+        if (menuContent){
+            const menuItems = menuContent.querySelectorAll(".tu-menu-item")
+            console.log({menuItems: menuItems.length});
+        }
+    });
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div>
+    <div class="hidden" bind:this={menuContent}>{@render children?.()}</div>
     <div bind:this={togglerRef} class="menu-trigger w-fit" onclick={toggleMenu}>
         {@render trigger?.()}
     </div>
     <!-- <p>{JSON.stringify(pos)}</p> -->
     {#if open}
-    <TuTeleport to="#ctx-overlay">
-        <div
-            style={`left: ${pos.x}%; top: ${pos.y}%`}
-            bind:this={menuRef}
-            class={`ctx-menu menu border-1 border-card rounded-md p-2 bg-base-200 z-[60] ${otherClasses} ` +
-                _class}
-            {...props}
-        >
-            {@render children?.()}
-        </div>
-    </TuTeleport>
-        
+        <TuTeleport to="#ctx-overlay">
+            <div
+                style={`left: ${pos.x}%; top: ${pos.y}%`}
+                bind:this={menuRef}
+                class={`ctx-menu menu border-1 border-card rounded-md p-2 bg-base-200 z-[60] ${otherClasses} ` +
+                    _class}
+                {...props}
+            >
+                {@render children?.()}
+            </div>
+        </TuTeleport>
     {/if}
 </div>
 

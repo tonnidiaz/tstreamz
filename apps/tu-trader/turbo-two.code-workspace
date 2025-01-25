@@ -11,6 +11,9 @@
         },
         {
             "path": "../tu-wwe"
+        },
+        {
+            "path": "../tu-worker"
         }
     ],
     "settings": {

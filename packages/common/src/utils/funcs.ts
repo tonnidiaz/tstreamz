@@ -66,28 +66,39 @@ export const clearTerminal = () => {
 export const handleErrs = (err: any) => {
     // console.log(err)
     let _err: any;
-    if (isAxiosError(err)){
+    if (isAxiosError(err)) {
         _err = {
-              code: err.response?.status ?? err.status ?? err.code ?? err.name,
-              msg: err.response?.data ?? err.message,
-          }
-    }else if (err instanceof TypeError ){
-        _err = {...err}
-    }else{
-        _err  = err?.body?.message ??
-        err?.message?.toString() ??
-        err?.message ??
-        err
+            code: err.response?.status ?? err.status ?? err.code ?? err.name,
+            msg: err.response?.data ?? err.message,
+        };
+    } else if (err instanceof TypeError) {
+        _err = { ...err };
+    } else {
+        _err =
+            err?.body?.message ??
+            err?.message?.toString() ??
+            err?.message ??
+            err;
     }
 
-    _err = Object.keys(_err).length ? _err : err
+    _err = Object.keys(_err).length ? _err : err;
 
-    console.error("TuERR:",_err)
-    return _err
-
+    console.error("TuERR:", _err);
+    return _err;
 };
 
-export const isTuError = (er: any): string | undefined =>{
-    const msg = er?.response?.data?.message
-    return msg?.startsWith?.('tu:') ? msg.replace('tu:', '') : undefined
-}
+export const isTuError = (er: any): string | undefined => {
+    const msg = er?.response?.data?.message;
+    return msg?.startsWith?.("tu:") ? msg.replace("tu:", "") : undefined;
+};
+
+import cp from "cron-parser";
+export const verifyCron = (specs: string, now: Date) => {
+
+    const {fields} = cp.parseExpression(specs);
+    const min = now.getMinutes() as typeof fields.minute[number]
+    const hr = now.getHours() as typeof fields.hour[number]
+    const day = now.getDay() as typeof fields.dayOfWeek[number]
+    // console.log({now, prev, next});
+    return fields.minute.includes(min) && fields.hour.includes(hr) && fields.dayOfWeek.includes(day)
+};

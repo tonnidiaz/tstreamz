@@ -11,9 +11,11 @@
 <TMeta title={"Tu worker"}/>
 <Navbar site={"Tu worker"} ready={true}>
     {#snippet menuItems()}
+    <li><TuLink to="/tasks">Tasks</TuLink></li>
         <li><TuLink to="/about">About</TuLink></li>
     {/snippet}
 </Navbar>
 <div class="tu-app full w-full justify-center oy-scroll">
     {@render children()}
+    <div id="ctx-overlay"></div>
 </div>

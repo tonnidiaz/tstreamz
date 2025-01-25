@@ -2,8 +2,15 @@ import { timedLog } from "@cmn/utils/funcs";
 import { ITask } from "@cmn/utils/interfaces";
 
 export class TaskManager {
-    tasks: ITask[] = [];
 
+
+    tasks: ITask[] = [];
+    static instances: TaskManager[] = []
+
+    constructor(){
+        timedLog("\nINIT TASK_MANAGER\n")
+        TaskManager.instances.push(this)
+    }
     addTask(task: ITask) {
         this.tasks.push(task);
     }
@@ -20,6 +27,12 @@ export class TaskManager {
         this.tasks = this.tasks.filter((el) => el.id != id);
         timedLog(`Task ${id} removed!!`);
     }
+
+    clearTasks(){
+        this.tasks = []
+    }
 }
 
-export const taskManager = new TaskManager();
+export let globalJobScheduled = false
+export const setGlobalJobScheduled = (val: boolean)=> globalJobScheduled = val;
+export const taskManager = TaskManager.instances[0] || new TaskManager();
