@@ -87,12 +87,19 @@
 
     $effect(() => {
         // Intercept all menu-items onclicks
-        children;
-        menuContent;
-        console.log(children);
-        if (menuContent){
-            const menuItems = menuContent.querySelectorAll(".tu-menu-item")
-            console.log({menuItems: menuItems.length});
+        menuRef;
+        if (menuRef){
+            const menuItems = menuRef.querySelectorAll(".tu-menu-item") as NodeListOf<HTMLLIElement>;
+            menuItems.forEach(it=>{
+                const oldOnclick = it.onclick;
+                it.onclick = async(e)=>{
+                    const  r = !oldOnclick ? true : await oldOnclick.call(e)
+                    untrack(()=>{
+                        if (r) open = false
+                    })
+                }
+                
+            })
         }
     });
 </script>

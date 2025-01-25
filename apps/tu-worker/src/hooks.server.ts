@@ -3,12 +3,13 @@ import { handleError } from "@repo/ui/hooks.server";
 import { scheduleAllTasks } from "./lib/server/funcs"; 
 import { globalJobScheduled, setGlobalJobScheduled, taskManager } from "@cmn/classes/task-manager";
 import { scrapeWWEVideos } from "./lib/server/tasks";
+import { dev } from "$app/environment";
 export { handleError };
 
 const main = async () => {
     // clearTerminal()
     timedLog("RUN ONCE", {globalJobScheduled});
-
+    if (dev) return;
     // Clear any left over tasks
     taskManager.clearTasks()
     // Schedule tasks

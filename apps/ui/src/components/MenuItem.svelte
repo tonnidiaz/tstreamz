@@ -1,7 +1,9 @@
 <script lang="ts">
     import type { HTMLAttributes } from "svelte/elements";
     import TuLink from "./TuLink.svelte";
+    import { onMount } from "svelte";
 
+    let ref: HTMLLIElement | undefined = $state()
     interface IProps extends HTMLAttributes<any> {
         to?: string;
         title?: string;
@@ -17,11 +19,19 @@
         icon,
         reload,
         class: _class,
+        onclick,
         ...props
     }: IProps = $props();
+
+    $effect(()=>{
+        // console.log({onclick});
+        onclick;
+        ref.onclick = onclick
+    })
+
 </script>
 
-<li class={"tooltip tooltip-right tu-menu-item " + _class} data-tip={title} {...props}>
+<li bind:this={ref} class={"tooltip tooltip-right tu-menu-item " + _class} data-tip={title} {...props}>
     {#if to}
         <TuLink {reload} {to} class={`${innerClass}`}>
             {#if icon}

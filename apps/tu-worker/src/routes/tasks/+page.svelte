@@ -1,6 +1,6 @@
 <script lang="ts">
     import { api } from "@/lib/api";
-    import { handleErrs, isTuError } from "@cmn/utils/funcs";
+    import { handleErrs, isTuError, sleep } from "@cmn/utils/funcs";
     import type { ITask } from "@cmn/utils/interfaces";
     import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
     import MenuItem from "@repo/ui/components/MenuItem.svelte";
@@ -54,7 +54,7 @@
                  <UAccordion>
                 {#snippet label()}
                     <div class="flex justify-between items-center w-full gap-2">
-                        <h3><span class="text-primary">[{task.interval}]</span> {task.name}</h3>
+                        <h3><span class="text-primary">[{new Date(task.interval * 60000).toISOString().split("T").pop()?.split('.')[0]}]</span> {task.name}</h3>
                         <CtxMenu2>
                             {#snippet toggler()}
                                 <UButton
@@ -64,7 +64,12 @@
                                 >
                             {/snippet}
                             <ul>
-                                <MenuItem>Run</MenuItem>
+                                <MenuItem onclick={async()=>{
+                                    console.log('Running...');
+                                    await sleep(2000)
+                                    console.log('Done running');
+                                    return true
+                                }}>Run</MenuItem>
                                 <MenuItem>Pause</MenuItem>
                                 <MenuItem>Resume</MenuItem>
                                 <UDivider />
