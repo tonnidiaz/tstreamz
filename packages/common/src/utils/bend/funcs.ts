@@ -1,14 +1,14 @@
 import jwt from "jsonwebtoken";
 import { type IObj } from "../interfaces";
-import nfs, { readFileSync, writeFileSync } from "node:fs";
+import nfs, { readFileSync } from "node:fs";
 import nodemailer from "nodemailer";
-import { developer, GMAIL_HOST, GMAIL_PORT } from "../consts";
+import { GMAIL_HOST, GMAIL_PORT } from "../consts";
 import path from "node:path";
 import { config, configDotenv } from "dotenv";
 import mongoose from "mongoose";
 import { handleErrs, randomInRange } from "../funcs";
 import { DEV } from "./consts";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs"
 
 configDotenv();
 export const genToken = (data: IObj, exp?: string | number | undefined) => {
@@ -150,7 +150,7 @@ config()
     }
 }
 
-export const hashPass = (pwd: string) => bcrypt.hashSync(pwd, 10);
+export const hashPass = async (pwd: string) => bcrypt.hashSync(pwd, 10);
 
 export const genOTP = () => {
     const pin = randomInRange(1000, 9999);
