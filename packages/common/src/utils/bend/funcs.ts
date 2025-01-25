@@ -14,15 +14,10 @@ configDotenv();
 export const genToken = (data: IObj, exp?: string | number | undefined) => {
     const { SECRET_KEY } = process.env;
     if (DEV) console.log({ SECRET_KEY });
-    const _jwt: typeof jwt = (jwt as any).default;
-    const __jwt = _jwt || jwt;
+    const __jwt = jwt
     return exp
         ? __jwt.sign(
-              {
-                  data,
-              },
-              SECRET_KEY!,
-              { expiresIn: exp }
+              {payload: data}, SECRET_KEY, {expiresIn: Number(exp)}
           )
         : __jwt.sign({ payload: data }, SECRET_KEY!);
 };
