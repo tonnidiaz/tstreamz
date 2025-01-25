@@ -9,7 +9,7 @@ export { handleError };
 const main = async () => {
     // clearTerminal()
     timedLog("RUN ONCE", {globalJobScheduled});
-    if (dev) return;
+    // if (dev) return;
     // Clear any left over tasks
     taskManager.clearTasks()
     // Schedule tasks
