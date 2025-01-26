@@ -1,9 +1,9 @@
 import { clearTerminal } from "@cmn/utils/funcs";
-import { TuVid } from "@cmn/utils/tu-wwe/models";
 import { wweVideoScraper } from "@cmn/utils/tu-wwe/scraper";
 import { json } from "@sveltejs/kit";
 
 export const GET = async ({ url }) => {
+    const {TuVid} = await import("@cmn/utils/tu-wwe/models")
     clearTerminal()
     const { side, max, perPage } = Object.fromEntries(url.searchParams);
 

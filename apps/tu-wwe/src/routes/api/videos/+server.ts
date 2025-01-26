@@ -1,7 +1,7 @@
-import { TuVid } from "@cmn/utils/tu-wwe/models";
 import { json } from "@sveltejs/kit";
 
 export const GET = async ({ url }) => {
+    const {TuVid} = await import("@cmn/utils/tu-wwe/models")
     const { count, side, page, limit } = Object.fromEntries(url.searchParams);
     if (count == "true") {
         const dt = {
