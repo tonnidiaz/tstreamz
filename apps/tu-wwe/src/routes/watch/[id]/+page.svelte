@@ -5,18 +5,20 @@
     import VideoCards from "@/components/VideoCards.svelte";
     import { SITE } from "@/lib";
     import { api } from "@/lib/api";
+    import { dummyNews } from "@/lib/consts";
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
+    import UDivider from "@repo/ui/components/UDivider.svelte";
     import { showToast } from "@repo/ui/lib/funcs";
 
     let embedUrl = $state("");
     let { data, url } = $derived(page);
 
     let video: IVideo = $derived(data.video);
-    let {id} = $derived(page.params)
+    let { id } = $derived(page.params);
     let related: IObj[] | undefined = $state();
     let date = $derived(new Date(video.date).toISOString().split("T")[0]);
     let part = $derived(url.searchParams.get("part") || "1");
@@ -24,16 +26,18 @@
 
     const getRelatedVideos = async (id: string) => {
         try {
-            related = undefined
+            related = undefined;
             const { data } = await api.get(`/videos`, {
                 params: {
-                    side: video.side, limit: 25, page: 1
+                    side: video.side,
+                    limit: 25,
+                    page: 1,
                 },
             });
 
-            related = data
+            related = data;
         } catch (err) {
-            related = []
+            related = [];
             handleErrs(err);
             showToast({
                 msg: isTuError(err) || "Failed to fetch related videos",
@@ -42,10 +46,10 @@
         }
     };
 
-    $effect(()=>{
+    $effect(() => {
         id;
-        getRelatedVideos(id)
-    })
+        getRelatedVideos(id);
+    });
     $effect(() => {
         frame;
         if (frame) {
@@ -106,6 +110,28 @@
         <h3 class="he">Related</h3>
         <div class="mt-4">
             <VideoCards videos={related} />
+        </div>
+    </section>
+    <UDivider class="my-4"/>
+    <section>
+        <h3 class="he text-center">WWE news</h3>
+        <div class="my-3 flex flex-wrap justify-center gap-3">
+            {#each dummyNews as news}
+                <div class="w-300px p-3 border-1 border-card br-5" style="height: fit-content;">
+                    <TuLink target="_blank" to={news.url} class="h-100p">
+                        <img
+                            src={news.images[0]}
+                            alt="Thumbnail"
+                            class="w-100p"
+                            style="object-fit: contain;"
+                        />
+                        <div class="mt-2">
+                            <h4 class="fw-6 text-secondary">{news.headline}</h4>
+                            <p class="fs-14">{news.description}</p>
+                        </div>
+                    </TuLink>
+                </div>
+            {/each}
         </div>
     </section>
 </div>
