@@ -5,7 +5,7 @@
 
     interface IProps extends HTMLAttributes<any> {
         name?: string;
-        videos: IObj[];
+        videos?: IObj[];
         wrap?: boolean;
     }
 
@@ -37,7 +37,11 @@
         {#each [...Array(5)] as it}
             <div class={"fmc flex items-center justify-center "}>
                 <div class={classes + ` flex items-center justify-center`}>
+                    {#if !videos}
+                    <span class="loading loading-bars loading-md"></span>
+                    {:else}
                     <span class="fs-30"><i class="fi fi-rr-sad-tear"></i></span>
+                    {/if}
                 </div>
             </div>
         {/each}
