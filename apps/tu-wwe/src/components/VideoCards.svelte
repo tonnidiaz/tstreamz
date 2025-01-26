@@ -30,7 +30,7 @@
 </script>
 
 <div
-    class={`${wrap ? "row items-center justify-center wrap" : "flex no-wrap items-center"} ${_class} gap-2 overflow-x-scroll`}
+    class={`${wrap ? "row items-center justify-center wrap" : "flex no-wrap items-center overflow-x-scroll"} ${_class} gap-2`}
     {...props}
 >
     {#if !videos?.length}
@@ -45,14 +45,14 @@
         {#each [...videos] as it, i}
             <div title={it.title} class="fmc fshr-0 p-0 oh">
                 <div class={classes}>
-                    <div class="w-100p h-130px pos-rel">
+                    <div class="w-100p h-160px pos-rel">
                         <div
                             style="background-size: cover"
-                            class="br-4 pos-rel w-100p h-100p"
+                            class="pos-rel w-100p h-100p img-cont border-1 border-card rounded-full"
                         >
                             <img
                                 alt="video art"
-                                class="br-4 w-100p"
+                                class="w-100p rounded-full"
                                 loading="lazy"
                                 src={it.thumb}
                             />
@@ -67,8 +67,7 @@
                             >
                         </div>
                     </div>
-                    <div class="oh" style="padding: 0px">
-                        <div>
+                    <div class="oh text-center flex flex-col items-center" style="padding: 0px">
                             <div class="flex justify-between items-center">
                                 <TuLink
                                     class="fs-13 wp-nowrap text-ellipsis"
@@ -95,7 +94,6 @@
                                     > -->
                                 </div>
                             </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -106,9 +104,16 @@
 <style lang="scss">
     .fmc{
         width: 180px !important;
-        height: 180px !important;
+        height: 220px !important;
         img{
             object-fit: contain;
+        }
+
+        .movie-card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px
         }
     }
 

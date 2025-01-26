@@ -25,7 +25,7 @@
     const fetchVideos = async (page: number) => {
         try {
             videos = undefined;
-
+            
             console.log(`\nGETTING PAGE ${page} VIDEOS(${side})`);
             const { data } = await api.get(`/videos`, {
                 params: {
@@ -65,17 +65,20 @@
                 {capitalizeFirstLetter(side || "WWE")}
             </span> shows
         </h1>
-        <div class="my-4 h-full">
+        <div class="h-full">
             {#if !videos?.length}
                 <div class="loading-div">
                     {#if !videos}
-                        <span class="loading loading-lg loading-bars"></span>
+                        <span class="loading loading-lg loading-infinity"></span>
                     {:else}
-                        <h3>Nothing to show</h3>
+                        <span class=" fw-" style="font-size: 100px;"><i class="fi fi-rr-empty-set"></i></span>
                     {/if}
                 </div>
             {:else}
-                <VideoCards wrap {videos} />
+            <div class="my-4">
+                 <VideoCards wrap {videos} />
+            </div>
+               
             {/if}
         </div>
     </div>

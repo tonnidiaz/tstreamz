@@ -50,5 +50,12 @@
     {@render children()}
 </div>
 {#if !ready}
-    <Loader/>
+    <Loader>
+        <div class="text-center">
+           
+            <img class="blink blinker w-200px h-200px border- border-card rounded-full" style="object-fit: contain;" src="/assets/images/wwe-logo.png" alt="wwe loading icon">
+            <h3 class="fs-25 fw-6">{SITE}</h3>
+        </div>
+        
+    </Loader>
 {/if}
