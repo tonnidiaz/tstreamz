@@ -106,6 +106,11 @@
                 >
             {/each}
         </div>
+
+        <div class="mt-4 p-2 border-1 border-card rounded-md">
+            <h3 class="text-white fs-20 font-poppins">Preview</h3>
+            <div bind:innerHTML={video.info} contenteditable="false"></div>
+        </div>
     </div>
     <section class="p">
         <h3 class="he">Related</h3>
@@ -113,9 +118,8 @@
             <VideoCards videos={related} />
         </div>
     </section>
-    <UDivider class="my-4"/>
   
-    <section class="mb-4">
+    <!-- <section class="mb-4">
         <h3 class="he text-center">WWE news</h3>
         <TuCarousel class="border-1 border-card p-4 m-auto rounded-md" duration={5000}>
             {#each dummyNews as news, i}
@@ -138,7 +142,7 @@
                 </div>
             {/each}
         </TuCarousel>
-    </section>
+    </section> -->
 </div>
 
 <style lang="scss">

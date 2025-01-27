@@ -6,5 +6,7 @@ export interface IVideo {
     side: IVideoSide;
     thumb: string;
     date: string;
+    /**Info HTML */
+    info: string;
     links: { label: string; url: string }[];
 }

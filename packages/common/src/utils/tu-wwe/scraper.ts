@@ -100,6 +100,18 @@ const getStremingSiteLinks = async (url: string) => {
         const _html = _$(dt).text();
         const $ = cheerio.load(_html);
         const links = $(".episodeRepeater");
+        
+        // Additional info
+        const infoSelector = "#details > .rich-content > ul"
+        const _info = _$(infoSelector)
+        const infoItems = _$("li", _info)
+        let info = "<ul class='tu-wwe-info'>"
+        console.log({_info: _info.length});
+        for (let item of infoItems){
+            info += `<li class="tu-item">${_$(item).html()}</li>`
+        }
+        info += "</ul>"
+        
         // console.log(dt);
         // console.log("\n", links.length);
         const dailyMotionLinksCont = [...links].find((el) =>
@@ -125,11 +137,11 @@ const getStremingSiteLinks = async (url: string) => {
 
             finalData.push({ label: txt, url: embedUrl });
         }
-        return finalData;
+        return {links: finalData, info};
     } catch (err) {
         console.log("Failed to get page videos");
         handleErrs(err);
-        return [];
+        return {};
     }
 };
 
@@ -187,6 +199,7 @@ export const wweVideoScraper = async ({
         if (!vids.length) break;
         for (let it of vids.slice(0, vidsPerPage)) {
             const links = await getStremingSiteLinks(it.url);
+            if (!links.links) continue;
             let _title = it.title.split("–")[0]
             log({ title: _title });
 
@@ -197,8 +210,9 @@ export const wweVideoScraper = async ({
                 title: _title.replaceAll("Adfree", "").replaceAll(date, "").trim(),
                 side,
                 thumb: it.thumb,
-                links,
+                links: links.links,
                 date,
+                info: links.info
             };
             const tuVid = new TuVid({ ...v });
             await tuVid.save();

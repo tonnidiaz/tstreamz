@@ -1,6 +1,7 @@
 <script lang="ts">
     import "@repo/ui/styles/all.scss";
     import "@flaticon/flaticon-uicons/css/all/all.css";
+    import "@/styles/main.scss";
     import Navbar from "@repo/ui/components/Navbar.svelte";
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import { SITE } from "@/lib";
@@ -12,6 +13,7 @@
     import { dev } from "$app/environment";
     import Loader from "@repo/ui/components/Loader.svelte";
     import TMeta from "@/components/TMeta.svelte";
+    import Footer from "@/components/Footer.svelte";
     let { children } = $props();
     let {ready} = $derived(appStore)
 
@@ -49,8 +51,14 @@
     {/snippet}
 </Navbar>
 <div class="tu-app full w-full justify-center oy-scroll">
-    {@render children()}
+    <div class="w-full h-full">
+        {@render children()}
+        <Footer/>
+    </div>
+    
+
 </div>
+
 {#if !ready}
     <Loader>
         <div class="text-center">
