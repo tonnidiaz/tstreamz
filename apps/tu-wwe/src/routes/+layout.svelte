@@ -50,8 +50,8 @@
         <li><TuLink to="/ppv">PPV</TuLink></li>
     {/snippet}
 </Navbar>
-<div class="tu-app full w-full justify-center oy-scroll">
-    <div class="w-full h-full">
+<div class="tu-app flex flex-col pt-4 full w-full justify-center h-full oy-">
+    <div class="h-full shadow-lg m-auto w-700px border-1 border-card rounded- oy-scroll">
         {@render children()}
         <Footer/>
     </div>
