@@ -19,6 +19,7 @@
     "binance-api-node": "^0.12.9",
     "bitget-api": "^2.0.11",
     "bybit-api": "^3.10.19",
+    "comment-json": "^4.2.5",
     "cors": "*",
     "dotenv": "*",
     "fs": "^0.0.1-security",

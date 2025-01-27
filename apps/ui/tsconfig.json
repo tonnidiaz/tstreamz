@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
     // "module": "commonjs",
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
+    // "declaration": true,
+    // "declarationMap": true,
+    // "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "sourceMap": true,
@@ -14,7 +15,7 @@
         "@cmn/*": ["../../packages/common/src/*"]
     },
     // "target": "ESNext",
-    "types": ["vite/client"],
+    // "types": ["vite/client"],
     // From svelte
     "lib": [
 			"esnext",
@@ -29,4 +30,4 @@
   "include": ["src", "**/*.ts", "../../packages/common/src/**/*.ts", "svelte.d.ts"],
   "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
 }
-  
+   

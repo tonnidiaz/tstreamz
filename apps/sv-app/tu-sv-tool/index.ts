@@ -3,13 +3,6 @@ import { readFileSync, writeFileSync } from "fs";
 import path from "path";
 const __dirname = import.meta.dirname
 const cwd = path.dirname(__dirname);
-console.log("\n[TU_SV_TOOL]", {cwd});
-svTool({
-    cwd,
-    rootDir: findTurboRoot(cwd),
-    svConfigFile: path.join(__dirname, "svelte.config.js"),
-    viteConfigFile: path.join(__dirname, "vite.config.ts"),
-});
 
 const updateTwConfig = () =>{
 
@@ -21,4 +14,15 @@ const updateTwConfig = () =>{
     console.log("TailwindConfig updated!!", twConfigPath);
 }
 
-updateTwConfig()
+const main = () => {
+    console.log("\n[TU_SV_TOOL]", { cwd });
+    updateTwConfig();
+    svTool({
+        cwd,
+        rootDir: findTurboRoot(cwd),
+        svConfigFile: path.join(__dirname, "svelte.config.js"),
+        viteConfigFile: path.join(__dirname, "vite.config.ts"),
+    });
+};
+
+main()

@@ -38,6 +38,7 @@
 		"@tensorflow/tfjs-node": "^4.22.0",
 		"axios": "^1.7.7",
 		"binance-api-node": "^0.12.9",
+		"comment-json": "^4.2.5",
 		"date-fns": "^4.1.0",
 		"install": "^0.13.0",
 		"jquery": "^3.7.1",

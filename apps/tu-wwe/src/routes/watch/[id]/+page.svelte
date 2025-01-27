@@ -9,6 +9,7 @@
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
+    import TuCarousel from "@repo/ui/components/TuCarousel.svelte";
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import UButton from "@repo/ui/components/UButton.svelte";
     import UDivider from "@repo/ui/components/UDivider.svelte";
@@ -113,26 +114,27 @@
         </div>
     </section>
     <UDivider class="my-4"/>
-    <section>
+  
+    <section class="mb-4">
         <h3 class="he text-center">WWE news</h3>
-        <div class="my-3 flex flex-wrap justify-center gap-3">
+        <TuCarousel>
             {#each dummyNews as news}
-                <div class="w-300px p-3 border-1 border-card br-5" style="height: fit-content;">
-                    <TuLink target="_blank" to={news.url} class="h-100p">
+                <div class="carousel-item w-300px p-3 border-1 border-card br-5" style="height: 150px;">
+                    <div class="h-100p flex flex-col">
                         <img
                             src={news.images[0]}
                             alt="Thumbnail"
-                            class="w-100p"
+                            class="w-100p flex-1"
                             style="object-fit: contain;"
                         />
                         <div class="mt-2">
                             <h4 class="fw-6 text-secondary">{news.headline}</h4>
                             <p class="fs-14">{news.description}</p>
                         </div>
-                    </TuLink>
+                    </div>
                 </div>
             {/each}
-        </div>
+        </TuCarousel>
     </section>
 </div>
 

@@ -17,6 +17,7 @@
     "bcryptjs": "^2.4.3",
     "bignumber.js": "*",
     "cheerio": "^1.0.0",
+    "comment-json": "^4.2.5",
     "cors": "^2.8.5",
     "cron-parser": "^4.9.0",
     "dotenv": "^16.4.5",

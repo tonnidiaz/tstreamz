@@ -36,6 +36,7 @@
 		"@repo/ui": "*",
 		"axios": "^1.7.9",
 		"cheerio": "^1.0.0",
+		"comment-json": "^4.2.5",
 		"mongoose": "^8.9.5",
 		"node-schedule": "^2.1.1"
 	}

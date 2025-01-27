@@ -30,6 +30,7 @@
 		"@repo/ui": "*",
 		"@tensorflow/tfjs": "^4.22.0",
 		"@tensorflow/tfjs-node": "^4.22.0",
+		"comment-json": "^4.2.5",
 		"install": "^0.13.0",
 		"metaapi.cloud-sdk": "^29.0.1",
 		"npm": "^11.0.0"

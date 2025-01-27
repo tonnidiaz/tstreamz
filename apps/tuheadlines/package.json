@@ -30,6 +30,7 @@
 		"@tensorflow/tfjs": "^4.22.0",
 		"@tensorflow/tfjs-node": "^4.22.0",
 		"axios": "^1.7.9",
+		"comment-json": "^4.2.5",
 		"daisyui": "^4.12.22",
 		"install": "^0.13.0",
 		"metaapi.cloud-sdk": "^29.0.1",

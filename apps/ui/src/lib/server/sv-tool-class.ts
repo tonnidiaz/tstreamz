@@ -5,10 +5,10 @@ export class SvelteTool {
     svConfigFile: string;
     viteConfigFile: string;
     cwd: string;
-    packages: {[k: string]: string};
+    packages: { [k: string]: string };
     dirs: string[];
     incl: string[];
-    rootDir: string
+    rootDir: string;
 
     constructor({
         svConfigFile,
@@ -17,23 +17,23 @@ export class SvelteTool {
         packages = {},
         incl = [],
         dirs = [],
-        rootDir
+        rootDir,
     }: {
         svConfigFile: string;
         viteConfigFile: string;
         rootDir: string;
         cwd: string;
-        packages?: {[k: string]: string};
+        packages?: { [k: string]: string };
         dirs?: string[];
-        incl?: string[]
+        incl?: string[];
     }) {
         this.svConfigFile = path.resolve(svConfigFile);
         this.viteConfigFile = path.resolve(viteConfigFile);
-        this.cwd = cwd
-        this.packages = packages
-        this.dirs = dirs
-        this.incl = incl
-        this.rootDir = rootDir
+        this.cwd = cwd;
+        this.packages = packages;
+        this.dirs = dirs;
+        this.incl = incl;
+        this.rootDir = rootDir;
     }
 
     getRawFieldsToAdd() {
@@ -50,20 +50,22 @@ export class SvelteTool {
                 include: [
                     ...c.include,
                     "**/*.ts",
-                    "${path.join('../', this.rootDir, "node_modules/svelte/elements.d.ts")}",
-                    "${Object.values(this.packages).map(el=> path.join('../', el)).join('", "')}",
+                    "${path.join("../", this.rootDir, "node_modules/svelte/elements.d.ts")}",
+                    "${Object.values(this.packages)
+                        .map((el) => path.join("../", el))
+                        .join('", "')}",
                     "${this.incl.join('", "')}"
                 ],
                 exclude: [
                     ...c.exclude,
                     "../../../**/*.js",
-                    "${path.join('../', this.rootDir, "node_modules")}",
-                    "${path.join('../', this.rootDir, "**/**.spec.ts")}",
-                    "${path.join('../', this.rootDir, "**/**.js")}",
+                    "${path.join("../", this.rootDir, "node_modules")}",
+                    "${path.join("../", this.rootDir, "**/**.spec.ts")}",
+                    "${path.join("../", this.rootDir, "**/**.js")}",
                 ],
             };
         },
-    },
+    }
 `;
         return rawFieldsToAdd;
     }
@@ -72,40 +74,25 @@ export class SvelteTool {
         try {
             const rawFieldsToAdd = this.getRawFieldsToAdd();
             // Read the svelte.config.js file
-            let svelteConfig = fs.readFileSync(
-                this.svConfigFile,
-                "utf8"
-            );
+            let svelteConfig = fs.readFileSync(this.svConfigFile, "utf8");
 
-            // Check if the `kit` field exists
-            const kitFieldPattern = /kit:\s*{[^}]*}/;
+            // Find the `kit` object inside the config
+            const kitRegex = /kit:\s*{([\s\S]*?)}/;
+            const kitMatch = svelteConfig.match(kitRegex);
 
-            if (kitFieldPattern.test(svelteConfig)) {
-                // If `kit` exists, add the raw fields
-                svelteConfig = svelteConfig.replace(
-                    kitFieldPattern,
-                    (match) => {
-                        // Ensure there is a trailing comma in the existing `kit` content
-                        const updatedMatch = match.replace(
-                            /}\s*$/,
-                            `,\n${rawFieldsToAdd}}`
-                        );
-                        return updatedMatch;
-                    }
-                );
-            } else {
-                // If `kit` doesn't exist, add it
-                svelteConfig = svelteConfig.replace(
-                    /(export\s+default\s*{)/,
-                    `$1\n  kit: {\n${rawFieldsToAdd}},`
-                );
+            if (kitMatch) {
+                // Extract the current `kit` object content
+                let kitContent = kitMatch[1];
+
+                kitContent = `${rawFieldsToAdd},\n${kitContent}`;
+                // Replace the old `kit` object content with the modified one
+                const updatedKit = `kit: {\n${kitContent}\n  }`;
+                svelteConfig = svelteConfig.replace(kitRegex, updatedKit);
             }
-            const savePath = path.join(this.cwd, "svelte.config.js")
+            const savePath = path.join(this.cwd, "svelte.config.js");
             // Write the updated configuration back to the file
             fs.writeFileSync(savePath, svelteConfig, "utf8");
-            console.log(
-                `Svelte config updated successfully: ${savePath}`
-            );
+            console.log(`Svelte config updated successfully: ${savePath}`);
         } catch (error: any) {
             console.error(`Failed to update Svelte config: ${error.message}`);
         }
@@ -158,7 +145,7 @@ export class SvelteTool {
                     );
                 }
             }
-            const savePath = path.join(this.cwd, "vite.config.ts")
+            const savePath = path.join(this.cwd, "vite.config.ts");
             // Write the updated configuration back to the file
             fs.writeFileSync(savePath, viteConfig, "utf8");
             console.log(
@@ -169,9 +156,8 @@ export class SvelteTool {
         }
     }
 
-    main(){
+    main() {
         this.modifySvelteConfig();
-        for (let d of this.dirs)
-            this.modifyViteConfig(d)
+        for (let d of this.dirs) this.modifyViteConfig(d);
     }
 }
