@@ -8,23 +8,20 @@ import { config, configDotenv } from "dotenv";
 import mongoose from "mongoose";
 import { handleErrs, randomInRange } from "../funcs";
 import { DEV } from "./consts";
-import argon2 from "argon2"
+import bcryptjs from 'bcryptjs'
 
 configDotenv();
 export const genToken = (data: IObj, exp?: string | number | undefined) => {
     const { SECRET_KEY } = process.env;
     if (DEV) console.log({ SECRET_KEY });
-    const __jwt = jwt
+    const __jwt = jwt;
     return exp
-        ? __jwt.sign(
-              {payload: data}, SECRET_KEY, {expiresIn: Number(exp)}
-          )
+        ? __jwt.sign({ payload: data }, SECRET_KEY, { expiresIn: Number(exp) })
         : __jwt.sign({ payload: data }, SECRET_KEY!);
 };
 import nodeUrl from "node:url";
-const __filename = nodeUrl.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const _dirname = __dirname
+export const __filename = nodeUrl.fileURLToPath(import.meta.url);
+const _dirname = import.meta.dirname;
 export const sendMail = async ({
     subject,
     app,
@@ -60,15 +57,18 @@ export const sendMail = async ({
         const _sender = sender || process.env.ADMIN_GMAIL_EMAIL;
         console.log("SENDING FROM: ", _sender);
         console.log("SENDING MAIL TO: ", clients);
-// console.log({_dirname});
+        // console.log({_dirname});
         let html = overrideBody
             ? body
-            : readFileSync(path.join(_dirname, "../../static/mj-email-skeleton.html"), {
-                  encoding: "utf-8",
-              });
+            : readFileSync(
+                  path.join(_dirname, "../../static/mj-email-skeleton.html"),
+                  {
+                      encoding: "utf-8",
+                  }
+              );
         if (!overrideBody) {
             // Replace {site, heading, name, body, email}
-            const temp =(name: string) => `{%${name}%}`
+            const temp = (name: string) => `{%${name}%}`;
             html = html
                 .replaceAll(temp("site"), app)
                 .replaceAll(temp("name"), name)
@@ -76,9 +76,8 @@ export const sendMail = async ({
                 .replaceAll(temp("email"), _sender)
                 .replaceAll(temp("body"), body);
         }
-        
 
-            // return writeFileSync(path.join(_dirname, "../../static/out/mail.html"), html);
+        // return writeFileSync(path.join(_dirname, "../../static/out/mail.html"), html);
         let info = await transporter.sendMail({
             from: `"${app}" <${_sender}>`, // sender address
             to: `"${clients}"`, // list of receivers
@@ -133,19 +132,20 @@ export async function connectMongo(DEV: boolean, db: string = "tb") {
     }
 }
 export function createMongoConn(DEV: boolean, db: string = "tb") {
-config()
+    config();
     console.log("Creating mongo connection...", { DEV, db });
     let mongoURL = (DEV ? process.env.MONGO_URL_LOCAL : process.env.MONGO_URL)!;
     try {
-        console.log({mongoURL});
-        return mongoose.createConnection(mongoURL, {dbName: db})
+        console.log({ mongoURL });
+        return mongoose.createConnection(mongoURL, { dbName: db });
     } catch (e) {
         console.log("Could not establish connection");
         handleErrs(e);
     }
 }
 
-export const hashPass = async (pwd: string) => await argon2.hash(pwd);
+export const hashPass = async (pwd: string) =>
+    await bcryptjs.hash(pwd, 10);
 
 export const genOTP = () => {
     const pin = randomInRange(1000, 9999);
@@ -177,4 +177,5 @@ export const sendOTPMail = async ({
     });
 };
 
-export const verifyPwd = async (pwd: string, hash: string) => await argon2.verify(hash, pwd); 
+export const verifyPwd = async (pwd: string, hash: string) =>
+    await bcryptjs.compare(pwd, hash);
