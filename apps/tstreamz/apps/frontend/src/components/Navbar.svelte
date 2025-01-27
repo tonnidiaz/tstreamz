@@ -78,7 +78,7 @@
     </div>
     <div class="navbar-end">
         <div id="nav-menu">
-           <ul class="menu menu-horizontal p-0 px-1 md:flex" bind:this={menu}>
+           <ul class="menu menu-horizontal p-0 px-4 md:flex" bind:this={menu}>
             <li>
                 <TuLink to="/movies">Movies</TuLink>
             </li>
@@ -97,7 +97,7 @@
                 </TuModal>
             </li>
             <li>
-                <TuLink class="text-secondary" target="_blank" to="https://w.tstreamz.xyz">WWE</TuLink>
+                <TuLink class="text- btn btn-outline btn-sm btn-secondary" target="_blank" to="https://w.tstreamz.xyz">WWE <span class="badge badge-secondary badge-sm">NEW</span></TuLink>
             </li>
         </ul> 
         </div>
