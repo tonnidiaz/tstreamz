@@ -1,13 +1,8 @@
-import { dev } from "$app/environment";
-import { SITE } from "@/lib/constants";
 import { tuErr } from "@/lib/server/funcs";
 import { sendSignupMail } from "@/lib/server/funcs2.js";
 import { User } from "@/lib/server/models/index.js";
-import { OTPBody } from "@cmn/utils/bend/consts.js";
-import { genToken, hashPass, genOTP, sendOTPMail, sendMail } from "@cmn/utils/bend/funcs";
-import { handleErrs, randomInRange } from "@cmn/utils/funcs";
+import { genToken, hashPass, genOTP } from "@cmn/utils/bend/funcs";
 import { json } from "@sveltejs/kit";
-import bcrypt from "bcrypt"
 
 export const POST = async ({url, request: req}) => {
         const body = await req.json()
@@ -61,7 +56,7 @@ export const POST = async ({url, request: req}) => {
         const user = new User();
         for (let key of Object.keys(body)) {
             if (key == "password") {
-                user.password = hashPass(body.password);
+                user.password = await hashPass(body.password);
             } else {
                 user[key] = body[key];
             }

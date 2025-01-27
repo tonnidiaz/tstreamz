@@ -50,6 +50,7 @@
                 };
                 btn.form.addEventListener("submit", listener);
                 btn.form.addEventListener("submit", async (e) => {
+                    e.preventDefault()
                     console.log("Custom listener");
                     const event = new Event("submit", {
                         bubbles: true,

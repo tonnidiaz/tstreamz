@@ -5,14 +5,10 @@
     import VideoCards from "@/components/VideoCards.svelte";
     import { SITE } from "@/lib";
     import { api } from "@/lib/api";
-    import { dummyNews } from "@/lib/consts";
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
-    import TuCarousel from "@repo/ui/components/TuCarousel.svelte";
     import TuLink from "@repo/ui/components/TuLink.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
     import { showToast } from "@repo/ui/lib/funcs";
 
     let embedUrl = $state("");

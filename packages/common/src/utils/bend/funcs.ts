@@ -8,7 +8,7 @@ import { config, configDotenv } from "dotenv";
 import mongoose from "mongoose";
 import { handleErrs, randomInRange } from "../funcs";
 import { DEV } from "./consts";
-import bcrypt from "bcryptjs"
+import argon2 from "argon2"
 
 configDotenv();
 export const genToken = (data: IObj, exp?: string | number | undefined) => {
@@ -145,7 +145,7 @@ config()
     }
 }
 
-export const hashPass = async (pwd: string) => bcrypt.hashSync(pwd, 10);
+export const hashPass = async (pwd: string) => await argon2.hash(pwd);
 
 export const genOTP = () => {
     const pin = randomInRange(1000, 9999);
@@ -176,3 +176,5 @@ export const sendOTPMail = async ({
         heading,
     });
 };
+
+export const verifyPwd = async (pwd: string, hash: string) => await argon2.verify(hash, pwd); 

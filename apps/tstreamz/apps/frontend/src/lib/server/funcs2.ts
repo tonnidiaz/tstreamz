@@ -1,9 +1,7 @@
-import { handleErrs } from "@cmn/utils/funcs";
 import type { IObj } from "@cmn/utils/interfaces";
 import { tuErr } from "./funcs";
 import { User } from "./models";
 import { json } from "@sveltejs/kit";
-import bcrypt from "bcrypt";
 import { hashPass, sendMail } from "@cmn/utils/bend/funcs";
 import { dev } from "$app/environment";
 import { SITE } from "../constants";
@@ -32,7 +30,7 @@ export async function updateUser(id: string, body: IObj, f: string) {
             const v = body[k];
             if (k == "newPwd") {
                 if (dev) console.log('Changing pwd to:', v);
-                user.set("password", hashPass(v));
+                user.set("password", await hashPass(v));
             } else user.set(k, v);
         }
     }

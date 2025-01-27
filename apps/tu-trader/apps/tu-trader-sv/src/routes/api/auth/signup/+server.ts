@@ -57,7 +57,7 @@ export const POST = async ({url, request: req}) => {
         const user = new User();
         for (let key of Object.keys(body)) {
             if (key == "password") {
-                user.password = hashPass(body.password);
+                user.password = await hashPass(body.password);
             } else {
                 user[key] = body[key];
             }

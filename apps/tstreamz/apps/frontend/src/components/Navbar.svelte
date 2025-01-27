@@ -96,6 +96,9 @@
                     
                 </TuModal>
             </li>
+            <li>
+                <TuLink class="text-secondary" target="_blank" to="https://w.tstreamz.xyz">WWE</TuLink>
+            </li>
         </ul> 
         </div>
         

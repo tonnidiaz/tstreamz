@@ -1,11 +1,10 @@
 
 import type { RequestHandler } from "./$types";
-import  bcrypt from 'bcrypt'
 import { json } from "@sveltejs/kit";
 import { handleErrs, isEmail } from "@cmn/utils/funcs";
 import { tuErr } from "@/lib/server/funcs";
 import { User } from "@/lib/server/models";
-import { genToken } from "@cmn/utils/bend/funcs";
+import { genToken, verifyPwd } from "@cmn/utils/bend/funcs";
 
 export const POST: RequestHandler = async ({request: req, locals})=>{
         const { username, password } = await req.json();
@@ -16,7 +15,7 @@ export const POST: RequestHandler = async ({request: req, locals})=>{
             const q = isEmail(username) ? { email: username } : { username };
             let user = await User.findOne(q).exec();
             if (user) {
-                const passValid = bcrypt.compareSync(password, user.password);
+                const passValid = await verifyPwd(password, user.password)
 
                 if (!passValid)
                     return tuErr(400, "Incorrect password.");

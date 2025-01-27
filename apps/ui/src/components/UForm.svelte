@@ -19,16 +19,16 @@
         // btn.classList.remove('btn-loading')
         // btns.forEach((btn: any) => (btn.disabled = false));
     };
-    onMount(()=>{
+    $effect(()=>{
         // console.log('TuForm mounted');
         // console.log(formRef, onsubmit);
-
+        formRef;
         // formRef.addEventListener('submit', _onSubmit)
         formRef.onsubmit = _onSubmit
         // return ()=> formRef.removeEventListener('submit', _onSubmit)
     })
 </script>
 
-<form  {...props} bind:this={formRef}>
+<form method="POST"  {...props} bind:this={formRef}>
     {@render children?.()}
 </form>
