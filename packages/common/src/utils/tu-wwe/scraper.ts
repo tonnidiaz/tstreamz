@@ -115,7 +115,7 @@ const getStremingSiteLinks = async (url: string) => {
             const $link = $(link);
             const txt = $link.text();
             const href = $link.attr("href");
-            if (!txt || !href) continue;
+            if (!txt || !href || txt.toLowerCase().includes("kick off")) continue;
 
             const { data: html } = await _axios.get(href);
             const $$ = cheerio.load(html);
@@ -187,14 +187,14 @@ export const wweVideoScraper = async ({
         if (!vids.length) break;
         for (let it of vids.slice(0, vidsPerPage)) {
             const links = await getStremingSiteLinks(it.url);
-            let _title = it.title
+            let _title = it.title.split("-")[0]
             log({ title: _title });
 
             const dateRegex = /\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/;
             const match = it.title.match(dateRegex);
             const date = match ? match[0] : ""
             const v: IVideo = {
-                title: _title.replaceAll("Adfree", ""),
+                title: _title.replaceAll("Adfree", "").replaceAll(date, "").trim(),
                 side,
                 thumb: it.thumb,
                 links,
