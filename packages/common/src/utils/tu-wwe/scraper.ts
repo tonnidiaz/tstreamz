@@ -187,7 +187,7 @@ export const wweVideoScraper = async ({
         if (!vids.length) break;
         for (let it of vids.slice(0, vidsPerPage)) {
             const links = await getStremingSiteLinks(it.url);
-            let _title = it.title.split("-")[0]
+            let _title = it.title.split("–")[0]
             log({ title: _title });
 
             const dateRegex = /\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/;
