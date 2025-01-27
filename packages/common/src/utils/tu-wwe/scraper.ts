@@ -45,6 +45,8 @@ const getPageVideos = async (page: number, side: IVideoSide) => {
                     .filter(
                         (el) => el.length >= 3 && el != "the" && el != "for"
                     );
+
+                if (ppv)
                 console.log({ splitPPV });
                 vids = vids
                     .filter(
@@ -152,7 +154,12 @@ export const wweVideoScraper = async ({
             maxPages,
             vidsPerPage,
         });
-        return rawRes + smackdownRes;
+        const ppvRes = await wweVideoScraper({
+            side: "ppv",
+            maxPages,
+            vidsPerPage,
+        });
+        return rawRes + smackdownRes + ppvRes;
     }
     const { TuVid } = await import("@cmn/utils/tu-wwe/models");
     /**
