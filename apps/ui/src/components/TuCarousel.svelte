@@ -7,10 +7,10 @@
         duration?: number
     }
 
-    let { children, duration = 3000,...props } : IProps = $props();
+    let { children, duration = 3000, class: _class,...props } : IProps = $props();
     let items: Element[] = $state([])
 
-    let currentIndex = $state(0);
+    let currentIndex = $state(0), size = $state({w: 0, h: 0});
     let interval; //
     let carousel: HTMLDivElement | undefined = $state();
 
@@ -25,7 +25,7 @@
     };
 
     const startAutoSlide = () => {
-        // interval = setInterval(next, duration);
+        interval = setInterval(next, duration);
     };
 
     const stopAutoSlide = () => {
@@ -44,6 +44,14 @@
             
         }
     })
+
+    $effect(()=>{
+        currentIndex;
+        untrack(()=>{
+            size = {w: items[currentIndex].clientWidth, h: items[currentIndex].clientHeight}
+        })
+    })
+
     onMount(() => {
         startAutoSlide();
         return stopAutoSlide;
@@ -52,7 +60,7 @@
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-<div bind:this={carousel} class="carousel" onmouseover={stopAutoSlide} onmouseout={startAutoSlide}>
+<div style="width: 100%; height: auto" bind:this={carousel} class="carousel {_class}" {...props} onmouseover={stopAutoSlide} onmouseout={startAutoSlide}>
     <div
         class="carousel-inner"
         style={`--current-index: ${currentIndex}`}

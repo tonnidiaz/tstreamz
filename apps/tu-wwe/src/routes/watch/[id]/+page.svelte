@@ -66,7 +66,7 @@
 </script>
 
 <TMeta title={`${video.title} ${date} - ${SITE}`} />
-<div class="h-full p-4 w-full flex flex-col gap-3">
+<div class="p-4 w-full flex flex-col gap-3 h-fit">
     <div class="sandes br-10 flex flex-col items-center pos-rel">
         <div class="loading-div pos-abs">
             <span class="loading loading-bars loading-lg"></span>
@@ -93,7 +93,7 @@
 
     <div class="border- border-car rounded-md p-3 sandes">
         <div class="">
-            <h2 class="title">
+            <h2 class="he">
                 {video.title}: <span class="text-secondary">{date}</span>
             </h2>
         </div>
@@ -117,16 +117,19 @@
   
     <section class="mb-4">
         <h3 class="he text-center">WWE news</h3>
-        <TuCarousel>
-            {#each dummyNews as news}
-                <div class="carousel-item w-300px p-3 border-1 border-card br-5" style="height: 150px;">
-                    <div class="h-100p flex flex-col">
-                        <img
+        <TuCarousel class="border-1 border-card p-4 m-auto rounded-md" duration={5000}>
+            {#each dummyNews as news, i}
+                <div class="carousel-item">
+
+                    <div class="flex flex-col  w-{i == 2 ? 500 : 300}px p-1 br-5" style="">
+                        <div class="w-full flex-1 bg-base-200 pos-rel p-3">
+                            <img
                             src={news.images[0]}
                             alt="Thumbnail"
-                            class="w-100p flex-1"
+                            class="w-100p"
                             style="object-fit: contain;"
                         />
+                        </div>
                         <div class="mt-2">
                             <h4 class="fw-6 text-secondary">{news.headline}</h4>
                             <p class="fs-14">{news.description}</p>

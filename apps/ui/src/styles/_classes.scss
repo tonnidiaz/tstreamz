@@ -186,3 +186,9 @@ $list-types: (
 .border-box{
     box-sizing: border-box !important;
 }
+
+.h-fit{height: fit-content;}
+.h-max{
+    height: max-content;
+}
+.h-min{height: min-content;}

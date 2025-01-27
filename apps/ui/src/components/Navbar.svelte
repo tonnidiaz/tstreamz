@@ -14,13 +14,14 @@
         menuItems?: Snippet;
         user?: IObj;
         ready: boolean;
+        hasLogin?: boolean;
         /**The menu-items (MenuItem) on the user avatar dropdown menu. */
         userMenuItems?: Snippet;
     }
 
     let {
         site,
-        menuItems,
+        menuItems,hasLogin,
         user = $bindable(),
         ready = $bindable(),
         userMenuItems,
@@ -78,7 +79,6 @@
                 tabindex="0"
                 class="menu menu-menu menu-sm text-left justify-start open border-1 border-card dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-md"
             >
-                <li><TuLink to="/">Home</TuLink></li>
             </ul>
         </div>
     </div>
@@ -91,7 +91,7 @@
                 {@render menuItems?.()}
             </ul>
         </div>
-
+        {#if hasLogin}
         {#if user}
             <div class="relative">
                 <!-- <div class="avatar ring rounded-full"></div> -->
@@ -135,6 +135,7 @@
                     {/if}
                 </UButton>
             </div>
+        {/if}
         {/if}
     </div>
 </div>

@@ -40,10 +40,12 @@
 <TMeta/>
 
 
-<Navbar site={SITE} {ready}>
+<Navbar site={SITE} {ready} hasLogin={false}>
     {#snippet menuItems()}
+        <li><TuLink to="/">Home</TuLink></li>
         <li><TuLink to="/raw">RAW</TuLink></li>
         <li><TuLink to="/smackdown">Smackdown</TuLink></li>
+        <li><TuLink to="/ppv">PPV</TuLink></li>
     {/snippet}
 </Navbar>
 <div class="tu-app full w-full justify-center oy-scroll">

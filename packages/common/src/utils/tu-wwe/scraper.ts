@@ -1,24 +1,81 @@
 import axios from "axios";
 import * as cheerio from "cheerio";
-import { handleErrs, timedLog } from "@cmn/utils/funcs";
+import { clearTerminal, handleErrs, timedLog } from "@cmn/utils/funcs";
 import { IVideoSide, IVideo } from "./interfaces";
+import { listPPV } from "./consts";
 
+const BASE_URL = "https://watchwrestling.ec";
+const _axios = axios;
 const getPageVideos = async (page: number, side: IVideoSide) => {
     try {
         page += 1;
-        const url = `https://watchwrestling.ec/wwe-${side}/page/${page}`;
-        const { data: html } = await axios.get(url);
-        const $ = cheerio.load(html);
+        const data: {
+            title: string;
+            url: string;
+            thumb: string;
+        }[] = [];
 
-        // Select all videos [<a></a>]
-        const videos = $("a.clip-link");
-        const titles = $(".entry-title");
-        // console.log("\n", { page, videos: videos.length });
-        const data = [...videos].map((el, i) => {
-            const url = $(el).attr("href") || "";
-            const img = $("img", el).attr("src") || "";
-            return { title: $(titles[i]).text(), url, thumb: img };
-        });
+        const _fn = async (ppv?: (typeof listPPV)[number]) => {
+            try {
+                if (ppv) {
+                    console.log(`[${page}][${ppv}]`);
+                }
+                const url =
+                    side == "ppv"
+                        ? `/wwe/page/${page}?s=${ppv.toLowerCase()}`
+                        : `/wwe-${side}/page/${page}`;
+                console.log({ url });
+
+                const { data: html } = await _axios.get(BASE_URL + url);
+                const $ = cheerio.load(html);
+
+                // Select all videos [<a></a>]
+                const videos = $("a.clip-link");
+                const titles = $(".entry-title");
+                console.log({ videos: videos.length });
+                // console.log("\n", { page, videos: videos.length });
+                let vids = [...videos].map((el, i) => {
+                    const url = $(el).attr("href") || "";
+                    const img = $("img", el).attr("src") || "";
+                    return { title: $(titles[i]).text(), url, thumb: img };
+                });
+                const splitPPV = ppv
+                    ?.split(" ")
+                    .map((el) => el.toLowerCase())
+                    .filter(
+                        (el) => el.length >= 3 && el != "the" && el != "for"
+                    );
+                console.log({ splitPPV });
+                vids = vids
+                    .filter(
+                        (el) =>
+                            !ppv ||
+                            el.title
+                                .toLowerCase()
+                                .split(" ")
+                                .findIndex((el2) => splitPPV.includes(el2)) !=
+                                -1
+                    )
+                    .filter(
+                        (el) =>
+                            ["conference", "promotion"].findIndex((it) =>
+                                el.title.toLowerCase().includes(it)
+                            ) == -1
+                    );
+                console.log({ videos: vids.length }, "\n");
+                data.push(...vids);
+            } catch (err) {
+                handleErrs(err);
+            }
+        };
+
+        if (side == "ppv") {
+            for (let ppv of listPPV) {
+                await _fn(ppv);
+            }
+        } else {
+            await _fn();
+        }
 
         return data;
     } catch (err) {
@@ -30,7 +87,7 @@ const getPageVideos = async (page: number, side: IVideoSide) => {
 
 const getStremingSiteLinks = async (url: string) => {
     try {
-        const { data: html } = await axios.get(url);
+        const { data: html } = await _axios.get(url);
         const _$ = cheerio.load(html);
         const script = [..._$("script")].find((el) =>
             _$(el).text().toLowerCase().includes("episoderepeater")
@@ -58,7 +115,7 @@ const getStremingSiteLinks = async (url: string) => {
             const href = $link.attr("href");
             if (!txt || !href) continue;
 
-            const { data: html } = await axios.get(href);
+            const { data: html } = await _axios.get(href);
             const $$ = cheerio.load(html);
 
             const embedUrl = $$("#show_adv_wrap iframe").attr("src");
@@ -76,18 +133,26 @@ const getStremingSiteLinks = async (url: string) => {
 
 export const wweVideoScraper = async ({
     side,
-    maxPages = 2,
+    maxPages = 50,
     vidsPerPage,
 }: {
     side: IVideoSide;
     maxPages?: number;
     vidsPerPage?: number;
 }) => {
-
-    if (side == "all" || !side){
-        const rawRes = await wweVideoScraper({side: "raw", maxPages, vidsPerPage});
-        const smackdownRes = await wweVideoScraper({side: "smackdown", maxPages, vidsPerPage});
-        return rawRes + smackdownRes
+    console.log({ side });
+    if (side == "all" || !side) {
+        const rawRes = await wweVideoScraper({
+            side: "raw",
+            maxPages,
+            vidsPerPage,
+        });
+        const smackdownRes = await wweVideoScraper({
+            side: "smackdown",
+            maxPages,
+            vidsPerPage,
+        });
+        return rawRes + smackdownRes;
     }
     const { TuVid } = await import("@cmn/utils/tu-wwe/models");
     /**
@@ -112,16 +177,17 @@ export const wweVideoScraper = async ({
     for (let page = 0; page < maxPages; page++) {
         console.log(`\n[${side || ""}] SCRAPING PAGE ${page + 1}`);
         const vids = await getPageVideos(page, side);
+        if (!vids.length) break;
         for (let it of vids.slice(0, vidsPerPage)) {
             const links = await getStremingSiteLinks(it.url);
-            let _title = it.title.split("–")[0].trim();
+            let _title = it.title
             log({ title: _title });
-            const splitTitle = _title.split(" ");
 
-            let date = splitTitle.pop() || "0";
-
+            const dateRegex = /\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/;
+            const match = it.title.match(dateRegex);
+            const date = match ? match[0] : ""
             const v: IVideo = {
-                title: splitTitle.join(" ").trim().replaceAll("Adfree", ""),
+                title: _title.replaceAll("Adfree", ""),
                 side,
                 thumb: it.thumb,
                 links,
@@ -140,5 +206,5 @@ export const wweVideoScraper = async ({
         await TuVid.findByIdAndDelete(vidId);
     }
     timedLog("VIDEO SCRAPER FINISHED");
-    return await TuVid.countDocuments({side});
+    return await TuVid.countDocuments({ side });
 };

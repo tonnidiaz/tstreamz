@@ -102,3 +102,5 @@ export const verifyCron = (specs: string, now: Date) => {
     // console.log({now, prev, next});
     return fields.minute.includes(min) && fields.hour.includes(hr) && fields.dayOfWeek.includes(day)
 };
+
+export const isValidDate = (val: number | string | Date) => new Date(val).toString() != "Invalid Date"

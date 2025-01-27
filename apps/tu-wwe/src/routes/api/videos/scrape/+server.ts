@@ -15,6 +15,8 @@ export const GET = async ({ url }) => {
     if (!side || side == "all" || side == "smackdown")
         // Scrape smackdown videos
         await wweVideoScraper({ side: "smackdown", maxPages,vidsPerPage });
+    if (!side || side == "all" || side == "ppv")
+        await wweVideoScraper({ side: "ppv", maxPages,vidsPerPage });
 
     return json({msg: "Ok", videos: await TuVid.countDocuments()})
 };

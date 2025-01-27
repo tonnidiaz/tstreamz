@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { isValidDate } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
     import type { HTMLAttributes } from "svelte/elements";
@@ -71,8 +72,8 @@
                             >
                         </div>
                     </div>
-                    <div class="oh text-center flex flex-col items-center" style="padding: 0px">
-                            <div class="flex justify-between items-center">
+                    <div class="oh text-center flex flex-col items-center w-100p" style="padding: 0px">
+                            <div class="w-full">
                                 <TuLink
                                     class="fs-13 wp-nowrap text-ellipsis"
                                     to={`/watch/${it._id}`}
@@ -84,6 +85,7 @@
                                 >
                                 <!-- <WatchlistBtn {isShow} item={it} /> -->
                             </div>
+                            {#if isValidDate(it.date)}
                             <div class="flex fs-12 justify-between">
                                 <div class="text-secondary">
                                     <span><i class="fi fi-br-calendar"></i></span
@@ -98,6 +100,7 @@
                                     > -->
                                 </div>
                             </div>
+                            {/if}
                     </div>
                 </div>
             </div>

@@ -86,6 +86,7 @@ main {
     overflow: hidden;
     &:not(.h-full){height: calc(100vh - colors.$sidenav-w);
         max-height: calc(100vh - colors.$sidenav-w);}
+
     
 }
 
