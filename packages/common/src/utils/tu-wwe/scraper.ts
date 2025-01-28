@@ -60,7 +60,7 @@ const getPageVideos = async (page: number, side: IVideoSide) => {
                     )
                     .filter(
                         (el) =>
-                            ["conference", "promotion", "talk", "behind"].findIndex((it) =>
+                            ["conference", "promotion", "talk", "behind", "press"].findIndex((it) =>
                                 el.title.toLowerCase().includes(it)
                             ) == -1
                     );
@@ -205,7 +205,8 @@ export const wweVideoScraper = async ({
 
             const dateRegex = /\b\d{1,2}\/\d{1,2}\/\d{2,4}\b/;
             const match = it.title.match(dateRegex);
-            const date = match ? match[0] : ""
+            const date = match ? match[0] : "";
+            if (!date) continue
             const v: IVideo = {
                 title: _title.replaceAll("Adfree", "").replaceAll(date, "").trim(),
                 side,
