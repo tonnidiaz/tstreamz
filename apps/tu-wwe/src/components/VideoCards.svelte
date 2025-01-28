@@ -85,11 +85,11 @@
                                 >
                                 <!-- <WatchlistBtn {isShow} item={it} /> -->
                             </div>
-                            {#if isValidDate(it.date)}
+                            {#if it.date?.length && isValidDate(it.date)}
                             <div class="flex fs-12 justify-between">
                                 <div class="text-secondary">
                                     <span><i class="fi fi-br-calendar"></i></span
-                                    >&nbsp;{new Date(it.date).toISOString().split("T")[0]}
+                                    >&nbsp;{new Date(it.date + " 13:00").toISOString().split("T")[0]}
                                 </div>
                                 <div>
                                     <!-- <span class="color-yellow"

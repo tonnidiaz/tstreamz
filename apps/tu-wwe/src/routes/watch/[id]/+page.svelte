@@ -17,7 +17,7 @@
     let video: IVideo = $derived(data.video);
     let { id } = $derived(page.params);
     let related: IObj[] | undefined = $state();
-    let date = $derived(new Date(video.date + " 13:00").toISOString().split("T")[0]);
+    let date = $derived(!video.date ? null : new Date(video.date + " 13:00").toISOString().split("T")[0]);
     let part = $derived(url.searchParams.get("part") || "1");
     let frame: HTMLIFrameElement | undefined = $state();
 
@@ -62,7 +62,7 @@
     });
 </script>
 
-<TMeta title={`${video.title} ${date} - ${SITE}`} />
+<TMeta title="{video.title} {date || ''} - {SITE}" />
 <div class="w-full flex flex-col gap-3 h-fit">
     <div class="sandes br-10 flex flex-col items-center pos-rel">
         <div class="loading-div pos-abs">
@@ -91,7 +91,7 @@
     <div class="border- border-car rounded-md p-3 sandes">
         <div class="">
             <h2 class="he">
-                {video.title}: <span class="text-secondary">{date}</span>
+                {video.title}{#if date}: <span class="text-secondary">{date}</span>{/if}
             </h2>
         </div>
         <div class="flex justify-start gap-2 mt-2 flex-wrap">
@@ -103,11 +103,12 @@
                 >
             {/each}
         </div>
-
+        {#if video.info}
         <div class="mt-4 p-2 border-1 border-card rounded-md">
             <h3 class="text-white fs-20 font-poppins">Preview</h3>
             <div bind:innerHTML={video.info} contenteditable="false"></div>
         </div>
+        {/if}
     </div>
     <section class="p">
         <h3 class="he">Related</h3>
