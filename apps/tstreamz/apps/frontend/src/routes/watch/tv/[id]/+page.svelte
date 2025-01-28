@@ -207,7 +207,9 @@
 
                     <div
                         class="mb-4 video-frame d-flex ai-center jc-center sandes br-10"
-                    >
+                    ><div class="loading-div pos-abs">
+                        <span class="loading loading-bars loading-lg"></span>
+                    </div>
                         <iframe
                             title="Tunedtreamz frame"
                             bind:this={frame}

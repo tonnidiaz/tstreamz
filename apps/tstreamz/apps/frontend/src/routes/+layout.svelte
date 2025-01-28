@@ -1,13 +1,6 @@
 <script lang="ts">
-    import "@/styles/globals.css";
-    import "@/styles/styles3.scss";
-    import "@/styles/styles2.scss";
-    import "@/styles/page-progress.css";
-    import "@/styles/select.scss";
-    import "@/styles/styles.scss";
-    import "@/styles/daisy.scss";
-    import "@/styles/scrollbar.scss";
-    import "@/styles/components.scss";
+   import "@repo/ui/styles/all.scss";
+   import "@flaticon/flaticon-uicons/css/all/all.css";
 
     import { page } from "$app/stores";
     import AuthLayout from "@/layouts/AuthLayout.svelte";
@@ -62,7 +55,6 @@
         }
     };
     onMount(() => {
-        document.onpop
         addVisitor();
         window.addEventListener("beforeunload", onWindowClose);
         return () => {

@@ -81,12 +81,6 @@ export const handle: Handle = async ({ resolve, event }) => {
     return resolve(event);
 };
 
-export const handleError: HandleServerError = async ({
-    error,
-    event,
-    status,
-    message,
-}) => {
-    handleErrs(error);
-    return { message: "tu:Something went wrong", status };
-};
+import { handleError } from "@repo/ui/hooks.server";
+
+export {handleError}

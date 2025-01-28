@@ -68,7 +68,7 @@
         <Navbar />
         <div class="tu-app">
             <Sidebar />
-            <main class="relative flex flex-col" style="padding: 0 10px">
+            <main class="relative flex flex-col" style="padding: 0 10px; overflow-x:hidden">
                 <div style="flex: 1">
                     {@render children()}
                 </div>

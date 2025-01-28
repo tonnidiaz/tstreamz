@@ -11,39 +11,36 @@
     import { page } from "$app/stores";
     import TuModal from "@repo/ui/components/TuModal.svelte";
     import { appStore } from "@/stores/app.svelte";
-    
+
     let { user } = $derived(userStore);
     let { ready } = $derived(appStore);
-    let menu: HTMLUListElement
-            const onResize = () =>{
-                const w = window.innerWidth
-                const menuParent = document.getElementById("nav-menu")
-                const ddMenu = document.getElementById("dropdown-menu")
-                if (w <= 786){
-                    if (menuParent.contains(menu)){
-                        menuParent.removeChild(menu)
-                    ddMenu.appendChild(menu)
-                    }
-                    
-                }else{
-                    // console.log(ddMenu.contains(menu));
-                    if (ddMenu.contains(menu)){
-                      ddMenu.removeChild(menu)
-                    menuParent.appendChild(menu)  
-                    }
-                    
-                }
+    let menu: HTMLUListElement;
+    const onResize = () => {
+        const w = window.innerWidth;
+        const menuParent = document.getElementById("nav-menu");
+        const ddMenu = document.getElementById("dropdown-menu");
+        if (w <= 786) {
+            if (menuParent.contains(menu)) {
+                menuParent.removeChild(menu);
+                ddMenu.appendChild(menu);
             }
+        } else {
+            // console.log(ddMenu.contains(menu));
+            if (ddMenu.contains(menu)) {
+                ddMenu.removeChild(menu);
+                menuParent.appendChild(menu);
+            }
+        }
+    };
     onMount(() => {
-        onResize()
+        onResize();
         window.addEventListener("resize", onResize);
-        return ()=> window.removeEventListener("resize", onResize)
+        return () => window.removeEventListener("resize", onResize);
     });
-
 </script>
 
 <div class="navbar !z-[51]">
-    <div class="navbar-start">
+    <div class="navbar-">
         <div class="dropdown">
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
             <!-- svelte-ignore a11y_label_has_associated_control -->
@@ -64,54 +61,58 @@
                 </svg>
             </label>
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-            <ul id="dropdown-menu"
+            <ul
+                id="dropdown-menu"
                 tabindex="0"
                 class="menu menu-menu menu-sm text-left justify-start open border-1 border-card dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-md"
             >
                 <li><TuLink to="/">Home</TuLink></li>
-                
             </ul>
         </div>
     </div>
-    <div class="navbar-center">
-        <a href="/" class="btn btn-ghost normal-case text-xl">{SITE}</a>
+    <div class="flex-1 text-center">
+        <a href="/" class="m-auto btn btn-ghost normal-case text-xl">{SITE}</a>
     </div>
-    <div class="navbar-end">
-        <div id="nav-menu">
-           <ul class="menu menu-horizontal p-0 px-4 md:flex" bind:this={menu}>
-            <li>
-                <TuLink to="/movies">Movies</TuLink>
-            </li>
-            <li>
-                <TuLink to="/tv">Shows</TuLink>
-            </li>
-            <li>
-                <TuModal>
-                    {#snippet toggler()}
-                        Genres
-                    {/snippet}
-                    {#snippet content()}
-                        <Genres />
-                    {/snippet}
-                    
-                </TuModal>
-            </li>
-            <li>
-                <TuLink class="text- btn btn-outline btn-sm btn-secondary" target="_blank" to="https://w.tstreamz.xyz">WWE <span class="badge badge-secondary badge-sm">NEW</span></TuLink>
-            </li>
-        </ul> 
-        </div>
-        
 
-    
+    <div class="">
+        <div id="nav-menu">
+            <ul class="menu menu-horizontal p-0 px-4 md:flex" bind:this={menu}>
+                <li>
+                    <TuLink to="/movies">Movies</TuLink>
+                </li>
+                <li>
+                    <TuLink to="/tv">Shows</TuLink>
+                </li>
+                <li>
+                    <TuModal>
+                        {#snippet toggler()}
+                            Genres
+                        {/snippet}
+                        {#snippet content()}
+                            <Genres />
+                        {/snippet}
+                    </TuModal>
+                </li>
+                <li>
+                    <TuLink
+                        class="text- btn btn-outline btn-sm btn-secondary"
+                        target="_blank"
+                        to="https://w.tstreamz.xyz"
+                        >WWE <span class="badge badge-secondary badge-sm"
+                            >NEW</span
+                        ></TuLink
+                    >
+                </li>
+            </ul>
+        </div>
 
         {#if user}
             <div class="relative">
                 <!-- <div class="avatar ring rounded-full"></div> -->
                 <CtxMenu2 class="relative mr-4">
                     {#snippet toggler()}
-                        <UAvatar class={`pointer ring-${user.is_admin ? "success" : "neutral"}`}
-                        
+                        <UAvatar
+                            class={`pointer ring-${user.is_admin ? "success" : "neutral"}`}
                             ><span class="text-md fw-7"
                                 >{user.username.slice(0, 1).toUpperCase()}</span
                             ></UAvatar
@@ -119,44 +120,44 @@
                     {/snippet}
                     <ul>
                         <MenuItem
-                        reload
-                        to="/me/profile"
-                        icon="fi fi-br-circle-user"
-                        >Profile</MenuItem
-                    >
-                    <MenuItem
-                        reload
-                        to={`/me/watchlist`}
-                        icon="fi fi-br-bookmark">Watchlist</MenuItem
-                    >
-                    {#if user.is_admin}
-                       <MenuItem reload to="/admin/contact" icon="fi fi-br-envelope">Admin:contact</MenuItem> 
-                    {/if}
-                    
-                   
-                    <MenuItem to={`/auth/logout`} icon="fi fi-br-sign-out-alt"
-                        >Logout</MenuItem
-                    >
+                            reload
+                            to="/me/profile"
+                            icon="fi fi-br-circle-user">Profile</MenuItem
+                        >
+                        <MenuItem
+                            reload
+                            to={`/me/watchlist`}
+                            icon="fi fi-br-bookmark">Watchlist</MenuItem
+                        >
+                        {#if user.is_admin}
+                            <MenuItem
+                                reload
+                                to="/admin/contact"
+                                icon="fi fi-br-envelope">Admin:contact</MenuItem
+                            >
+                        {/if}
+
+                        <MenuItem
+                            to={`/auth/logout`}
+                            icon="fi fi-br-sign-out-alt">Logout</MenuItem
+                        >
                     </ul>
-                    
                 </CtxMenu2>
             </div>
         {:else}
             <div>
                 <UButton loading={!ready}>
                     {#if ready}
-                    <TuLink
-                        reload
-                        to={`/auth/login?red=${$page.url.pathname.includes('auth') ? '/' : $page.url.href.replace($page.url.origin, '')}`}
-                        class="btn btn-sm btn-outline btn-primary"
-                    >
-                        Login
-                    </TuLink>
+                        <TuLink
+                            reload
+                            to={`/auth/login?red=${$page.url.pathname.includes("auth") ? "/" : $page.url.href.replace($page.url.origin, "")}`}
+                            class="btn btn-sm btn-outline btn-primary"
+                        >
+                            Login
+                        </TuLink>
                     {/if}
-                </UButton
-                >
+                </UButton>
             </div>
         {/if}
     </div>
 </div>
-

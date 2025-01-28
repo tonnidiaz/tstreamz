@@ -77,7 +77,8 @@
 
     
     iframe {
-        background-color: colors3.$color-card;
+        background-color: transparent;
+        z-index: 6;
         //width: 70%;
         padding: 5px;
         height: 100%;
@@ -340,8 +341,9 @@ img {
 
 .menu{
     width: max-content;
-    li *{
-        align-self: stretch !important;
+    li > *{
+        // align-self: stretch !important;
+        width: 100%;
     }
 }
 
