@@ -36,7 +36,6 @@ export let superMegaBots: TuMegaWs[] = [];
 
 interface IMiniBot {
     client?: Socket;
-    active: boolean;
     A: string;
     B: string;
     C: string;
@@ -47,6 +46,8 @@ interface IMiniBot {
     tickerA?: number;
     tickerB?: number;
     tickerC?: number;
+    /**DO NOT TOUCH UNLESS MINIBOT HAD AN ERROR */
+    active: boolean
 }
 
 export class TuMegaWs {
@@ -62,8 +63,7 @@ export class TuMegaWs {
     arbitType: "tri" | "cross" | "comp";
     plat: TPlatName;
     miniBots: IMiniBot[] = [];
-    prevActiveMiniBots: IMiniBot[] = [];
-
+    lastAct: "sub" | "unsub" = "sub"
     private subUnsubLoopId = 0;
     private _subUnsubLoopId = 0;
 
@@ -76,7 +76,7 @@ export class TuMegaWs {
         this.arbitType = bot.arbit_settings._type;
         this.plat = bot.platform;
         this.wsUrl = getWsUrl(this.plat, bot.demo);
-        this.log(`\nSUPER CONSTRUCTOR\n`)
+        this.log(`\nSUPER CONSTRUCTOR\n`);
     }
 
     async initWs() {
@@ -136,14 +136,15 @@ export class TuMegaWs {
             }, this.reconnectInterval);
         } else {
             if (false)
-            this.log(
-                "Max reconnect attempts reached. Stopping reconnection attempts."
-            );
+                this.log(
+                    "Max reconnect attempts reached. Stopping reconnection attempts."
+                );
         }
     }
     updateBot() {}
 
     async subUnsub(act: "sub" | "unsub" = "sub") {
+        this.lastAct = act
         this.bot = await Bot.findById(this.bot.id).exec();
         this.active = act == "sub";
         act = this.bot.active && this.bot ? "sub" : "unsub";
@@ -175,9 +176,10 @@ export class TuMegaWs {
         if (!this.bot.active) {
             return this.log("BOT NOT ACTIVE");
         }
-        await this.subUnsub("sub");
+        this.miniBots = []
+        await this.subUnsub(this.lastAct);
     }
-    
+
     async subUnsubTri(
         act: "sub" | "unsub",
         channel1: string,
@@ -185,7 +187,6 @@ export class TuMegaWs {
             | ((channel: string, plat: TPlatName, data?: IObj) => Promise<void>)
             | undefined
     ) {
-
         /**
          * Get all instrus from bot this.plat
          * Instrus filtered by A (USDT) and B (USDC)
@@ -193,13 +194,13 @@ export class TuMegaWs {
          * Save pairs to active pairs
          */
         // this.log(`\n[subUnsub] ${act.toUpperCase()}\n`)
-        this._subUnsubLoopId = Date.now()
-        if (!this.subUnsubLoopId) this.subUnsubLoopId = this._subUnsubLoopId
+        this._subUnsubLoopId = Date.now();
+        if (!this.subUnsubLoopId) this.subUnsubLoopId = this._subUnsubLoopId;
 
         if (act == "unsub") {
-            this.ws?.ws?.close()
-            return
-        };
+           await this.ws?.ws?.close();
+            // return;
+        }
         // First check if pair [B,A] && [C, B] exist
         const { A, B } = this.bot;
         const pairs = getInstrus(this.plat).sort();
@@ -212,14 +213,27 @@ export class TuMegaWs {
 
         // PairB [B, C]
         let bPairs = pairs.filter((el) => el[1] == B);
-        if (DEV) bPairs = bPairs.slice(0, 3);
-        let i = 0
+        if (DEV) bPairs = bPairs.slice(0, 10);
+        let i = 0;
+        const total = bPairs.length;
+        this.log(`\n[${act.toUpperCase()}]`, { total });
+
         for (let pairB of bPairs) {
-            i += 1
-            this.log(`[${i}] [${act.toUpperCase()}] ${pairB}`, {suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId})
+            if (!this.active) {
+                this.log(
+                    `[${act.toUpperCase()}] BOT NO LONGER ACTIVE. BREAKING...`
+                );
+                this.miniBots = []
+                break;
+            }
+            i += 1;
+            this.log(`[${i} of ${total}] [${act.toUpperCase()}] ${pairB}`, {
+                suId: this.subUnsubLoopId,
+                _suId: this._subUnsubLoopId,
+            });
             if (i != 1 && this._subUnsubLoopId != this.subUnsubLoopId) {
-                this.log(`[${i}] [${pairB}] Loop cancelled`);
-                this.subUnsubLoopId = this._subUnsubLoopId
+                this.log(`[${i} of ${total}] [${pairB}] Loop cancelled`);
+                this.subUnsubLoopId = this._subUnsubLoopId;
                 break;
             }
             const C = pairB[0];
@@ -240,10 +254,10 @@ export class TuMegaWs {
                 continue;
             }
             this.log(
-                `[${i}] [${act.toUpperCase()}] ${pairB} ${pairC}`,{suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId}
+                `[${i} of ${total}] [${act.toUpperCase()}] ${pairB} ${pairC}`,
+                { suId: this.subUnsubLoopId, _suId: this._subUnsubLoopId }
             );
 
-            
             let symbolA = getSymbol(pairA, this.plat);
             let symbolB = getSymbol(pairB, this.plat);
             let symbolC = getSymbol(pairC, this.plat);
@@ -254,7 +268,7 @@ export class TuMegaWs {
                     B: pairB.toString(),
                     C: pairC.toString(),
                     id: `minibot-${A}-${B}-${C}`,
-                    active: true,
+                    active: true
                 });
 
             const unsubA =
@@ -270,8 +284,6 @@ export class TuMegaWs {
             //     this.log("NOT READY");
             //    return;
             // }
-
-            
 
             if (channel1 && fn) {
                 // Orderbook channel, also returns ask n bid pxs
@@ -297,10 +309,12 @@ export class TuMegaWs {
                     this.plat == "binance" ||
                     this.plat == "mexc"
                 ) {
-                    if (act == "sub" || unsubA)
-                        {fn(channel1 + symbolA, this.plat);};
-                    if (act == "sub" || unsubB)
-                        {fn(channel1 + symbolB, this.plat);};
+                    if (act == "sub" || unsubA) {
+                        fn(channel1 + symbolA, this.plat);
+                    }
+                    if (act == "sub" || unsubB) {
+                        fn(channel1 + symbolB, this.plat);
+                    }
                     if (act == "sub" || unsubC)
                         fn(channel1 + symbolC, this.plat);
                 }
@@ -331,8 +345,9 @@ export class TuMegaWs {
             (this.plat == "binance" && !parsedResp.e)
         ) {
             const respStr: string = resp.toString().toLowerCase();
-            const excl = ["pong", "welcome", "ack"]
-            if (!excl.find(el=> respStr.includes(el))) this.log({ parsedResp });
+            const excl = ["pong", "welcome", "ack"];
+            if (!excl.find((el) => respStr.includes(el)))
+                this.log({ parsedResp });
             return;
         }
 
@@ -479,10 +494,11 @@ export class TuMegaWs {
         // if (this.arbitType == "cross") await this.onMessageCross(r);
     }
 
+    paused = false;
     async onMessageTri(r: ReturnType<typeof this.parseData>) {
         if (!r || !this.active) return;
         for (let miniBot of this.miniBots) {
-            if (!miniBot.active) {
+            if (this.paused || !miniBot.active) {
                 if (DEV && false) {
                     this.log(`[${miniBot.id}] Mini-bot paused`);
                 }
@@ -545,10 +561,8 @@ export class TuMegaWs {
                     // this.log("\nNO BOOK\n");
                     return;
                 }
-                //this.log({ bookA, bookB, bookC });
-                //await sleep(5000)
-                // UNSUB FIRST
-                //await this.unsub(abot.bot)
+                // if (DEV)
+                //     this.log({ bookA, bookB, bookC });
                 const bookCond =
                     oldBookA != miniBot.bookA ||
                     oldBookB != miniBot.bookB ||
@@ -562,9 +576,12 @@ export class TuMegaWs {
                     miniBot.bookC.bid &&
                     miniBot.bookC.ask;
 
-                // this.log({ minBot: miniBot.id, bookCond, bookFieldsCond });
-                if (miniBot.active && bookCond && bookFieldsCond) {
-                    miniBot.active = false;
+                /**
+                 * All entry conditions are met
+                 * Pause MegaBot
+                 */
+                if (this.active && bookCond && bookFieldsCond && !this.paused && miniBot.active) {
+                    this.paused = true
                     this.updateBot();
                     // await this.unsub(abot.bot);
                     const re = await this.handleTickersTri({
@@ -577,6 +594,8 @@ export class TuMegaWs {
                             miniBot.active = true;
                         }
                     } else {
+                        // MiniBot had an error... Deactivate minibot
+                        miniBot.active = false
                         this.log("NOT RESUMING");
                     }
                     this.updateBot();
@@ -588,19 +607,22 @@ export class TuMegaWs {
 
     async resumeBots(miniBot: IMiniBot) {
         this.bot = await Bot.findById(this.bot._id).exec();
-        if (!this.bot.active) {
+        if (!this.bot.active || !this.active) {
             this.log("Not resuming bot");
             await this.rmvBot();
 
             return;
         }
-        this.miniBots = this.miniBots.map((el) => ({
-            ...el,
-            active:
-                (el.id == miniBot.id && miniBot.active) ||
-                this.prevActiveMiniBots.findIndex((el2) => el2.id == el.id) !=
-                    -1,
-        }));
+        // this.miniBots = this.miniBots.map((el) => ({
+        //     ...el,
+        //     active:
+        //         (el.id == miniBot.id && miniBot.active) ||
+        //         this.prevActiveMiniBots.findIndex((el2) => el2.id == el.id) !=
+        //             -1,
+        // }));
+        // for (let mBot of this.miniBots){
+
+        // }
         this.log(
             `Resuming ${this.miniBots.filter((el) => el.active).length} mini bots...`
         );
@@ -662,30 +684,36 @@ export class TuMegaWs {
 
             const perc = Math.max(_perc, _fperc);
 
-            const flipped = false // _perc < _fperc;
+            const flipped = false; // _perc < _fperc;
             if (false)
-            botLog(bot, pairA, pairB, pairC, "\n", { pxA, pxB, pxC }, "\n", {
-                fpxA,
-                fpxB,
-                fpxC,
-            });
+                botLog(
+                    bot,
+                    pairA,
+                    pairB,
+                    pairC,
+                    "\n",
+                    { pxA, pxB, pxC },
+                    "\n",
+                    {
+                        fpxA,
+                        fpxB,
+                        fpxC,
+                    }
+                );
             const { min_perc } = bot.arbit_settings!;
-            if (false)
-            botLog(bot, {
-                min_perc,
-                _perc: `${_perc}%`,
-                _fperc: `${_fperc}%`,
-                flipped,
-            });
+            if (DEV)
+                this.log({
+                    min_perc,
+                    _perc: `${_perc}%`,
+                    _fperc: `${_fperc}%`
+                });
             if (perc >= min_perc) {
                 // Pause all miniBots
                 // Save active statues first
                 this.log(
                     `[${miniBot.id}] entry condition met. Pausing all miniBots....\n`
                 );
-                this.prevActiveMiniBots = this.miniBots.filter(
-                    (el) => el.active && el.id != miniBot.id
-                );
+            
                 this.miniBots = this.miniBots.map((el) => ({
                     ...el,
                     active: false,
@@ -731,14 +759,14 @@ export class TuMegaWs {
                     szC = szB;
                 }
                 if (false)
-                botLog(
-                    bot,
-                    { pxA, pxB, pxC },
-                    "\n",
-                    { availSzA, availSzB, availSzC },
-                    "\n",
-                    { szA, szB, szC }
-                );
+                    botLog(
+                        bot,
+                        { pxA, pxB, pxC },
+                        "\n",
+                        { availSzA, availSzB, availSzC },
+                        "\n",
+                        { szA, szB, szC }
+                    );
 
                 if (availSzA > szA && availSzB > szB && availSzC > szC) {
                     botLog(bot, "WS: ALL GOOD, GOING IN...");
@@ -764,9 +792,6 @@ export class TuMegaWs {
                         cPxB: pxB,
                         cPxC: pxC,
                     };
-                    //await deactivateBot(bot);
-                    miniBot.active = false;
-                    // this._updateBots(miniBot);
                     const res = flipped
                         ? await placeArbitOrdersFlipped(params)
                         : await placeArbitOrders(params);
@@ -789,13 +814,9 @@ export class TuMegaWs {
                     const _botFinal = await Bot.findById(bot.id).exec();
                     if (!_botFinal) return false;
                     this.bot = _botFinal;
-                    // this._updateBots({ ...miniBot, bot: _botFinal });
-                    miniBot.active = true;
-                    // this._updateBots(miniBot);
                     return bot.id;
                 }
             }
-
 
             if (miniBot.client) {
                 miniBot.client.emit("/client-ws/book", {
@@ -819,11 +840,9 @@ export class TuMegaWs {
                 await sleep(5000);
                 this.log("Go on!");
             }
-            miniBot.active = true;
-            // this._updateBots(miniBot);
             return true;
         } catch (e) {
-            this.log("Error:")
+            this.log("Error:");
             handleErrs(e);
             return false;
         }

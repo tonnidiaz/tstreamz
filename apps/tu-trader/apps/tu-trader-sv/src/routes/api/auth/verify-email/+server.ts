@@ -1,6 +1,5 @@
 import { tuErr } from "@/lib/server/funcs";
 import { genToken } from "@cmn/utils/bend/funcs";
-import { randomInRange, handleErrs } from "@cmn/utils/funcs";
 import { User } from "@pkg/cmn/models";
 import { json } from "@sveltejs/kit";
 

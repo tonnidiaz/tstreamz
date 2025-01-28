@@ -8,11 +8,6 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
-	,
 
     alias: {"@pkg/cmn/*":"../../packages/common/src","@cmn/*":"../../../../packages/common/src","@repo/ui/*":"../../../ui/src","@/*":"src/*"},
     typescript: {
@@ -24,7 +19,8 @@ const config = {
                     ...c.include,
                     "**/*.ts",
                     "../../../../../node_modules/svelte/elements.d.ts",
-                    "../../../packages/common/src", "../../../../../packages/common/src", "../../../../ui/src"
+                    "../../../packages/common/src", "../../../../../packages/common/src", "../../../../ui/src",
+                    ""
                 ],
                 exclude: [
                     ...c.exclude,
@@ -35,8 +31,15 @@ const config = {
                 ],
             };
         },
-    },
-}
+    }
+,
+
+		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
+		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
+		adapter: adapter()
+	
+  }
 };
 
 export default config;
