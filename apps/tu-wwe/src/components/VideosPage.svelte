@@ -62,7 +62,7 @@
     );
 </script>
 
-<div class="w-full p-4 min-h-80p flex flex-col">
+<div class="w-full min-h-80p flex flex-col">
     <div class="flex-1">
         <h1 class="title text-center">
             <span class="text-secondary">

@@ -9,7 +9,7 @@
     import type { IObj } from "@cmn/utils/interfaces";
     import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
     import TuLink from "@repo/ui/components/TuLink.svelte";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import { scrollToTheTop, showToast } from "@repo/ui/lib/funcs";
 
     let embedUrl = $state("");
     let { data, url } = $derived(page);
@@ -58,11 +58,12 @@
     $effect(() => {
         part;
         embedUrl = video.links[Number(part) - 1].url;
+        scrollToTheTop()
     });
 </script>
 
 <TMeta title={`${video.title} ${date} - ${SITE}`} />
-<div class="p-4 w-full flex flex-col gap-3 h-fit">
+<div class="w-full flex flex-col gap-3 h-fit">
     <div class="sandes br-10 flex flex-col items-center pos-rel">
         <div class="loading-div pos-abs">
             <span class="loading loading-bars loading-lg"></span>

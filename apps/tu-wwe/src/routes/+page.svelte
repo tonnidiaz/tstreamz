@@ -34,7 +34,7 @@
     })
 </script>
 
-<div class="p-4 w-full h-fit">
+<div class="p-1 w-full h-full">
     <div class="mb-4 text-center">
        <h1 class="title">{SITE}</h1> 
        <p class="fw-6 text-primary">{SITE_SLOGAN}</p>

@@ -7,8 +7,9 @@
     import UAvatar from "./UAvatar.svelte";
     import UButton from "./UButton.svelte";
     import { type IObj } from "@cmn/utils/interfaces";
+    import { type HTMLAttributes } from "svelte/elements";
 
-    interface IProps {
+    interface IProps extends HTMLAttributes<any> {
         site: string;
         /**The horizontal menu items(li TuLink) on the navbar*/
         menuItems?: Snippet;
@@ -25,6 +26,7 @@
         user = $bindable(),
         ready = $bindable(),
         userMenuItems,
+        class: _class, ...props
     }: IProps = $props();
 
     let menu: HTMLUListElement;
@@ -52,7 +54,7 @@
     });
 </script>
 
-<div class="navbar !z-[51]">
+<div class="navbar !z-[51] {_class}" {...props}>
     <div class="navbar-start">
         <div class="dropdown">
             <!-- svelte-ignore a11y_no_noninteractive_tabindex -->

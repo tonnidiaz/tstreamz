@@ -73,6 +73,15 @@ export const twConfig = (dir: string) => {
                         dark: "#292828",
                         "base-100": "#111111",
                     },
+                    tb1: {
+                        ...daisyThemes["[data-theme=tb1]"],
+                        primary: "#f6d860",//daisyThemes['night'].primary, //"#ffa500",
+                        secondary: "#f6d860",
+                        accent: "#ecb847",
+                        neutral: "#181818",
+                        dark: "#292828",
+                        "base-100": "#111111",
+                    },
                 },
                 ...themes.dark, ...themes.light
             ],

@@ -65,3 +65,8 @@ export const showToast = ({msg, err, timeout = 3000} : {err?: boolean; msg: stri
 
     setTimeout(()=> div.remove(), timeout)
 }
+
+export  const scrollToTheTop = () => {
+    const _top = document.querySelector(".the-top");
+    _top?.scrollIntoView({ behavior: "smooth" });
+};

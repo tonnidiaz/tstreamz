@@ -36,7 +36,7 @@
 >
     {#if !videos?.length}
         {#each [...Array(5)] as it}
-            <div class={"fmc flex items-center justify-center "}>
+            <div class="{wrap && 'wrap'} fmc flex items-center justify-center ">
                 <div class={classes + ` flex items-center justify-center`}>
                     {#if !videos}
                     <span class="loading loading-bars loading-md"></span>
@@ -48,12 +48,12 @@
         {/each}
     {:else}
         {#each [...videos] as it, i}
-            <div title={it.title} class="fmc fshr-0 p-0 oh">
+            <div title={it.title} class="{wrap && 'wrap'} fmc fshr-0 p-0 oh">
                 <div class={classes}>
-                    <div class="w-100p h-160px pos-rel">
+                    <div class="w-100p pos-rel">
                         <div
                             style="background-size: cover"
-                            class="pos-rel w-100p h-100p img-cont border-1 border-card rounded-full"
+                            class="pos-rel img-cont border-1 border-card rounded-full"
                         >
                             <img
                                 alt="video art"
@@ -109,9 +109,17 @@
 </div>
 
 <style lang="scss">
+
+    $card-w: 180px;
     .fmc{
-        width: 180px !important;
-        height: 220px !important;
+        width: $card-w !important;
+        height: 230px !important;
+        *{box-sizing: border-box;}
+        .img-cont{
+            width: calc($card-w - 15px);
+            height: calc($card-w - 15px);
+            margin: auto;
+        }
         img{
             object-fit: contain;
         }
@@ -125,7 +133,7 @@
     }
 
     @media screen and (max-width: 404px){
-        .fmc{
+        .fmc.wrap{
             width: 100% !important;
         }
     }
