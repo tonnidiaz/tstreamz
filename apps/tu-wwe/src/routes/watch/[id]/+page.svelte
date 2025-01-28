@@ -17,7 +17,7 @@
     let video: IVideo = $derived(data.video);
     let { id } = $derived(page.params);
     let related: IObj[] | undefined = $state();
-    let date = $derived(new Date(video.date).toISOString().split("T")[0]);
+    let date = $derived(new Date(video.date + " 13:00").toISOString().split("T")[0]);
     let part = $derived(url.searchParams.get("part") || "1");
     let frame: HTMLIFrameElement | undefined = $state();
 

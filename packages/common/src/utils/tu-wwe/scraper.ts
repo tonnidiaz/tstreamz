@@ -60,7 +60,7 @@ const getPageVideos = async (page: number, side: IVideoSide) => {
                     )
                     .filter(
                         (el) =>
-                            ["conference", "promotion"].findIndex((it) =>
+                            ["conference", "promotion", "talk"].findIndex((it) =>
                                 el.title.toLowerCase().includes(it)
                             ) == -1
                     );
