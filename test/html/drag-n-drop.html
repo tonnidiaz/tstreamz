@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag & Drop Website Builder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 20%;
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-right: 1px solid #ccc;
+    }
+
+    .sidebar h3 {
+      text-align: center;
+    }
+
+    .sidebar .draggable {
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+      cursor: grab;
+    }
+
+    .canvas {
+      flex-grow: 1;
+      background-color: #eaeaea;
+      position: relative;
+      overflow: auto;
+    }
+
+    .canvas .dropzone {
+      position: absolute;
+      min-height: 50px;
+      min-width: 50px;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px dashed #ccc;
+      cursor: move;
+    }
+
+    .canvas .dropzone:hover {
+      border: 1px dashed #007bff;
+    }
+
+    .guideline {
+      position: absolute;
+      background-color: transparent;
+      pointer-events: none;
+    }
+
+    .guideline.horizontal {
+      height: 1px;
+      width: 100%;
+      border-top: 1px dotted #ff0000;
+    }
+
+    .guideline.vertical {
+      width: 1px;
+      height: 100%;
+      border-left: 1px dotted #ff0000;
+    }
+
+    .coordinates {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h3>Elements</h3>
+    <div class="draggable" draggable="true" data-type="text">Text</div>
+    <div class="draggable" draggable="true" data-type="image">Image</div>
+    <div class="draggable" draggable="true" data-type="button">Button</div>
+  </div>
+  <div class="canvas" id="canvas">
+    <div class="guideline horizontal" id="horizontal-line"></div>
+    <div class="guideline vertical" id="vertical-line"></div>
+    <div class="coordinates" id="coordinates"></div>
+  </div>
+
+  <script>
+    const draggables = document.querySelectorAll('.draggable');
+    const canvas = document.getElementById('canvas');
+    const horizontalLine = document.getElementById('horizontal-line');
+    const verticalLine = document.getElementById('vertical-line');
+    const coordinates = document.getElementById('coordinates');
+
+    draggables.forEach(draggable => {
+      draggable.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', e.target.dataset.type);
+        const dragOffsetX = e.offsetX;
+        const dragOffsetY = e.offsetY;
+        e.dataTransfer.setData('offsetX', dragOffsetX);
+        e.dataTransfer.setData('offsetY', dragOffsetY);
+      });
+    });
+
+    canvas.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      const canvasRect = canvas.getBoundingClientRect();
+      const mouseX = e.clientX - canvasRect.left;
+      const mouseY = e.clientY - canvasRect.top;
+
+      horizontalLine.style.top = `${mouseY}px`;
+      horizontalLine.style.left = `0px`;
+      horizontalLine.style.width = `${canvasRect.width}px`;
+
+      verticalLine.style.left = `${mouseX}px`;
+      verticalLine.style.top = `0px`;
+      verticalLine.style.height = `${canvasRect.height}px`;
+
+      coordinates.style.left = `${mouseX + 10}px`;
+      coordinates.style.top = `${mouseY + 10}px`;
+      coordinates.textContent = `X: ${Math.round(mouseX)}, Y: ${Math.round(mouseY)}`;
+
+      horizontalLine.style.display = 'block';
+      verticalLine.style.display = 'block';
+      coordinates.style.display = 'block';
+    });
+
+    canvas.addEventListener('dragleave', () => {
+      horizontalLine.style.display = 'none';
+      verticalLine.style.display = 'none';
+      coordinates.style.display = 'none';
+    });
+
+    canvas.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const type = e.dataTransfer.getData('text/plain');
+      const offsetX = parseInt(e.dataTransfer.getData('offsetX'), 10);
+      const offsetY = parseInt(e.dataTransfer.getData('offsetY'), 10);
+      const newElement = createElement(type);
+
+      if (newElement) {
+        const canvasRect = canvas.getBoundingClientRect();
+        newElement.style.left = `${e.clientX - canvasRect.left - offsetX}px`;
+        newElement.style.top = `${e.clientY - canvasRect.top - offsetY}px`;
+        canvas.appendChild(newElement);
+        addDragAndDrop(newElement);
+      }
+
+      horizontalLine.style.display = 'none';
+      verticalLine.style.display = 'none';
+      coordinates.style.display = 'none';
+    });
+
+    function createElement(type) {
+      let element;
+
+      switch (type) {
+        case 'text':
+          element = document.createElement('div');
+          element.textContent = 'Editable Text';
+          element.contentEditable = true;
+          break;
+        case 'image':
+          element = document.createElement('img');
+          element.src = 'https://via.placeholder.com/100';
+          element.alt = 'Placeholder Image';
+          break;
+        case 'button':
+          element = document.createElement('button');
+          element.textContent = 'Click Me';
+          break;
+        default:
+          return null;
+      }
+
+      element.className = 'dropzone';
+      return element;
+    }
+
+    function addDragAndDrop(element) {
+      element.draggable = true;
+      element.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', 'dragging');
+        const dragOffsetX = e.offsetX;
+        const dragOffsetY = e.offsetY;
+        e.dataTransfer.setData('offsetX', dragOffsetX);
+        e.dataTransfer.setData('offsetY', dragOffsetY);
+        e.target.classList.add('dragging');
+      });
+
+      element.addEventListener('dragend', (e) => {
+        e.target.classList.remove('dragging');
+      });
+
+      canvas.addEventListener('dragover', (e) => {
+        if (e.dataTransfer.getData('text/plain') === 'dragging') {
+          e.preventDefault();
+        }
+      });
+
+      canvas.addEventListener('drop', (e) => {
+        if (e.dataTransfer.getData('text/plain') === 'dragging') {
+          e.preventDefault();
+          const draggingElement = document.querySelector('.dragging');
+          const canvasRect = canvas.getBoundingClientRect();
+          const offsetX = parseInt(e.dataTransfer.getData('offsetX'), 10);
+          const offsetY = parseInt(e.dataTransfer.getData('offsetY'), 10);
+          draggingElement.style.left = `${e.clientX - canvasRect.left - offsetX}px`;
+          draggingElement.style.top = `${e.clientY - canvasRect.top - offsetY}px`;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

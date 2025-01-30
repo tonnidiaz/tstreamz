@@ -1,0 +1,18 @@
+{
+    "name": "@repo/ui-next",
+    "scripts": {},
+    "devDependencies": {
+        "typescript": "^5",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19"
+    },
+    "dependencies": {
+        "@repo/common": "^1.0.0",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "next": "15.1.6",
+        "axios": "^1.7.9",
+        "jquery": "^3.7.1"
+    }
+}

@@ -1,0 +1,173 @@
+// @import "@flaticon/flaticon-uicons/css/all/all";
+@use "colors";
+@use "vars";
+@use "classes";
+
+
+@font-face {
+    font-family: Poppins;
+    src: url("./fonts/Poppins/Poppins-Regular.ttf");
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("./fonts/Poppins/Poppins-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("./fonts/Poppins/Poppins-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: Poppins;
+    src: url("./fonts/Poppins/Poppins-ExtraBold.ttf");
+    font-weight: 800;
+    font-style: "extra-bold";
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("./fonts/Inter/Inter-Regular.ttf");
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("./fonts/Inter/Inter-Medium.ttf");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("./fonts/Inter/Inter-Bold.ttf");
+    font-weight: 700;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: Inter;
+    src: url("./fonts/Inter/Inter-ExtraBold.ttf");
+    font-weight: 800;
+    font-style: "extra-bold";
+}
+
+
+
+ 
+html {
+    &.light {
+        --color-white-1: black;
+        --color-white-2: black;
+    }
+    &.dark {
+        --color-white-1: white;
+        --color-white-2: rgb(219, 219, 219);
+    }
+}
+
+main,
+.sidebar {
+    position: relative;
+}
+
+main {
+    overflow-y: scroll;
+    flex: 1;
+}
+
+.tu-app {
+    position: relative;
+    top: calc(colors.$sidenav-w);
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    &:not(.h-full){height: calc(100vh - colors.$sidenav-w);
+        max-height: calc(100vh - colors.$sidenav-w);}
+
+    
+}
+
+.navbar {
+    position: fixed;
+    border-radius: 0px;
+    z-index: vars.$bottombar-z;
+    border-bottom-width: 1px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    i{
+        font-size: 17px;
+    }
+}
+
+
+
+.shadow {
+    box-shadow: vars.$shadow;
+}
+.sidebar {
+    width: colors.$sidenav-w;
+    border-radius: 0;
+    padding: 1.2rem 4px;
+    border-right-width: 1px;
+    z-index: vars.$bottombar-z;
+    height: calc(100vh - colors.$sidenav-w);
+    i{
+        font-size: 20px;
+    }
+}
+
+
+
+
+$on-bg-black: #1a1a1a8f;
+.router-link-active{
+    //color: $color-orange;
+    //background-color: $on-bg-black;
+}
+
+body, html, #__next {
+    height: 100%;
+}
+
+
+fieldset{
+    border-radius: 10px; 
+    legend{
+        font-weight: bold !important;
+        //letter-spacing: 2px;
+        width: auto;
+        padding: 5px; 
+        font-size: 20px;
+    }
+    &.fieldset{
+        border-color: colors.$on-bg-tb;
+        border-width: 1px;
+         padding: 20px;
+         &:not(.no-el){box-shadow: 0px 1px 2px rgb(14, 14, 14);}
+     
+     }
+}
+
+a.link{
+    @apply text-primary;
+    text-decoration: none !important;
+}
+
+.sidebar, .navbar, input, textarea, main{
+background-color: colors.$bg-color;
+}  
+
+input, textarea{
+    width: 100%;
+}
+
+.bg-1{
+    background-color: #202020;
+}
+
