@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 
-export function useTuState<T>(initial: T) {
+export function useTuState<T>(initial?: T) {
     const [state, setState] = useState(initial);
   
     // Recursive Proxy creation

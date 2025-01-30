@@ -1,38 +1,39 @@
-<script lang="ts">
-    import { onMount, untrack } from "svelte";
-    import UFormGroup from "./UFormGroup.svelte";
-    import type { HTMLLabelAttributes } from "svelte/elements";
-    import {type ISelectItem} from "../lib/interfaces"
-    
-    let formRef: HTMLDivElement;
-    let dropdownRef: HTMLSelectElement = $state(),
-        created = $state(false);
+import { LabelHTMLAttributes, useEffect, useRef } from "react";
+import { ISelectItem, TState } from "../lib/interfaces";
+import UFormGroup from "./UFormGroup";
+import { useTuState } from "../lib/tu";
+
+interface IProps extends LabelHTMLAttributes<{}> {
+    innerHint?: string;
+    options?: ISelectItem[];
+    placeholder?: string;
+    value: TState<any>;
+    disabled?: boolean;
+    showLabel?: boolean;
+    required?: boolean;
+    searchable?: boolean;
+    selectClass?: string;
+}
+
+export default function TuSelect({
+    innerHint,
+    options,
+    value = useTuState(),
+    placeholder,
+    disabled,
+    required,
+    className,
+    showLabel,
+    selectClass,
+    ...props
+}: IProps) {
+    let formRef = useRef<HTMLDivElement>(null);
+    let dropdownRef = useRef<HTMLSelectElement>(null),
+        created = useTuState(false);
     // Check if Dropdowns are Exist
     // Loop Dropdowns and Create Custom Dropdown for each Select Element
-    let selectedItem = $state<HTMLDivElement>();
-    let _options = $state<ISelectItem[]>();
-
-    interface IProps extends HTMLLabelAttributes {
-        innerHint?: string;
-        options?: ISelectItem[];
-        placeholder?: string;
-        value: any;
-        disabled?: boolean;
-        showLabel?: boolean;
-        required?: boolean;
-        searchable?: boolean;
-        selectClass?: string
-    }
-
-    let {
-        innerHint,
-        options,
-        value = $bindable(),
-        placeholder,
-        disabled, required,
-        class: _class, showLabel,
-        selectClass, ...props
-    }: IProps = $props();
+    let selectedItem = useTuState<HTMLDivElement>();
+    let _options = useTuState<ISelectItem[]>();
 
     // $effect(()=>{
     //     const val = value
@@ -44,8 +45,8 @@
         // Get All Select Options
         // And Convert them from NodeList to Array
         // console.log("Creating");
-        
-        const opts = _options ?? [];
+
+        const opts = _options.value || [];
         const optionsArr: ISelectItem[] = [...opts]; //Array.prototype.slice.call(options);
 
         const _par = dropdown.parentElement;
@@ -144,12 +145,9 @@
             closeIfClickedOutside.bind(customDropdown, menu)
         );
         dropdown.style.display = "none";
-        untrack(()=>{
-          if (_options?.length) {
-            created = true;
-        }  
-        })
-        
+        if (_options.value?.length) {
+            created.value = true;
+        }
     };
 
     const onItemScroll = (e) => {
@@ -167,14 +165,13 @@
         });
     };
     const setContent = (el: any, opt: ISelectItem, extrClass?: string) => {
-        let html = `<div class="${opt.class ?? "opt"} ${extrClass}">${opt.html ?? opt.label}</div>`;
+        let html = `<div className="${opt.class ?? "opt"} ${extrClass}">${opt.html ?? opt.label}</div>`;
         el.innerHTML = html;
     };
 
     let filteredOptions = $state<ISelectItem[]>();
     const setFilteredOpts = (v: typeof filteredOptions) =>
         (filteredOptions = v);
-
 
     // Toggle for Display and Hide Dropdown
     function toggleDropdown(this: any) {
@@ -197,11 +194,11 @@
         // Get Value and Label from Clicked Custom Option
         selectedItem = this;
         let _value = (this as any).dataset.value;
-        _value = _options?.find((el) => el.value?.toString() == _value)?.value;
-        untrack(()=>{
-            value = _value
-        })
-        
+        _value = _options.value?.find(
+            (el) => el.value?.toString() == _value
+        )?.value;
+        value.value = _value;
+
         const label = (this as any).innerHTML;
 
         // Change the Text on Selected Element
@@ -215,7 +212,7 @@
         menutItems.forEach((el) => {
             el.classList.remove("is-select");
         });
-        selectedItem?.classList.add("is-select");
+        selectedItem.value?.classList.add("is-select");
     }
 
     const parseStr = (val?: string) =>
@@ -290,37 +287,34 @@
     }
 
     /* -------------Begin Effects ---------------- */
-    $effect(() => {
-        const form = formRef;
+    useEffect(() => {
+        const form = formRef.current;
         if (form) {
             form.addEventListener("submit", (e) => {
                 e.preventDefault();
             });
         }
-    });
+    }, [formRef.current]);
 
-    $effect(() => {
+    useEffect(() => {
         const opts = options;
-        const _disabled = disabled
-        const val = value
-        const dd = dropdownRef
+        const _disabled = disabled;
+        const val = value;
+        const dd = dropdownRef.current;
 
-        const oldOpts = untrack(()=>_options) 
+        const oldOpts = _options.value;
         const newOpts = [
-                {
-                    label: placeholder ?? "Select",
-                    value: undefined,
-                },
-                ...opts,
-            ]
-        if (opts)
             {
-                untrack(()=>{
-                  _options = newOpts;  
-                })
-                }
+                label: placeholder ?? "Select",
+                value: undefined,
+            },
+            ...opts,
+        ];
+        if (opts) {
+            _options.value = newOpts;
+        }
         if (
-            !created ||
+            !created.value ||
             !opts ||
             newOpts != oldOpts
             // || val != ov
@@ -328,42 +322,34 @@
             if (dd) {
                 //console.log("CREATE DD", {val});
                 //console.log(opts)
-                untrack(()=>{
-                    createCustomDropdown(dd);
-                })
-                
+                createCustomDropdown(dd);
             }
         }
-    });
-    /* -------------End Effects ---------------- */
-</script>
-<UFormGroup label={showLabel ? placeholder : undefined} class={_class} {...props}>
-    <div class="mb-2 hidden">{JSON.stringify(options)}</div>
-<div class={"tu-select " + selectClass}>
-    <section class="section wrapper wrapper-section">
-        <div class="container wrapper-column">
-             <div   class="tu-select-form" bind:this={formRef}>
-                <div class="tu-select-form-group">
-                    <span class="tu-select-form-arrow text-white-1"
-                        ><i class="fi fi-br-angle-small-down"></i></span
-                    >
-                    <select
-                        class="tu-dropdown hidden"
-                        bind:this={dropdownRef}
-                        bind:value
-                    >
-                        <option disabled>{placeholder}</option>
-                    </select>
-                </div>
+    }, [value.value, options, disabled, dropdownRef.current]);
+
+    return (
+        <UFormGroup label={showLabel ? placeholder : undefined} {...props}>
+            <div className="mb-2 hidden">{JSON.stringify(options)}</div>
+            <div className={"tu-select " + selectClass}>
+                <section className="section wrapper wrapper-section">
+                    <div className="container wrapper-column">
+                        <div className="tu-select-form" ref={formRef}>
+                            <div className="tu-select-form-group">
+                                <span className="tu-select-form-arrow text-white-1">
+                                    <i className="fi fi-br-angle-small-down"></i>
+                                </span>
+                                <select
+                                    className="tu-dropdown hidden"
+                                    ref={dropdownRef}
+                                    value={value.value}
+                                >
+                                    <option disabled>{placeholder}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </div>
-    </section>
-</div>
-</UFormGroup>
-
-
-<style>
-    .v-hidden {
-        visibility: hidden !important;
-    }
-</style>
+        </UFormGroup>
+    );
+}
