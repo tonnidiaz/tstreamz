@@ -1,6 +1,7 @@
 "use client";
 
 import CtxMenu2 from "@repo/ui/components/CtxMenu2";
+import TuSelect from "@repo/ui/components/TuSelect";
 // import CtxMenu2 from "@repo/ui/components/CtxMenu2";
 import UButton from "@repo/ui/components/UButton";
 import UInput from "@repo/ui/components/UInput";
@@ -16,7 +17,10 @@ const page = () => {
         car: { make: "Honda", model: "Civic", speed: { min: 0, max: 380 } },
     });
 
-
+    const selectState ={
+        val: useTuState("tonni"), options: ["David", "Diaz", "Squash", "Tonni", "Manizo"]
+    }
+    const [selected, setSelected] = useState("tonni")
     useEffect(() => {
         console.log({ counter: cnt3.value });
         cnt3.value = cnt3.value;
@@ -39,6 +43,7 @@ const page = () => {
                 </ul>
                     
                 </CtxMenu2>
+                <TuSelect value={selectState.val} options={selectState.options.map(el=>({label: el, value: el.toLowerCase()}))}></TuSelect>
             </div>
         </>
     );

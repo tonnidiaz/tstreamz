@@ -1,56 +1,82 @@
-import { LabelHTMLAttributes, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ISelectItem, TState } from "../lib/interfaces";
-import UFormGroup from "./UFormGroup";
 import { useTuState } from "../lib/tu";
 
-interface IProps extends LabelHTMLAttributes<{}> {
+interface Props extends Omit<React.SelectHTMLAttributes<{}>, 'value'> {
     innerHint?: string;
     options?: ISelectItem[];
     placeholder?: string;
+    searchable?: boolean;
     value: TState<any>;
     disabled?: boolean;
-    showLabel?: boolean;
-    required?: boolean;
-    searchable?: boolean;
-    selectClass?: string;
 }
-
-export default function TuSelect({
-    innerHint,
-    options,
-    value = useTuState(),
-    placeholder,
-    disabled,
-    required,
+const TuSelect: React.FC<Props> = ({
     className,
-    showLabel,
-    selectClass,
+    disabled,
+    searchable,
+    value: $value = useTuState(),
+    innerHint,
     ...props
-}: IProps) {
-    let formRef = useRef<HTMLDivElement>(null);
-    let dropdownRef = useRef<HTMLSelectElement>(null),
-        created = useTuState(false);
-    // Check if Dropdowns are Exist
-    // Loop Dropdowns and Create Custom Dropdown for each Select Element
-    let selectedItem = useTuState<HTMLDivElement>();
-    let _options = useTuState<ISelectItem[]>();
+}) => {
+    const [created, setCreated] = useState(false);
+    const [selectedItem, setSelectedItem] = useState<HTMLDivElement>();
 
-    // $effect(()=>{
-    //     const val = value
-    //     // console.log({val});
-    // })
+    const formRef = useRef<HTMLFormElement>(null);
+    const dropdownRef = useRef<HTMLSelectElement>(null);
+    const [_options, setOptions] = useState<ISelectItem[]>();
+
+    useEffect(() => {
+        const opts = props.options;
+        if (opts) {
+            const newOptions = [
+                {
+                    label: props.placeholder ?? "Select",
+                    value: undefined,
+                },
+                ...opts,
+            ];
+            if (_options != newOptions) setOptions(newOptions);
+        }
+    }, [props.options]);
+
+    useEffect(() => {
+        const form = formRef.current;
+        // Check if Form Element Exist on Page
+        if (form) {
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+            });
+        }
+    }, [disabled, $value.value, props.placeholder, dropdownRef, formRef]);
+
+    useEffect(() => {
+        const { options: opts } = props;
+        // console.log({pval: value, opts})
+        const dd = dropdownRef.current;
+        if (true) {
+            if (dd) {
+                //console.log("CREATE DD", {val});
+                //console.log(opts)
+                createCustomDropdown(dd);
+            }
+        }
+    }, [_options, dropdownRef, disabled, $value.value]);
+
+    useEffect(() => {
+        // console.log({selectedItem});
+        selectedItem?.classList.add("is-select");
+    }, [selectedItem]);
+
     // Create Custom Dropdown
     const createCustomDropdown = async (dropdown: HTMLSelectElement) => {
-        //console.log("CREATE", _options.value?.length);
         // Get All Select Options
         // And Convert them from NodeList to Array
-        // console.log("Creating");
-
-        const opts = _options.value || [];
-        const optionsArr: ISelectItem[] = [...opts]; //Array.prototype.slice.call(options);
+        const options = _options ?? [];
+        const optionsArr: ISelectItem[] = [...options]; //Array.prototype.slice.call(options);
 
         const _par = dropdown.parentElement;
         const dd = _par?.querySelector("div.tu-dropdown");
+        // console.log("CREATE DD", {dd});
         if (dd) {
             _par?.removeChild(dd);
         }
@@ -69,12 +95,19 @@ export default function TuSelect({
                     (typeof el.value == "string"
                         ? el.value
                         : JSON.stringify(el.value)) ==
-                    (typeof value == "string" ? value : JSON.stringify(value))
+                    (typeof $value.value == "string" ? $value.value : JSON.stringify($value.value))
             ) ?? optionsArr[0];
+
         // Create Element for Selected Option
         const selected = document.createElement("div");
         selected.classList.add("tu-dropdown-select");
-        setContent(selected, selectedOpt);
+        setContent(
+            selected,
+            selectedOpt || {
+                label: props.placeholder ?? "Select",
+                value: undefined,
+            }
+        );
         customDropdown.appendChild(selected);
 
         // Create Element for Dropdown Menu
@@ -110,7 +143,7 @@ export default function TuSelect({
                 (typeof el.value == "string"
                     ? el.value
                     : JSON.stringify(el.value)) ==
-                (typeof value == "string" ? value : JSON.stringify(value))
+                (typeof $value.value == "string" ? $value.value : JSON.stringify($value.value))
             ) {
                 item.classList.add("is-select");
             }
@@ -145,9 +178,10 @@ export default function TuSelect({
             closeIfClickedOutside.bind(customDropdown, menu)
         );
         dropdown.style.display = "none";
-        if (_options.value?.length) {
-            created.value = true;
+        if (_options?.length) {
+            setCreated(true);
         }
+        // console.log({optionsArr: optionsArr.length})
     };
 
     const onItemScroll = (e) => {
@@ -165,13 +199,9 @@ export default function TuSelect({
         });
     };
     const setContent = (el: any, opt: ISelectItem, extrClass?: string) => {
-        let html = `<div className="${opt.class ?? "opt"} ${extrClass}">${opt.html ?? opt.label}</div>`;
+        let html = `<div class="${opt.class ?? "opt"} ${extrClass}">${opt.html ?? opt.label}</div>`;
         el.innerHTML = html;
     };
-
-    let filteredOptions = $state<ISelectItem[]>();
-    const setFilteredOpts = (v: typeof filteredOptions) =>
-        (filteredOptions = v);
 
     // Toggle for Display and Hide Dropdown
     function toggleDropdown(this: any) {
@@ -190,15 +220,13 @@ export default function TuSelect({
     }
 
     // Set Selected Option
-    function setSelected(this, selected, dropdown: HTMLSelectElement, menu) {
+    function setSelected(this, selected, dropdown, menu) {
         // Get Value and Label from Clicked Custom Option
-        selectedItem = this;
-        let _value = (this as any).dataset.value;
-        _value = _options.value?.find(
-            (el) => el.value?.toString() == _value
-        )?.value;
-        value.value = _value;
+        setSelectedItem(this);
+        console.log({ _this: this });
 
+        let _value = (this as any).dataset.value;
+        _value = _options?.find((el) => el.value?.toString() == _value)?.value;
         const label = (this as any).innerHTML;
 
         // Change the Text on Selected Element
@@ -212,7 +240,10 @@ export default function TuSelect({
         menutItems.forEach((el) => {
             el.classList.remove("is-select");
         });
-        selectedItem.value?.classList.add("is-select");
+        // console.log({selectedItem});
+        // selectedItem?.classList.add("is-select");
+
+        $value.value = _value
     }
 
     const parseStr = (val?: string) =>
@@ -285,71 +316,34 @@ export default function TuSelect({
             menu.style.display = "none";
         }
     }
-
-    /* -------------Begin Effects ---------------- */
-    useEffect(() => {
-        const form = formRef.current;
-        if (form) {
-            form.addEventListener("submit", (e) => {
-                e.preventDefault();
-            });
-        }
-    }, [formRef.current]);
-
-    useEffect(() => {
-        const opts = options;
-        const _disabled = disabled;
-        const val = value;
-        const dd = dropdownRef.current;
-
-        const oldOpts = _options.value;
-        const newOpts = [
-            {
-                label: placeholder ?? "Select",
-                value: undefined,
-            },
-            ...opts,
-        ];
-        if (opts) {
-            _options.value = newOpts;
-        }
-        if (
-            !created.value ||
-            !opts ||
-            newOpts != oldOpts
-            // || val != ov
-        ) {
-            if (dd) {
-                //console.log("CREATE DD", {val});
-                //console.log(opts)
-                createCustomDropdown(dd);
-            }
-        }
-    }, [value.value, options, disabled, dropdownRef.current]);
-
     return (
-        <UFormGroup label={showLabel ? placeholder : undefined} {...props}>
-            <div className="mb-2 hidden">{JSON.stringify(options)}</div>
-            <div className={"tu-select " + selectClass}>
-                <section className="section wrapper wrapper-section">
-                    <div className="container wrapper-column">
-                        <div className="tu-select-form" ref={formRef}>
-                            <div className="tu-select-form-group">
-                                <span className="tu-select-form-arrow text-white-1">
-                                    <i className="fi fi-br-angle-small-down"></i>
-                                </span>
-                                <select
-                                    className="tu-dropdown hidden"
-                                    ref={dropdownRef}
-                                    value={value.value}
-                                >
-                                    <option disabled>{placeholder}</option>
-                                </select>
-                            </div>
+        <div className={"tu-select " + className} {...props}>
+            <section className="section wrapper wrapper-section">
+                <div className="container wrapper-column">
+                    <div className="tu-select-form" ref={formRef as any}>
+                        <div className="tu-select-form-group">
+                            <span className="tu-select-form-arrow">
+                                <i className="fi fi-br-angle-small-down"></i>
+                            </span>
+                            <select
+                                className="tu-dropdown"
+                                ref={dropdownRef as any}
+                                value={$value.value}
+                                onChange={({target})=> $value.value = target.value}
+                            >
+                                <option disabled>{props.placeholder}</option>
+                                {_options?.map((opt, i) => (
+                                    <option key={`opt-${i}`} value={opt.value}>
+                                        {opt.label}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                     </div>
-                </section>
-            </div>
-        </UFormGroup>
+                </div>
+            </section>
+        </div>
     );
-}
+};
+
+export default TuSelect;
