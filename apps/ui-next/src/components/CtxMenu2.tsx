@@ -1,6 +1,7 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
-import { $gstate } from "../lib/tu";
 import TuTeleport from "./TuTeleport";
+import { useTuState } from "../lib/tu";
+import { TState } from "../lib/interfaces";
 
 {/* <script lang="ts">
     import { onMount, untrack, type Snippet } from "svelte";
@@ -34,24 +35,23 @@ import TuTeleport from "./TuTeleport";
 
 interface IProps extends HTMLAttributes<any> {
     toggler?: React.ReactNode;
-    open?: boolean;
+    open?: TState<boolean>;
     anchor?: "top" | "bottom";
 }
 const CtxMenu2 = ({
     children,
     toggler: trigger,
-    open,
+    open = useTuState(false),
      className,
     anchor,
     ...props
 }: IProps) => {
 
-    let menuRef = useRef<HTMLDivElement | null>(null);
-    let menuContent = useRef<HTMLDivElement | null>(null);
-    let togglerRef = useRef<HTMLDivElement | null >(null);
+    const menuRef = useRef<HTMLDivElement | null>(null);
+    const menuContent = useRef<HTMLDivElement | null>(null);
+    const togglerRef = useRef<HTMLDivElement | null >(null);
 
-    let pos = $gstate({ x: 0, y: 0 });
-    let _open = $gstate({value: open})
+    const pos = useTuState({ x: 0, y: 0 });
 
     const otherClasses =
         "menu menu-menu menu-sm text-left justify-start shadow";
@@ -60,7 +60,7 @@ const CtxMenu2 = ({
         console.log('Toggle');
         e.preventDefault();
         updatePos({});
-        _open.value = true;
+        open.value = true;
         updateListener();
     };
 
@@ -73,7 +73,7 @@ const CtxMenu2 = ({
         const _menu = menuRef.current;
 
         if (_menu && !_menu.contains(e.target)) {
-            _open.value = false;
+            open.value = false;
         }
     };
 
@@ -87,7 +87,7 @@ const CtxMenu2 = ({
         yInPerc = (yInPerc / winSz.h) * 100;
 
         // Update menu position
-        pos = { x: xInPerc, y: yInPerc };
+        pos.value = { x: xInPerc, y: yInPerc };
     };
 
 
@@ -116,7 +116,7 @@ const CtxMenu2 = ({
                 const oldOnclick = it.onclick;
                 it.onclick = async(e)=>{
                     const  r = !oldOnclick ? true : await oldOnclick.call(e)
-                        if (r) _open.value = false
+                        if (r) open.value = false
                 }
                 
             })
@@ -127,18 +127,18 @@ const CtxMenu2 = ({
         <div ref={togglerRef} className="menu-trigger w-fit" onClick={toggleMenu}>
             {trigger}
         </div>
-        {_open.value &&
+        { open.value &&
             <TuTeleport to="#ctx-overlay">
                 <div
-                    style={{left: `${pos.x}%`, top: `${pos.y}%`}}
+                    style={{left: `${pos.value.x}%`, top: `${pos.value.y}%`}}
                     ref={menuRef}
-                    className={`ctx-menu menu border-1 border-card rounded-md p-2 bg-base-200 z-[60] ${otherClasses} ` +
+                    className={`ctx-menu fixed menu border-1 border-card rounded-md p-2 bg-base-200 z-[60] ${otherClasses} ` +
                         className}
                     {...props}
                 >
                     {children}
                 </div>
-            </TuTeleport>
+             </TuTeleport>
         }
     </div>
      );

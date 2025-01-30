@@ -1,25 +1,22 @@
-import { useEffect, useRef } from "react";
 
-interface IProps {
-    to?: string; children?: React.ReactNode
+import ReactDOM from 'react-dom';
+
+interface TeleportProps {
+  to: string | HTMLElement; // Target container to render children
+  children: React.ReactNode; // Children to render inside the target container
 }
-const TuTeleport = ({ to = "body", children, ...props }: IProps) => {
-    const element = useRef<HTMLDivElement>(null);
-    useEffect(() => {
-        const targetElement = document.querySelector(to);
-        if (targetElement) {
-            targetElement.appendChild(element.current);
-            element.current.classList.remove("hidden");
-        }
-        return () => {
-            // element.current?.remove();
-        };
-    });
-    return (
-        <div ref={element} className="hidden">
-            {children}
-        </div>
-    );
+
+const TuTeleport: React.FC<TeleportProps> = ({ to, children }) => {
+  // Determine the target element to render the children into
+  const targetElement = typeof to === 'string' ? document.querySelector(to) : to;
+
+  if (!targetElement) {
+    console.error('Target element for Teleport not found');
+    return null;
+  }
+
+  return ReactDOM.createPortal(children, targetElement);
 };
 
 export default TuTeleport;
+// export default TuTeleport;

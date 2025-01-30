@@ -1,4 +1,4 @@
-import { $state } from "./tu";
+import { useTuState } from "./tu";
 
 export interface ISelectItem {label: string, value: any, disabled?: boolean; class?: string; html?: string}
-export type TState<T> = ReturnType<typeof $state<T>>;
+export type TState<T> = ReturnType<typeof useTuState<T>>;

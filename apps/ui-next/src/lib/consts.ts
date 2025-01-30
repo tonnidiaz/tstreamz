@@ -1,4 +1,2 @@
-export const appData = {
-    author: "Tonni Diaz",
-    email: "tunedstreamz@gmail.com"
-}
+
+export const DEV = process.env.NEXT_ENV == "dev"

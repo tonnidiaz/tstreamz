@@ -1,30 +1,31 @@
-<script lang="ts">
-    import { page } from "$app/stores";
-    import { onDestroy, onMount, untrack } from "svelte";
-    import type { HTMLAttributes } from "svelte/elements";
+import { HTMLAttributes, useEffect, useMemo, useRef } from "react";
+import { TState } from "../lib/interfaces";
+import { useTuState } from "../lib/tu";
+import { useRouter } from "next/router";
 
-    interface IProps extends HTMLAttributes<any> {
-        open: boolean;
+
+interface IProps extends HTMLAttributes<any> {
+        open: TState<boolean>;
         blank?: boolean;
     }
 
-    let {
-        open = $bindable(false),
+const TuModalContainer = ({
+        open =  useTuState(false),
         children,
         blank = false,
-        class: _class,
+        className,
         ...props
-    }: IProps = $props();
-    let modalRef: HTMLDivElement;
-
+    }: IProps) => {
+    let modalRef= useRef<HTMLDivElement>(null);
+        const router= useRouter()
     const _onDocClick = (ev) => {
-        const modal = modalRef;
+        const modal = modalRef.current;
         const overlay = document.getElementById("ctx-overlay");
         if (!modal) return;
         const isChild =
             modal.contains(ev.target) || overlay?.contains(ev.target);
         if (!isChild) {
-            open = false;
+            open.value =  false;
             //$(modal!).removeClass("open");
         }
     };
@@ -35,9 +36,9 @@
         const isChild =
             [...modals].some((el) => el.contains(ev.target)) ||
             [...menus].some((el) => el.contains(ev.target));
-        if (!isChild) open = false;
+        if (!isChild) open.value =  false;
     };
-    onMount(() => {
+    useEffect(() => {
         // document.removeEventListener("mouseup", _onDocClick);
         // document.addEventListener("mouseup", _onDocClick);
         const ctxOverlay = document.getElementById("ctx-overlay");
@@ -47,23 +48,24 @@
             const ctxOverlay = document.getElementById("ctx-overlay");
             ctxOverlay?.removeEventListener("mouseup", _onOverlayClick);
         };
-    });
+    }, []);
 
-    let p = $derived($page.url.href)
-    $effect(()=>{
+    let p = useMemo(()=>location.href, [router.events])
+    useEffect(()=>{
         // watch route
         p;
-        untrack(()=>{open = false})
+        open.value =  false
         
-    })
-</script>
-
-<div
-    bind:this={modalRef}
-    class={`tu-modal__cont ${!blank ? "tu-modal-cont p-4 border-1 border-card br-10 params-area bg-base-100 shadow-lg" : ""} ${
+    }, [p])
+    return ( <div
+    ref={modalRef}
+    className={`tu-modal__cont ${!blank ? "tu-modal-cont p-4 border-1 border-card br-10 params-area bg-base-100 shadow-lg" : ""} ${
         open ? "open" : ""
-    } ${_class}`}
+    } ${className}`}
     {...props}
 >
-    {@render children?.()}
-</div>
+    {children}
+</div> );
+}
+ 
+export default TuModalContainer;
