@@ -1,7 +1,7 @@
 <script lang="ts">
     import { page } from "$app/stores";
     import Banner from "@/components/Banner.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
     import axios from "axios";
     import { onMount } from "svelte";
     import { getRandomBoolean } from "$lib/funcs";

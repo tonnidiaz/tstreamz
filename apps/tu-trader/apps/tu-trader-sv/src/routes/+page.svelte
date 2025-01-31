@@ -6,7 +6,7 @@
 <UButton class="btn-primary w-150px" onclick={_=>cnt++}>Count: [{cnt}]</UButton>
 </div>
 <script lang="ts">
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
     import { untrack } from "svelte";
 
     let me: {name: string; age: number} = $state({name: "Thomas", age: 23});

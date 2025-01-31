@@ -1,6 +1,6 @@
 <script lang="ts">
     import "@flaticon/flaticon-uicons/css/all/all.css";
-    import "@repo/ui/styles/all.scss"
+    import "@repo/ui-sv/styles/all.scss"
 
     import { onMount } from "svelte";
     import { setSocket, BEND_URL, socket } from "@/lib/constants";

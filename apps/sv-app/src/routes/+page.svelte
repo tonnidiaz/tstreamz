@@ -1,9 +1,9 @@
 <script>
     import { parseDate } from "@cmn/utils/funcs";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
     
 
 </script>

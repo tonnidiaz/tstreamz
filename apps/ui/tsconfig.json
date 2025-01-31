@@ -1,33 +1,29 @@
 {
-  "compilerOptions": {
-    // "module": "commonjs",
-    // "declaration": true,
-    // "declarationMap": true,
-    // "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "noEmit": true,
-    // "baseUrl": ".",
-    "outDir": "./dist",
+    "compilerOptions": {
+        "target": "ES2017",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": false,
+        "noEmit": false,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+        "noImplicitAny": false,
+        "baseUrl": ".",
+        "outDir": "./dist",
         "paths": {
-        "@cmn/*": ["../../packages/common/src/*"]
+            "@cmn/*": ["../../packages/common/src/*"],
+            "@repo/ui/*": ["./src/*"]
+        }
     },
-    // "target": "ESNext",
-    // "types": ["vite/client"],
-    // From svelte
-    "lib": [
-			"esnext",
-			"DOM",
-			"DOM.Iterable"
-		],
-		"moduleResolution": "bundler",
-		"module": "esnext",
-		// "noEmit": true, 
-		"target": "esnext"
-  },
-  "include": ["src", "**/*.ts", "../../packages/common/src/**/*.ts", "svelte.d.ts"],
-  "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
+    "include": [ 
+        "**/*.ts",
+        "../../packages/common/src/**/*.ts"
+    ],
+    "exclude": ["node_modules"]
 }
-   

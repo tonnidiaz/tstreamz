@@ -6,8 +6,8 @@
         handleErrs,
         isTuError,
     } from "@cmn/utils/funcs";
-    import TuPaginator from "@repo/ui/components/TuPaginator.svelte";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import TuPaginator from "@repo/ui-sv/components/TuPaginator.svelte";
+    import { showToast } from "@repo/ui-sv/lib/funcs";
     import VideoCards from "./VideoCards.svelte";
     import { goto } from "$app/navigation";
     import { page } from "$app/state";

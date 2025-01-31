@@ -1,17 +1,17 @@
 <script lang="ts">
-    import "@repo/ui/styles/all.scss";
+    import "@repo/ui-sv/styles/all.scss";
     import "@flaticon/flaticon-uicons/css/all/all.css";
     import "@/styles/main.scss";
-    import Navbar from "@repo/ui/components/Navbar.svelte";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import Navbar from "@repo/ui-sv/components/Navbar.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import { SITE } from "@/lib";
     import { appStore, updateAppStoreField } from "@/stores/app.svelte";
     import { onMount } from "svelte";
     import { handleErrs, isTuError, sleep } from "@cmn/utils/funcs";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import { showToast } from "@repo/ui-sv/lib/funcs";
     import { api } from "@/lib/api";
     import { dev } from "$app/environment";
-    import Loader from "@repo/ui/components/Loader.svelte";
+    import Loader from "@repo/ui-sv/components/Loader.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import Footer from "@/components/Footer.svelte";
     let { children } = $props();

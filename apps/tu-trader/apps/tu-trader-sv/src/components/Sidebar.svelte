@@ -1,5 +1,5 @@
 <script lang="ts">
-    import MenuItem from "@repo/ui/components/MenuItem.svelte";
+    import MenuItem from "@repo/ui-sv/components/MenuItem.svelte";
 </script>
 
 <aside>

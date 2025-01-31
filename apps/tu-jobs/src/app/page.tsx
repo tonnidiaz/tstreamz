@@ -1,11 +1,11 @@
 "use client";
-import { $state } from "@repo/ui/lib/tu";
-import UButton from "@repo/ui/components/UButton";
+import { useTuState } from "@repo/ui-next/lib/tu";
+import UButton from "@repo/ui-next/components/UButton";
 import { sleep } from "@cmn/utils/funcs";
 import { showToast } from "@cmn/utils/funcs-ui";
 
 export default function Home() {
-    let person = $state({
+    let person = useTuState({
         name: "Tonni Diaz",
         age: 23,
         chick: {
@@ -15,15 +15,16 @@ export default function Home() {
         },
     });
 
-    let name = $state("Johannah")
+    let name = useTuState("Johannah")
     return (
         <div className="w-full">
             <div className="flex flex-col gap-8px p-4 w-500px m-auto">
                 <h1>Hello world</h1>
                 <p>
-                    This is <b>{name}</b>
+                    This is <b>{name.value}</b>
                 </p>
-                <input className="input input-sm input-bordered" value={name} onChange={({target})=> name = target.value}/>
+                <input className="input input-sm input-bordered" value={name.value} onChange={({target})=> name.value = target.value}/>
+                <button className="btn btn-secondary btn-sm">I am button</button>
                 <UButton className="btn-primary" onClick={async _=>{
                     await sleep(300);
                     showToast({msg: "Button clicked"})

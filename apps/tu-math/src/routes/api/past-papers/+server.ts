@@ -1,6 +1,6 @@
 import type { IPaperDocItem, IPastPaper } from '@/lib/interfaces.js'
 import { PastPaper, TuApp } from '@/lib/server/models/index.js'
-import { tuErr } from '@repo/ui/lib/funcs.js'
+import { tuErr } from '@repo/ui-sv/lib/funcs.js'
 import { json } from '@sveltejs/kit'
 
 export const GET = async ({request: req, url}) =>{

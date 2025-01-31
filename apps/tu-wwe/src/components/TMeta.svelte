@@ -1,6 +1,6 @@
 <script lang="ts">
     import { SITE, SITE_DESC, SITE_SLOGAN } from '@/lib';
-    import TMeta, { type ITMetaProps } from '@repo/ui/components/TMeta.svelte'
+    import TMeta, { type ITMetaProps } from '@repo/ui-sv/components/TMeta.svelte'
     interface IProps extends ITMetaProps{
 
     }

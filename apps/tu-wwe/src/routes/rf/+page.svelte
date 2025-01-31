@@ -1,8 +1,8 @@
 <script>
-    import Carousel from "@repo/ui/components/Carousel.svelte";
+    import Carousel from "@repo/ui-sv/components/Carousel.svelte";
 
 
-    import TuCarousel from "@repo/ui/components/TuCarousel.svelte";
+    import TuCarousel from "@repo/ui-sv/components/TuCarousel.svelte";
     import { onMount } from "svelte";
 onMount(()=>{
     console.log("RF MOUNTED");

@@ -1,15 +1,15 @@
 <script lang="ts">
     import { SITE } from "@/lib/constants";
     import { userStore } from "@/stores/user.svelte";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import { onMount } from "svelte";
     import MenuItem from "./MenuItem.svelte";
-    import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
-    import UAvatar from "@repo/ui/components/UAvatar.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import CtxMenu2 from "@repo/ui-sv/components/CtxMenu2.svelte";
+    import UAvatar from "@repo/ui-sv/components/UAvatar.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
     import Genres from "./Genres.svelte";
     import { page } from "$app/stores";
-    import TuModal from "@repo/ui/components/TuModal.svelte";
+    import TuModal from "@repo/ui-sv/components/TuModal.svelte";
     import { appStore } from "@/stores/app.svelte";
 
     let { user } = $derived(userStore);

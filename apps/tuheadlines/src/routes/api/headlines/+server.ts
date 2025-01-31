@@ -3,7 +3,7 @@ import { dummyHeadlines } from "@/lib/constants";
 import { newsApi } from "@/lib/server/models/api.js";
 import { Headline } from "@/lib/server/models/index.js";
 import { handleErrs, parseDate } from "@cmn/utils/funcs.js";
-import { tuErr } from "@repo/ui/lib/funcs";
+import { tuErr } from "@repo/ui-sv/lib/funcs";
 import { json } from "@sveltejs/kit";
 import axios from "axios";
 

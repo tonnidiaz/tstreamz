@@ -1,7 +1,7 @@
 import { dev } from "$app/environment"
 import { connectMongo } from "@cmn/utils/bend/funcs"
 import { handleErrs, isTuError, timedLog } from "@cmn/utils/funcs"
-import { handleError } from "@repo/ui/hooks.server"
+import { handleError } from "@repo/ui-sv/hooks.server"
 import type { HandleServerError } from "@sveltejs/kit"
 
 const main = async () =>{

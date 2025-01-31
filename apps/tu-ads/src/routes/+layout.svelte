@@ -1,10 +1,10 @@
 <script lang="ts">
 	import '../app.css';
-    import "@repo/ui/styles/styles.scss";
-    import "@repo/ui/styles/styles2.scss";
-    import "@repo/ui/styles/styles3.scss";
+    import "@repo/ui-sv/styles/styles.scss";
+    import "@repo/ui-sv/styles/styles2.scss";
+    import "@repo/ui-sv/styles/styles3.scss";
     
-    import {type ISelectItem} from '@repo/ui/lib/interfaces'
+    import {type ISelectItem} from '@repo/ui-sv/lib/interfaces'
 
 	let { children } = $props();
 </script>

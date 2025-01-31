@@ -22,7 +22,8 @@
         "paths": {
             "@/*": ["./src/*"],
             "@cmn/*": ["../../packages/common/src/*"],
-            "@repo/ui/*": ["../ui-next/src/*"]
+            "@repo/ui-next/*": ["../ui-next/src/*"],
+            "@repo/ui/*": ["../ui/src/*"],
         }
     },
     "include": [ 
@@ -32,6 +33,7 @@
         ".next/types/**/*.ts",
         "../../packages/common/src/**/*.ts",
         "../ui-next/src/**/*.ts",
+        "../ui/src/**/*.ts",
         "../ui-next/src/**/*.tsx",
     ],
     "exclude": ["node_modules"]

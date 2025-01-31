@@ -3,6 +3,7 @@ import type { Config } from "tailwindcss";
 import daisyThemes from "daisyui/src/theming/themes";
 import daisyUI from "daisyui";
 
+
 const themes = {
     dark: [
         "dark",
@@ -43,15 +44,19 @@ const themes = {
 };
 // export {}
 // const __dirname = import.meta.dirname;
-export const twConfig = (dir: string) => {
-    console.log({ dir });
+export const twConfig = (dir: string, framework: 'sv' | 'next' = 'sv') => {
+    
+    const exts = framework == "next" ? "{html,js,ts,jsx,tsx,mdx}" : "{html,js,svelte,ts}";
+    // const uiDir = framework == "next" ? "{html,js,ts,jsx,tsx,mdx}" : "{html,js,svelte,ts}";
+    console.log({ dir, framework, exts, __dirname });
+    const _appsDir = (dirname(__dirname));
+    const uiDir = path.join(_appsDir, `../ui-${framework}`)
+    console.log({_appsDir, uiDir});
     return {
+
         content: [
-            path.join(
-                path.relative(dir, __dirname),
-                "**/*.{html,js,svelte,ts}"
-            ),
-            path.join(path.relative(dir, dir), "src/**/*.{html,js,svelte,ts}"),
+               `./**/*.${exts}`,
+            path.join(path.relative(dir, uiDir), `src/**/*.${exts}`),
         ],
         // darkMode: true,
         theme: {

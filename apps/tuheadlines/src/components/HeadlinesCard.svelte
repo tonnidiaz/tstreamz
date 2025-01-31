@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { IObj } from "@cmn/utils/interfaces";
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
 
     const {index, headlines} : {index?: number; headlines: IObj} = $props()
     let origin = $derived(new URL(headlines.link).hostname.replace("www.", ""))

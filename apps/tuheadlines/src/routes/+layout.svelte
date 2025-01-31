@@ -1,9 +1,9 @@
 <script lang="ts">
-    import "@repo/ui/styles/tw.css";
-    import "@repo/ui/styles/styles.scss";
-    import "@repo/ui/styles/styles2.scss";
-    import "@repo/ui/styles/styles3.scss";
-    import "@repo/ui/styles/scrollbar.scss";
+    import "@repo/ui-sv/styles/tw.css";
+    import "@repo/ui-sv/styles/styles.scss";
+    import "@repo/ui-sv/styles/styles2.scss";
+    import "@repo/ui-sv/styles/styles3.scss";
+    import "@repo/ui-sv/styles/scrollbar.scss";
     import "@/styles/main.scss";
     import { SITE, SITE_SLOGAN } from "@/lib/constants";
     

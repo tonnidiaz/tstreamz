@@ -5,7 +5,7 @@
     import { handleErrs } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
 
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
     import type { HTMLAttributes } from "svelte/elements";
 
     let progress = $state(false);

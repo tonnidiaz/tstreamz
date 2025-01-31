@@ -3,23 +3,23 @@
     import * as mathlive from "mathlive";
     import { marked } from "marked";
 
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
     import {
         capitalizeFirstLetter,
         handleErrs,
         isTuError,
     } from "@cmn/utils/funcs";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import { showToast } from "@repo/ui-sv/lib/funcs";
     import { api } from "@/lib/api";
     import katex from "katex";
     import { parseMarkdown } from "@/lib/funcs";
     import { sleep } from "openai/core.mjs";
-    import UInput from "@repo/ui/components/UInput.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UTextarea from "@repo/ui/components/UTextarea.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UTextarea from "@repo/ui-sv/components/UTextarea.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UDivider from "@repo/ui-sv/components/UDivider.svelte";
     import { dev } from "$app/environment";
 
     const actions = [

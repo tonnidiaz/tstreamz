@@ -1,2 +1,2 @@
-import {handleError} from '@repo/ui/src/hooks.server'
+import {handleError} from '@repo/ui-sv/src/hooks.server'
 export {handleError}

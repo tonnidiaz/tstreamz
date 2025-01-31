@@ -2,7 +2,7 @@
     import { SITE } from "@/lib/constants";
 
 
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
 
 </script>
 <div class="flex flex-col h-100p w-100p">

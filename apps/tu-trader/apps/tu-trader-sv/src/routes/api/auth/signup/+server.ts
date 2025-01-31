@@ -2,7 +2,7 @@ import { SITE } from "@/lib/constants";
 import { tuErr } from "@/lib/server/funcs";
 import { genToken, hashPass, genOTP } from "@cmn/utils/bend/funcs";
 import { User } from "@pkg/cmn/models";
-import { sendSignupMail } from "@repo/ui/lib/server/funcs";
+import { sendSignupMail } from "@repo/ui-sv/lib/server/funcs";
 import { json } from "@sveltejs/kit";
 
 export const POST = async ({url, request: req}) => {

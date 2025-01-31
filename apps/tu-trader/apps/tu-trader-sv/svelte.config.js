@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 
-    alias: {"@pkg/cmn/*":"../../packages/common/src","@cmn/*":"../../../../packages/common/src","@repo/ui/*":"../../../ui/src","@/*":"src/*"},
+    alias: {"@pkg/cmn/*":"../../packages/common/src","@cmn/*":"../../../../packages/common/src","@repo/ui-sv/*":"../../../ui/src","@/*":"src/*"},
     typescript: {
         config: (c) => {
             return {

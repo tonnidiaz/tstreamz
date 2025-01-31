@@ -7,7 +7,7 @@
     import TMeta from "@/components/TMeta.svelte";
     import { SITE } from "@/lib/constants";
     import { setUser } from "@/stores/user.svelte";
-    import { logout } from "@repo/ui/lib/funcs";
+    import { logout } from "@repo/ui-sv/lib/funcs";
     import { onMount } from "svelte";
 
     onMount(()=>{

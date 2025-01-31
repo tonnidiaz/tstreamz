@@ -1,0 +1,26 @@
+{
+    "name": "@repo/ui-sv",
+    "type": "module",
+    "scripts": {},
+    "devDependencies": {
+        "@sveltejs/adapter-auto": "^3.3.1",
+        "@sveltejs/kit": "^2.0.0",
+        "@sveltejs/vite-plugin-svelte": "^4.0.0",
+        "aws-sdk": "^2.1692.0",
+        "mock-aws-s3": "^4.0.2",
+        "nock": "^14.0.0",
+        "svelte": "^5.0.0",
+        "svelte-carousel": "github:vadimkorr/svelte-carousel#pull/142/head",
+        "vite": "^5.0.3"
+    },
+    "dependencies": {
+        "@repo/common": "^1.0.0",
+        "@sveltejs/adapter-vercel": "^5.4.7",
+        "@tensorflow/tfjs": "^4.22.0",
+        "@tensorflow/tfjs-node": "^4.22.0",
+        "axios": "^1.7.9",
+        "comment-json": "^4.2.5",
+        "jquery": "^3.7.1",
+        "metaapi.cloud-sdk": "^29.0.1"
+    }
+}

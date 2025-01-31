@@ -1,5 +1,5 @@
 <script>
-    import TuErrorPage from "@repo/ui/components/TuErrorPage.svelte";
+    import TuErrorPage from "@repo/ui-sv/components/TuErrorPage.svelte";
 
 </script>
 <TuErrorPage/>

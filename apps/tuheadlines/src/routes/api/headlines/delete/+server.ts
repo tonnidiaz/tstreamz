@@ -1,6 +1,6 @@
 import { dev } from "$app/environment"
 import { Headline } from "@/lib/server/models"
-import { tuErr } from "@repo/ui/lib/funcs"
+import { tuErr } from "@repo/ui-sv/lib/funcs"
 
 export const POST = async () =>{
     if (dev){

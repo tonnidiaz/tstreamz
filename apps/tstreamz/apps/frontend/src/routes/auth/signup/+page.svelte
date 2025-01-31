@@ -5,14 +5,14 @@
     import { localApi } from "@/lib/api";
     import { setUser } from "@/stores/user.svelte";
     import { SITE, STORAGE_KEYS } from "@/lib/constants";
-    import UInput from "@repo/ui/components/UInput.svelte";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
     import TMeta from "@/components/TMeta.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import { handleErrs, sleep } from "@cmn/utils/funcs";
-    import TuPassField from "@repo/ui/components/TuPassField.svelte";
+    import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
     import { isTuError } from "@cmn/utils/funcs2";
     import OtpField from "@/components/OTPField.svelte";
     let btnDisabled = $state(true),

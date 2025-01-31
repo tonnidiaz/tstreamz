@@ -1,18 +1,18 @@
 
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
-    import TuCard from "@repo/ui/components/TuCard.svelte";
-    import TuSelect from "@repo/ui/components/TuSelect.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import TuCard from "@repo/ui-sv/components/TuCard.svelte";
+    import TuSelect from "@repo/ui-sv/components/TuSelect.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import { api, localApi } from "@/lib/api";
     import { selectIntervals, SITE } from "@/lib/constants";
     import type { IObj } from "@cmn/utils/interfaces";
     import { onMount } from "svelte";
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import { showToast } from "@repo/ui-sv/lib/funcs";
 
 
 let formState = $state<IObj>({});

@@ -3,12 +3,12 @@
     import type {  TaskAct } from "@/lib/interfaces";
     import { handleErrs, isTuError, sleep } from "@cmn/utils/funcs";
     import type { ITask } from "@cmn/utils/interfaces";
-    import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
-    import MenuItem from "@repo/ui/components/MenuItem.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import CtxMenu2 from "@repo/ui-sv/components/CtxMenu2.svelte";
+    import MenuItem from "@repo/ui-sv/components/MenuItem.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UDivider from "@repo/ui-sv/components/UDivider.svelte";
+    import { showToast } from "@repo/ui-sv/lib/funcs";
     import { onMount } from "svelte";
 
     //     const onMenuItemClick = async (e, fn: (e) => any) => {

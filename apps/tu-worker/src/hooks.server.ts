@@ -1,5 +1,5 @@
 import { sleep, timedLog } from "@cmn/utils/funcs";
-import { handleError } from "@repo/ui/hooks.server";
+import { handleError } from "@repo/ui-sv/hooks.server";
 import { scheduleAllTasks } from "./lib/server/funcs"; 
 import { globalJobScheduled, setGlobalJobScheduled, taskManager } from "@cmn/classes/task-manager";
 import { scrapeWWEVideos } from "./lib/server/tasks";

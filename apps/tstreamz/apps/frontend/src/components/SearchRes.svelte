@@ -44,7 +44,7 @@
   <script lang="ts">
     import { imgUrl } from "@/lib/constants";
     import type { IObj } from "@cmn/utils/interfaces";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import TrailerBtn from "./TrailerBtn.svelte";
     import WatchlistBtn from "./WatchlistBtn.svelte";
 

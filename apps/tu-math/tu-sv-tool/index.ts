@@ -1,4 +1,4 @@
-import { svTool, findTurboRoot } from "@repo/ui/src/lib/server/sv-tool";
+import { svTool, findTurboRoot } from "@repo/ui-sv/src/lib/server/sv-tool";
 import { readFileSync, writeFileSync } from "fs";
 import path from "path";
 const __dirname = import.meta.dirname

@@ -3,9 +3,9 @@
     import BotCard from "@/components/BotCard.svelte";
     import BotFormModal from "@/components/BotFormModal.svelte";
     import TMeta from "@/components/TMeta.svelte";
-    import TuTeleport from "@repo/ui/components/TuTeleport.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
+    import TuTeleport from "@repo/ui-sv/components/TuTeleport.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
     import { BEND_URL, SITE } from "@/lib/constants";
     import { setBots, userStore } from "@/stores/user.svelte";
     import type { IObj } from "@cmn/utils/interfaces";

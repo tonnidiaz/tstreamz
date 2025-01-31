@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { IObj } from "@cmn/utils/interfaces";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
 
     interface IProps {
         mode?: "Create" | "Edit";

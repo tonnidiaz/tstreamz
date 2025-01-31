@@ -1,4 +1,4 @@
-import { svTool, findTurboRoot } from "@repo/ui/src/lib/server/sv-tool";
+import { svTool, findTurboRoot } from "@repo/ui-sv/src/lib/server/sv-tool";
 import path from "path";
 const cwd = import.meta.dirname;
 svTool({

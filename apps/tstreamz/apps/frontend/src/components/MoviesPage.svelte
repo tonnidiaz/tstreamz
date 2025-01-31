@@ -1,7 +1,7 @@
 <script lang="ts">
     import axios from "axios";
     import { ROOT, SITE } from "@/lib/constants";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import CardPh from "./CardPH.svelte";
     import FixedMovieCard from "./FixedMovieCard.svelte";
     import TMeta from "./TMeta.svelte";

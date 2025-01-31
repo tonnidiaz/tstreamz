@@ -1,7 +1,7 @@
 <script lang="ts">
     import { isValidDate } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import type { HTMLAttributes } from "svelte/elements";
 
     interface IProps extends HTMLAttributes<any> {

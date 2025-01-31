@@ -3,7 +3,7 @@
     import { preventScroll } from "@/lib/funcs";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
     import TMeta from "@/components/TMeta.svelte";
-    import Loader from "@repo/ui/components/Loader.svelte";
+    import Loader from "@repo/ui-sv/components/Loader.svelte";
     import { onMount } from "svelte";
 
     let movies = $state<[any]>(),

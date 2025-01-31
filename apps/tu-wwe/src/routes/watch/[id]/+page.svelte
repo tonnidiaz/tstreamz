@@ -8,8 +8,8 @@
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import type { IVideo } from "@cmn/utils/tu-wwe/interfaces";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import { scrollToTheTop, showToast } from "@repo/ui/lib/funcs";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import { scrollToTheTop, showToast } from "@repo/ui-sv/lib/funcs";
 
     let embedUrl = $state("");
     let { data, url } = $derived(page);

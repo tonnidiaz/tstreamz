@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
     "@repo/common": "^1.0.0",
     "@repo/ui-next": "*",
+    "@repo/ui": "*",
     "next": "15.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

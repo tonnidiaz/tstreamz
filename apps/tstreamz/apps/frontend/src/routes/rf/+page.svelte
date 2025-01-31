@@ -4,7 +4,7 @@
     import PellerPush from "@/components/PellerPush.svelte";
 import TMeta from "@/components/TMeta.svelte";
     import { SITE } from "@/lib/constants";
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
 
 </script>
 <TMeta title={`Research Facility - ${SITE}`}/>

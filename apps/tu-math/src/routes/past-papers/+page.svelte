@@ -2,12 +2,12 @@
     import { api } from "@/lib/api";
     import type { IParsedPastPaper } from "@/lib/interfaces";
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import TuSelect from "@repo/ui/components/TuSelect.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
-    import { showToast } from "@repo/ui/lib/funcs";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import TuSelect from "@repo/ui-sv/components/TuSelect.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UDivider from "@repo/ui-sv/components/UDivider.svelte";
+    import { showToast } from "@repo/ui-sv/lib/funcs";
 
     import { onMount } from "svelte";
 

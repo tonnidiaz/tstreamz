@@ -2,15 +2,15 @@
     import CointestTable from "@/components/CointestTable.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import TuDatePicker from "@/components/TuDatePicker.svelte";
-    import TuModalContainer from "@repo/ui/components/TuModalContainer.svelte";
-    import TuSelect from "@repo/ui/components/TuSelect.svelte";
-    import TuStats from "@repo/ui/components/TuStats.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import TuModalContainer from "@repo/ui-sv/components/TuModalContainer.svelte";
+    import TuSelect from "@repo/ui-sv/components/TuSelect.svelte";
+    import TuStats from "@repo/ui-sv/components/TuStats.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
+    import UDivider from "@repo/ui-sv/components/UDivider.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
     import {
         SITE,
         selectPlatforms,

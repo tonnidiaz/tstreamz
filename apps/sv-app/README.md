@@ -4,7 +4,7 @@ Sveltekit app template from **Tu**
 
 ## Setup steps
 
-- install [@repo/ui, @repo/common] packages
+- install [@repo/ui-sv, @repo/common] packages
 - Copy tu-sv-tool folder to root directory
 - Copy pre-all, dev, and build scripts from package.json
 - Copy src/routes/+{error, layout}.svelte

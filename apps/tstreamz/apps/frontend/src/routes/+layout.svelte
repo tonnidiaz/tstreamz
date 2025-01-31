@@ -1,5 +1,5 @@
 <script lang="ts">
-   import "@repo/ui/styles/all.scss";
+   import "@repo/ui-sv/styles/all.scss";
    import "@flaticon/flaticon-uicons/css/all/all.css";
 
     import { page } from "$app/stores";

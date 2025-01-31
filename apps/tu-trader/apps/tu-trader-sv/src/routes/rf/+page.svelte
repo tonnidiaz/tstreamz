@@ -1,15 +1,15 @@
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
-    import TuSelect from "@repo/ui/components/TuSelect.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import TuSelect from "@repo/ui-sv/components/TuSelect.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
     import type { ISelectItem } from "@/lib/interfaces";
     import { appStore } from "@/stores/app.svelte";
     import type { IObj } from "@cmn/utils/interfaces";
     import { onMount } from "svelte";
     import { writable } from "svelte/store";
     import type { PageData } from "../$types";
-    import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
+    import CtxMenu2 from "@repo/ui-sv/components/CtxMenu2.svelte";
     import { page } from "$app/stores";
     import { kucoinInstrus } from "@pkg/cmn/utils/data/instrus";
     import { getInstrus } from "@pkg/cmn/utils/functions";

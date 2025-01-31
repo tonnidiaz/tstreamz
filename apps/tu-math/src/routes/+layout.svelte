@@ -1,9 +1,9 @@
 <script lang="ts">
-    import "@repo/ui/styles/all.scss";
+    import "@repo/ui-sv/styles/all.scss";
     import "@flaticon/flaticon-uicons/css/all/all.css";
     import { SITE } from "@/lib/conts";
-    import Navbar from "@repo/ui/components/Navbar.svelte";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import Navbar from "@repo/ui-sv/components/Navbar.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
 
     let { children } = $props();
 </script>

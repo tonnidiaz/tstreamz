@@ -5,16 +5,16 @@
     import { SITE } from "@/lib/constants";
     import type { IObj } from "@cmn/utils/interfaces";
     import { page } from "$app/stores";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
-    import TuPassField from "@repo/ui/components/TuPassField.svelte";
+    import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
     import { isTuError } from "@cmn/utils/funcs2";
-    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
-    import UTextarea from "@repo/ui/components/UTextarea.svelte";
+    import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
+    import UTextarea from "@repo/ui-sv/components/UTextarea.svelte";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);

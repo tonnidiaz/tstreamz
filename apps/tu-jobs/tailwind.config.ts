@@ -16,5 +16,5 @@
 //   },
 //   plugins: [],
 // } satisfies Config;
-import {twConfig} from '@repo/ui-next/src/tailwind.config'
-export default twConfig(__dirname)
+import {twConfig} from '@repo/ui/src/tailwind.config'
+export default twConfig(__dirname, 'next')

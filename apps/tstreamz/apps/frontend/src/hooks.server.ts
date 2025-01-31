@@ -81,6 +81,6 @@ export const handle: Handle = async ({ resolve, event }) => {
     return resolve(event);
 };
 
-import { handleError } from "@repo/ui/hooks.server";
+import { handleError } from "@repo/ui-sv/hooks.server";
 
 export {handleError}

@@ -6,8 +6,8 @@
         appStore as _appStore,
     } from "@/stores/app.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
-    import TuModal from "@repo/ui/components/TuModal.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import TuModal from "@repo/ui-sv/components/TuModal.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
     import _$ from "jquery";
 
     let appStore = $derived(_appStore);

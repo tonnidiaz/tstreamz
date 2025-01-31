@@ -1,17 +1,17 @@
 <script lang="ts">
     import TMeta from "@/components/TMeta.svelte";
-    import TuSelect from "@repo/ui/components/TuSelect.svelte";
-    import TuStats from "@repo/ui/components/TuStats.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import TuSelect from "@repo/ui-sv/components/TuSelect.svelte";
+    import TuStats from "@repo/ui-sv/components/TuStats.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
     import { appStore } from "@/stores/app.svelte";
     import type { IObj } from "@cmn/utils/interfaces";
     import { onMount } from "svelte";
-    import TuCard from "@repo/ui/components/TuCard.svelte";
+    import TuCard from "@repo/ui-sv/components/TuCard.svelte";
 
 
 

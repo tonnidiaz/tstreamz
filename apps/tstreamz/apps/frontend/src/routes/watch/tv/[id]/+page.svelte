@@ -14,8 +14,8 @@
     import { preventScroll } from "@/lib/funcs";
     import { handleErrs } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
     import { onMount, untrack } from "svelte";
 
     let { data } = $props();

@@ -1,8 +1,8 @@
 <script lang="ts">
     import type { IObj } from "@cmn/utils/interfaces";
     import TuJson from "./TuJson.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
 
     const { orders, isChild }: { orders: IObj[]; isChild?: boolean } = $props();
 </script>

@@ -1,13 +1,13 @@
 <script lang="ts">
     import { SITE, socket } from "@/lib/constants";
     import { userStore } from "@/stores/user.svelte";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import MenuItem from "@repo/ui/components/MenuItem.svelte";
-    import UAvatar from "@repo/ui/components/UAvatar.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import MenuItem from "@repo/ui-sv/components/MenuItem.svelte";
+    import UAvatar from "@repo/ui-sv/components/UAvatar.svelte";
     import { onMount } from "svelte";
-    import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
+    import CtxMenu2 from "@repo/ui-sv/components/CtxMenu2.svelte";
+    import UDivider from "@repo/ui-sv/components/UDivider.svelte";
     let ioConnected = $state(false);
     let { user } = $derived(userStore);
 

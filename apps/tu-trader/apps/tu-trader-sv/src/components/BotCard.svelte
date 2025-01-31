@@ -1,16 +1,16 @@
 <script lang="ts">
     import { setBots, userStore } from "@/stores/user.svelte";
-import TuLink from "@repo/ui/components/TuLink.svelte";
-    import TuModal from "@repo/ui/components/TuModal.svelte";
+import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import TuModal from "@repo/ui-sv/components/TuModal.svelte";
     import type { HTMLAnchorAttributes } from "svelte/elements";
     import type { IObj } from "@cmn/utils/interfaces";
     import { activateBot, clearBotOrders, delBot } from "@/lib/funcs";
     import BotCard from "./BotCard.svelte";
-    import CtxMenu2 from "@repo/ui/components/CtxMenu2.svelte";
-    import TuCard from "@repo/ui/components/TuCard.svelte";
-    import UAvatar from "@repo/ui/components/UAvatar.svelte";
-    import UBadge from "@repo/ui/components/UBadge.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
+    import CtxMenu2 from "@repo/ui-sv/components/CtxMenu2.svelte";
+    import TuCard from "@repo/ui-sv/components/TuCard.svelte";
+    import UAvatar from "@repo/ui-sv/components/UAvatar.svelte";
+    import UBadge from "@repo/ui-sv/components/UBadge.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
 
 let { bots } = $derived(userStore);
 let menuOpen = $state(false),

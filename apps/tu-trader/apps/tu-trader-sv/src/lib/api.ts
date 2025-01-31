@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL, BEND_URL } from "./constants";
-import { STORAGE_KEYS } from "@repo/ui/lib/consts";
+import { STORAGE_KEYS } from "@repo/ui-sv/lib/consts";
 console.log({API_URL})
 
 export const api = axios.create({

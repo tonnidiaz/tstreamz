@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    // "module": "commonjs",
+    // "declaration": true,
+    // "declarationMap": true,
+    // "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "noEmit": true,
+    // "baseUrl": ".",
+    "outDir": "./dist",
+        "paths": {
+        "@cmn/*": ["../../packages/common/src/*"]
+    },
+    // "target": "ESNext",
+    // "types": ["vite/client"],
+    // From svelte
+    "lib": [
+			"esnext",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"moduleResolution": "bundler",
+		"module": "esnext",
+		// "noEmit": true, 
+		"target": "esnext"
+  },
+  "include": ["src", "**/*.ts", "../../packages/common/src/**/*.ts", "svelte.d.ts", "../ui/src/utils/interfaces.ts", "../ui/src/tailwind.config.ts"],
+  "exclude": ["dist", "out", ".out", "**/*.spec.ts", "node_modules", "**/node_modules"]
+}
+   

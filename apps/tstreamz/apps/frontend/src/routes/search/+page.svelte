@@ -8,8 +8,8 @@
     import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
     import { handleErrs } from "@cmn/utils/funcs";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
     import { untrack } from "svelte";
     let query = $derived($page.url.searchParams.get("q"));
 

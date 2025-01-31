@@ -1,4 +1,4 @@
-import { tuErr } from '@repo/ui/lib/funcs.js'
+import { tuErr } from '@repo/ui-sv/lib/funcs.js'
 import { json } from '@sveltejs/kit'
 
 export const GET = async({params})=>{

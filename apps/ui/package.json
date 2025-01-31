@@ -1,26 +1,21 @@
 {
     "name": "@repo/ui",
+    "private": true,
+    "version": "0.0.0",
     "type": "module",
-    "scripts": {},
+    "scripts": {
+        "cp": "copyfiles -u 1 ./src/styles/**/* ./dist/apps/ui/src",
+        "build": "rimraf dist && tsc && tsc-alias -f && npm run cp"
+    },
     "devDependencies": {
-        "@sveltejs/adapter-auto": "^3.3.1",
-        "@sveltejs/kit": "^2.0.0",
-        "@sveltejs/vite-plugin-svelte": "^4.0.0",
-        "aws-sdk": "^2.1692.0",
-        "mock-aws-s3": "^4.0.2",
-        "nock": "^14.0.0",
-        "svelte": "^5.0.0",
-        "svelte-carousel": "github:vadimkorr/svelte-carousel#pull/142/head",
-        "vite": "^5.0.3"
+        "copyfiles": "^2.4.1",
+        "rimraf": "^6.0.1",
+        "tsc-alias": "^1.8.10",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2"
     },
     "dependencies": {
-        "@repo/common": "^1.0.0",
-        "@sveltejs/adapter-vercel": "^5.4.7",
-        "@tensorflow/tfjs": "^4.22.0",
-        "@tensorflow/tfjs-node": "^4.22.0",
-        "axios": "^1.7.9",
-        "comment-json": "^4.2.5",
-        "jquery": "^3.7.1",
-        "metaapi.cloud-sdk": "^29.0.1"
+        "@repo/common": "1.0.0",
+        "npm": "^11.0.0"
     }
 }

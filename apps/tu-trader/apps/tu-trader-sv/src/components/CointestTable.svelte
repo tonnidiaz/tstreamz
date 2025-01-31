@@ -63,7 +63,7 @@
     import { formatter } from "@/lib/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import type { HTMLAttributes } from "svelte/elements";
-    import UTextarea from "@repo/ui/components/UTextarea.svelte";
+    import UTextarea from "@repo/ui-sv/components/UTextarea.svelte";
     import { onMount } from "svelte";
 
 let q = $state(""),

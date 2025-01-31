@@ -1,8 +1,8 @@
 <script lang="ts">
     import { appStore as _appStore } from "@/stores/app.svelte";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
-    import UAccordion from "@repo/ui/components/UAccordion.svelte";
-    import UDivider from "@repo/ui/components/UDivider.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import UAccordion from "@repo/ui-sv/components/UAccordion.svelte";
+    import UDivider from "@repo/ui-sv/components/UDivider.svelte";
 
     let { genres } = $derived(_appStore);
 </script>

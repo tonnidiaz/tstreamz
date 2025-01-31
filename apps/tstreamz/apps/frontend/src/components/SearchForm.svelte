@@ -1,8 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
 
     function handleSubmit(e: any) {
         e.preventDefault();

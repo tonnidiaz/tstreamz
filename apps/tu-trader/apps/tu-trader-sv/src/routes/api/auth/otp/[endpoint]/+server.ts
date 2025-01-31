@@ -10,7 +10,7 @@ import {
 } from "@cmn/utils/bend/funcs.js";
 import { isEmail } from "@cmn/utils/funcs.js";
 import { User } from "@pkg/cmn/models";
-import { sendSignupMail } from "@repo/ui/lib/server/funcs";
+import { sendSignupMail } from "@repo/ui-sv/lib/server/funcs";
 import { json } from "@sveltejs/kit";
 export const POST = async ({ request, params, url }) => {
     const data = await request.json();

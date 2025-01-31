@@ -12,14 +12,14 @@
     import { handleErrs, parseDate } from "@cmn/utils/funcs";
     import { isTuError } from "@cmn/utils/funcs2";
     import type { IObj } from "@cmn/utils/interfaces";
-    import OtpText from "@repo/ui/components/OTPText.svelte";
-    import TuModal from "@repo/ui/components/TuModal.svelte";
-    import TuPassField from "@repo/ui/components/TuPassField.svelte";
-    import TuTabs from "@repo/ui/components/TuTabs.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import OtpText from "@repo/ui-sv/components/OTPText.svelte";
+    import TuModal from "@repo/ui-sv/components/TuModal.svelte";
+    import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
+    import TuTabs from "@repo/ui-sv/components/TuTabs.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
     import { onMount, untrack } from "svelte";
     import { preventDefault } from "svelte/legacy";
 

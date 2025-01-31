@@ -7,7 +7,7 @@
     import { SITE } from "@/lib/constants";
     import { appStore } from "@/stores/app.svelte";
     import type { IObj } from "@cmn/utils/interfaces";
-    import TuLink from "@repo/ui/components/TuLink.svelte";
+    import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import { onMount, untrack } from "svelte";
 
     let { genres } = $derived(appStore);

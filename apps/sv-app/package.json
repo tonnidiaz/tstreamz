@@ -27,6 +27,7 @@
 	},
 	"dependencies": {
 		"@repo/common": "^1.0.0",
+		"@repo/ui-sv": "*",
 		"@repo/ui": "*",
 		"@tensorflow/tfjs": "^4.22.0",
 		"@tensorflow/tfjs-node": "^4.22.0",

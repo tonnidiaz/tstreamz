@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Loader from "@repo/ui/components/Loader.svelte";
+    import Loader from "@repo/ui-sv/components/Loader.svelte";
     import { onMount } from "svelte";
     import { appStore, setGenres, setReady } from "@/stores/app.svelte";
     import { localApi } from "@/lib/api";

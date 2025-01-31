@@ -2,15 +2,15 @@
     import { page } from "$app/stores";
     import TMeta from "@/components/TMeta.svelte";
 
-    import TuCard from "@repo/ui/components/TuCard.svelte";
-    import TuModal from "@repo/ui/components/TuModal.svelte";
-    import TuSelect from "@repo/ui/components/TuSelect.svelte";
-    import TuTeleport from "@repo/ui/components/TuTeleport.svelte";
-    import UButton from "@repo/ui/components/UButton.svelte";
-    import UCheckbox from "@repo/ui/components/UCheckbox.svelte";
-    import UForm from "@repo/ui/components/UForm.svelte";
-    import UFormGroup from "@repo/ui/components/UFormGroup.svelte";
-    import UInput from "@repo/ui/components/UInput.svelte";
+    import TuCard from "@repo/ui-sv/components/TuCard.svelte";
+    import TuModal from "@repo/ui-sv/components/TuModal.svelte";
+    import TuSelect from "@repo/ui-sv/components/TuSelect.svelte";
+    import TuTeleport from "@repo/ui-sv/components/TuTeleport.svelte";
+    import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
+    import UForm from "@repo/ui-sv/components/UForm.svelte";
+    import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
+    import UInput from "@repo/ui-sv/components/UInput.svelte";
     import { localApi } from "@/lib/api";
     import { SITE } from "@/lib/constants";
     import { userStore } from "@/stores/user.svelte";
