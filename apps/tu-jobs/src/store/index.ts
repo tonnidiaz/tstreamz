@@ -1,8 +1,5 @@
-import { useTuState } from "@repo/ui-next/lib/tu";
-import { createTuStore } from "./utils";
-
+import { appStore } from "./app";
 
 export const store = {
-    app: () => createTuStore("app", { title: "Tu app", counter: 0 }),
-};
-
+    app: appStore
+}

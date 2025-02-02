@@ -1,41 +1,12 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
 import TuTeleport from "./TuTeleport";
-import { useTuState } from "../lib/tu";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
+import { useTuState } from "../lib/hooks";
 
-{/* <script lang="ts">
-    import { onMount, untrack, type Snippet } from "svelte";
-    import type { HTMLAttributes } from "svelte/elements";
-    import TuTeleport from "./TuTeleport.svelte";
-    import { page } from "$app/stores";
-
-    
-    let  = $props();
-
-    
-    onMount(() => {});
-
-    $effect(() => {
-        if (menuRef) {
-           
-        }
-    });
-
-    let p = $derived($page.url.href);
-    $effect(() => {
-        // watch route
-        p;
-        untrack(() => {
-            open = false;
-        });
-    });
-
-    
-</script> */}
 
 interface IProps extends HTMLAttributes<any> {
     toggler?: React.ReactNode;
-    open?: TState<boolean>;
+    open?: TuState<boolean>;
     anchor?: "top" | "bottom";
 }
 const CtxMenu2 = ({
@@ -57,7 +28,6 @@ const CtxMenu2 = ({
         "menu menu-menu menu-sm text-left justify-start shadow";
 
     const toggleMenu = (e: any) => {
-        console.log('Toggle');
         e.preventDefault();
         updatePos({});
         open.value = true;

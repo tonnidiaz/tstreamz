@@ -1,13 +1,20 @@
-    import UInput, { type IUInputProps } from "./UInput";
-    import jq from 'jquery'
-import { useTuState } from "../lib/tu";
-import { TState } from "../lib/interfaces";
+import UInput, { type IUInputProps } from "./UInput";
+import jq from "jquery";
+import { TuState } from "../lib/interfaces";
 import { useEffect, useRef } from "react";
+import { useTuState } from "../lib/hooks";
 
+interface IProps extends IUInputProps {
+    valid?: TuState<boolean>;
+    showValidation?: boolean;
+}
 
-    interface IProps extends IUInputProps {valid?: TState<boolean>; showValidation?: boolean, }
-
-const TuPassField = ({ $value = useTuState(""), valid = useTuState(false), showValidation = true, ...props }: IProps) => {
+const TuPassField = ({
+    $value = useTuState(""),
+    valid = useTuState(false),
+    showValidation = true,
+    ...props
+}: IProps) => {
     let passType = $state<"text" | "password">("password");
 
     const validClass = "text-white fw-6",
@@ -22,7 +29,7 @@ const TuPassField = ({ $value = useTuState(""), valid = useTuState(false), showV
         let capital = validationCont.current.querySelector(".val-cap")!;
         let number = validationCont.current.querySelector(".val-num")!;
         let length = validationCont.current.querySelector(".val-len")!;
-        
+
         // pwdInp.onfocus = () => {
         //     jq(".pwd-val").show();
         // };
@@ -71,49 +78,52 @@ const TuPassField = ({ $value = useTuState(""), valid = useTuState(false), showV
                 pwdVal.match(caps) &&
                 pwdVal.match(nums) &&
                 pwdVal.length >= 8;
-                // console.log({valid});
+            // console.log({valid});
             // if (pwdValid) jq(".pwd-val").hide();
         };
         checkPass();
         pwdInp.onkeyup = checkPass;
     }, []);
 
-    return ( 
+    return (
         <div ref={parent}>
             <UInput
                 type={passType}
                 {...props}
                 $value={$value}
-                trailing={passType == "password" ?
-                    <span
-                        onClick={() => {
-                            passType = "text";
-                        }}
-                        className="btn-none"
-                        title="show password"
-                    >
-                        <i className="fi fi-rr-eye"></i>
-                    </span>
-                :
-                    <span
-                        className="btn-none"
-                        onClick={() => {
-                            passType = "password";
-                        }}
-                        title="hide password"
-                    >
-                        <i className="fi fi-rr-eye-crossed"></i>
-                    </span>
+                trailing={
+                    passType == "password" ? (
+                        <span
+                            onClick={() => {
+                                passType = "text";
+                            }}
+                            className="btn-none"
+                            title="show password"
+                        >
+                            <i className="fi fi-rr-eye"></i>
+                        </span>
+                    ) : (
+                        <span
+                            className="btn-none"
+                            onClick={() => {
+                                passType = "password";
+                            }}
+                            title="hide password"
+                        >
+                            <i className="fi fi-rr-eye-crossed"></i>
+                        </span>
+                    )
                 }
                 pattern={passPattern.source}
                 title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-            >
-                
-            </UInput>
-        
+            ></UInput>
+
             <div
                 ref={validationCont}
-                className={"pwd-val form-group my-2 ml-2 text-center " + ((!showValidation || valid.value) && 'hidden')}
+                className={
+                    "pwd-val form-group my-2 ml-2 text-center " +
+                    ((!showValidation || valid.value) && "hidden")
+                }
             >
                 <p className="fs-12">
                     Must contain{" "}
@@ -125,14 +135,18 @@ const TuPassField = ({ $value = useTuState(""), valid = useTuState(false), showV
                         an uppercase
                     </span>
                     ,{" "}
-                    <span className={"val-num" + ` fw-5 ${invalidClass}`}> a number </span>
+                    <span className={"val-num" + ` fw-5 ${invalidClass}`}>
+                        {" "}
+                        a number{" "}
+                    </span>
                     , and{" "}
                     <span className={"val-len" + ` fw-5 ${invalidClass}`}>
                         at least 8 characters
                     </span>
                 </p>
             </div>
-        </div> );
-}
- 
+        </div>
+    );
+};
+
 export default TuPassField;

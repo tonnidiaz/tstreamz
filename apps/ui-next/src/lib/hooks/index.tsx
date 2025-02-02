@@ -1,47 +1,46 @@
-import { useContext, createContext } from "react";
-import { useTuState } from "../tu";
+import { useEffect, useMemo, useState } from "react";
 
-// Define the shape of your global state (optional)
-type GlobalStateType = {
-    user: {
-      name: string;
-      details: {
-        age: number;
-        location: string;
-      };
+export function useTuState<T>(initial?: T) {
+    const [state, setState] = useState(initial);
+  
+    // Recursive Proxy creation
+    const createProxy = (target: any, path: (string | number)[]): any => {
+      if (typeof target === "object" && target !== null) {
+        return new Proxy(target, {
+          get(obj, prop) {
+            const value = obj[prop as keyof typeof obj];
+            // Recursively wrap nested objects
+            return typeof value === "object" && value !== null
+              ? createProxy(value, [...(path as any), (prop as any)])
+              : value;
+          },
+          set(obj, prop, newValue) {
+            const updatedState = updateNestedValue(state, [...(path as any), (prop as any)], newValue);
+            setState(updatedState);
+            return true;
+          },
+        });
+      }
+      return target; // Return primitives as-is
     };
-  };
   
-  // Create the context
-  const GlobalStateContext = createContext<ReturnType<typeof useTuState<GlobalStateType>> | null>(
-    null
-  );
+    // Update the state immutably at the given path
+    const updateNestedValue = (current: any, path: (string | number)[], value: any) => {
+      if (path.length === 0) return value;
+      const [key, ...rest] = path;
+      return Array.isArray(current)
+        ? Object.assign([...current], { [key]: updateNestedValue(current[key], rest, value) })
+        : Object.assign({}, current, { [key]: updateNestedValue(current[key], rest, value) });
+    };
   
-  // Global State Provider Component
-  export const GlobalStateProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    // Initialize your global state using `useTuState`
-    const state = useTuState<GlobalStateType>({
-      user: {
-        name: "Tonni",
-        details: {
-          age: 25,
-          location: "Earth",
-        },
+    const proxy = useMemo(() => createProxy(state, []), [state]);
+  
+    return {
+      get value() {
+        return proxy;
       },
-    });
-  
-    return (
-      <GlobalStateContext.Provider value={state}>
-        {children}
-      </GlobalStateContext.Provider>
-    );
-  };
-  
-  // Custom Hook to Access Global State
-  export const useTuStore = () => {
-    const context = useContext(GlobalStateContext);
-    if (!context) {
-      throw new Error("useTuStore must be used within a GlobalStateProvider");
-    }
-    return context;
-  };
+      set value(newValue: T) {
+        setState(newValue);
+      },
+    };
+  }

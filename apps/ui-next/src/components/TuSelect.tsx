@@ -1,13 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ISelectItem, TState } from "../lib/interfaces";
-import { useTuState } from "../lib/tu";
+import { useTuState } from "../lib/hooks";
+import { TuState } from "../lib/interfaces";
+import { ISelectItem } from "@repo/ui/utils/interfaces";
+
 
 interface Props extends Omit<React.SelectHTMLAttributes<{}>, 'value'> {
     innerHint?: string;
     options?: ISelectItem[];
     placeholder?: string;
     searchable?: boolean;
-    value: TState<any>;
+    value: TuState<any>;
     disabled?: boolean;
 }
 const TuSelect: React.FC<Props> = ({

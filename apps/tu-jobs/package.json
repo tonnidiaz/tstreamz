@@ -11,8 +11,10 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "@repo/common": "^1.0.0",
-    "@repo/ui-next": "*",
     "@repo/ui": "*",
+    "@repo/ui-next": "*",
+    "axios": "^1.7.9",
+    "mongoose": "^8.9.6",
     "next": "15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

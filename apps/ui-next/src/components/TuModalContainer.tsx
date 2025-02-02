@@ -1,11 +1,11 @@
 import { HTMLAttributes, useEffect, useMemo, useRef } from "react";
-import { TState } from "../lib/interfaces";
-import { useTuState } from "../lib/tu";
+import { TuState } from "../lib/interfaces";
 import { useRouter } from "next/router";
+import { useTuState } from "../lib/hooks";
 
 
 interface IProps extends HTMLAttributes<any> {
-        open: TState<boolean>;
+        open: TuState<boolean>;
         blank?: boolean;
     }
 

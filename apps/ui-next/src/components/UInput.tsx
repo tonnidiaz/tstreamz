@@ -1,12 +1,12 @@
 import { InputHTMLAttributes, ReactNode } from "react";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
 
 export interface IUInputProps extends InputHTMLAttributes<any> {
     override?: string;
     inputClass?: string;
     trailing?: ReactNode;
     leading?: ReactNode;
-    $value?: TState<any>;
+    $value?: TuState<any>;
 }
 const UInput = ({
     disabled,

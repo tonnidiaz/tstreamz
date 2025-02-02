@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useTuState } from "../lib/tu";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
 import TuTeleport from "./TuTeleport";
 import TuModalContainer from "./TuModalContainer";
+import { useTuState } from "../lib/hooks";
 
 const TuModal = ({
     open = useTuState(false),
@@ -10,7 +10,7 @@ const TuModal = ({
     toggler,
     className,
 }: {
-    open?: TState<boolean>;
+    open?: TuState<boolean>;
     content?: React.ReactNode;
     toggler?: React.ReactNode;
     className?: string;

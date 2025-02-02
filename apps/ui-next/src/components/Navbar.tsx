@@ -5,14 +5,14 @@ import TuLink from "./TuLink";
 import UAvatar from "./UAvatar";
 import UButton from "./UButton";
 import { type IObj } from "@cmn/utils/interfaces";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
 
 interface IProps extends HTMLAttributes<any> {
     site: string;
     /**The horizontal menu items(li TuLink) on the navbar*/
     menuItems?: ReactNode;
-    user?: TState<IObj>;
-    ready: TState<boolean>;
+    user?: IObj;
+    ready: boolean;
     hasLogin?: boolean;
     /**The menu-items (MenuItem) on the user avatar dropdown menu. */
     userMenuItems?: ReactNode;
@@ -64,9 +64,9 @@ const Navbar = ({
                             stroke="currentColor"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M4 6h16M4 12h16M4 18h7"
                             />
                         </svg>
@@ -83,7 +83,7 @@ const Navbar = ({
                     {site}
                 </a>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end flex items-center gap-2">
                 <div id="nav-menu">
                     <ul
                         className="menu menu-horizontal p-0 px-1 md:flex"
@@ -132,6 +132,7 @@ const Navbar = ({
                 ) : (
                     <div>
                         <UButton
+                        showLoader
                             loading={!ready}
                             className="btn-sm btn-outline btn-primary"
                         >

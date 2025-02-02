@@ -1,5 +1,5 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
 import TuLink from "./TuLink";
 
 interface IProps extends HTMLAttributes<any> {
@@ -8,7 +8,7 @@ interface IProps extends HTMLAttributes<any> {
     innerClass?: string;
     icon?: string;
     reload?: boolean;
-    loading?: TState<boolean>;
+    loading?: TuState<boolean>;
     disabled?: boolean;
 }
 const MenuItem = ({

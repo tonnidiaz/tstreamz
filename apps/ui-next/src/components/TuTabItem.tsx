@@ -1,8 +1,8 @@
-import { TState } from "../lib/interfaces";
-import { useTuState } from "../lib/tu";
+import { useTuState } from "../lib/hooks";
+import { TuState } from "../lib/interfaces";
 
 interface IProps {
-    tab: TState<number>;
+    tab: TuState<number>;
     i: number;
     label: React.ReactNode;
     content: React.ReactNode;

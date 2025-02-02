@@ -1,3 +1,4 @@
+"use client"
 import { AnchorHTMLAttributes } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -23,9 +24,9 @@ const TuLink = ({
     const _href = to || href;
     return reload ||
         adfreeRoutes.find((el) => pathname.includes(el)) != undefined ? (
-        <a href={_href} className={_class} {...props}></a>
+        <a href={_href} className={_class} {...props}>{children}</a>
     ) : (
-        <Link href={_href} className={_class} {...props}></Link>
+        <Link href={_href} className={_class} {...props}>{children}</Link>
     );
 };
 

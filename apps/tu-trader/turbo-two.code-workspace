@@ -17,6 +17,9 @@
         },
         {
             "path": "../tstreamz"
+        },
+        {
+            "path": "../tu-jobs"
         }
     ],
     "settings": {

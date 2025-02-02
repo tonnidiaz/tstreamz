@@ -1,11 +1,11 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
-import { TState } from "../lib/interfaces";
-import { useTuState } from "../lib/tu";
+import { TuState } from "../lib/interfaces";
+import { useTuState } from "../lib/hooks";
 
 interface IProps extends HTMLAttributes<{}> {
     label: any;
     content: any;
-    tab?: TState<number>;
+    tab?: TuState<number>;
 }
 
 const TuTabs = ({

@@ -1,8 +1,8 @@
 import { HTMLAttributes } from "react";
-import { useTuState } from "../lib/tu";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
+import { useTuState } from "../lib/hooks";
 
-interface IProps extends HTMLAttributes<any>{page: TState<number>; total: number; onPrev?: ()=>any; onNext?: ()=> any}
+interface IProps extends HTMLAttributes<any>{page: TuState<number>; total: number; onPrev?: ()=>any; onNext?: ()=> any}
 
 const TuPaginator = ({page = useTuState(1), onNext, onPrev, total, className, ...props}: IProps) => {
     return ( <div className={"mx-auto mt-4 w-100p flex justify-center " + className || ''} {...props}>

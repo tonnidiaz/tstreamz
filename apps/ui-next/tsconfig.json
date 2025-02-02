@@ -16,14 +16,17 @@
         "outDir": "./dist",
         "noImplicitAny": false,
         "paths": {
-            "@cmn/*": ["../../packages/common/src/*"]
+            "@cmn/*": ["../../packages/common/src/*"],
+            "@repo/ui-next/*": ["./src/*"],
+            "@repo/ui/*": ["../ui/src/*"],
         }
     },
     "include": [
         "next-env.d.ts",
         "**/*.ts",
         "**/*.tsx",
-        "../../packages/common/src/**/*.ts"
+        "../../packages/common/src/**/*.ts",
+        "../ui/src/**/*.ts"
     ],
     "exclude": [
         "dist",

@@ -1,5 +1,5 @@
 import { TextareaHTMLAttributes } from "react";
-import { useTuState } from "../lib/tu";
+import { useTuState } from "../lib/hooks";
 
 interface IProps extends TextareaHTMLAttributes<{}> {
     value?: any;

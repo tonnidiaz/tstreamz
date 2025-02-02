@@ -1,48 +1,36 @@
 "use client";
 import { store } from "@/store";
-import { useTuStore } from "@/store/utils";
-// import { store, stores } from "@/store/app";
-import UInput from "@repo/ui-next/components/UInput";
+import { sleep } from "@cmn/utils/funcs";
+import Navbar from "@repo/ui-next/components/Navbar";
+import TuLink from "@repo/ui-next/components/TuLink";
+import { useTuStore } from "@repo/ui-next/store/utils";
 import { useEffect, useState } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const [state, setState]= useTuStore(store.app());
-  
-    // useEffect(()=>{
-    //     console.log(proxyState.value);
-    // },[])
-    // useEffect(()=>{
-    //     console.log(_appStore[0].title);
-    // }, [_appStore[0]])
+    const appStore = useTuStore(store.app());
+
+    async function init() {
+        await sleep(3000);
+        appStore.value.ready = true;
+    }
+    useEffect(() => {
+        console.log("[Tu-app] mounted");
+        init();
+    }, []);
 
     return (
         <>
-            <div className="navbar">
-                <h1 className="ttl">App: {state.title}</h1>
-                <UInput
-                    placeholder="Enter app name..."
-                    value={state.title}
-                    onChange={({ target }) => {
-                        // console.log('On change', target.value);
-                        state.title = target.value;
-                        // setState({...state, title: target.value})
-                    }}
-                />
-            </div>
-            <div className="tu-app">
-                <div className="flex flex-col gap-2">
-                    <h1 className="ttl">Proxy app: {state.title}</h1>
-                    <UInput
-                        placeholder="Enter app name..."
-                        value={state.title}
-                        onChange={({ target }) => {
-                            setState({...state, title: target.value});
-                        }}
-                    />
-                </div>
-                {children}
-            </div>
-
+            <Navbar
+                site={appStore.value.title}
+                ready={appStore.value.ready}
+                menuItems={
+                    <>
+                        <li className="tu-menu-item"><TuLink to="#">Item 1</TuLink></li>
+                        <li className="tu-menu-item"><TuLink to="#">Item 2</TuLink></li>
+                    </>
+                }
+            ></Navbar>
+            <div className="tu-app">{children}</div>
             <div id="ctx-overlay"></div>
         </>
     );

@@ -1,6 +1,5 @@
-import { TState } from "@repo/ui-next/lib/interfaces";
-import { useTuState } from "@repo/ui-next/lib/tu";
 import React, { useState, useEffect } from "react";
+import { useTuState } from "../../lib/hooks";
 
 // Store container
 export const stores: { [key: string]: { get: any; set: any; subscribe: any } } =
@@ -60,5 +59,5 @@ export const useTuStore = <T>(store: {
         store.set(_state.value)
     }, [_state.value])
 
-    return [state, store.set, _state] as [T, (val: T) => void, TState<T>];
+    return _state//[state, store.set, _state] as [T, (val: T) => void, TState<T>];
 };

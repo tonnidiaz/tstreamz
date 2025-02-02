@@ -5,15 +5,15 @@ import OtpText from "./OTPText";
 import UButton from "./UButton";
 import UFormGroup from "./UFormGroup";
 import UInput from "./UInput";
-import { useTuState } from "../lib/tu";
 import { DEV } from "../lib/consts";
 import { requestOTP } from "@cmn/utils/funcs3";
 import { useEffect } from "react";
-import { TState } from "../lib/interfaces";
+import { TuState } from "../lib/interfaces";
+import { useTuState } from "../lib/hooks";
 interface IProps {
         email: string;
         user: string;
-        value: TState<any>;
+        value: TuState<any>;
         action?: string;
         api: AxiosInstance
     }

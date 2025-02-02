@@ -1,5 +1,5 @@
-import { TState } from "../lib/interfaces";
-import { useTuState } from "../lib/tu";
+import { useTuState } from "../lib/hooks";
+import { TuState } from "../lib/interfaces";
 import UFormGroup from "./UFormGroup";
 
 const UCheckbox = ({
@@ -10,7 +10,7 @@ const UCheckbox = ({
     ...props
 }: {
     disabled?: boolean;
-    value?: TState<boolean>;
+    value?: TuState<boolean>;
     [key: string]: any;
     toggle?: boolean;
 }) => {

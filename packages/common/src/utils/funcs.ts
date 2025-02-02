@@ -88,7 +88,7 @@ export const handleErrs = (err: any) => {
 };
 
 export const isTuError = (er: any): string | undefined => {
-    const msg = er?.response?.data?.message;
+    const msg = er?.response?.data?.message || er?.message;
     return msg?.startsWith?.("tu:") ? msg.replace("tu:", "") : undefined;
 };
 
