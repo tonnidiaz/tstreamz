@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "@repo/ui/styles/all.scss";
-import "@/styles/main.scss";
-
 import Layout from "@/components/Layout";
 export const metadata: Metadata = {
     title: "Tu App",
@@ -15,7 +13,7 @@ export default async function RootLayout({
 }>) {
 
     return (
-        <html lang="en" className="light" data-theme="corporate">
+        <html lang="en" className="dark" data-theme="tb">
             <body>
                 <Layout>{children}</Layout>
             </body>

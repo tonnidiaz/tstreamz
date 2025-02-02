@@ -394,3 +394,15 @@ min-height: 2.5rem;
 display: flex;
 align-items: center;
 }
+
+.v-layout{
+    @apply p-3 flex flex-col gap-3 w-full
+}
+
+.tu-divider{  
+    @apply border-1 border-card w-full;
+}
+
+.bordered{
+    @apply border-1 border-card
+}

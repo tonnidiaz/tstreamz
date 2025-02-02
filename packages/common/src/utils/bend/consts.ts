@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 
 config()
-export const DEV = process.env.ENV == "dev";
+export const DEV = process.env.NODE_ENV == "development";
 export const OTPBody = (pin: number, msg = "Here is your OTP") => {
     return `<div class="mj-column-per-100 mj-outlook-group-fix" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">

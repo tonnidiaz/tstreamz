@@ -10,6 +10,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     const appStore = useTuStore(store.app());
 
     async function init() {
+        await sleep(3000);
         appStore.value.ready = true;
     }
     useEffect(() => {
@@ -29,7 +30,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                     </>
                 }
             ></Navbar>
-            <div className="tu-app oy-scroll">{children}</div>
+            <div className="tu-app">{children}</div>
             <div id="ctx-overlay"></div>
         </>
     );

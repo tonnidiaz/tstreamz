@@ -1,23 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useTuState } from "../lib/hooks";
 import { TuState } from "../lib/interfaces";
 import { ISelectItem } from "@repo/ui/utils/interfaces";
 
-
-interface Props extends Omit<React.SelectHTMLAttributes<{}>, 'value'> {
+interface Props extends Omit<React.SelectHTMLAttributes<{}>, "value"> {
     innerHint?: string;
     options?: ISelectItem[];
     placeholder?: string;
     searchable?: boolean;
-    value: TuState<any>;
+    $value?: TuState<any>;
+    value?: any;
+    onChange?: (val: any) => any;
     disabled?: boolean;
 }
 const TuSelect: React.FC<Props> = ({
     className,
     disabled,
     searchable,
-    value: $value = useTuState(),
+    $value,
+    value,
     innerHint,
+    onChange,
     ...props
 }) => {
     const [created, setCreated] = useState(false);
@@ -26,13 +29,20 @@ const TuSelect: React.FC<Props> = ({
     const formRef = useRef<HTMLFormElement>(null);
     const dropdownRef = useRef<HTMLSelectElement>(null);
     const [_options, setOptions] = useState<ISelectItem[]>();
-
+    const label = useMemo(
+        () => props.placeholder || "Select",
+        [props.placeholder]
+    );
+    const mValue = useMemo(
+        () => $value?.value || value,
+        [$value?.value, value]
+    );
     useEffect(() => {
         const opts = props.options;
         if (opts) {
             const newOptions = [
                 {
-                    label: props.placeholder ?? "Select",
+                    label,
                     value: undefined,
                 },
                 ...opts,
@@ -49,7 +59,7 @@ const TuSelect: React.FC<Props> = ({
                 e.preventDefault();
             });
         }
-    }, [disabled, $value.value, props.placeholder, dropdownRef, formRef]);
+    }, [disabled, mValue, props.placeholder, dropdownRef, formRef]);
 
     useEffect(() => {
         const { options: opts } = props;
@@ -62,7 +72,7 @@ const TuSelect: React.FC<Props> = ({
                 createCustomDropdown(dd);
             }
         }
-    }, [_options, dropdownRef, disabled, $value.value]);
+    }, [_options, dropdownRef, disabled, mValue]);
 
     useEffect(() => {
         // console.log({selectedItem});
@@ -97,7 +107,9 @@ const TuSelect: React.FC<Props> = ({
                     (typeof el.value == "string"
                         ? el.value
                         : JSON.stringify(el.value)) ==
-                    (typeof $value.value == "string" ? $value.value : JSON.stringify($value.value))
+                    (typeof mValue == "string"
+                        ? mValue
+                        : JSON.stringify(mValue))
             ) ?? optionsArr[0];
 
         // Create Element for Selected Option
@@ -145,7 +157,7 @@ const TuSelect: React.FC<Props> = ({
                 (typeof el.value == "string"
                     ? el.value
                     : JSON.stringify(el.value)) ==
-                (typeof $value.value == "string" ? $value.value : JSON.stringify($value.value))
+                (typeof mValue == "string" ? mValue : JSON.stringify(mValue))
             ) {
                 item.classList.add("is-select");
             }
@@ -216,7 +228,7 @@ const TuSelect: React.FC<Props> = ({
                 ".tu-dropdown-menu-item.is-select"
             );
             if (selected) {
-                selected.scrollIntoView();
+                selected.scrollIntoView({ block: "nearest" });
             }
         }
     }
@@ -245,8 +257,16 @@ const TuSelect: React.FC<Props> = ({
         // console.log({selectedItem});
         // selectedItem?.classList.add("is-select");
 
-        $value.value = _value
+        updateValue(_value);
     }
+
+    const updateValue = (val: any) => {
+        if ($value) {
+            $value.value = val;
+        } else if (onChange) {
+            onChange(val);
+        }
+    };
 
     const parseStr = (val?: string) =>
         !val
@@ -327,11 +347,18 @@ const TuSelect: React.FC<Props> = ({
                             <span className="tu-select-form-arrow">
                                 <i className="fi fi-br-angle-small-down"></i>
                             </span>
+                            <div className="tu-dropdown">
+                                <div className="tu-dropdown-select">
+                                    <span className="placeholder">{label}</span>
+                                </div>
+                            </div>
                             <select
-                                className="tu-dropdown"
+                                className="tu-dropdown hidden"
                                 ref={dropdownRef as any}
-                                value={$value.value}
-                                onChange={({target})=> $value.value = target.value}
+                                value={mValue}
+                                onChange={({ target }) =>
+                                    updateValue(target.value)
+                                }
                             >
                                 <option disabled>{props.placeholder}</option>
                                 {_options?.map((opt, i) => (

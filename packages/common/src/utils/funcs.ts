@@ -104,3 +104,8 @@ export const verifyCron = (specs: string, now: Date) => {
 };
 
 export const isValidDate = (val: number | string | Date) => new Date(val).toString() != "Invalid Date"
+export const formatNum = (num: number, decimals = 2) => new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "ZAR",
+    minimumFractionDigits: decimals,
+}).format(num);
