@@ -2,20 +2,20 @@ import { useEffect } from "react";
 import { TuState } from "../lib/interfaces";
 import TuTeleport from "./TuTeleport";
 import TuModalContainer from "./TuModalContainer";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 
 const TuModal = ({
-    open = useTuState(false),
-    content,
+    open = useTuState0(false),
+    children,
     toggler,
     className,
 }: {
     open?: TuState<boolean>;
-    content?: React.ReactNode;
+    children?: React.ReactNode;
     toggler?: React.ReactNode;
     className?: string;
 }) => {
-    const id = useTuState("");
+    const id = useTuState0("");
     useEffect(() => {
         id.value = `modal-${Date.now()}`;
     }, []);
@@ -39,7 +39,7 @@ const TuModal = ({
                     <TuModalContainer open={open} blank>
                         {open.value && (
                             <div className={"modal-box min-w-400 " + className}>
-                                {content}
+                                {children}
                             </div>
                         )}
                     </TuModalContainer>

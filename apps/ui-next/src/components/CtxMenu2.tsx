@@ -1,7 +1,7 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
 import TuTeleport from "./TuTeleport";
 import { TuState } from "../lib/interfaces";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 
 
 interface IProps extends HTMLAttributes<any> {
@@ -12,7 +12,7 @@ interface IProps extends HTMLAttributes<any> {
 const CtxMenu2 = ({
     children,
     toggler: trigger,
-    open = useTuState(false),
+    open = useTuState0(false),
      className,
     anchor,
     ...props
@@ -22,7 +22,7 @@ const CtxMenu2 = ({
     const menuContent = useRef<HTMLDivElement | null>(null);
     const togglerRef = useRef<HTMLDivElement | null >(null);
 
-    const pos = useTuState({ x: 0, y: 0 });
+    const pos = useTuState0({ x: 0, y: 0 });
 
     const otherClasses =
         "menu menu-menu menu-sm text-left justify-start shadow";

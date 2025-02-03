@@ -1,7 +1,15 @@
 export interface IJob {
     title: string;
-    html: string[];
-    meta: string;
-    applyLink: string;
+    link: string;
     jobId: string;
+    posted: Date,
+    exp: Date,
+}
+
+export interface IJobExt extends IJob {id: string; meta: string; html?: string[]}
+
+export interface IFilters {
+    contractType?: string;
+    minSalary?: number;
+    sectors: string[];
 }

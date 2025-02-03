@@ -1,6 +1,6 @@
 import { HTMLAttributes, useEffect, useRef } from "react";
 import { TuState } from "../lib/interfaces";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 
 interface IProps extends HTMLAttributes<{}> {
     label: any;
@@ -12,7 +12,7 @@ const TuTabs = ({
     label,
     content,
     className,
-    tab = useTuState(0),
+    tab = useTuState0(0),
     ...props
 }: IProps) => {
     const labelsParent = useRef<HTMLDivElement>(null);
@@ -22,7 +22,7 @@ const TuTabs = ({
         labelsParent.current.querySelectorAll("a.tab-label");
     const getContents = () =>
         contentsParent.current.querySelectorAll(".tab-cont");
-    let originalContents = useTuState<NodeListOf<Element>>();
+    let originalContents = useTuState0<NodeListOf<Element>>();
 
     useEffect(() => {
         const labels = getLabels();

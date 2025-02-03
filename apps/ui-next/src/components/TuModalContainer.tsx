@@ -1,23 +1,21 @@
 import { HTMLAttributes, useEffect, useMemo, useRef } from "react";
 import { TuState } from "../lib/interfaces";
-import { useRouter } from "next/router";
-import { useTuState } from "../lib/hooks";
-
+import { useTuState0 } from "../lib/hooks";
+import { useParams, usePathname } from "next/navigation";
 
 interface IProps extends HTMLAttributes<any> {
-        open: TuState<boolean>;
-        blank?: boolean;
-    }
+    open: TuState<boolean>;
+    blank?: boolean;
+}
 
 const TuModalContainer = ({
-        open =  useTuState(false),
-        children,
-        blank = false,
-        className,
-        ...props
-    }: IProps) => {
-    let modalRef= useRef<HTMLDivElement>(null);
-        const router= useRouter()
+    open = useTuState0(false),
+    children,
+    blank = false,
+    className,
+    ...props
+}: IProps) => {
+    let modalRef = useRef<HTMLDivElement>(null);
     const _onDocClick = (ev) => {
         const modal = modalRef.current;
         const overlay = document.getElementById("ctx-overlay");
@@ -25,7 +23,7 @@ const TuModalContainer = ({
         const isChild =
             modal.contains(ev.target) || overlay?.contains(ev.target);
         if (!isChild) {
-            open.value =  false;
+            open.value = false;
             //$(modal!).removeClass("open");
         }
     };
@@ -36,7 +34,7 @@ const TuModalContainer = ({
         const isChild =
             [...modals].some((el) => el.contains(ev.target)) ||
             [...menus].some((el) => el.contains(ev.target));
-        if (!isChild) open.value =  false;
+        if (!isChild) open.value = false;
     };
     useEffect(() => {
         // document.removeEventListener("mouseup", _onDocClick);
@@ -50,22 +48,24 @@ const TuModalContainer = ({
         };
     }, []);
 
-    let p = useMemo(()=>location.href, [router.events])
-    useEffect(()=>{
+    const pathname = usePathname()
+    const params = useParams()
+
+    useEffect(() => {
         // watch route
-        p;
-        open.value =  false
-        
-    }, [p])
-    return ( <div
-    ref={modalRef}
-    className={`tu-modal__cont ${!blank ? "tu-modal-cont p-4 border-1 border-card br-10 params-area bg-base-100 shadow-lg" : ""} ${
-        open ? "open" : ""
-    } ${className}`}
-    {...props}
->
-    {children}
-</div> );
-}
- 
+        open.value = false;
+    }, [pathname, params]);
+    return (
+        <div
+            ref={modalRef}
+            className={`tu-modal__cont ${!blank ? "tu-modal-cont p-4 border-1 border-card br-10 params-area bg-base-100 shadow-lg" : ""} ${
+                open ? "open" : ""
+            } ${className}`}
+            {...props}
+        >
+            {children}
+        </div>
+    );
+};
+
 export default TuModalContainer;

@@ -9,7 +9,7 @@ import { DEV } from "../lib/consts";
 import { requestOTP } from "@cmn/utils/funcs3";
 import { useEffect } from "react";
 import { TuState } from "../lib/interfaces";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 interface IProps {
         email: string;
         user: string;
@@ -20,7 +20,7 @@ interface IProps {
 const OTPField = ({ email, user, value, action, api }: IProps) => {
    
     const MAX = DEV ? 10 : 60;
-    let min = useTuState(MAX);
+    let min = useTuState0(MAX);
 
     function startTimer() {
         min.value = MAX;

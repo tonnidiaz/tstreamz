@@ -3,10 +3,10 @@ import "@repo/ui/styles/all.scss";
 import "@/styles/main.scss";
 
 import Layout from "@/components/Layout";
-export const metadata: Metadata = {
-    title: "Tu App",
-    description: "From Tu",
-};
+// export const metadata: Metadata = {
+//     title: "Tujobs",
+//     description: "From Tu",
+// };
 
 export default async function RootLayout({
     children,
@@ -15,7 +15,7 @@ export default async function RootLayout({
 }>) {
 
     return (
-        <html lang="en" className="light" data-theme="corporate">
+        <html lang="en" className="light" data-theme="tu_retro">
             <body>
                 <Layout>{children}</Layout>
             </body>

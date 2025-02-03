@@ -2,7 +2,7 @@ import UInput, { type IUInputProps } from "./UInput";
 import jq from "jquery";
 import { TuState } from "../lib/interfaces";
 import { useEffect, useRef } from "react";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 
 interface IProps extends IUInputProps {
     valid?: TuState<boolean>;
@@ -10,8 +10,8 @@ interface IProps extends IUInputProps {
 }
 
 const TuPassField = ({
-    $value = useTuState(""),
-    valid = useTuState(false),
+    $value = useTuState0(""),
+    valid = useTuState0(false),
     showValidation = true,
     ...props
 }: IProps) => {

@@ -20,7 +20,7 @@ interface IProps extends HTMLAttributes<any> {
 const Navbar = ({
     site,
     menuItems,
-    hasLogin,
+    hasLogin = true,
     user,
     ready,
     userMenuItems,
@@ -92,7 +92,8 @@ const Navbar = ({
                         {menuItems}
                     </ul>
                 </div>
-                {hasLogin && user.value ? (
+                <div>
+                    {!hasLogin  ? <div></div> : user?.value ? (
                     <div className="relative">
                         <CtxMenu2
                             className="relative mr-4"
@@ -146,7 +147,8 @@ const Navbar = ({
                             )}
                         </UButton>
                     </div>
-                )}
+                ) }
+                </div>
             </div>
         </div>
     );

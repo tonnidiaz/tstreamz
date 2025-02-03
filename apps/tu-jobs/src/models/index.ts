@@ -1,6 +1,11 @@
+import { IJob } from "@/utils/interfaces";
 import { Document, InferSchemaType, Model, model, models, Schema } from "mongoose";
 
 const UserSchema = new Schema<{fullname: string; age: number}>({fullname: {}, age: {}})
-export interface IUser extends Document, InferSchemaType<typeof UserSchema>{}
+export interface IUserModel extends Document, InferSchemaType<typeof UserSchema>{}
 
-export const UserModel : Model<IUser> = models.User || model("User", UserSchema)
+const JobSchema = new Schema<IJob>({title: {}, jobId: {},link: {}, exp: {}})
+export interface IJobModel extends Document, InferSchemaType<typeof JobSchema>{}
+
+export const UserModel : Model<IUserModel> = models.User || model("User", UserSchema)
+export const JobModel : Model<IJobModel> = models.Job || model("Job", JobSchema)

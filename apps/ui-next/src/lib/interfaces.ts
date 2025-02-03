@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { useTuState } from "./hooks";
+import { useTuState0 } from "./hooks";
 
-export type TuState<T> = ReturnType<typeof useTuState<T>>;
+export type TuState<T> = ReturnType<typeof useTuState0<T>>;
 export type TuApiHandler = (req?: Request | NextRequest, sec? : {params: Promise<{[key: string] : string}>}) => Response | Promise<Response>;

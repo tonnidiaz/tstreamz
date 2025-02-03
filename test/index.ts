@@ -1,13 +1,6 @@
-interface IProps {name: string; age: number}
-function getKeys<T>(): (keyof T)[] {
-    return Object.keys({} as T) as (keyof T)[];
-  }
-  function getInterfaceKeys<T extends Record<string, any>>(obj: T): (keyof T)[] {
-    return Object.keys(obj) as (keyof T)[];
-  }
-  
-  // Get the interface keys
-  const keys: (keyof IProps)[] = getInterfaceKeys<IProps>({} as IProps); 
-  
-  console.log(keys); // Output: ["property1", "method1"]
-// console.log(createDummyObject<IProps>());
+import { V2 } from "paseto";
+(async () => {
+    const key = await V2.generateKey("public");
+    const token = await V2.sign({ userId: 123 }, key);
+    console.log(token);
+})();

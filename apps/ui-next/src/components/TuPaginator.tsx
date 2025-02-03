@@ -1,10 +1,10 @@
 import { HTMLAttributes } from "react";
 import { TuState } from "../lib/interfaces";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 
 interface IProps extends HTMLAttributes<any>{page: TuState<number>; total: number; onPrev?: ()=>any; onNext?: ()=> any}
 
-const TuPaginator = ({page = useTuState(1), onNext, onPrev, total, className, ...props}: IProps) => {
+const TuPaginator = ({page = useTuState0(1), onNext, onPrev, total, className, ...props}: IProps) => {
     return ( <div className={"mx-auto mt-4 w-100p flex justify-center " + className || ''} {...props}>
         <div className="join shadow-lg bg-base-200 z-[51]">
             <button

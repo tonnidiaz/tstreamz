@@ -1,4 +1,6 @@
 
+"use client"
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 interface TeleportProps {
@@ -8,10 +10,13 @@ interface TeleportProps {
 
 const TuTeleport: React.FC<TeleportProps> = ({ to, children }) => {
   // Determine the target element to render the children into
-  const targetElement = typeof to === 'string' ? document.querySelector(to) : to;
+  const [targetElement, setTargetElement] = useState<Element>()
+  useEffect(()=>{
+    setTargetElement(typeof to === 'string' ? document.querySelector(to) : to)
+  },[])
 
   if (!targetElement) {
-    console.error('Target element for Teleport not found');
+    console.log('Target element for Teleport not found');
     return null;
   }
 

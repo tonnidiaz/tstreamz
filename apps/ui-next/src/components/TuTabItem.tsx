@@ -1,4 +1,4 @@
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 import { TuState } from "../lib/interfaces";
 
 interface IProps {
@@ -7,7 +7,7 @@ interface IProps {
     label: React.ReactNode;
     content: React.ReactNode;
 }
-const TuTabItem = ({ tab = useTuState(0), i, content, label }: IProps) => {
+const TuTabItem = ({ tab = useTuState0(0), i, content, label }: IProps) => {
     return (
         <>
             <a

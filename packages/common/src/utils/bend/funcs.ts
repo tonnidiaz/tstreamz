@@ -118,6 +118,11 @@ export const readJson = (fp: string) => {
     const data = nfs.readFileSync(fp, { encoding: "utf-8" });
     return JSON.parse(data);
 };
+export const readRaw = (fp: string) => {
+    if (!existsSync(fp)) return console.log(fp, "Does not exist");
+    const data = nfs.readFileSync(fp, { encoding: "utf-8" });
+    return data
+};
 
 export async function connectMongo(DEV: boolean, db: string = "tb") {
     console.log("Connecting mongo...", { DEV, db });

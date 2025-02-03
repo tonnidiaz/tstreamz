@@ -1,11 +1,11 @@
 import { TextareaHTMLAttributes } from "react";
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 
 interface IProps extends TextareaHTMLAttributes<{}> {
     value?: any;
 }
 
-const UTextArea = ({ value = useTuState(), className, ...props }: IProps) => {
+const UTextArea = ({ value = useTuState0(), className, ...props }: IProps) => {
     return (
         <textarea
             value={value.value}

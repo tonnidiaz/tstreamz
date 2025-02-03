@@ -1,11 +1,11 @@
-import { useTuState } from "../lib/hooks";
+import { useTuState0 } from "../lib/hooks";
 import { TuState } from "../lib/interfaces";
 import UFormGroup from "./UFormGroup";
 
 const UCheckbox = ({
     disabled,
     toggle,
-    value = useTuState(),
+    value = useTuState0(),
     className,
     ...props
 }: {

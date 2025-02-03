@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useTuState } from "../../lib/hooks";
+import { useTuState0, useTuState } from "../../lib/hooks";
+import { TuState } from "@repo/ui-next/lib/interfaces";
 
 // Store container
 export const stores: { [key: string]: { get: any; set: any; subscribe: any } } =
@@ -8,6 +9,7 @@ export const stores: { [key: string]: { get: any; set: any; subscribe: any } } =
 // Utility to create a global store
 export const createTuStore = <T>(name: string, initial: T) => {
     if (!stores[name]) {
+        console.log(`\nNEW STORE: [${name}]`);
         let value = initial;
         const listeners: Array<(val: T) => void> = [];
 
@@ -42,22 +44,56 @@ export const createTuStore = <T>(name: string, initial: T) => {
 };
 
 // Hook to use a global store in React components
-export const useTuStore = <T>(store: {
+export const useTuStore0 = <T>(store: {
     get: () => T;
     set: (val: T) => void;
     subscribe: any;
 }) => {
     const [state, setState] = useState(store.get());
-    const _state = useTuState(state)
+    const _state = useTuState0(state);
     useEffect(() => {
         // Subscribe to store updates
         const unsubscribe = store.subscribe(setState);
         return () => unsubscribe(); // Cleanup on unmount
     }, [store]);
 
-    useEffect(()=>{
-        store.set(_state.value)
-    }, [_state.value])
+    useEffect(() => {
+        store.set(_state.value);
+    }, [_state.value]);
 
-    return _state//[state, store.set, _state] as [T, (val: T) => void, TState<T>];
+    return {
+        get value() {
+            return state;
+        },
+        set value(newVal: T) {
+            _state.value = newVal;
+        },
+    };
+};
+// Hook to use a global store in React components
+export const useTuStore = <T>(store: {
+    get: () => T;
+    set: (val: T) => void;
+    subscribe: any;
+}) => {
+    const [state, setState] = useState(store.get());
+    const _state = useTuState(state);
+    useEffect(() => {
+        // Subscribe to store updates
+        const unsubscribe = store.subscribe(setState);
+        return () => unsubscribe(); // Cleanup on unmount
+    }, [store]);
+
+    useEffect(() => {
+        store.set(_state.value);
+    }, [_state.value]);
+
+    return {
+        get value() {
+            return state;
+        },
+        set value(newVal: T) {
+            _state.value = newVal;
+        },
+    };
 };

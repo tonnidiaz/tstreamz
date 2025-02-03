@@ -2,111 +2,112 @@
 @use "colors";
 @use "vars";
 @forward "tw";
-
-@layer utilities{
-    @for $i from 0 to 50{
-        .br-#{$i} {
-            border-radius: #{$i}px !important;
-        }
+@for $i from 1 through 1000 {
+    .h-#{$i}px {
+        height: #{$i}px !important;
+    }
+    .w-#{$i}px {
+        width: #{$i}px !important;
+    }
+    .max-h-#{$i} { 
+        max-height: #{$i}px !important;
+    }
+    .max-w-#{$i} {
+        max-width: #{$i}px !important;
+    }
+    .min-w-#{$i} {
+        min-width: #{$i}px !important;
+    }
+    .max-h-#{$i}vh {
+        max-height: #{$i}vh !important;
+    }
+    .max-w-#{$i}vw {
+        max-width: #{$i}vw !important;
+    }
+    .min-h#{$i} {
+        min-height: #{$i}px !important;
+    }
+    .min-w#{$i} {
+        min-width: #{$i}px !important;
+    }
+    .h-#{$i}p {
+        height: #{$i}#{"%"} !important;
+    }
+    .w-#{$i}p {
+        width: #{$i}#{"%"} !important;
+    }
+    .my-#{$i}px {
+      margin-top: #{$i}px !important;
+      margin-bottom: #{$i}px !important;
+    }
+    .mx-#{$i}px {
+      margin-left: #{$i}px !important;
+      margin-right: #{$i}px !important;
+    }
+    .mt-#{$i}px {
+      margin-top: #{$i}px !important;
+    }
+    .mb-#{$i}px {
+      margin-bottom: #{$i}px !important;
+    }
+    .pdy-#{$i} {
+      padding-top: #{$i}px !important;
+      padding-bottom: #{$i}px !important;
+    }
+    .pdx-#{$i} {
+      padding-left: #{$i}px !important;
+      padding-right: #{$i}px !important;
+    }
+    .pdr-#{$i} {
+      padding-right: #{$i}px !important;
+    }
+    .pdl-#{$i} {
+      padding-left: #{$i}px !important;
+    }
+    .pdb-#{$i} {
+      padding-bottom: #{$i}px !important;
+    }
+    .br-#{$i} { 
+      border-radius: #{$i}px !important;
+    }
+    .pd-#{$i} { 
+      padding: #{$i}px !important;
     }
 
-
-    @for $i from 20 through 100{
-        .min-h-#{$i}p{min-height: #{$i}#{"%"};}
-        .max-h-#{$i}p{max-height: #{$i}#{"%"};}
-        .min-w-#{$i}p{min-width: #{$i}#{"%"};}
-        .max-w-#{$i}p{max-width: #{$i}#{"%"};}
+    .h-#{$i}vh{
+      height: #{$i}vh !important;
     }
-    @for $i from 1 through 900 {
-        .h-#{$i}px {
-            height: #{$i}px !important;
-        }
+
+    .w-#{$i}vw{
+      width: #{$i}vw !important;
+    }
+
+    @media screen and (max-width: #{$i}px) {
         .w-#{$i}px {
-            width: #{$i}px !important;
-        }
-        .max-h-#{$i} { 
-            max-height: #{$i}px !important;
-        }
-        .max-w-#{$i} {
-            max-width: #{$i}px !important;
+          width: calc(100vw - 20px) !important;
         }
         .min-w-#{$i} {
-            min-width: #{$i}px !important;
+            width: calc(100vw - 20px) !important;
+            min-width: 0 !important;
         }
-        .max-h-#{$i}vh {
-            max-height: #{$i}vh !important;
-        }
-        .max-w-#{$i}vw {
-            max-width: #{$i}vw !important;
-        }
-        .min-h#{$i} {
-            min-height: #{$i}px !important;
-        }
-        .min-w#{$i} {
-            min-width: #{$i}px !important;
-        }
-        .h-#{$i}p {
-            height: #{$i}#{"%"} !important;
-        }
-        .w-#{$i}p {
-            width: #{$i}#{"%"} !important;
-        }
-        .my-#{$i}px {
-          margin-top: #{$i}px !important;
-          margin-bottom: #{$i}px !important;
-        }
-        .mx-#{$i}px {
-          margin-left: #{$i}px !important;
-          margin-right: #{$i}px !important;
-        }
-        .mt-#{$i}px {
-          margin-top: #{$i}px !important;
-        }
-        .mb-#{$i}px {
-          margin-bottom: #{$i}px !important;
-        }
-        .pdy-#{$i} {
-          padding-top: #{$i}px !important;
-          padding-bottom: #{$i}px !important;
-        }
-        .pdx-#{$i} {
-          padding-left: #{$i}px !important;
-          padding-right: #{$i}px !important;
-        }
-        .pdr-#{$i} {
-          padding-right: #{$i}px !important;
-        }
-        .pdl-#{$i} {
-          padding-left: #{$i}px !important;
-        }
-        .pdb-#{$i} {
-          padding-bottom: #{$i}px !important;
-        }
-        .br-#{$i} { 
-          border-radius: #{$i}px !important;
-        }
-        .pd-#{$i} { 
-          padding: #{$i}px !important;
-        }
-    
-        .h-#{$i}vh{
-          height: #{$i}vh !important;
-        }
-    
-        .w-#{$i}vw{
-          width: #{$i}vw !important;
-        }
-    
-        @media screen and (max-width: #{$i}px) {
-            .w-#{$i}px {
-              width: calc(100vw - 20px) !important;
-            }
-            .min-w-#{$i} {
-                width: calc(100vw - 20px) !important;
-                min-width: 0 !important;
-            }
-          }
       }
+  }
+  @for $i from 0 to 50{
+    .br-#{$i} {
+        border-radius: #{$i}px !important;
+    }
+}
+
+
+@for $i from 20 through 100{
+    .min-h-#{$i}p{min-height: #{$i}#{"%"};}
+    .max-h-#{$i}p{max-height: #{$i}#{"%"};}
+    .min-w-#{$i}p{min-width: #{$i}#{"%"};}
+    .max-w-#{$i}p{max-width: #{$i}#{"%"};}
+}
+@layer utilities{
+    
+   
     
       ._flex{
         display: flex;
@@ -204,3 +205,6 @@
     .h-min{height: min-content;}
 }
 
+
+.color-text{color: var(--color-text)}
+.color-text-2{color: var(--color-text-2)}

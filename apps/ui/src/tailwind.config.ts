@@ -65,7 +65,9 @@ export const twConfig = (dir: string, framework: 'sv' | 'next' = 'sv') => {
 
         daisyui: {
             themes: [
+                ...themes.dark, ...themes.light,
                 {
+                    tu_retro:{...daisyThemes["retro"], secondary: "#009d92"},
                     tb: {
                         ...daisyThemes["[data-theme=tb]"],
                         primary: "rgb(74, 222, 128)", //"#ffa500",
@@ -88,7 +90,7 @@ export const twConfig = (dir: string, framework: 'sv' | 'next' = 'sv') => {
                         "base-100": "#111111",
                     },
                 },
-                ...themes.dark, ...themes.light
+               
             ],
         },
         plugins: [daisyUI],

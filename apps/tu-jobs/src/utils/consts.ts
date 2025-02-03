@@ -1,7 +1,6 @@
-export const forceFetchJobs = false
-
+export const forceFetchJobs = true
+export const careers24BaseURL = "https://www.careers24.com"
 export const jobSectors = [
-    "Any",
     "Academic",
     "Accounting",
     "Admin",
@@ -75,3 +74,17 @@ export const jobSectors = [
     "Travel & Tourism",
     "Warehousing"
 ]
+export const SITE = "Tujobs"
+export const minPrices = [1, 2, 3, 4].map((el) => el * 12000), JOB_ID_FACTOR = 0;
+export const contractTypes = [
+    "Permenent",
+    "Part-Time",
+    "Contract",
+    "Temporary",
+    "Internship",
+];
+export class CONFIG {
+    static host: string = ""
+    get host(){return this.host}
+    set host(v){this.host = v}
+}

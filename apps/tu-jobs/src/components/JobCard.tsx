@@ -1,16 +1,18 @@
-import { IJob } from "@/utils/interfaces";
+import { genJobId } from "@/utils/funcs";
+import { IJobExt } from "@/utils/interfaces";
+import TuLink from "@repo/ui-next/components/TuLink";
 
-const JobCard = ({ job }: { job: IJob }) => {
+const JobCard = ({ job }: { job: IJobExt }) => {
     return (
-        <div className="job-card border-card border-1 p-3">
+        <TuLink to={`/jobs/${job.id}`} className="tu-job-card border-card border-1 p-3">
             <h2 className="fs-18 fw-6">{job.title}</h2>
             <div
-                className="job-meta"
+                className="tu-job-meta"
                 dangerouslySetInnerHTML={{
                     __html: job.meta,
                 }}
             ></div>
-        </div>
+        </TuLink>
     );
 };
 
