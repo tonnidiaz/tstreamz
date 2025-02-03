@@ -82,6 +82,6 @@ input:-webkit-autofill:active
     padding: 0 !important;
 }
 
-.input {
+.input:not(input) {
     box-sizing: content-box;
 }

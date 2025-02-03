@@ -92,6 +92,7 @@
         }
       }
   }
+  
   @for $i from 0 to 50{
     .br-#{$i} {
         border-radius: #{$i}px !important;
@@ -108,7 +109,8 @@
 @layer utilities{
     
    
-    
+        .w-600tw{width: 600px;}
+        .w-350tw{width: 350px;}
       ._flex{
         display: flex;
         flex-direction: column; 

@@ -41,6 +41,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 menuItems={
                     <>
                         <li className="tu-menu-item"><TuLink noactive to='/jobs'>Jobs</TuLink></li>
+                        <li className="tu-menu-item"><TuLink noactive to='/contact'>Contact</TuLink></li>
                     </>
                 }
                 hasLogin={false}
