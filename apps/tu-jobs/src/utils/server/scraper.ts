@@ -7,7 +7,7 @@ import { careers24BaseURL } from "../consts";
 import { readRaw } from "@cmn/utils/bend/funcs";
 import { JobModel } from "@/models";
 
-const useDummy = true;
+const useDummy = false;
 const api = axios.create({ baseURL: careers24BaseURL });
 
 const testFilesDir = "./src/utils/server/data/scraper";
