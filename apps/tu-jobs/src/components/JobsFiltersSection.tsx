@@ -1,4 +1,5 @@
 "use client";
+import { setFilters, updateJobsState } from "@/redux/reducers/jobs";
 import {
     contractTypes,
     jobSectors,
@@ -6,10 +7,12 @@ import {
 } from "@/utils/consts";
 import { IFilters } from "@/utils/interfaces";
 import { formatNum } from "@cmn/utils/funcs";
+import { tuImmer } from "@cmn/utils/funcs4";
 import TuSelect from "@repo/ui-next/components/TuSelect";
 import UButton from "@repo/ui-next/components/UButton";
 import UFormGroup from "@repo/ui-next/components/UFormGroup";
 import { TuState } from "@repo/ui-next/lib/interfaces";
+import { useDispatch } from "react-redux";
 
 const MinSalaryRadio = ({
     minPx,
@@ -18,8 +21,10 @@ const MinSalaryRadio = ({
 }: {
     minPx?: number;
     i: number;
-    filters: TuState<IFilters>;
-}) => (
+    filters: IFilters;
+}) => {
+    const dispatch = useDispatch()
+    return (
     <div className="flex gap-2 items-center">
         <input
             className="radio radio-sm radio-secondary"
@@ -28,28 +33,32 @@ const MinSalaryRadio = ({
             name="min-salary"
             id={`sal-${i}`}
             value={minPx}
-            checked={minPx == filters.value.minSalary}
-            onChange={(e) => (filters.value.minSalary = minPx)}
+            checked={minPx == filters.minSalary}
+            onChange={(e) => (dispatch(updateJobsState(["filters.minSalary", minPx])))}
         />
         <label htmlFor={`sal-${i}`}>
             {!minPx ? "ANY" : formatNum(minPx, 0)}
         </label>
     </div>
-);
+)};
 
 export default function JobsFiltersSection({
     filters,
     onApplyFilters,
 }: {
-    filters: TuState<IFilters>;
+    filters: IFilters;
     onApplyFilters: () => any;
 }) {
+    const dispatch = useDispatch()
+
     const addRmSector = (sect: string) => {
-        const rmv = filters.value.sectors.includes(sect);
-        if (!rmv && filters.value.sectors.length >= 3) return;
-        filters.value.sectors = rmv
-            ? filters.value.sectors.filter((el) => el !== sect)
-            : [...filters.value.sectors, sect];
+        const rmv = filters.sectors.includes(sect);
+        if (!rmv && filters.sectors.length >= 3) return;
+        const sectors = rmv
+            ? filters.sectors.filter((el) => el !== sect)
+            : [...filters.sectors, sect];
+        dispatch(setFilters(tuImmer(filters, (cp)=> cp.sectors = sectors)))
+        // dispatch(updateJobsState(["filters.s", filters]))
     };
 
     return (
@@ -78,9 +87,9 @@ export default function JobsFiltersSection({
                     <UFormGroup label="Contact type">
                         <TuSelect
                             placeholder="Contract type"
-                            value={filters.value.contractType}
+                            value={filters.contractType}
                             onChange={(val) =>
-                                (filters.value.contractType = val)
+                                (dispatch(updateJobsState(["filters.contractType", val])))
                             }
                             options={contractTypes.map((el) => ({
                                 label: el,
@@ -90,7 +99,7 @@ export default function JobsFiltersSection({
                     </UFormGroup>
                 </div>
                 <div className="p-2 bordered mt-2 max-h-300 oy-scroll sectors">
-                    <h4 className="ttl mb-2 flex w-full items-center justify-between">Sectors <span className="fw-5">{filters.value.sectors.length} / 3</span></h4>
+                    <h4 className="ttl mb-2 flex w-full items-center justify-between">Sectors <span className="fw-5">{filters.sectors.length} / 3</span></h4>
                     <UFormGroup
                         className="flex items-center gap-2"
                         key={`sector-any`}
@@ -100,7 +109,7 @@ export default function JobsFiltersSection({
                         <input
                             readOnly
                             type="checkbox"
-                            checked={!filters.value.sectors?.length}
+                            checked={!filters.sectors?.length}
                             className="checkbox checkbox-sm checkbox-secondary"
                         />
                     </UFormGroup>
@@ -113,7 +122,7 @@ export default function JobsFiltersSection({
                         >
                             <input
                                 type="checkbox"
-                                checked={filters.value.sectors.includes(el)}
+                                checked={filters.sectors.includes(el)}
                                 onChange={(e) => addRmSector(el)}
                                 className="checkbox checkbox-sm checkbox-secondary"
                             />

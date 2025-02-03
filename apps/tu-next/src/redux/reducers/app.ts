@@ -2,23 +2,15 @@ import { Path } from "@cmn/utils/interfaces";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import _ from "lodash"
 
-
-type AppState = {
-    version: number;
-    user: {
-        username: string;
-        car: {
-            make: string;
-            model: string;
-        };
-    };
+const initialState = {
+    version: 0,
+    user: { username: "tonnidiaz", car: { make: "Honda", model: "Civic", speed: {min: 0, max: 400} } },
 }
+type AppState = typeof initialState;
+
 const appSlice = createSlice({
     name: "app",
-    initialState: {
-        version: 0,
-        user: { username: "tonnidiaz", car: { make: "Honda", model: "Civic" } },
-    },
+    initialState,
     reducers: {
         incrVersion: (state) => {
             state.version += 1;

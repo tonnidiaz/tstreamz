@@ -1,23 +1,25 @@
 "use client";
-import { store } from "@/store";
+import { updateAppStore } from "@/redux/reducers/app";
+import { RootState } from "@/redux/store";
 import { CONFIG } from "@/utils/consts";
 import Navbar from "@repo/ui-next/components/Navbar";
 import TMeta from "@repo/ui-next/components/TMeta";
 import TuLink from "@repo/ui-next/components/TuLink";
-import { useTuStore } from "@repo/ui-next/store/utils";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-    const appStore = useTuStore(store.app());
-
+    const appStore = useSelector((s: RootState) => s.app);
+    const dispatch = useDispatch()
     async function init() {
-        appStore.value.ready = true;
+        dispatch(updateAppStore({path: 'ready', value: true}))
     }
 
     const onResize = async() =>{
         // return
         const sz = {w: innerWidth, h: innerHeight}
-        appStore.value = {...appStore.value, screenSz: sz}
+        dispatch(updateAppStore({path: 'screenSz', value: sz}))
         // appStore.value.counter += 1
     }
     useEffect(() => {
@@ -32,10 +34,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-        <TMeta title={`${appStore.value.title}`}/>
+        <TMeta title={`${appStore.title}`}/>
             <Navbar
-                site={appStore.value.title}
-                ready={appStore.value.ready}
+                site={appStore.title}
+                ready={appStore.ready}
                 menuItems={
                     <>
                         <li className="tu-menu-item"><TuLink noactive to='/jobs'>Jobs</TuLink></li>

@@ -56,11 +56,13 @@ export const scrapeJobs = async (endpoint?: string, page = 1) => {
             const jobId = $(el).data().id as string;
             const applyLink = `${careers24BaseURL}/jobs/apply/${jobId}`;
 
+            const posted = parseDate(datePosted), exp = parseDate(expDate);
+
             const meta = `<ul class='tu-job-meta fs-14'>
                 <li><span>Contract type:</span>&nbsp;${jobType}</li>
                 <li><span>Location:</span>&nbsp;${location}</li>
-                <li><span>Date posted:</span>&nbsp;<span class='text-secondary'>${parseDate(datePosted)}</span></li>
-                <li><span>Closing date:</span>&nbsp;<span class='text-secondary'>${parseDate(expDate)}</span></li>
+                <li><span>Date posted:</span>&nbsp;<span class='text-secondary'>${posted}</span></li>
+                <li><span>Closing date:</span>&nbsp;<span class='text-secondary'>${exp}</span></li>
             </ul>`;
 
             const jobExistsInDb = await JobModel.findOne({ jobId }).exec();
@@ -70,8 +72,8 @@ export const scrapeJobs = async (endpoint?: string, page = 1) => {
                     title,
                     link,
                     jobId,
-                    posted: datePosted,
-                    exp: expDate,
+                    posted,
+                    exp,
                 });
             if (!jobExistsInDb) await job.save();
             jobs.push({
@@ -79,8 +81,8 @@ export const scrapeJobs = async (endpoint?: string, page = 1) => {
                 title,
                 jobId,
                 meta,
-                exp: expDate,
-                posted: datePosted,
+                exp,
+                posted,
                 link,
             });
 
