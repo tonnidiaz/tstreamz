@@ -8,7 +8,7 @@ export interface IJob {
 
 export interface IJobExt extends IJob {id: string; meta: string; html?: string[]}
 
-export interface IFilters {
+export type IFilters = {
     contractType?: string;
     minSalary?: number;
     sectors: string[];

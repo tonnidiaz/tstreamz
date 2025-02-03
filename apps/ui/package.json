@@ -8,6 +8,7 @@
         "build": "rimraf dist && tsc && tsc-alias -f && npm run cp"
     },
     "devDependencies": {
+        "@types/lodash": "^4.17.15",
         "copyfiles": "^2.4.1",
         "rimraf": "^6.0.1",
         "tsc-alias": "^1.8.10",

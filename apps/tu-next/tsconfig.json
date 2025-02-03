@@ -36,6 +36,6 @@
         "../ui/src/**/*.ts",
         "../ui-next/src/**/*.tsx",
         "./*.ts"
-    ],
+, "src/app/rf/page.tsx.old"    ],
     "exclude": ["node_modules"]
 }

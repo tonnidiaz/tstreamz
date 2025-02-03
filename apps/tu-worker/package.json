@@ -19,6 +19,7 @@
 		"@sveltejs/adapter-node": "^5.2.12",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@types/lodash": "^4.17.15",
 		"@types/node-schedule": "^2.1.7",
 		"autoprefixer": "^10.4.20",
 		"aws-sdk": "^2.1692.0",

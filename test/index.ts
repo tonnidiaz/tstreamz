@@ -1,6 +1,3 @@
-import { V2 } from "paseto";
-(async () => {
-    const key = await V2.generateKey("public");
-    const token = await V2.sign({ userId: 123 }, key);
-    console.log(token);
-})();
+export const tuImmer = <T>(obj: T, cb: (objCopy: T)=>T)=>{
+    return cb({...obj})
+}

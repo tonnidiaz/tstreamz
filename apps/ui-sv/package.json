@@ -6,6 +6,7 @@
         "@sveltejs/adapter-auto": "^3.3.1",
         "@sveltejs/kit": "^2.0.0",
         "@sveltejs/vite-plugin-svelte": "^4.0.0",
+        "@types/lodash": "^4.17.15",
         "aws-sdk": "^2.1692.0",
         "mock-aws-s3": "^4.0.2",
         "nock": "^14.0.0",

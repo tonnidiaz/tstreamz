@@ -18,6 +18,9 @@
         "baseUrl": ".",
         "paths": {
             "@cmn/*": ["packages/common/src/*"]
-        }
-    }
+        },
+    }, 
+    "include": ["**/**.ts"],
+    "exclude": ["**/**.spec.ts", "node_modules", "apps/*", "packages/*"],
+   
 }

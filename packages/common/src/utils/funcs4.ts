@@ -43,3 +43,11 @@ export  const $obj = <T, P extends Path<T>>(
     console.log(obj, current);
     return obj;
 };
+
+
+export const tuImmer = <T>(obj: T, cb: (objCopy: T)=>any)=>{
+    const copy = {...obj}
+    cb(copy)
+    return copy
+}
+

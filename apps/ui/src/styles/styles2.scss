@@ -273,3 +273,8 @@ td {@apply px-3}
 @for $i from 0 through 5{
     .flex-#{$i} {flex: $i}
 }
+
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}

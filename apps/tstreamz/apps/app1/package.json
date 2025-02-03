@@ -12,6 +12,7 @@
         "npm": "^11.0.0"
     },
     "devDependencies": {
+        "@types/lodash": "^4.17.15",
         "aws-sdk": "^2.1692.0",
         "mock-aws-s3": "^4.0.2",
         "nock": "^14.0.0"
