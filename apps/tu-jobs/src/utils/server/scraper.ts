@@ -3,11 +3,11 @@ import { handleErrs } from "@cmn/utils/funcs";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import { IJobExt } from "../interfaces";
-import { careers24BaseURL } from "../consts";
+import { careers24BaseURL, useDummy } from "../consts";
 import { readRaw } from "@cmn/utils/bend/funcs";
 import { JobModel } from "@/models";
 
-const useDummy = true;
+
 const api = axios.create({ baseURL: careers24BaseURL });
 
 const testFilesDir = "./src/utils/server/data/scraper";

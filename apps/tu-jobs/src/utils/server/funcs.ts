@@ -3,9 +3,6 @@
 import { JobModel, UserModel } from "@/models";
 import { DEV } from "@cmn/utils/bend/consts";
 import { clearTerminal, handleErrs, timedLog } from "@cmn/utils/funcs";
-import { FlattenMaps } from "mongoose";
-import { IJobModel } from "@/models";
-import { scrapeJobDetails } from "./scraper";
 import { cookies } from "next/headers";
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { jwtVerify, SignJWT } from "jose";

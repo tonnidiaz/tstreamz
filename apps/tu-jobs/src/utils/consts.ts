@@ -1,4 +1,4 @@
-export const forceFetchJobs = true
+export const forceFetchJobs = true, useDummy  = false;
 export const careers24BaseURL = "https://www.careers24.com"
 export const jobSectors = [
     "Academic",

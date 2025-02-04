@@ -13,7 +13,7 @@ import TMeta from "@repo/ui-next/components/TMeta";
 import TuModal from "@repo/ui-next/components/TuModal";
 import UButton from "@repo/ui-next/components/UButton";
 import { DEV } from "@repo/ui-next/lib/consts";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as jose from "jose";
 import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
@@ -24,6 +24,7 @@ import {
     verifyJWT,
 } from "@/utils/server/funcs";
 import { genToken } from "@cmn/utils/bend/funcs";
+import { tuImmer } from "@cmn/utils/funcs4";
 
 const jobsStorageKey = "jobs";
 const getSavedJobs = () => {
@@ -36,16 +37,20 @@ const Page = () => {
     const jobsStore = useSelector((s: RootState) => s.jobs);
     const appStore = useSelector((s: RootState) => s.app);
 
+    const [ready, setReady] = useState(false);
+
     const genEndpoint = (_filters: IFilters) => {
         const params = {
+            lc: _filters.location?.toLowerCase(),
+            kw: _filters.keyword?.toLowerCase(),
             jt: _filters.contractType?.toLowerCase(),
             se: _filters.sectors.join(",").replaceAll(" ", "-"),
             sf: _filters.minSalary,
+            rmt: 'incl'
         };
 
         const endpoint = Object.entries(params)
-            .flatMap(([k, v], i) => (!v ? v : `${k}-${v}`))
-            .filter((el) => el !== undefined)
+            .flatMap(([k, v], i) => (!v || !`${v}`.length ? [] : `${k}-${v}`))
             .join("/")
             ?.toLowerCase();
         return endpoint;
@@ -61,7 +66,7 @@ const Page = () => {
             const tkn = await signJWT(filters, process.env.NEXT_PUBLIC_SECRET);
 
             await setCookies("job_filters", tkn, { sameSite: "strict" });
-            if (DEV) console.log(tkn);
+            // if (DEV) console.log(tkn);
             return tkn;
         } catch (err) {
             handleErrs(err);
@@ -69,7 +74,7 @@ const Page = () => {
     };
     // const jobs = useTuState<IJobExt[] | null>();
     const fetchJobs = async (endpoint?: string) => {
-        console.log("\n[FETCHING JOBS...]");
+        console.log("\n[FETCHING JOBS...]", {endpoint});
         dispatch(updateJobsState(["jobs", null]));
         const savedJobs = getSavedJobs();
         dispatch(
@@ -91,6 +96,7 @@ const Page = () => {
                 filtersCookie.value,
                 process.env.NEXT_PUBLIC_SECRET
             );
+            console.log({val: {...val}});
             if (val) {
                 filters = val as any;
                 dispatch(setFilters(filters));
@@ -122,6 +128,8 @@ const Page = () => {
         // Update filters
 
         init().then((filters) => {
+            setReady(true)
+            console.log(filters);
             if (!jobsStore.jobs) fetchJobs(genEndpoint(filters));
         });
     }, []);
@@ -134,7 +142,7 @@ const Page = () => {
         <>
             <TMeta title={`Browse jobs - ${SITE}`} />
             <div className="p-4 h-full w-full">
-                <div
+                { !ready ? <div className="loading-div"><span className="loading loading-lg loading-ring"></span></div>: <><div
                     className="w-700px flex items-center gap-2 relative bordered rounded-md my-4 m-auto p-3 fs-14"
                     style={{ boxSizing: "border-box" }}
                 >
@@ -143,6 +151,8 @@ const Page = () => {
                             className="input input-bordered"
                             type="text"
                             placeholder="Title, skill, or keyword..."
+                            value={jobsStore.filters.keyword || ''}
+                            onChange={({target})=> dispatch(setFilters(tuImmer(jobsStore.filters, (c)=> c.keyword = target.value)))}
                         />
                         <div
                             className="h-full w-4px hidden"
@@ -152,9 +162,12 @@ const Page = () => {
                             className="input input-bordered"
                             type="text"
                             placeholder="Location, province, city, or town..."
-                        />
+                            value={jobsStore.filters.location || ''}
+                            onChange={({target})=> dispatch(setFilters(tuImmer(jobsStore.filters, (c)=> c.location = target.value)))}
+                       
+                        /><UButton onClick={async _ => await fetchJobs(endpoint)} className="btn-md btn-secondary">SEARCH</UButton>
                     </div>
-                    <UButton className="btn-md btn-secondary">SEARCH</UButton>
+                    
                 </div>
                 <div className="flex md:flex-row flex-col gap-2 justify-start items-center md:items-start md:justify-center w-full">
                     {appStore.screenSz.w >= centerElementWidth && (
@@ -214,7 +227,7 @@ const Page = () => {
                             </UButton>
                         )}
                     </div>
-                </div>
+                </div></>}
             </div>
         </>
     );
