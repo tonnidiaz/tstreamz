@@ -1,6 +1,7 @@
 "use client";
 import ApplyBtn from "@/components/JobApplyBtn";
 import JobCard from "@/components/JobCard";
+import { genApplyLink } from "@/utils/funcs";
 import { IJob, IJobExt } from "@/utils/interfaces";
 import { TJobData } from "@/utils/server/funcs";
 import { scrapeJobDetails, scrapeSimilarJobs } from "@/utils/server/scraper";
@@ -15,6 +16,7 @@ const Page = ({
     jobData: Awaited<ReturnType<typeof scrapeJobDetails>>;
     job: TJobData;
 }) => {
+    if (!job) return;
     const pageRef = useRef<HTMLDivElement>(null);
     const similarJobs = useState<IJobExt[]>();
 
@@ -22,7 +24,7 @@ const Page = ({
         // Fetch similar jobs
         console.log("\n[FETCHING SIMILAR JOBS...]");
         similarJobs[1](null);
-        const res = await scrapeSimilarJobs(job.title);
+        const res = await scrapeSimilarJobs(job.source, job.title);
         similarJobs[1](res);
     };
 
@@ -52,7 +54,7 @@ const Page = ({
                             )}
                         </div>
                     ) : (
-                        similarJobs[0].map((el, i) => (
+                        similarJobs[0].flatMap((el, i) => ( el.title == job.title ? [] :
                             <JobCard key={`job-${i}`} job={el} />
                         ))
                     )}
@@ -70,7 +72,7 @@ const Page = ({
                                 }}
                             ></div>
                             <div className="mt-4">
-                                <ApplyBtn id={job.jobId} />
+                                <ApplyBtn link={genApplyLink(job.jobId, job.source)} />
                             </div>
                         </div>
                     </div>
@@ -85,7 +87,7 @@ const Page = ({
 
                         <UDivider />
                         <div className="mt-4">
-                            <ApplyBtn id={job.jobId} />
+                            <ApplyBtn link={genApplyLink(job.jobId, job.source)} />
                         </div>
                     </div>
                 </div>

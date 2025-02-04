@@ -3,6 +3,7 @@ import { setFilters, updateJobsState } from "@/redux/reducers/jobs";
 import {
     contractTypes,
     jobSectors,
+    jobSources,
     minPrices as minSalaries,
 } from "@/utils/consts";
 import { IFilters } from "@/utils/interfaces";
@@ -66,6 +67,11 @@ export default function JobsFiltersSection({
             <h3 className="fs-18">Tweak your search</h3>
             <div className="mt-2 flex-1  oy-scroll">
                 <div className="p-2 bordered">
+                    <UFormGroup label="Source">
+                        <TuSelect value={filters.source} onChange={val=>dispatch(setFilters(tuImmer(filters, c=> c.source = val)))} options={jobSources.map(el=>({label: el.toUpperCase(), value: el}))}/>
+                    </UFormGroup>
+                </div>
+                <div className="p-2 bordered mt-2">
                     <h4 className="ttl">Min. salary</h4>
                     <div className="mt-3">
                         <MinSalaryRadio

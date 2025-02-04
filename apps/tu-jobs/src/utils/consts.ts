@@ -1,5 +1,8 @@
 export const forceFetchJobs = true, useDummy  = false;
-export const careers24BaseURL = "https://www.careers24.com"
+
+export const baseUrls = {
+    careers24: "https://www.careers24.com", careerjunction: "https://www.careerjunction.co.za"
+}
 export const jobSectors = [
     "Academic",
     "Accounting",
@@ -88,3 +91,4 @@ export class CONFIG {
     get host(){return this.host}
     set host(v){this.host = v}
 }
+export const jobSources = ["career24", "careerjunction"] as const

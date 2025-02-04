@@ -1,3 +1,7 @@
-export const tuImmer = <T>(obj: T, cb: (objCopy: T)=>T)=>{
-    return cb({...obj})
+import axios from 'axios'
+const main = async()=>{
+    const r = await axios.get("https://www.pnet.co.za/jobs")
+    console.log(r.data);
 }
+
+main()

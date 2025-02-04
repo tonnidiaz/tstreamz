@@ -3,9 +3,8 @@ import JobCard from "@/components/JobCard";
 import JobsFiltersSection from "@/components/JobsFiltersSection";
 import { setFilters, updateJobsState } from "@/redux/reducers/jobs";
 import { RootState } from "@/redux/store";
-import { store } from "@/store";
-import { careers24BaseURL, forceFetchJobs, SITE } from "@/utils/consts";
-import { IFilters, IJobExt } from "@/utils/interfaces";
+import {  baseUrls, forceFetchJobs, SITE } from "@/utils/consts";
+import { IFilters, IJobExt, TJobSource } from "@/utils/interfaces";
 import { scrapeJobs } from "@/utils/server/scraper";
 import { handleErrs, isTuError } from "@cmn/utils/funcs";
 import { showToast } from "@cmn/utils/funcs-ui";
@@ -65,7 +64,7 @@ const Page = () => {
         try {
             const tkn = await signJWT(filters, process.env.NEXT_PUBLIC_SECRET);
 
-            await setCookies("job_filters", tkn, { sameSite: "strict" });
+            await setCookies("job_filters", tkn, { sameSite: "strict", expires: Date.now() + 30 * 24 *60000 });
             // if (DEV) console.log(tkn);
             return tkn;
         } catch (err) {
@@ -73,7 +72,7 @@ const Page = () => {
         }
     };
     // const jobs = useTuState<IJobExt[] | null>();
-    const fetchJobs = async (endpoint?: string) => {
+    const fetchJobs = async (source: TJobSource, endpoint?: string) => {
         console.log("\n[FETCHING JOBS...]", {endpoint});
         dispatch(updateJobsState(["jobs", null]));
         const savedJobs = getSavedJobs();
@@ -82,7 +81,7 @@ const Page = () => {
                 "jobs",
                 savedJobs && !forceFetchJobs
                     ? JSON.parse(savedJobs)
-                    : await scrapeJobs(endpoint),
+                    : await scrapeJobs(source, endpoint),
             ])
         );
     };
@@ -108,13 +107,13 @@ const Page = () => {
 
     const applyFilters = async () => {
         try {
-            const link = `${careers24BaseURL}/jobs/${endpoint || ""}`;
+            const link = `${baseUrls[jobsStore.filters.source]}/jobs/${endpoint || ""}`;
 
             if (DEV) {
                 console.log({ link });
                 showToast({ msg: link });
             }
-            await fetchJobs(endpoint);
+            await fetchJobs(jobsStore.filters.source,endpoint);
         } catch (err) {
             handleErrs(err);
             showToast({
@@ -130,7 +129,7 @@ const Page = () => {
         init().then((filters) => {
             setReady(true)
             console.log(filters);
-            if (!jobsStore.jobs) fetchJobs(genEndpoint(filters));
+            if (!jobsStore.jobs) fetchJobs(filters.source || 'career24', genEndpoint(filters));
         });
     }, []);
 
@@ -165,7 +164,7 @@ const Page = () => {
                             value={jobsStore.filters.location || ''}
                             onChange={({target})=> dispatch(setFilters(tuImmer(jobsStore.filters, (c)=> c.location = target.value)))}
                        
-                        /><UButton onClick={async _ => await fetchJobs(endpoint)} className="btn-md btn-secondary">SEARCH</UButton>
+                        /><UButton onClick={async _ => await fetchJobs(jobsStore.filters.source,endpoint)} className="btn-md btn-secondary">SEARCH</UButton>
                     </div>
                     
                 </div>
@@ -221,7 +220,7 @@ const Page = () => {
                             <UButton
                                 showLoader
                                 className="btn-secondary mt-3"
-                                onClick={async () => await fetchJobs()}
+                                onClick={async () => await fetchJobs(jobsStore.filters.source, endpoint)}
                             >
                                 Fetch jobs
                             </UButton>

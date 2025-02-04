@@ -1,6 +1,6 @@
 import { capitalizeFirstLetter } from "@cmn/utils/funcs";
-import { JOB_ID_FACTOR } from "./consts";
-import { IJob } from "./interfaces";
+import { baseUrls, JOB_ID_FACTOR } from "./consts";
+import { IJob, TJobSource } from "./interfaces";
 
 export const parseJobId = (id: string) => {
     const split = id.split("-");
@@ -16,3 +16,19 @@ export const parseJobId = (id: string) => {
 };
 
 export const genJobId = (job: IJob) => `${Number(job.jobId) + JOB_ID_FACTOR}-${job.title.replaceAll(' ', '_').trim()}`
+export const genCareerJunctionId = (id: string) => `TUJID_CJ-${id}`
+
+export function genApplyLink(id: string, source: TJobSource): string {
+    let link = ""
+    const baseURL = baseUrls[source]
+    // console.log("\n[GEN_APPLY_LINK]", {source, baseURL});
+    switch (source){
+        case "career24":
+            link = `${baseURL}/jobs/apply/${id}`;
+            break;
+        case "careerjunction":
+            link = `${baseURL}/application/apply-link/${id}`;
+            break;
+    }
+    return link
+}

@@ -1,18 +1,18 @@
 "use client"
-import { careers24BaseURL } from "@/utils/consts";
 import UButton from "@repo/ui-next/components/UButton";
 import { DEV } from "@repo/ui-next/lib/consts";
 
-const ApplyBtn = ({ id }: { id: string }) => {
+const ApplyBtn = ({ link }: { link: string }) => {
     return (
-        <UButton title={DEV && id}
-            onClick={() => {
-                window.open(`${careers24BaseURL}/jobs/apply/${id}`, '_blank');
-            }}
-            className="btn-md btn-primary fs-17 fw-5 w-full"
-        >
-            Apply now
-        </UButton>
+        // <UButton title={DEV && link}
+        //     onClick={() => {
+        //         window.open(link, '_blank');
+        //     }}
+        //     className="btn-md btn-primary fs-17 fw-5 w-full"
+        // >
+        //     Apply now
+        // </UButton>
+        <a  className="btn btn-md btn-primary fs-17 fw-5 w-full" href={link + "?referrer=tonnidiaz"}>Apply now</a>
     );
 };
 

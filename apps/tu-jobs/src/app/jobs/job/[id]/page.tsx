@@ -15,7 +15,7 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
     if (!job) {
         return <TuErrorPage status={404} msg="Ooops! Job not in database." />;
     }
-    const jobData = await scrapeJobDetails(job.link);
+    const jobData = job.meta ? job : await scrapeJobDetails(job.link, job.source);
     return (
         <>
             <TMeta title={`${job.title} - ${SITE}`} />

@@ -6,6 +6,10 @@ import { clearTerminal, handleErrs, timedLog } from "@cmn/utils/funcs";
 import { cookies } from "next/headers";
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { jwtVerify, SignJWT } from "jose";
+import { TJobSource } from "../interfaces";
+import { baseUrls } from "../consts";
+import { genApplyLink } from "../funcs";
+import { scrapeJobDetails } from "./scraper";
 
 export const runOnce = async () => {
     const { configDotenv } = await import("dotenv");
@@ -33,16 +37,38 @@ export const getUsers = async () => {
     }
 };
 
+// export const getCareerJunctionJob = async () =>{
+//     const {data: html} =
+// }
 export const getJobById = async (id: string) => {
     try {
-        const job = await JobModel.findById(id).exec();
+        const pre = id.split("-")[0]?.replace("TUJID_", "");
+        let source: TJobSource = "career24";
+        let link: string | undefined;
+        if (pre) {
+            switch (pre.toLowerCase()) {
+                case "cj":
+                    source = "careerjunction";
+                    const _id = id.split("-").pop();
+                    link = genApplyLink(_id, source);
+                    break;
+            }
+        }
+        if (link){console.log({link})}
+        const job = link
+            ? await scrapeJobDetails(link, source)
+            : await JobModel.findById(id).exec();
+        if (!job) return console.log("JOB IS NULL")
         return {
             title: job.title,
-            id: job.id,
+            source,
+            id,
             jobId: job.jobId,
             link: job.link,
             posted: job.posted,
             exp: job.exp,
+            meta: (job as any).meta as string | undefined,
+            descHtml: (job as any).descHtml as string[] | undefined,
         };
     } catch (err) {
         handleErrs(err);
@@ -57,7 +83,9 @@ export const setCookies = async (
     ...params:
         | [key: string, value: string, cookie?: Partial<ResponseCookie>]
         | [options: ResponseCookie]
-) => {(await cookies()).set(...params)};
+) => {
+    (await cookies()).set(...params);
+};
 
 const getJWTSecret = (secret: string) => {
     const _secret = new TextEncoder().encode(secret);

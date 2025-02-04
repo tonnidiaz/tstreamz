@@ -5,7 +5,7 @@ import _ from "lodash"
 
 const initialState = {
     ok: true,
-   filters: {sectors: []} as IFilters,
+   filters: {sectors: [], source: "career24"} as IFilters,
    jobs: null as IJobExt[] | null
 }
 type AppState = typeof initialState;
