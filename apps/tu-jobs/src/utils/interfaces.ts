@@ -6,6 +6,8 @@ export interface IJob {
     jobId: string;
     posted: string,
     exp: string,
+    source: TJobSource,
+    location: string, contract: string
 }
 
 export interface IJobExt extends IJob {id: string; meta: string; html?: string[];}

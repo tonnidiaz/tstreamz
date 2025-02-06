@@ -1,7 +1,9 @@
 import axios from 'axios'
 const main = async()=>{
-    const r = await axios.get("https://www.pnet.co.za/jobs")
-    console.log(r.data);
+const url = "https://tu-jobs.vercel.app/jobs"
+axios.get(url)
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
 }
 
 main()

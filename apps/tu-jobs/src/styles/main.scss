@@ -13,3 +13,20 @@
 }
 }
 
+
+#job-info{
+    ul {
+        padding-left: 25px;
+        list-style: square;
+    }
+    .row {@apply gap-2}
+    label{
+        display: block;
+    }
+    *{
+        line-height: 1.7em;
+    }
+    div:last-child{
+        margin-bottom: 4px;
+    }
+}

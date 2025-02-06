@@ -54,9 +54,13 @@ const Page = ({
                             )}
                         </div>
                     ) : (
-                        similarJobs[0].flatMap((el, i) => ( el.title == job.title ? [] :
-                            <JobCard key={`job-${i}`} job={el} />
-                        ))
+                        similarJobs[0].flatMap((el, i) =>
+                            el.title == job.title ? (
+                                []
+                            ) : (
+                                <JobCard key={`job-${i}`} job={el} />
+                            )
+                        )
                     )}
                 </div>
                 <div
@@ -66,13 +70,34 @@ const Page = ({
                     <h1 className="fs-22">{job.title}</h1>
                     <div className="my-2 bordered rounded-md p-3 color-text-2 fs-14">
                         <div className="tu-job-meta">
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: jobData.meta,
-                                }}
-                            ></div>
+                            {jobData.meta?.length ? (
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: jobData.meta,
+                                    }}
+                                ></div>
+                            ) : (
+                                <ul>
+                                    <li><span>Contract type:</span>&nbsp;{job.contract}</li>
+                                     <li><span>Location:</span>&nbsp;{job.location}</li>
+                                    <li>
+                                        <span>Date posted:</span>&nbsp;
+                                        <span className="text-secondary">
+                                            {job.posted}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>Closing date:</span>&nbsp;
+                                        <span className="text-secondary">
+                                            {job.exp}
+                                        </span>
+                                    </li>
+                                </ul>
+                            )}
                             <div className="mt-4">
-                                <ApplyBtn link={genApplyLink(job.jobId, job.source)} />
+                                <ApplyBtn
+                                    link={genApplyLink(job.jobId, job.source)}
+                                />
                             </div>
                         </div>
                     </div>
@@ -87,7 +112,9 @@ const Page = ({
 
                         <UDivider />
                         <div className="mt-4">
-                            <ApplyBtn link={genApplyLink(job.jobId, job.source)} />
+                            <ApplyBtn
+                                link={genApplyLink(job.jobId, job.source)}
+                            />
                         </div>
                     </div>
                 </div>

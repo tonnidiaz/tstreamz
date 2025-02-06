@@ -23,12 +23,16 @@ export function genApplyLink(id: string, source: TJobSource): string {
     const baseURL = baseUrls[source]
     // console.log("\n[GEN_APPLY_LINK]", {source, baseURL});
     switch (source){
-        case "career24":
+        case "careers24":
             link = `${baseURL}/jobs/apply/${id}`;
             break;
         case "careerjunction":
             link = `${baseURL}/application/apply-link/${id}`;
             break;
+        case "simplify":
+            const splitId = id.split("__")
+            link = `${baseURL.replace("{ep}", splitId[0])}/Vacancy/Apply/${splitId[1]}`
+            break
     }
     return link
 }

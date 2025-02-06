@@ -1,8 +1,6 @@
-export const forceFetchJobs = true, useDummy  = false;
+export const forceFetchJobs = true,
+    useDummy = false;
 
-export const baseUrls = {
-    careers24: "https://www.careers24.com", careerjunction: "https://www.careerjunction.co.za"
-}
 export const jobSectors = [
     "Academic",
     "Accounting",
@@ -75,10 +73,11 @@ export const jobSectors = [
     "Telecommunications",
     "Trades & Services",
     "Travel & Tourism",
-    "Warehousing"
-]
-export const SITE = "Tujobs"
-export const minPrices = [1, 2, 3, 4].map((el) => el * 12000), JOB_ID_FACTOR = 0;
+    "Warehousing",
+];
+export const SITE = "Tujobs";
+export const minPrices = [1, 2, 3, 4].map((el) => el * 12000),
+    JOB_ID_FACTOR = 0;
 export const contractTypes = [
     "Permenent",
     "Part-Time",
@@ -87,8 +86,18 @@ export const contractTypes = [
     "Internship",
 ];
 export class CONFIG {
-    static host: string = ""
-    get host(){return this.host}
-    set host(v){this.host = v}
+    static host: string = "";
+    get host() {
+        return this.host;
+    }
+    set host(v) {
+        this.host = v;
+    }
 }
-export const jobSources = ["career24", "careerjunction"] as const
+export const jobSources = ["careers24", "careerjunction", "simplify"] as const;
+
+export const baseUrls = {
+    careers24: "https://www.careers24.com",
+    careerjunction: "https://www.careerjunction.co.za",
+    simplify: "https://{ep}.simplify.hr"
+};

@@ -43,7 +43,7 @@ export const getUsers = async () => {
 export const getJobById = async (id: string) => {
     try {
         const pre = id.split("-")[0]?.replace("TUJID_", "");
-        let source: TJobSource = "career24";
+        let source: TJobSource = "careers24";
         let link: string | undefined;
         if (pre) {
             switch (pre.toLowerCase()) {
@@ -54,11 +54,16 @@ export const getJobById = async (id: string) => {
                     break;
             }
         }
-        if (link){console.log({link})}
+        if (link){console.log("[GET_JOB_BY_ID]", {link})}
         const job = link
             ? await scrapeJobDetails(link, source)
             : await JobModel.findById(id).exec();
         if (!job) return console.log("JOB IS NULL")
+
+        const jobAny = job as any
+        console.log("\n", jobAny.source);
+        if (jobAny.source) source = jobAny.source;
+
         return {
             title: job.title,
             source,
@@ -67,6 +72,7 @@ export const getJobById = async (id: string) => {
             link: job.link,
             posted: job.posted,
             exp: job.exp,
+            location: job.location, contract: job.contract,
             meta: (job as any).meta as string | undefined,
             descHtml: (job as any).descHtml as string[] | undefined,
         };

@@ -129,7 +129,7 @@ const Page = () => {
         init().then((filters) => {
             setReady(true)
             console.log(filters);
-            if (!jobsStore.jobs) fetchJobs(filters.source || 'career24', genEndpoint(filters));
+            if (!jobsStore.jobs) fetchJobs(filters.source || 'careers24', genEndpoint(filters));
         });
     }, []);
 
