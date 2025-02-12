@@ -2,6 +2,7 @@ import { handleErrs, timedLog } from "@cmn/utils/funcs";
 import { tuErr } from "@repo/ui-next/lib/funcs";
 import { spawn } from "child_process";
 import ffmpeg from "fluent-ffmpeg";
+import path from "path";
 import { PassThrough, Readable } from "stream";
 import youtubeDl from "youtube-dl-exec";
 
@@ -16,7 +17,9 @@ export const GET = async () => {
     let isDownloading = false;
     try {
         const stream = new PassThrough();
-        const process = spawn("src/bin/yt-dlp", ["-f", "b", "-o", "-", url]);
+        const ytdlPath = path.resolve(path.join(__dirname, "../../../../../src/bin/yt-dlp"))
+        console.log(ytdlPath);
+        const process = spawn(ytdlPath, ["-f", "b", "-o", "-", url]);
 
         await new Promise((res, rej) => {
             process.on("error", (err) => {
