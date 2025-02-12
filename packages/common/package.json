@@ -36,6 +36,7 @@
     "@types/nodemailer": "^6.4.17",
     "aws-sdk": "^2.1692.0",
     "crypto": "^1.0.1",
+    "daisyui": "^4.12.23",
     "mock-aws-s3": "^4.0.2",
     "nock": "^14.0.0",
     "rimraf": "*",
