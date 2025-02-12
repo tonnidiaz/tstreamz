@@ -17,8 +17,8 @@ export const GET = async () => {
     let isDownloading = false;
     try {
         const stream = new PassThrough();
-        const ytdlPath = path.resolve(path.join(__dirname, "../../../../../src/bin/yt-dlp"))
-        console.log(ytdlPath);
+        const ytdlPath = "./src/bin/yt-dlp"
+        console.log({ytdlPath});
         const process = spawn(ytdlPath, ["-f", "b", "-o", "-", url]);
 
         await new Promise((res, rej) => {
