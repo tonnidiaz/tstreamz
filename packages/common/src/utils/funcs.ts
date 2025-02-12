@@ -109,3 +109,11 @@ export const formatNum = (num: number, decimals = 2) => new Intl.NumberFormat("e
     currency: "ZAR",
     minimumFractionDigits: decimals,
 }).format(num);
+
+export function formatDuration(seconds: number) {
+    const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
+    const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${h}:${m}:${s}`;
+}
+

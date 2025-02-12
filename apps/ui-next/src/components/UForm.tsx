@@ -23,7 +23,7 @@ const UForm = ({ children, onSubmit, ...props }: IProps) => {
         // formRef.addEventListener('submit', _onSubmit)
         if (formRef.current) formRef.current.onsubmit = _onSubmit;
         // return ()=> formRef.removeEventListener('submit', _onSubmit)
-    }, [formRef.current]);
+    }, [formRef.current, onSubmit]);
     return (
         <form method="POST" {...props} ref={formRef}>
             {children}

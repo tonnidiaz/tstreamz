@@ -27,7 +27,6 @@
 	},
 	"dependencies": {
 		"comment-json": "^4.2.5",
-		"yt-dlp-wrap": "^2.3.12",
-		"ytdl-core": "^4.11.2"
+		"yt-dlp-wrap": "^2.3.12"
 	}
 }

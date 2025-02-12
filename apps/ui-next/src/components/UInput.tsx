@@ -23,7 +23,7 @@ const UInput = ({
     const defClass =
         override && override.split(" ").find((el) => el == "class")
             ? ""
-            : "flex gap-3 items-center input input-bordered input-sm ";
+            : "flex gap-3 items-center input input-bordered ";
 
     return (
         <div
