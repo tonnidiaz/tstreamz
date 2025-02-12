@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "apt install yt-dlp && next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@distube/yt-dlp": "^2.0.1",
     "@distube/ytdl-core": "^4.15.9",
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
