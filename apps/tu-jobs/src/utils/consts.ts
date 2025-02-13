@@ -1,5 +1,5 @@
 export const forceFetchJobs = true,
-    useDummy = true;
+    useDummy = false;
 
 export const jobSectors = [
     "Academic",
