@@ -5,6 +5,7 @@ import { genApplyLink } from "@/utils/funcs";
 import { IJob, IJobExt } from "@/utils/interfaces";
 import { TJobData } from "@/utils/server/funcs";
 import { scrapeJobDetails, scrapeSimilarJobs } from "@/utils/server/scraper";
+import UButton from "@repo/ui-next/components/UButton";
 import UDivider from "@repo/ui-next/components/UDivider";
 // import { useTuState } from "@repo/ui-next/lib/hooks";
 import { useEffect, useRef, useState } from "react";
@@ -65,11 +66,12 @@ const Page = ({
                 </div>
                 <div
                     id="job-info"
-                    className="w-600px p-3 bordered rounded-md max-h-100p oy-scroll"
+                    className="w-750px p-3 bordered rounded-md max-h-100p oy-scroll"
                 >
-                    <h1 className="fs-22">{job.title}</h1>
-                    <div className="my-2 bordered rounded-md p-3 color-text-2 fs-14">
-                        <div className="tu-job-meta">
+                    
+                    <div className="my-2 bordered rounded-md p-3">
+                        <h1 className="fs-20">{job.title}</h1>
+                        <div className="tu-job-meta mt-3">
                             {jobData.meta?.length ? (
                                 <div
                                     dangerouslySetInnerHTML={{
@@ -94,15 +96,16 @@ const Page = ({
                                     </li>
                                 </ul>
                             )}
-                            <div className="mt-4">
+                            <div className="mt-4 flex items-center gap-3">
                                 <ApplyBtn
                                     link={genApplyLink(job.jobId, job.source)}
                                 />
+                                <UButton className="btn-md"><span><i className="fi fi-rr-heart"></i></span> Add to favorites</UButton>
                             </div>
                         </div>
                     </div>
                     <UDivider className="my-1" />
-                    <div className="my-2 fs-15 bordered rounded-md p-3">
+                    <div className="my-2 fs-14 bordered rounded-md p-3">
                         {jobData.descHtml.map((el, i) => (
                             <div
                                 key={`el-${i}`}
@@ -112,7 +115,7 @@ const Page = ({
 
                         <UDivider />
                         <div className="mt-4">
-                            <ApplyBtn
+                            <ApplyBtn className="w-full"
                                 link={genApplyLink(job.jobId, job.source)}
                             />
                         </div>

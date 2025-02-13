@@ -12,7 +12,7 @@
     import type { IObj } from "@cmn/utils/interfaces";
     import { onMount } from "svelte";
     import { handleErrs, isTuError } from "@cmn/utils/funcs";
-    import { showToast } from "@repo/ui-sv/lib/funcs";
+    import { showToast } from "@repo/ui/utils/funcs";
 
 
 let formState = $state<IObj>({});

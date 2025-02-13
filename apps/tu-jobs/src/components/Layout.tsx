@@ -34,7 +34,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
     return (
         <>
-        <TMeta title={`${appStore.title}`}/>
             <Navbar
                 site={appStore.title}
                 ready={appStore.ready}

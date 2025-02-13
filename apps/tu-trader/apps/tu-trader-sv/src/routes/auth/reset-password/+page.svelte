@@ -8,13 +8,13 @@
     import UForm from "@repo/ui-sv/components/UForm.svelte";
     import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import UInput from "@repo/ui-sv/components/UInput.svelte";
-    import { handleErrs } from "@cmn/utils/funcs";
+    import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
     import { localApi } from "@/lib/api";
     import OtpField from "@repo/ui-sv/components/OTPField.svelte";
-    import { logout, requestOTP, verifyOTP } from "@repo/ui-sv/lib/funcs";
     import { setUser } from "@/stores/user.svelte";
+    import { logout } from "@cmn/utils/funcs-ui";
+    import { requestOTP, verifyOTP } from "@cmn/utils/funcs3";
 
     let err = $state(""),
         setErr = (v: string) => (err = v);

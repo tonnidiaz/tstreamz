@@ -52,7 +52,7 @@ export class SvelteTool {
                     "**/*.ts",
                     "${path.join("../", this.rootDir, "node_modules/svelte/elements.d.ts")}",
                     "${Object.values(this.packages)
-                        .map((el) => path.join("../", el))
+                        .map((el) => path.join("../", el) + "*/*.ts")
                         .join('", "')}",
                     "${this.incl.join('", "')}"
                 ],

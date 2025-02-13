@@ -2,7 +2,7 @@ import $ from "jquery";
 import type { IObj } from "@cmn/utils/interfaces";
 import { api, localApi } from "./api";
 import { handleErrs, isTuError } from "@cmn/utils/funcs";
-import { showToast } from "@repo/ui-sv/lib/funcs";
+import { showToast } from "@repo/ui/utils/funcs";
 
 export const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -90,7 +90,6 @@ interface IMetaProps {
     url?: string;
     keywords?: string;
 }
-
 
 
 export const isValidDate = function(date: string) {

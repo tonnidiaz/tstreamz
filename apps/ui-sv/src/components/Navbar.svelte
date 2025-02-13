@@ -13,6 +13,7 @@
         site: string;
         /**The horizontal menu items(li TuLink) on the navbar*/
         menuItems?: Snippet;
+        moreMenuItems?: Snippet;
         user?: IObj;
         ready: boolean;
         hasLogin?: boolean;
@@ -23,6 +24,7 @@
     let {
         site,
         menuItems,hasLogin,
+        moreMenuItems,
         user = $bindable(),
         ready = $bindable(),
         userMenuItems,
@@ -81,6 +83,7 @@
                 tabindex="0"
                 class="menu menu-menu menu-sm text-left justify-start open border-1 border-card dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-md"
             >
+            {@render moreMenuItems?.()}
             </ul>
         </div>
     </div>

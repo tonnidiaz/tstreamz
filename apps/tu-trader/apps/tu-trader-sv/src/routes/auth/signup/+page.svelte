@@ -10,11 +10,10 @@
     import UForm from "@repo/ui-sv/components/UForm.svelte";
     import TMeta from "@/components/TMeta.svelte";
     import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
-    import { handleErrs, sleep } from "@cmn/utils/funcs";
+    import { handleErrs, isTuError, sleep } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
     import OtpField from "@repo/ui-sv/components/OTPField.svelte";
-    import { STORAGE_KEYS } from "@repo/ui-sv/lib/consts";
+    import { STORAGE_KEYS } from "@repo/ui/utils/consts";
 
     let btnDisabled = $state(true),
         pwdValid = $state(false),

@@ -1,6 +1,6 @@
 <script lang="ts">
     import "@flaticon/flaticon-uicons/css/all/all.css";
-    import "@repo/ui-sv/styles/all.scss"
+    import "@repo/ui/styles/all.scss";
 
     import { onMount } from "svelte";
     import { setSocket, BEND_URL, socket } from "@/lib/constants";
@@ -43,12 +43,12 @@
 
     onMount(() => {
         try {
-  
             console.log("DEFAULT MOUNTED");
             setSocket(
                 io(BEND_URL /* */, {
                     auth: { username: "tonnidiaz" },
-                    timeout: 100 * 100000000000,autoConnect: false
+                    timeout: 100 * 100000000000,
+                    autoConnect: false,
                 })
             );
             socket?.on("connect", () => {
@@ -57,8 +57,8 @@
             socket?.on("error", () => {
                 console.log(`IO ERR`);
             });
-            socket.on('connect_error', err => handleErrors(err))
-        socket.on('connect_failed', err => handleErrors(err))
+            socket.on("connect_error", (err) => handleErrors(err));
+            socket.on("connect_failed", (err) => handleErrors(err));
         } catch (err) {
             console.log("IO INIT ERR");
             console.log(err);
@@ -88,42 +88,38 @@
             console.log("GOT THE PARENTS");
         });
 
-
-        socket.connect()
+        socket.connect();
         init();
     });
-
 
     function handleErrors(err: Error): void {
         // throw new Error("Function not implemented.");
         // console.error("Handle IO err");
-        return
-        if (err.message.includes('ERR_CONNECTION_REFUSED')) {
-        console.log('Suppressed connection error:', "err.message");
-    } else {
-        console.error("err");
-    }
+        return;
+        if (err.message.includes("ERR_CONNECTION_REFUSED")) {
+            console.log("Suppressed connection error:", "err.message");
+        } else {
+            console.error("err");
+        }
     }
 </script>
 
-{#if !ready}
-    <Loader />
-{:else}
-    <div>
-        <Navbar />
-        <div class="tu-app">
-            <Sidebar/>
-            <main style="padding: 0 10px">
-                {@render children()}
-            </main>
-        </div>
+<div>
+    <Navbar />
+    <div class="tu-app">
+        <Sidebar />
+        <main style="padding: 0 10px">
+            {@render children()}
+        </main>
     </div>
-{/if}
-
-<div id="tu-toasts" class="toast toast-top toast-end">
-
 </div>
 
-  <style>
-    .toast{z-index: 100;}
-  </style>
+<div id="tu-toasts" class="toast toast-top toast-end"></div>
+{#if !ready}
+<Loader />
+{/if}
+<style>
+    .toast {
+        z-index: 100;
+    }
+</style>

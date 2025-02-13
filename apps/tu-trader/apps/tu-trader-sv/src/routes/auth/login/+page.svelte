@@ -11,10 +11,9 @@
     import UForm from "@repo/ui-sv/components/UForm.svelte";
     import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import UInput from "@repo/ui-sv/components/UInput.svelte";
-    import { handleErrs } from "@cmn/utils/funcs";
+    import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
-    import { STORAGE_KEYS } from "@repo/ui-sv/lib/consts";
+    import { STORAGE_KEYS } from "@cmn/utils/consts";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);

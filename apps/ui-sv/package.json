@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@repo/common": "^1.0.0",
+        "@repo/ui": "^0.0.0",
         "@sveltejs/adapter-vercel": "^5.4.7",
         "@tensorflow/tfjs": "^4.22.0",
         "@tensorflow/tfjs-node": "^4.22.0",

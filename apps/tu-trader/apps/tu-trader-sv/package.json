@@ -3,8 +3,8 @@
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"preall": "tsx tool.ts",
-		"dev": "npm run preall && vite dev --port 3000",
+		"preall": "tsx tu-sv-tool",
+		"dev": "npm run preall && vite dev --port=3000",
 		"build": "npm run preall && vite build",
 		"preview": "vite preview  --port 3000 --host 0.0.0.0",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -33,6 +33,7 @@
 		"@flaticon/flaticon-uicons": "^3.3.1",
 		"@repo/common": "1.0.0",
 		"@repo/ui": "*",
+		"@repo/ui-sv": "*",
 		"@sveltejs/adapter-vercel": "^5.4.7",
 		"@tensorflow/tfjs": "^4.22.0",
 		"@tensorflow/tfjs-node": "^4.22.0",

@@ -1,11 +1,14 @@
-import { User } from "@pkg/cmn/models";
-import { __DEV__ } from "@pkg/cmn/utils/consts3";
-import { captureLogs } from "@pkg/cmn/utils/functions2";
+
 import type { IObj } from "@cmn/utils/interfaces";
 import { error, type Handle, type HandleServerError, type RequestEvent } from "@sveltejs/kit";
 import jwt from "jsonwebtoken";
 import { handleErrs } from "@cmn/utils/funcs";
 import { connectMongo } from "@cmn/utils/bend/funcs";
+import {handleError} from '@repo/ui-sv/hooks.server'
+import { __DEV__ } from "./lib/constants";
+import { captureLogs } from "@pkg/common/utils/functions2";
+import { User } from "@pkg/common/models";
+
 // clearTerminal()
 const fn = async () => {
 
@@ -57,14 +60,4 @@ export const handle: Handle = async ({ resolve, event }) => {
     return resolve(event);
 };
 
-export const handleError: HandleServerError = async ({
-    error,
-    event,
-    status,
-    message,
-}) => {
-    handleErrs(error);
-    return { message: "tu:Something went wrong", status };
-};
-
-/*  */
+export {handleError}

@@ -4,11 +4,11 @@
     import {handleErrs} from '@repo/common/src/utils/funcs'
     import axios, { type AxiosInstance } from "axios";
     import { dev } from "$app/environment";
-    import { requestOTP } from "../lib/funcs";
     import OtpText from "./OTPText.svelte";
     import UButton from "./UButton.svelte";
     import UFormGroup from "./UFormGroup.svelte";
     import UInput from "./UInput.svelte";
+    import { requestOTP } from "@cmn/utils/funcs3";
     
     const MAX = dev ? 10 : 60;
     let min = $state(MAX);
