@@ -2,6 +2,7 @@
 import { appData } from "@cmn/utils/consts";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
+import Head from "next/head";
 
 export interface ITMetaProps {
     title?: string;
@@ -38,7 +39,7 @@ const TMeta = ({
     }, [pathname, params]);
 
     return (
-        <>
+        <Head>
             <title>{__title}</title>
             <meta name="description" content={`${_description}`} />
             <meta property="og:type" content="website" />
@@ -56,7 +57,7 @@ const TMeta = ({
             <meta name="author" content={appData.author} />
             <meta name="publisher" content={appData.author} />
             <meta name="copyright" content={site} />
-        </>
+        </Head>
     );
 };
 

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { parseDate } from '@repo/common/src/utils/funcs';
-    
+import { parseDate } from '#cmn/utils/funcs';
+
 </script>
 <template>
   <div>

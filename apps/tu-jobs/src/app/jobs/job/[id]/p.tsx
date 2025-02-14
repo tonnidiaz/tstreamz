@@ -7,6 +7,7 @@ import { TJobData } from "@/utils/server/funcs";
 import { scrapeJobDetails, scrapeSimilarJobs } from "@/utils/server/scraper";
 import UButton from "@repo/ui-next/components/UButton";
 import UDivider from "@repo/ui-next/components/UDivider";
+import Head from "next/head";
 // import { useTuState } from "@repo/ui-next/lib/hooks";
 import { useEffect, useRef, useState } from "react";
 
@@ -23,6 +24,7 @@ const Page = ({
 
     const init = async () => {
         // Fetch similar jobs
+        return
         console.log("\n[FETCHING SIMILAR JOBS...]");
         similarJobs[1](null);
         const res = await scrapeSimilarJobs(job.source, job.title);
@@ -37,6 +39,8 @@ const Page = ({
         pageRef.current?.scrollIntoView();
     }, [pageRef.current]);
     return (
+        <>
+        
         <div className="p-4 w-full h-full" ref={pageRef}>
             <div className="md:h-full flex md:flex-row flex-col-reverse gap-2 justify-start items-center md:items-start md:justify-center w-full">
                 <div
@@ -122,7 +126,7 @@ const Page = ({
                     </div>
                 </div>
             </div>
-        </div>
+        </div></>
     );
 };
 

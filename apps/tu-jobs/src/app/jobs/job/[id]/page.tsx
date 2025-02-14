@@ -9,47 +9,37 @@ import Page from "./p";
 import { IObj } from "@cmn/utils/interfaces";
 import { Metadata } from "next";
 
-let jobData: {
-    title: string;
-    jobId: string;
-    link: string;
-    meta: string;
-    descHtml: string[];
-    posted: string;
-    exp: string;
-    location: string;
-    contract: string;
-};
-
-let job: Awaited<ReturnType<typeof getJobById>>;
-
-interface IProps {
-    params: Promise<{ id: string }>;
-}
-export async function generateMetadata({ params }: IProps): Promise<Metadata> {
-    const { id } = await params;
-    console.log("\nGETTING JOB BY ID", id);
-    job = await getJobById(id);
-    if (!job) throw Error("Could not get job");
-
-    if (job.meta) {
+const fetchData = async (id: string) =>{
+    const job = await getJobById(id);
+    console.log('\nGETTING JOB BY ID', id);
+    if (job && job.meta){
         console.log("[HAS META]");
     }
-    jobData = job.meta ? job : await scrapeJobDetails(job.link, job.source);
-
-    return {
-        title: `${job.title} - ${SITE}`,
-        description: job.meta,
-    };
+    const jobData = !job ? undefined : job.meta ? job : await scrapeJobDetails(job.link, job.source);
+    return {job, jobData}
 }
 
-const page = async ({ params }: IProps) => {
+
+interface Props { params: Promise<{ id: string }> }
+
+export async function generateMetadata({params} : Props) {
+    const { id } = await params;
+    const {job} = await fetchData(id);
+    if (!job) return
+    return {title: `${job.title} - ${SITE}`} as Metadata
+}
+
+const page = async ({ params }: Props) => {
+    const { id } = await params;
+    const {job, jobData} = await fetchData(id)
+    
     if (!job) {
         return <TuErrorPage status={404} msg="Ooops! Job not in database." />;
     }
-
+    
     return (
         <>
+            {/* <TMeta title={`${job.title} - ${SITE}`} /> */}
             <div className="w-full h-full">
                 <Page jobData={jobData} job={job} />
             </div>

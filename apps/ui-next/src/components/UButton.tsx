@@ -1,5 +1,11 @@
-
-import { ButtonHTMLAttributes, HTMLAttributes, useEffect, useRef } from "react";
+import {
+    ButtonHTMLAttributes,
+    HTMLAttributes,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
 import { handleErrs } from "@cmn/utils/funcs";
 
 interface IProps extends ButtonHTMLAttributes<any> {
@@ -12,11 +18,13 @@ const UButton = ({
     showLoader,
     className,
     type: _type,
+    disabled,
     onClick,
     ...props
 }: IProps) => {
+    const el = useRef<HTMLButtonElement>(null);
+    const [_loading, setLoading] = useState(loading || className?.includes("btn-loading"))
 
-    const el = useRef<HTMLButtonElement>(null)
     let submitHandler: Function;
 
     async function interceptFormSubmit(btn: HTMLButtonElement) {
@@ -44,7 +52,7 @@ const UButton = ({
                 };
                 btn.form.addEventListener("submit", listener);
                 btn.form.addEventListener("submit", async (e) => {
-                    e.preventDefault()
+                    e.preventDefault();
                     console.log("Custom listener");
                     const event = new Event("submit", {
                         bubbles: true,
@@ -67,40 +75,43 @@ const UButton = ({
 
     async function caller(cb: Function) {
         try {
-            loading = true;
-            el.current.disabled = true;
+            setLoading(true);
+            el.current.classList.add("disabled")//.disabled = true;
             await cb();
         } catch (err) {
-            console.log('[UButton] caller() error', err);
+            console.log("[UButton] caller() error", err);
             handleErrs(err);
         } finally {
             // console.log('Finally');
             if (!el) return;
-            el.current.disabled = false;
-            loading = false;
+            el.current.classList.remove("disabled")//.disabled = false;
+            setLoading(false);
         }
     }
     async function handleClick(this: HTMLButtonElement, ev: MouseEvent) {
         await caller(async () => await onClick?.(ev as any));
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         // console.log('Button loaded');
-        if (!el.current) return
+        if (!el.current) return;
         el.current.addEventListener("click", handleClick);
         interceptFormSubmit(el.current);
         return () => el.current?.removeEventListener("click", handleClick);
-    }, [el, onClick])
+    }, [el, onClick]);
 
     return (
         <button
             ref={el}
-            className={`btn btn-sm ` + className}
+            className={
+                `btn btn-sm ${(_loading || disabled) && "disabled"} ` +
+                className
+            }
             type={_type}
             {...props}
         >
             {children}
-            {showLoader && (loading || className?.includes("btn-loading")) && (
+            {showLoader && _loading && (
                 <span className="loading loading-spinner loading-sm"></span>
             )}
         </button>

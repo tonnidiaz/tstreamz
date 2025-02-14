@@ -65,7 +65,7 @@ export const getJobById = async (id: string) => {
         if (jobAny.source) source = jobAny.source;
 
         return {
-            title: job.title,
+            title: `${Date.now()}`,
             source,
             id,
             jobId: job.jobId,
