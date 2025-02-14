@@ -1,21 +1,36 @@
 "use client";
+import { parseMetadata } from "@/utils/funcs";
 import { parseMeta } from "@/utils/server/funcs";
+import { handleErrs } from "@cmn/utils/funcs";
 import UButton from "@repo/ui-next/components/UButton";
 import UForm from "@repo/ui-next/components/UForm";
 import UInput from "@repo/ui-next/components/UInput";
+import axios from "axios";
 import { useState } from "react";
 
 const Page = () => {
     const [url, setUrl] = useState("https://tstreamz.xyz/movies");
     const [title, setTitle] = useState("");
 
-
+    async function _parseMeta(url: string){
+        try {
+            console.log('Parsing local meta...');
+            const {data: html} = await axios.get(url)
+            return await parseMetadata(html)
+        } catch (err) {
+            handleErrs(err)
+            
+        }
+    }
     const parseSite = async () =>{
         setTitle("")
         console.log(url);
-        const res = await parseMeta(url)
+
+        const res = url.includes("localhost") ? await _parseMeta(url) : await parseMeta(url)
         if (res){
             setTitle(res.title)
+        }else{
+            setTitle(`Error - ${Date.now()}`)
         }
     }
     return (

@@ -5,6 +5,7 @@ import { DEV } from "@cmn/utils/bend/consts";
 import { clearTerminal, handleErrs, timedLog } from "@cmn/utils/funcs";
 import { genPost } from "./funcs2";
 import axios from "axios";
+import { parseMetadata } from "../funcs";
 
 
 export const runOnce = async () => {
@@ -41,14 +42,10 @@ export const getPostById = async (id: string) =>{
     return post
 }
 
-import * as cheerio from "cheerio"
-
 export async function parseMeta(url: string) {
     try {
         const {data: html} = await axios.get(url)
-        const $ = cheerio.load(html)
-        const title = $("title").text()
-        return {title}
+        return await parseMetadata(html)
     } catch (err) {
         handleErrs(err)
         
