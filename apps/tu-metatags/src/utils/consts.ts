@@ -1,0 +1,1 @@
+export const CONFIG = {site: "Tu metatags"}

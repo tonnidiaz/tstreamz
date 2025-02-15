@@ -13,7 +13,7 @@
     import UInput from "@repo/ui-sv/components/UInput.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
+    import { isTuError } from "@cmn/utils/funcs";
 
     let btnDisabled = $state(false),
         setBtnDisabled = (v: boolean) => (btnDisabled = v);

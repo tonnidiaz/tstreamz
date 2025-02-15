@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@repo/ui/styles/all.scss";
+import "@/styles/seo.scss"
 import Layout from "@/components/Layout";
 import TuRootLayout from "@/components/RootLayout";
 export const metadata: Metadata = {

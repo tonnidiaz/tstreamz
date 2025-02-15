@@ -2,18 +2,14 @@
     import TMeta from "@/components/TMeta.svelte";
 
     import { localApi } from "@/lib/api";
-    import { STORAGE_KEYS, SITE } from "@/lib/constants";
-    import { setUser } from "@/stores/user.svelte";
+    import { SITE } from "@/lib/constants";
     import type { IObj } from "@cmn/utils/interfaces";
-    import { page } from "$app/stores";
     import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import UButton from "@repo/ui-sv/components/UButton.svelte";
     import UForm from "@repo/ui-sv/components/UForm.svelte";
     import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import UInput from "@repo/ui-sv/components/UInput.svelte";
-    import { handleErrs } from "@cmn/utils/funcs";
-    import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
+    import { handleErrs, isTuError } from "@cmn/utils/funcs";
     import UCheckbox from "@repo/ui-sv/components/UCheckbox.svelte";
     import UTextarea from "@repo/ui-sv/components/UTextarea.svelte";
 

@@ -1,6 +1,5 @@
 import { localApi } from "@/lib/api";
-import { handleErrs } from "@cmn/utils/funcs";
-import { isTuError } from "@cmn/utils/funcs2.js";
+import { handleErrs,isTuError } from "@cmn/utils/funcs";
 import { error } from "@sveltejs/kit";
 import { AxiosError } from "axios";
 

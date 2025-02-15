@@ -10,11 +10,11 @@
     import UInput from "@repo/ui-sv/components/UInput.svelte";
     import { handleErrs } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
+    import { isTuError } from "@cmn/utils/funcs";
     import OtpText from "@repo/ui-sv/components/OTPText.svelte";
     import { logout, requestOTP, verifyOTP } from "@/lib/funcs";
-    import OtpField from "@/components/OTPField.svelte";
     import { localApi } from "@/lib/api";
+    import OtpField from "@repo/ui-sv/components/OTPField.svelte";
 
     let err = $state(""),
         setErr = (v: string) => (err = v);
@@ -71,7 +71,7 @@
                             />
                         </UFormGroup>
                     {:else if step == 1}
-                        <OtpField email={formState.email} user={formState.email} bind:value={formState.otp}/>
+                        <OtpField email={formState.email} user={formState.email} bind:value={formState.otp} api={localApi}/>
                         {:else if step == 2}
                             <UFormGroup label="New password">
                                 <TuPassField required showValidation placeholder="Enter new password..." bind:value={formState.pwd}/>

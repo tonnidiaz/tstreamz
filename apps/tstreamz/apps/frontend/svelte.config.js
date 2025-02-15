@@ -9,7 +9,7 @@ const config = {
 
     kit: {
 
-    alias: {"@cmn/*":"../../../../packages/common/src","@repo/ui-sv/*":"../../../ui/src","@/*":"src/*"},
+    alias: {"@cmn/*":"../../../../packages/common/src/*","@repo/ui-sv/*":"../../../ui-sv/src/*","@repo/ui/*":"../../../ui/src/*","@/*":"src/*"},
     typescript: {
         config: (c) => {
             return {
@@ -19,7 +19,7 @@ const config = {
                     ...c.include,
                     "**/*.ts",
                     "../../../../../node_modules/svelte/elements.d.ts",
-                    "../../../../../packages/common/src", "../../../../ui/src",
+                    "../../../../../packages/common/src/**/*.ts", "../../../../ui-sv/src/**/*.ts", "../../../../ui/src/**/*.ts",
                     ""
                 ],
                 exclude: [

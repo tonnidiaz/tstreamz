@@ -1,7 +1,6 @@
 <script lang="ts">
     import { dev } from "$app/environment";
     import { page } from "$app/stores";
-    import DillaBanner from "@/components/DillaBanner.svelte";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
     import MovieArt from "@/components/MovieArt.svelte";
     import TerraBanner from "@/components/TerraBanner.svelte";

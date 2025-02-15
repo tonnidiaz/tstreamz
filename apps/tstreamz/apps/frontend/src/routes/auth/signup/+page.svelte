@@ -13,8 +13,8 @@
     import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import { handleErrs, sleep } from "@cmn/utils/funcs";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
-    import { isTuError } from "@cmn/utils/funcs2";
-    import OtpField from "@/components/OTPField.svelte";
+    import { isTuError } from "@cmn/utils/funcs";
+    import OtpField from "@repo/ui-sv/components/OTPField.svelte";
     let btnDisabled = $state(true),
         pwdValid = $state(false),
         err = $state(""),
@@ -153,7 +153,7 @@
                     >
                     <div>{SITE} auth</div></legend
                 >
-                <OtpField action={'signup'} email={formData.email} user={formData.email} bind:value={formData.otp}/>
+                <OtpField api={localApi} action={'signup'} email={formData.email} user={formData.email} bind:value={formData.otp}/>
                 {#if err}
                     <p class="mt-2 ml-2 text-error fs-12 text-center">
                         {err?.replace("tu:", "")}

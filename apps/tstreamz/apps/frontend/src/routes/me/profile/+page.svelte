@@ -1,18 +1,16 @@
 <script lang="ts">
-    import { dev } from "$app/environment";
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
-    import OtpField from "@/components/OTPField.svelte";
+    import OtpField from "@repo/ui-sv/components/OTPField.svelte";
 
     import TMeta from "@/components/TMeta.svelte";
     import { localApi } from "@/lib/api";
     import { requestOTP, verifyOTP } from "@/lib/funcs";
     import { appStore } from "@/stores/app.svelte";
     import { setUser, userStore } from "@/stores/user.svelte";
-    import { handleErrs, parseDate } from "@cmn/utils/funcs";
-    import { isTuError } from "@cmn/utils/funcs2";
+    import { handleErrs } from "@cmn/utils/funcs";
+    import { isTuError } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
-    import OtpText from "@repo/ui-sv/components/OTPText.svelte";
     import TuModal from "@repo/ui-sv/components/TuModal.svelte";
     import TuPassField from "@repo/ui-sv/components/TuPassField.svelte";
     import TuTabs from "@repo/ui-sv/components/TuTabs.svelte";
@@ -20,9 +18,8 @@
     import UForm from "@repo/ui-sv/components/UForm.svelte";
     import UFormGroup from "@repo/ui-sv/components/UFormGroup.svelte";
     import UInput from "@repo/ui-sv/components/UInput.svelte";
-    import { onMount, untrack } from "svelte";
-    import { preventDefault } from "svelte/legacy";
-
+    import { untrack } from "svelte";
+    
     let { user } = $derived(userStore);
     let { ready } = $derived(appStore);
 
@@ -417,7 +414,7 @@
                                     />
                                 </UFormGroup>
                             {:else}
-                                <OtpField
+                                <OtpField api={localApi}
                                     email={formState.email}
                                     user={user._id}
                                     bind:value={formState.otp}

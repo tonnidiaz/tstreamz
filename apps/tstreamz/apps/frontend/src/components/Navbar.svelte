@@ -3,10 +3,10 @@
     import { userStore } from "@/stores/user.svelte";
     import TuLink from "@repo/ui-sv/components/TuLink.svelte";
     import { onMount } from "svelte";
-    import MenuItem from "./MenuItem.svelte";
     import CtxMenu2 from "@repo/ui-sv/components/CtxMenu2.svelte";
     import UAvatar from "@repo/ui-sv/components/UAvatar.svelte";
     import UButton from "@repo/ui-sv/components/UButton.svelte";
+    import MenuItem from "@repo/ui-sv/components/MenuItem.svelte";
     import Genres from "./Genres.svelte";
     import { page } from "$app/stores";
     import TuModal from "@repo/ui-sv/components/TuModal.svelte";

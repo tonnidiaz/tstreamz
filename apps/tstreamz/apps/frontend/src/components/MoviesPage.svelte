@@ -2,6 +2,7 @@
     import axios from "axios";
     import { ROOT, SITE } from "@/lib/constants";
     import TuLink from "@repo/ui-sv/components/TuLink.svelte";
+    import TuPaginator from "@repo/ui-sv/components/TuPaginator.svelte";
     import CardPh from "./CardPH.svelte";
     import FixedMovieCard from "./FixedMovieCard.svelte";
     import TMeta from "./TMeta.svelte";
@@ -10,6 +11,9 @@
     import { localApi } from "@/lib/api";
     import ShareIcons from "./ShareIcons.svelte";
     import TerraBanner from "./TerraBanner.svelte";
+    import { goto } from "$app/navigation";
+    import { scrollToTheTop } from "@cmn/utils/funcs-ui";
+    import { dev } from "$app/environment";
 
     let trending = $state<any>(null);
     let popular = $state<any>(null);
@@ -29,6 +33,9 @@
     };
 
     async function getAllMovies() {
+        if (dev)
+        console.log("GETTING ALL MOVIES...");
+        scrollToTheTop()
         popular = null;
         topRated = null;
         trending = null;
@@ -55,9 +62,13 @@
         // console.log({popular: {...data}, topRated: {...data1}, trending: {...data2}})
     }
 
-    onMount(() => {
-        getAllMovies();
-    });
+    // onMount(() => {
+    //     getAllMovies();
+    // });
+    $effect(()=>{
+        num;
+        getAllMovies()
+    })
 </script>
 
 <div class="styles-container">
@@ -80,14 +91,15 @@
                 style="flex-direction: row; flex-wrap: nowrap"
                 class="mb-3 p-2 overflow-x-scroll w-100p flex items-center"
             >
-                {#each [...Array(100)] as it, i}
+                <!-- {#each [...Array(100)] as it, i}
                     <TuLink
                         to={`${isShow ? "/tv/" : "/movies/"}${i + 1}`}
                         class={`btn p-btn btn-sm ${num === `${i + 1}` ? "btn-primary" : ""}`}
                     >
                         {i + 1}
                     </TuLink>
-                {/each}
+                {/each} -->
+                <TuPaginator total={100} page={num ? Number(num) : 1} onPrev={async p=> await goto(`${isShow ? "/tv/" : "/movies/"}${p - 1}`)} onNext={async p=> await goto(`${isShow ? "/tv/" : "/movies/"}${p + 1}`)}/>
             </div>
         </div>
         <div class="sections">
@@ -133,6 +145,7 @@
                 <TerraBanner num={1}/>
             
         </div>
+        <TuPaginator class="mt-4" total={100} page={num ? Number(num) : 1} onPrev={async p=> await goto(`${isShow ? "/tv/" : "/movies/"}${p - 1}`)} onNext={async p=> await goto(`${isShow ? "/tv/" : "/movies/"}${p + 1}`)}/>
     </div>
 </div>
 

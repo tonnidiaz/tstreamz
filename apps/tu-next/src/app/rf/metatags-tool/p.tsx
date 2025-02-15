@@ -1,4 +1,5 @@
 "use client";
+import MetadataTool from "@/components/rf/MetadataTool";
 import { parseMetadata } from "@/utils/funcs";
 import { parseMeta } from "@/utils/server/funcs";
 import { handleErrs } from "@cmn/utils/funcs";
@@ -34,7 +35,7 @@ const Page = () => {
         }
     }
     return (
-        <div className="p-4">
+        <div className="p-4 oy-scroll w-full h-full">
             <h1 className="title">Tu metatags tool</h1>
             <UForm className="my-4" onSubmit={parseSite}>
                 <UInput
@@ -49,6 +50,9 @@ const Page = () => {
             </UForm>
             <div className="mt-4">
                 <h4><b>Site title: </b><span className="text-secondary">{title}</span></h4>
+            </div>
+            <div className="my-4">
+                <MetadataTool/>
             </div>
         </div>
     );

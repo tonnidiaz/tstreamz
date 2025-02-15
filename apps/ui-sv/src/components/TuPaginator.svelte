@@ -2,7 +2,7 @@
     import { type HTMLAttributes } from "svelte/elements";
 
 
-    interface IProps extends HTMLAttributes<any>{page: number; total: number; onPrev?: ()=>any; onNext?: ()=> any}
+    interface IProps extends HTMLAttributes<any>{page: number; total: number; onPrev?: (page: number)=>any; onNext?: (page: number)=> any}
     let {page = $bindable(1), onNext, onPrev, total, class: _class, ...props}: IProps = $props()
 </script>
 <div class={"mx-auto mt-4 w-100p flex justify-center " + _class || ''} {...props}>
@@ -10,7 +10,7 @@
         <button
             onclick={async()=>{
                 if (onPrev) 
-                    return await onPrev();
+                    return await onPrev(page);
                 page -= 1
             }}
             disabled={page == 1}
@@ -23,7 +23,7 @@
         <button
             onclick={async()=>{
                 if (onNext)
-                    return await onNext();
+                    return await onNext(page);
                 page += 1
             }}
             disabled={page == total}

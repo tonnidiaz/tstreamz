@@ -1,6 +1,5 @@
 <script lang="ts">
     import { page } from "$app/stores";
-    import DillaBanner from "@/components/DillaBanner.svelte";
     import FixedMovieCard from "@/components/FixedMovieCard.svelte";
     import MovieArt from "@/components/MovieArt.svelte";
     import TerraBanner from "@/components/TerraBanner.svelte";
@@ -14,7 +13,7 @@
     import { handleErrs } from "@cmn/utils/funcs";
     import type { IObj } from "@cmn/utils/interfaces";
     import TuLink from "@repo/ui-sv/components/TuLink.svelte";
-    import { onMount, untrack } from "svelte";
+    import { untrack } from "svelte";
 
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);

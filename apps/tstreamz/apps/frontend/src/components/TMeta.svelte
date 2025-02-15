@@ -25,9 +25,7 @@
 </script>
 
 <svelte:head>
-    <title>
-       {__title}
-    </title>
+    <title>{__title.trim()}</title>
     <meta name="description" content={`${_description}`} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />

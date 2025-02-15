@@ -1,8 +1,8 @@
 <script lang="ts">
-   import "@repo/ui-sv/styles/all.scss";
+   import "@repo/ui/styles/all.scss";
    import "@flaticon/flaticon-uicons/css/all/all.css";
 
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
     import AuthLayout from "@/layouts/AuthLayout.svelte";
     import DefaultLayout from "@/layouts/DefaultLayout.svelte";
     import { onMount } from "svelte";
@@ -71,7 +71,7 @@
     }
 </script>
 
-{#if authLayouts.find((el) => $page.route.id.startsWith(el))}
+{#if authLayouts.find((el) => page.route?.id?.startsWith(el))}
     <AuthLayout>
         {@render children()}
     </AuthLayout>
