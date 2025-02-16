@@ -3,7 +3,7 @@ import MetadataTool from "@/components/MetadataTool";
 import { parseMetadata, validateMetatags } from "@/utils/funcs";
 import { IMetadata } from "@/utils/interfaces";
 import { parseMeta } from "@/utils/server/funcs";
-import { handleErrs, isValidURL } from "@cmn/utils/funcs";
+import { handleErrs, isValidURL, sleep } from "@cmn/utils/funcs";
 import { showToast } from "@cmn/utils/funcs-ui";
 import UButton from "@repo/ui-next/components/UButton";
 import UForm from "@repo/ui-next/components/UForm";
@@ -32,6 +32,12 @@ const m = {
     ogDescription: testMeta.desc,
     ogImage: testMeta.img,
 };
+
+const emptyMeta : IMetadata ={
+    url: '', title: '', description: '', favicon:'',
+    og: {url: '', title: '', description: '', image: ''},
+    twitter: {title: '', description: '', image: ''},
+}
 const Page = ({origin} : {origin: string}) => {
 
     
@@ -60,9 +66,11 @@ const Page = ({origin} : {origin: string}) => {
     const parseSite = async (url: string) => {
         console.log(url);
 
+        setMetadata(null)
         const res = ["localhost", "127.0.0.1"].find((el) => url.includes(el))
             ? await _parseMeta(url)
             : await parseMeta(url);
+        
         if (res) {
             setMetadata(res);
         } else {
@@ -109,7 +117,7 @@ const Page = ({origin} : {origin: string}) => {
                 <MetadataTool
                     url={url}
                     metadata={
-                        validateMetatags(metadata) || { url, canonical: url }
+                        validateMetatags(metadata) || emptyMeta
                     }
                     setMetadata={setMetadata}
                 />

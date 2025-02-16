@@ -250,6 +250,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             font-size: 0.85rem;
             line-height: 20px;
             background-color: var(--outgoing-background-deeper);
+            overflow: hidden;
             .page-title {
                 font-size: 13.8px;
                 line-break: break-word;
@@ -262,6 +263,9 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
                 max-height: calc(var(--preview-thumb-size) + 20px);
                 line-height: 19px;
                 padding: 6px 10px;
+                max-width: 100%;
+                overflow: hidden;
+                text-overflow: ellipsis;
                 .desc {
                     max-height: calc(var(--line-height-quoted) * 2);
                     overflow: hidden;
@@ -274,7 +278,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
         }
         .img {
             height: 186.914px;
-            background-color: rgba(0, 0, 0, 0.445);
+            // background-color: rgba(0, 0, 0, 0.445);
             img {
                 object-fit: cover;
             }

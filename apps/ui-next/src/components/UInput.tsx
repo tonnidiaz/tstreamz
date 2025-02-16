@@ -1,12 +1,9 @@
 import { InputHTMLAttributes, ReactNode } from "react";
-import { TuState } from "../lib/interfaces";
-
 export interface IUInputProps extends InputHTMLAttributes<any> {
     override?: string;
     inputClass?: string;
     trailing?: ReactNode;
     leading?: ReactNode;
-    $value?: TuState<any>;
 }
 const UInput = ({
     disabled,
@@ -15,9 +12,6 @@ const UInput = ({
     trailing,
     className,
     override,
-    onChange,
-    value,
-    $value,
     ...props
 }: IUInputProps) => {
     const defClass =
@@ -32,16 +26,9 @@ const UInput = ({
             {leading}
             <input
                 {...props}
-                value={!$value ? value : $value.value}
                 className={inputClass || ""}
                 disabled={disabled}
-                onChange={
-                    !$value
-                        ? onChange
-                        : ({ target }) => {
-                              $value.value = target.value;
-                          }
-                }
+               
             />
             {trailing}
         </div>

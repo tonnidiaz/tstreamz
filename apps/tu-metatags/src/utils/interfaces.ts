@@ -1,15 +1,13 @@
-export interface IMetadata {
-    title?: string;
-    description?: string;
-    canonical: string;
+export interface IMetadataItem {
+    title: string;
+    description: string;
+}
+export interface ISocialMetadata extends IMetadataItem {
+    image: string;
+}
+export interface IMetadata extends IMetadataItem {
     url: string;
-    ogUrl?: string;
-    ogTitle?: string;
-    ogDescription?: string;
-    ogImage?: string;
-    twitterTitle?: string;
-    twitterImage?: string;
-    twitterDescription?: string;
-    favicon?: string
-
+    favicon: string;
+    og: ISocialMetadata & { url: string };
+    twitter: ISocialMetadata;
 }

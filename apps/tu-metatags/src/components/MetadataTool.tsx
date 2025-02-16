@@ -1,34 +1,35 @@
-import { IMetadata } from "@/utils/interfaces";
+import { IMetadata, IMetadataItem } from "@/utils/interfaces";
 import { isValidURL } from "@cmn/utils/funcs";
+import { tuImmer } from "@cmn/utils/funcs4";
 import UDivider from "@repo/ui-next/components/UDivider";
 import UFormGroup from "@repo/ui-next/components/UFormGroup";
 import UInput from "@repo/ui-next/components/UInput";
 import UTextArea from "@repo/ui-next/components/UTextarea";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const GooglePreview = ({ title, description, url, canonical, favicon }) => {
+const GooglePreview = ({meta}: {meta: IMetadata}) => {
     return (
         <div className="seo-card w-450px google">
             <div className="header">
                 <br style={{ height: 15 }} />
-                <h3 className="page-title">{title || `[title comes here]`}</h3>
+                <h3 className="page-title">{meta.title || `[title comes here]`}</h3>
                 <div className="links">
                     <div className="flex items-center">
                         <div className="favicon">
-                            {favicon && (
-                                <img src={favicon} alt="site favicon" />
+                            {meta.favicon && (
+                                <img src={meta.favicon} alt="site favicon" />
                             )}
                         </div>
                         <div>
                             <div className="site">
                                 <span>
-                                    {canonical?.length && isValidURL(canonical)
-                                        ? new URL(canonical).hostname
+                                    {meta.url?.length && isValidURL(meta.url)
+                                        ? new URL(meta.url).hostname
                                         : `[url comes here]`}
                                 </span>
                             </div>
                             <div className="url">
-                                <span>{url}</span>
+                                <span>{meta.url}</span>
                             </div>
                         </div>
                     </div>
@@ -37,20 +38,20 @@ const GooglePreview = ({ title, description, url, canonical, favicon }) => {
             <div
                 className="flex-1 desc"
                 dangerouslySetInnerHTML={{
-                    __html: description || `[description comes here]`,
+                    __html: meta.description || `[description comes here]`,
                 }}
             ></div>
         </div>
     );
 };
 
-const FacebookPreview = ({ ogTitle, ogDescription, ogImage, ogUrl }) => {
+const FacebookPreview = ({meta} : {meta: IMetadata['og']}) => {
     return (
         <div className="seo-card w-450px facebook">
             <div className="h-48 w-ful img">
-                {ogImage ? (
+                {meta.image ? (
                     <img
-                        src={ogImage}
+                        src={meta.image}
                         alt="Preview"
                         className="w-full object-cover"
                     />
@@ -61,15 +62,15 @@ const FacebookPreview = ({ ogTitle, ogDescription, ogImage, ogUrl }) => {
 
             <div className="desc">
                 <div className="host">
-                    {ogUrl?.length && isValidURL(ogUrl)
-                        ? new URL(ogUrl).host.replace("www.", "").toUpperCase()
+                    {meta.url?.length && isValidURL(meta.url)
+                        ? new URL(meta.url).host.replace("www.", "").toUpperCase()
                         : `[og:url comes here]`}
                 </div>
                 <h2 className="page-title">
-                    {ogTitle || `[og:title comes here]`}
+                    {meta.title || `[og:title comes here]`}
                 </h2>
                 <p className="p">
-                    {ogDescription || `[og:description comes here]`}
+                    {meta.description || `[og:description comes here]`}
                 </p>
             </div>
         </div>
@@ -96,35 +97,34 @@ const TwitterPreview = ({ twitterTitle, twitterDescription, twitterImage }) => {
     );
 };
 
-const WhatsAppPreview = ({ ogTitle, ogDescription, ogImage, ogUrl }) => {
+const WhatsAppPreview = ({meta}: {meta: IMetadata['og']}) => {
     return (
         <div className="seo-card w-450px wapp">
             <div className="content">
                 <div className="img">
-                    {ogImage && (
+                    {meta.image ? (
                         <img
-                            src={ogImage}
+                            src={meta.image}
                             alt="Preview"
                             className="w-full h-48 object-cover"
                         />
-                    )}
+                    ) : '[og:image goes here]'}
                 </div>
                 <div className="info">
-                    <h3 className="page-title">{ogTitle}</h3>
-                    <div className="desc">{ogDescription}</div>
+                    <h3 className="page-title">{meta.title || '[og:title goes here]'}</h3>
+                    <div className="desc">{meta.description || '[og:description goes here]'}</div>
                     <span className="host">
-                        <a href={ogUrl} target="_blank">
-                            {isValidURL(ogUrl) && new URL(ogUrl).host}
-                        </a>
+                        {isValidURL(meta.url) ? <a href={meta.url} target="_blank">
+                            {isValidURL(meta.url) && new URL(meta.url).host}
+                        </a> : '[og:url hostname goes here'}
                     </span>
                 </div>
             </div>
             <div className="link">
                 <span>
-                    {" "}
-                    <a href={ogUrl} target="_blank">
-                        {isValidURL(ogUrl) && ogUrl}
-                    </a>
+                    {meta.url ? <a href={meta.url} target="_blank">
+                        {isValidURL(meta.url) && meta.url}
+                    </a> : '[og:url goes here]'}
                 </span>
             </div>
         </div>
@@ -155,29 +155,18 @@ const MetadataPreviews = ({ metadata }: { metadata: IMetadata }) => {
             <div>
                 <h4>Google</h4>
                 <GooglePreview
-                    title={metadata.title}
-                    description={metadata.description}
-                    url={metadata.url}
-                    canonical={metadata.canonical}
-                    favicon={metadata.favicon}
+                    meta={metadata}
                 />
             </div>
             <div>
                 <h4>Facebook</h4>
-                <FacebookPreview
-                    ogTitle={metadata.ogTitle}
-                    ogDescription={metadata.ogDescription}
-                    ogImage={metadata.ogImage}
-                    ogUrl={metadata.ogUrl}
+                <FacebookPreview meta={metadata.og}
                 />
             </div>
 
             {/* <TwitterPreview twitterTitle={metadata.twitterTitle} twitterDescription={metadata.twitterDescription} twitterImage={metadata.twitterImage} /> */}
             <WhatsAppPreview
-                ogUrl={metadata.ogUrl}
-                ogTitle={metadata.ogTitle}
-                ogDescription={metadata.ogDescription}
-                ogImage={metadata.ogImage}
+                meta={metadata.og}
             />
             {/* <LinkedInPreview ogTitle={metadata.ogTitle} ogDescription={metadata.ogDescription} ogImage={metadata.ogImage} /> */}
             {/* Add more previews here for Telegram, Slack, Discord, etc. */}
@@ -190,6 +179,9 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
         setMetadata({ ...metadata, [e.target.name]: e.target.value });
     };
 
+    useEffect(()=>{
+        console.log(metadata);
+    }, [metadata])
     return (
         <div className="p-4 border border-gray-300 rounded-md bg-white flex-col gap-1">
             <h3 className="text-lg font-bold mb-3">Edit Metadata</h3>
@@ -207,19 +199,9 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
                 <UTextArea
                     name="description"
                     value={metadata.description}
-                    onChange={handleChange}
+                    onChange={(e)=>setMetadata(tuImmer(metadata, m=>m.description = e.target.value))}
                     placeholder="Description"
                     style={{ resize: "vertical" }}
-                />
-            </UFormGroup>
-            <UFormGroup label="Page image url">
-                <UInput
-                    type="text"
-                    name="ogImage"
-                    className="input-sm"
-                    value={metadata.ogImage}
-                    onChange={handleChange}
-                    placeholder="Image URL"
                 />
             </UFormGroup>
             <UDivider className="my-4"/>
@@ -228,8 +210,8 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
                 <UInput
                     type="text"
                     name="ogTitle"
-                    value={metadata.ogTitle}
-                    onChange={handleChange}
+                    value={metadata.og.title}
+                    onChange={(e)=>setMetadata(tuImmer(metadata, m=>m.og.title = e.target.value))}
                     placeholder="OG title..."
                     className="input-sm"
                 />
@@ -237,8 +219,8 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
             <UFormGroup label="Facebook description">
                 <UTextArea
                     name="ogDescription"
-                    value={metadata.ogDescription}
-                    onChange={handleChange}
+                    value={metadata.og.description}
+                    onChange={(val)=>setMetadata(tuImmer(metadata, m=>m.og.description= val))}
                     placeholder="OG description..."
                     style={{ resize: "vertical" }}
                 />
@@ -248,8 +230,8 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
                     type="text"
                     name="ogImage"
                     className="input-sm"
-                    value={metadata.ogImage}
-                    onChange={handleChange}
+                    value={metadata.og.image}
+                    onChange={(e)=>setMetadata(tuImmer(metadata, m=>m.og.image = e.target.value))}
                     placeholder="OG Image URL"
                 />
             </UFormGroup>
@@ -259,8 +241,8 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
                 <UInput
                     type="text"
                     name="twitterTitle"
-                    value={metadata.twitterTitle}
-                    onChange={handleChange}
+                    value={metadata.twitter.title}
+                    onChange={(e)=>setMetadata(tuImmer(metadata, m=>m.twitter.title = e.target.value))}
                     placeholder="Twitter title..."
                     className="input-sm"
                 />
@@ -268,8 +250,8 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
             <UFormGroup label="Twitter description">
                 <UTextArea
                     name="twitterDescription"
-                    value={metadata.twitterDescription}
-                    onChange={handleChange}
+                    value={metadata.twitter.description}
+                    onChange={(e)=>setMetadata(tuImmer(metadata, m=>m.twitter.description = e.target.value))}
                     placeholder="Twitter description..."
                     style={{ resize: "vertical" }}
                 />
@@ -279,8 +261,8 @@ const MetadataEditor = ({ metadata, setMetadata }: {metadata: IMetadata; setMeta
                     type="text"
                     name="twitterImage"
                     className="input-sm"
-                    value={metadata.twitterImage}
-                    onChange={handleChange}
+                    value={metadata.twitter.image}
+                    onChange={(e)=>setMetadata(tuImmer(metadata, m=>m.twitter.image = e.target.value))}
                     placeholder="Twitter Image URL"
                 />
             </UFormGroup>
