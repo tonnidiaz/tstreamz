@@ -94,26 +94,43 @@ export const isTuError = (er: any): string | undefined => {
 
 import cp from "cron-parser";
 export const verifyCron = (specs: string, now: Date) => {
-
-    const {fields} = cp.parseExpression(specs);
-    const min = now.getMinutes() as typeof fields.minute[number]
-    const hr = now.getHours() as typeof fields.hour[number]
-    const day = now.getDay() as typeof fields.dayOfWeek[number]
+    const { fields } = cp.parseExpression(specs);
+    const min = now.getMinutes() as (typeof fields.minute)[number];
+    const hr = now.getHours() as (typeof fields.hour)[number];
+    const day = now.getDay() as (typeof fields.dayOfWeek)[number];
     // console.log({now, prev, next});
-    return fields.minute.includes(min) && fields.hour.includes(hr) && fields.dayOfWeek.includes(day)
+    return (
+        fields.minute.includes(min) &&
+        fields.hour.includes(hr) &&
+        fields.dayOfWeek.includes(day)
+    );
 };
 
-export const isValidDate = (val: number | string | Date) => new Date(val).toString() != "Invalid Date"
-export const formatNum = (num: number, decimals = 2) => new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "ZAR",
-    minimumFractionDigits: decimals,
-}).format(num);
+export const isValidDate = (val: number | string | Date) =>
+    new Date(val).toString() != "Invalid Date";
+export const formatNum = (num: number, decimals = 2) =>
+    new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "ZAR",
+        minimumFractionDigits: decimals,
+    }).format(num);
 
 export function formatDuration(seconds: number) {
-    const h = Math.floor(seconds / 3600).toString().padStart(2, '0');
-    const m = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
-    const s = (seconds % 60).toString().padStart(2, '0');
+    const h = Math.floor(seconds / 3600)
+        .toString()
+        .padStart(2, "0");
+    const m = Math.floor((seconds % 3600) / 60)
+        .toString()
+        .padStart(2, "0");
+    const s = (seconds % 60).toString().padStart(2, "0");
     return `${h}:${m}:${s}`;
 }
 
+export const isValidURL = (url: string) => {
+    try {
+        new URL(url);
+        return true;
+    } catch (err) {
+        return false;
+    }
+};

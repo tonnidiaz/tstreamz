@@ -6,10 +6,17 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
     NotoSansTibetan, NotoSansCherokee, NotoSansArabic, NotoSansMyanmar,
     system-ui, Arial, sans-serif !important;
 .seo-card {
-    @apply border border-gray-300 w-[400px] rounded-md bg-white;
+    @apply border border-gray-300 rounded-md bg-white;
     position: relative;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    .img {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
     &.google {
         @apply p-4;
         display: flex;
@@ -36,12 +43,16 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             display: block;
             .favicon {
                 margin-right: 12px;
+                width: 26px !important;
+                height: 26px !important;
+                border: 1px solid #dadce0;
+                background-color: #f1f3f4;
+                border-radius: 50%;
                 img {
-                    width: 26px !important;
-                    height: 26px !important;
-                    border: 1px solid #dadce0;
-                    background-color: #f1f3f4;
-                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: inherit;
+                    background-color: inherit;
                 }
             }
             .site {
@@ -99,7 +110,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
     }
 
     &.facebook {
-        width: 360px;
+        width: 100%;
         font-family: $fb-font;
         line-height: 20px;
         font-size: 13px;
@@ -107,7 +118,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             font-family: $fb-font;
         }
         .img {
-            height: 188px;
+            height: 235px;
             width: 100%;
             &::before {
                 background-color: rgba(247, 248, 250, 1);
@@ -169,6 +180,103 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
                 overflow: hidden;
                 font-size: 16px;
                 line-height: 21px;
+            }
+        }
+    }
+
+    &.wapp {
+        --message-primary: #111b21;
+        --radius-bubble: 7.5px;
+        --radius-thumb: 6px;
+        --outgoing-background: #d9fdd3;
+        --outgoing-background-deeper: #d1f4cc;
+        --preview-thumb-size: 90px;
+        --line-height-quoted: 20px;
+        position: relative;
+        flex: none;
+        font-size: 14.2px;
+        line-height: 19px;
+        color: var(--message-primary);
+        border-radius: var(--radius-bubble);
+        padding-bottom: 8px;
+        padding-top: 6px;
+        background-color: var(--outgoing-background) !important;
+        padding-left: 9px;
+        padding-right: 7px;
+        font-family:
+            "SF Pro Text",
+            "SF Pro Icons",
+            system,
+            -apple-system,
+            system-ui,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            "Helvetica Neue",
+            "Helvetica",
+            "Arial",
+            "Lucida Grande",
+            "Ubuntu",
+            "Cantarell",
+            "Fira Sans",
+            sans-serif;
+
+        .link {
+            position: relative;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            font-size: 14.2px;
+            a {
+                color: #0063cb;
+                text-underline-offset: 2px;
+                text-decoration: underline;
+            }
+        }
+        .host {
+            color: rgba(17, 27, 33, 0.3);
+            font-size: 0.75rem;
+            a {
+                text-decoration: none;
+                outline: none;
+            }
+        }
+        .content {
+            margin: -3px -4px 6px -6px;
+            border-top-right-radius: var(--radius-thumb);
+            border-top-left-radius: var(--radius-thumb);
+            color: var(--message-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem;
+            line-height: 20px;
+            background-color: var(--outgoing-background-deeper);
+            .page-title {
+                font-size: 13.8px;
+                line-break: break-word;
+                white-space: pre-line;
+                margin-bottom: 2px;
+                font-weight: 600;
+            }
+            .info {
+                @apply flex-col;
+                max-height: calc(var(--preview-thumb-size) + 20px);
+                line-height: 19px;
+                padding: 6px 10px;
+                .desc {
+                    max-height: calc(var(--line-height-quoted) * 2);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: 12px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                }
+            }
+        }
+        .img {
+            height: 186.914px;
+            background-color: rgba(0, 0, 0, 0.445);
+            img {
+                object-fit: cover;
             }
         }
     }
