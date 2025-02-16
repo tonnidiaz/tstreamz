@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @for $i from 1 through 20 {
+        .max-lines-#{$i} {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: $i;
+            line-clamp: $i;
+            -webkit-box-orient: vertical;
+        }
+    }
+}

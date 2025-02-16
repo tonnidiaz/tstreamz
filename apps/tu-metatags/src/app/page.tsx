@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Page from "./p";
 import { CONFIG } from "@/utils/consts";
-import { headers } from "next/headers";
 import { getHost } from "@repo/ui-next/lib/funcs";
 
 const title = `${CONFIG.site} - ${CONFIG.slogan}`;

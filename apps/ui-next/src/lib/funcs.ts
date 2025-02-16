@@ -6,6 +6,5 @@ export const getHost = async () => {
     const headerList = await headers();
     const baseUrl =
         headerList.get("origin") || `http://${headerList.get("host")}`;
-        console.log({baseUrl});
     return baseUrl;
 };

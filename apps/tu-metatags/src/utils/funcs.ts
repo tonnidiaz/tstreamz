@@ -19,16 +19,16 @@ export async function parseMetadata(
             url: $('meta[property="og:url"]').attr("content"),
         },
         twitter: {
-            title: $('meta[name="twitter:title"]').attr("content"),
-            description: $('meta[name="twitter:description"]').attr("content"),
-            image: $('meta[name="twitter:image"]').attr("content"),
+            title: $('meta[property="twitter:title"]').attr("content"),
+            description: $('meta[property="twitter:description"]').attr("content"),
+            image: $('meta[property="twitter:image"]').attr("content"),
         },
     };
     return meta;
 }
 
 export const validateMetatags: (meta: IMetadata) => IMetadata = (meta) => {
-    if (!meta) return meta;
+    if (!meta?.url) return meta;
     const links = ["favicon", "ogUrl", "ogImage", "twitterImage"];
     const { origin } = new URL(meta.url);
     for (let k of links) {

@@ -66,7 +66,7 @@ const Page = ({origin} : {origin: string}) => {
     const parseSite = async (url: string) => {
         console.log(url);
 
-        setMetadata(null)
+        setMetadata(emptyMeta)
         const res = ["localhost", "127.0.0.1"].find((el) => url.includes(el))
             ? await _parseMeta(url)
             : await parseMeta(url);

@@ -4,6 +4,7 @@ import { DEV } from "@cmn/utils/bend/consts";
 import { clearTerminal, handleErrs, timedLog } from "@cmn/utils/funcs";
 import axios from "axios";
 import { parseMetadata } from "../funcs";
+import { writeFileSync } from "fs";
 
 
 export const runOnce = async () => {
@@ -28,6 +29,7 @@ export const runOnce = async () => {
 export async function parseMeta(url: string) {
     try {
         const {data: html} = await axios.get(url)
+        // writeFileSync('twitter.html', html)
         return await parseMetadata(url, html)
     } catch (err) {
         handleErrs(err)

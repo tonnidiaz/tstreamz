@@ -5,6 +5,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
     NotoSansArmenian, NotoSansGeorgian, NotoSansEthiopic, NotoSansOriya,
     NotoSansTibetan, NotoSansCherokee, NotoSansArabic, NotoSansMyanmar,
     system-ui, Arial, sans-serif !important;
+
 .seo-card {
     @apply border border-gray-300 rounded-md bg-white;
     position: relative;
@@ -74,6 +75,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
         }
 
         .desc {
+            @apply max-lines-2;
             display: -webkit-box;
             overflow: hidden;
             font-family: Arial, sans-serif;
@@ -82,9 +84,6 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             line-height: 22px;
             color: #474747;
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* number of lines to show */
-            line-clamp: 2;
-            -webkit-box-orient: vertical;
         }
 
         .page-title {
@@ -147,7 +146,9 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             line-height: 16px;
             font-size: 12px;
         }
+
         .page-title {
+            @apply max-lines-2;
             margin-top: 1px;
             // height: 21px;
             z-index: 0;
@@ -163,6 +164,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             height: 104px;
             overflow: hidden;
             text-overflow: ellipsis;
+            background-color: #f0f2f5;
             &::before {
                 position: absolute;
                 content: "";
@@ -257,6 +259,7 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
                 white-space: pre-line;
                 margin-bottom: 2px;
                 font-weight: 600;
+                @apply max-lines-2;
             }
             .info {
                 @apply flex-col;
@@ -281,6 +284,77 @@ $fb-font: Roboto-V2, popular-symbols, lite-glyphs-outlined, lite-glyphs-filled,
             // background-color: rgba(0, 0, 0, 0.445);
             img {
                 object-fit: cover;
+            }
+        }
+    }
+
+    &.twitter {
+        height: 191.32px;
+        align-items: stretch;
+        background-color: #fff;
+        border: 0px solid black;
+        box-sizing: border-box;
+        display: flex;
+        flex-basis: auto;
+        flex-direction: column;
+        flex-shrink: 0;
+        list-style: none;
+        margin: 0px;
+        min-height: 0px;
+        min-width: 0px;
+        padding: 0px;
+        position: relative;
+        text-decoration: none;
+        font-size: 15px;
+        color-scheme: light;
+
+        .img {
+            outline-style: none;
+            border-radius: 16px;
+            border: 1px solid rgb(207, 217, 222);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .desc {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            div {
+                height: 20px;
+                max-width: 100%;
+                background-color: rgba(0, 0, 0, 0.77);
+                padding-left: 8px;
+                padding-right: 8px;
+                border-radius: 4px;
+                @apply flex items-center;
+                .page-title {
+                    color: rgb(255, 255, 255);
+                    text-overflow: ellipsis;
+                    font-size: 13px;
+                    white-space: nowrap;
+                    line-height: 16px;
+                    font-weight: 400;
+                    overflow: hidden;
+                    overflow-wrap: break-word;
+                    font-family:
+                        "TwitterChirp",
+                        -apple-system,
+                        BlinkMacSystemFont,
+                        "Segoe UI",
+                        Roboto,
+                        Helvetica,
+                        Arial,
+                        sans-serif;
+                }
             }
         }
     }
