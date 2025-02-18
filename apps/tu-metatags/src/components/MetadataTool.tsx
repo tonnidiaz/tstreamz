@@ -1,11 +1,14 @@
 import { IMetadata, IMetadataItem } from "@/utils/interfaces";
 import { isValidURL } from "@cmn/utils/funcs";
 import { tuImmer } from "@cmn/utils/funcs4";
+import TuModal from "@repo/ui-next/components/TuModal";
+import UButton from "@repo/ui-next/components/UButton";
 import UDivider from "@repo/ui-next/components/UDivider";
 import UFormGroup from "@repo/ui-next/components/UFormGroup";
 import UInput from "@repo/ui-next/components/UInput";
 import UTextArea from "@repo/ui-next/components/UTextarea";
 import React, { useEffect, useState } from "react";
+import MetadataEditor from "./MetadataEditor";
 
 const GooglePreview = ({ meta }: { meta: IMetadata }) => {
     return (
@@ -51,9 +54,9 @@ const FacebookPreview = ({ meta }: { meta: IMetadata["og"] }) => {
     return (
         <div className="seo-card w-450px facebook">
             <div className="h-48 w-ful img">
-                {meta.image ? (
+                {meta.images && isValidURL(meta.url) ? (
                     <img
-                        src={meta.image}
+                        src={meta.images}
                         alt="Preview"
                         className="w-full object-cover"
                     />
@@ -85,19 +88,18 @@ const TwitterPreview = ({ meta }: { meta: IMetadata["twitter"] }) => {
     return (
         <div className="seo-card twitter w-450px">
             <div className="content">
-                <div className="img" style={{ backgroundImage: `url("${meta.image}")` }}>
-                    {/* {meta.image && (
-                <img
-                    src={meta.image}
-                    alt="Preview"
-                    className="w-full h-48 object-cover"
-                />
-            )} */}
+                <div
+                    className="img"
+                    style={{ backgroundImage: `url("${meta.images}")` }}
+                >
+                    {!meta.images && "[twitter:image goes here]"}
                 </div>
 
                 <div className="desc">
                     <div>
-                        <h3 className="page-title">{meta.title}</h3>
+                        <h3 className="page-title">
+                            {meta.title || "[twitter:title goes here]"}
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -110,9 +112,9 @@ const WhatsAppPreview = ({ meta }: { meta: IMetadata["og"] }) => {
         <div className="seo-card w-450px wapp">
             <div className="content">
                 <div className="img">
-                    {meta.image ? (
+                    {meta.images && isValidURL(meta.images) ? (
                         <img
-                            src={meta.image}
+                            src={meta.images}
                             alt="Preview"
                             className="w-full h-48 object-cover"
                         />
@@ -187,158 +189,12 @@ const MetadataPreviews = ({ metadata }: { metadata: IMetadata }) => {
                 <TwitterPreview meta={metadata.twitter} />
             </div>
             <div>
-                <h4>WhatsApp</h4><WhatsAppPreview meta={metadata.og} />
+                <h4>WhatsApp</h4>
+                <WhatsAppPreview meta={metadata.og} />
             </div>
-            
+
             {/* <LinkedInPreview ogTitle={metadata.ogTitle} ogDescription={metadata.ogDescription} ogImage={metadata.ogImage} /> */}
             {/* Add more previews here for Telegram, Slack, Discord, etc. */}
-        </div>
-    );
-};
-
-const MetadataEditor = ({
-    metadata,
-    setMetadata,
-}: {
-    metadata: IMetadata;
-    setMetadata: (m: IMetadata) => any;
-}) => {
-    const handleChange = (e) => {
-        setMetadata({ ...metadata, [e.target.name]: e.target.value });
-    };
-
-    useEffect(() => {
-    }, [metadata]);
-    return (
-        <div className="p-4 border border-gray-300 rounded-md bg-white flex-col gap-1">
-            <h3 className="text-lg font-bold mb-3">Edit Metadata</h3>
-            <UFormGroup label="Page title">
-                <UInput
-                    type="text"
-                    name="title"
-                    value={metadata.title}
-                    onChange={handleChange}
-                    placeholder="Title"
-                    className="input-sm"
-                />
-            </UFormGroup>
-            <UFormGroup label="Page description">
-                <UTextArea
-                    name="description"
-                    value={metadata.description}
-                    onChange={(e) =>
-                        setMetadata(
-                            tuImmer(
-                                metadata,
-                                (m) => (m.description = e.target.value)
-                            )
-                        )
-                    }
-                    placeholder="Description"
-                    style={{ resize: "vertical" }}
-                />
-            </UFormGroup>
-            <UDivider className="my-4" />
-            {/* Facebook */}
-            <UFormGroup label="Facebook title">
-                <UInput
-                    type="text"
-                    name="ogTitle"
-                    value={metadata.og.title}
-                    onChange={(e) =>
-                        setMetadata(
-                            tuImmer(
-                                metadata,
-                                (m) => (m.og.title = e.target.value)
-                            )
-                        )
-                    }
-                    placeholder="OG title..."
-                    className="input-sm"
-                />
-            </UFormGroup>
-            <UFormGroup label="Facebook description">
-                <UTextArea
-                    name="ogDescription"
-                    value={metadata.og.description}
-                    onChange={(val) =>
-                        setMetadata(
-                            tuImmer(metadata, (m) => (m.og.description = val))
-                        )
-                    }
-                    placeholder="OG description..."
-                    style={{ resize: "vertical" }}
-                />
-            </UFormGroup>
-            <UFormGroup label="Facebook image url">
-                <UInput
-                    type="text"
-                    name="ogImage"
-                    className="input-sm"
-                    value={metadata.og.image}
-                    onChange={(e) =>
-                        setMetadata(
-                            tuImmer(
-                                metadata,
-                                (m) => (m.og.image = e.target.value)
-                            )
-                        )
-                    }
-                    placeholder="OG Image URL"
-                />
-            </UFormGroup>
-            <UDivider className="my-4" />
-            {/* Twitter */}
-            <UFormGroup label="Twitter title">
-                <UInput
-                    type="text"
-                    name="twitterTitle"
-                    value={metadata.twitter.title}
-                    onChange={(e) =>
-                        setMetadata(
-                            tuImmer(
-                                metadata,
-                                (m) => (m.twitter.title = e.target.value)
-                            )
-                        )
-                    }
-                    placeholder="Twitter title..."
-                    className="input-sm"
-                />
-            </UFormGroup>
-            <UFormGroup label="Twitter description">
-                <UTextArea
-                    name="twitterDescription"
-                    value={metadata.twitter.description}
-                    onChange={(e) =>
-                        setMetadata(
-                            tuImmer(
-                                metadata,
-                                (m) => (m.twitter.description = e.target.value)
-                            )
-                        )
-                    }
-                    placeholder="Twitter description..."
-                    style={{ resize: "vertical" }}
-                />
-            </UFormGroup>
-            <UFormGroup label="Twitter image url">
-                <UInput
-                    type="text"
-                    name="twitterImage"
-                    className="input-sm"
-                    value={metadata.twitter.image}
-                    onChange={(e) =>
-                        setMetadata(
-                            tuImmer(
-                                metadata,
-                                (m) => (m.twitter.image = e.target.value)
-                            )
-                        )
-                    }
-                    placeholder="Twitter Image URL"
-                />
-            </UFormGroup>
         </div>
     );
 };
@@ -352,9 +208,42 @@ const MetadataTool = ({
     setMetadata: (val: IMetadata) => any;
     url: string;
 }) => {
+    const [sz, setSz] = useState({ w: 0, h: 0 });
+
+    function onWinResize() {
+        setSz({ w: window.innerWidth, h: window.innerHeight });
+    }
+
+    useEffect(() => {
+        onWinResize();
+    }, []);
+    useEffect(() => {
+        window.addEventListener("resize", onWinResize);
+        return () => window.removeEventListener("resize", onWinResize);
+    }, []);
     return (
-        <div className="p-4 bg-gray-100 flex gap-2 justify-center">
-            <MetadataEditor metadata={metadata} setMetadata={setMetadata} />
+        <div
+            className={`p-2 md:p4 bg-gray-100 flex justify-center ${sz.w >= 815 && "gap-2"}`}
+        >
+            {sz.w >= 815 ? (
+                <MetadataEditor metadata={metadata} setMetadata={setMetadata} />
+            ) : (
+                <div>
+                    <TuModal
+                        toggler={
+                            <UButton className="fab rounded-full fs-20 w-40px h-40px btn-primary">
+                                <i className="fi fi-sr-pencil"></i>
+                            </UButton>
+                        }
+                    >
+                        <MetadataEditor
+                            metadata={metadata}
+                            setMetadata={setMetadata}
+                        />
+                    </TuModal>
+                </div>
+            )}
+
             <MetadataPreviews metadata={metadata} />
         </div>
     );

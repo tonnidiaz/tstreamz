@@ -1,24 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { TuState } from "../lib/interfaces";
 import TuTeleport from "./TuTeleport";
 import TuModalContainer from "./TuModalContainer";
-import { useTuState0 } from "../lib/hooks";
+import { useTuState, useTuState0 } from "../lib/hooks";
 
 const TuModal = ({
-    open = useTuState0(false),
+    open = useTuState(false),
+    setOpen,
     children,
     toggler,
     className,
 }: {
     open?: TuState<boolean>;
+    setOpen?: (v: boolean) => any;
     children?: React.ReactNode;
     toggler?: React.ReactNode;
     className?: string;
 }) => {
+
+    // const [_open, _setOpen] = useState(open)
+
     const id = useTuState0("");
     useEffect(() => {
         id.value = `modal-${Date.now()}`;
     }, []);
+
+    // useEffect(()=>{
+    //     console.log({open});
+    //     _setOpen(open)}, [open])
     return (
         <div>
             <label
@@ -26,7 +35,8 @@ const TuModal = ({
                 onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    open.value = true;
+                    // setOpen?.(true)
+                    open.value = true
                 }}
             >
                 {toggler}

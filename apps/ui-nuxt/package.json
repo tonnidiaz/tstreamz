@@ -1,0 +1,16 @@
+{
+    "name": "@repo/ui-nuxt",
+    "private": true,
+    "type": "module",
+    "scripts": {},
+    "imports": {
+        "#*": "./src/*"
+    },
+    "peerDependencies": {
+        "nuxt": "^3.15.4",
+        "vue": "latest",
+        "vue-router": "latest",
+        "@repo/common": "^1.0.0"
+    },
+    "dependencies": {}
+}

@@ -55,7 +55,7 @@ export const showToast = ({msg, err, timeout = 3000} : {err?: boolean; msg: stri
     if (!parent){
         parent = document.createElement("div")
         parent.id = "tu-toasts"
-        parent.classList.add("toast", "toast-top", "toast-end")
+        // parent.classList.add("toast", "toast-top", "toast-end")
         document.body.appendChild(parent)
     }
     parent.prepend(div);

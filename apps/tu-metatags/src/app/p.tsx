@@ -35,8 +35,8 @@ const m = {
 
 const emptyMeta : IMetadata ={
     url: '', title: '', description: '', favicon:'',
-    og: {url: '', title: '', description: '', image: ''},
-    twitter: {title: '', description: '', image: ''},
+    og: {url: '', title: '', description: '', images: ''},
+    twitter: {title: '', description: '', images: '', site: '', card: ''},
 }
 const Page = ({origin} : {origin: string}) => {
 
@@ -85,8 +85,8 @@ const Page = ({origin} : {origin: string}) => {
     }, [_url]);
     // useEffect(()=>{setMetadata({...metadata, url})},[url])
     return (
-        <div className="p-4 oy-scroll w-full h-full flex-col gap-2">
-            <div className="w-600px m-auto">
+        <div className="sm:p-4 p-2  ox-hidden oy-scroll w-full h-full flex-col gap-2">
+            <div className="sm:w-600px w-full m-auto">
                 <h1 className="title">Tu metatags tool</h1>
                 <UForm
                     className="my-4"

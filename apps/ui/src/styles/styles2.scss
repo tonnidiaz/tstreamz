@@ -192,11 +192,14 @@ ul, li{
     z-index: calc(vars.$bottombar-z + 1)
 }
 @media screen and (max-width: 767px) {
-    .params-area,
-    .fab, #floating-actions {
-        bottom: calc(vars.$sidenav-w + 15px) !important;
-        margin-bottom: 0;
+    .tu-app:not(.no-bottom-bar){
+        .params-area,
+        .fab, #floating-actions {
+            bottom: calc(vars.$sidenav-w + 15px) !important;
+            margin-bottom: 0;
+        }
     }
+    
 }
 
 

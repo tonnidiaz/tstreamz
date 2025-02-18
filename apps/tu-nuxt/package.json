@@ -2,6 +2,9 @@
   "name": "tu-nuxt",
   "private": true,
   "type": "module",
+  "imports": {
+    "#repo/ui-nuxt/*": "@repo/ui-nuxt/src/*"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -11,6 +14,7 @@
   },
   "dependencies": {
     "@repo/common": "^1.0.0",
+    "@repo/ui-nuxt": "*",
     "nuxt": "^3.15.4",
     "vue": "latest",
     "vue-router": "latest"

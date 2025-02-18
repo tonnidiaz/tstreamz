@@ -15,8 +15,6 @@ export const runOnce = async () => {
     clearTerminal();
     timedLog("[RUN ONCE]\n");
     try {
-        // Connect to db
-        await connectMongo(DEV, "tu-next");
     } catch (err) {
         handleErrs(err);
     }finally{

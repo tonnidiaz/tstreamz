@@ -12,8 +12,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 hasLogin={false}
                 menuItems={<></>}
             ></Navbar>
-            <div className="tu-app">{children}</div>
-            <div id="ctx-overlay"></div> <div id="tu-toasts"></div>
+            <div className="tu-app no-bottom-bar">{children}</div>
+            <div id="ctx-overlay"></div>
         </>
     );
 };

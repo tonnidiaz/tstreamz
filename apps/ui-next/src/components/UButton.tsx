@@ -17,7 +17,7 @@ const UButton = ({
     loading,
     showLoader,
     className,
-    type: _type,
+    type: _type = "button",
     disabled,
     onClick,
     ...props
@@ -31,7 +31,7 @@ const UButton = ({
         try {
             setLoading(true);
             el.current.classList.add("disabled")//.disabled = true;
-            await cb();
+            await cb?.();
         } catch (err) {
             console.log("[UButton] caller() error", err);
             handleErrs(err);
@@ -43,8 +43,10 @@ const UButton = ({
     }
     async function handleClick(this: HTMLButtonElement, ev: MouseEvent) {
         ev.preventDefault()
-        const e = new Event("submit", {bubbles: true, cancelable: true})
-        await caller(async () => await this.form.onsubmit?.call(this.form, e as SubmitEvent));
+        if (_type == 'submit'){const e = new Event("submit", {bubbles: true, cancelable: true})
+        await caller(async () => await this.form?.onsubmit?.call(this.form, e as SubmitEvent));}
+    else{await caller(onClick)}
+        
     }
 
     useEffect(() => {

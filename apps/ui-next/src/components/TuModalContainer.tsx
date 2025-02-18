@@ -5,11 +5,13 @@ import { useParams, usePathname } from "next/navigation";
 
 interface IProps extends HTMLAttributes<any> {
     open: TuState<boolean>;
+    // setOpen: (v: boolean)=> any;
     blank?: boolean;
 }
 
 const TuModalContainer = ({
-    open = useTuState0(false),
+    open,
+    // setOpen,
     children,
     blank = false,
     className,
@@ -23,7 +25,8 @@ const TuModalContainer = ({
         const isChild =
             modal.contains(ev.target) || overlay?.contains(ev.target);
         if (!isChild) {
-            open.value = false;
+            // setOpen(false);
+            open.value = false
             //$(modal!).removeClass("open");
         }
     };
@@ -34,7 +37,7 @@ const TuModalContainer = ({
         const isChild =
             [...modals].some((el) => el.contains(ev.target)) ||
             [...menus].some((el) => el.contains(ev.target));
-        if (!isChild) open.value = false;
+        if (!isChild) open.value =  false//setOpen(false);
     };
     useEffect(() => {
         // document.removeEventListener("mouseup", _onDocClick);
@@ -53,7 +56,7 @@ const TuModalContainer = ({
 
     useEffect(() => {
         // watch route
-        open.value = false;
+        // setOpen(false);
     }, [pathname, params]);
     return (
         <div

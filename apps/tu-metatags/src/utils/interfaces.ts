@@ -3,11 +3,11 @@ export interface IMetadataItem {
     description: string;
 }
 export interface ISocialMetadata extends IMetadataItem {
-    image: string;
+    images: string;
 }
 export interface IMetadata extends IMetadataItem {
     url: string;
     favicon: string;
     og: ISocialMetadata & { url: string };
-    twitter: ISocialMetadata;
+    twitter: ISocialMetadata & {card: string, site: string};
 }

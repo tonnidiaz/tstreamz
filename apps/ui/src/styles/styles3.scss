@@ -360,7 +360,12 @@ img {
 }
 
 #tu-toasts{
+    @apply toast toast-top toast-end;
     z-index: 99999999999999;
+    .alert{
+        width: fit-content;
+        border: none
+    }
 } 
 
 .tu-error-page{
@@ -405,4 +410,8 @@ align-items: center;
 
 .bordered{
     @apply border-1 border-card
+}
+
+.flex-reverse{
+    flex-direction: r;
 }
