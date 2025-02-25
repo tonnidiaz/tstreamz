@@ -1,0 +1,2 @@
+this is logged on the terminal while the video is playing:
+(WebKitWebProcess:6670): GStreamer-CRITICAL **: 23:44:02.182: gst_mini_object_unref: assertion 'GST_MINI_OBJECT_REFCOUNT_VALUE (mini_object) > 0' failed

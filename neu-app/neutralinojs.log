@@ -1,0 +1,28 @@
+INFO 2025-02-23 20:44:53,954 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:46:01,271 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:51:24,706 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:52:00,383 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:56:02,697 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:56:05,882 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:57:32,514 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:57:36,104 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:58:05,026 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:58:07,440 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:58:12,559 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:58:23,067 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:58:44,386 Auth info was exported to ./.tmp/auth_info.json api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:59:04,380 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 20:59:37,872 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+ERROR 2025-02-23 20:59:38,047 NE_RS_UNBLDRE: Unable to load application resource file /resources/videos/neu.txt api/debug/debug.cpp:20 tonni@unknown-host
+INFO 2025-02-23 21:00:43,013 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+ERROR 2025-02-23 21:00:49,482 NE_RS_UNBLDRE: Unable to load application resource file /resources/js/main.js:122:20 api/debug/debug.cpp:20 tonni@unknown-host
+ERROR 2025-02-23 21:00:50,615 NE_RS_UNBLDRE: Unable to load application resource file /resources/js/main.js:122:20 api/debug/debug.cpp:20 tonni@unknown-host
+INFO 2025-02-23 21:01:03,144 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 21:01:29,418 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+ERROR 2025-02-23 21:01:29,638 NE_RS_UNBLDRE: Unable to load application resource file /resources/videos/neu.txt api/debug/debug.cpp:20 tonni@unknown-host
+INFO 2025-02-23 21:01:39,149 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 21:02:16,329 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+ERROR 2025-02-23 21:02:16,510 NE_RS_UNBLDRE: Unable to load application resource file /resources/videos/neu.txt api/debug/debug.cpp:20 tonni@unknown-host
+INFO 2025-02-23 21:02:37,937 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 21:03:12,099 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host
+INFO 2025-02-23 21:03:58,867 Reloading the application... api/debug/debug.cpp:17 tonni@unknown-host

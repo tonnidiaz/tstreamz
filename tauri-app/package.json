@@ -1,0 +1,31 @@
+{
+  "name": "tauri-app",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "cd src-tauri && tsx fix-bins.ts && tauri"
+  },
+  "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.3.1",
+    "@repo/common": "^1.0.0",
+    "@repo/ui": "^0.0.0",
+    "@repo/ui-next": "*",
+    "@tauri-apps/api": "^1",
+    "react": "^18.3.1",
+    "react-daisyui": "^5.0.5",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
