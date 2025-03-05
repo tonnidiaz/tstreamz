@@ -1,0 +1,12 @@
+{
+  "name": "tu-keytool-gen",
+  "outputfilename": "tu-keytool-gen",
+  "frontend:install": "npm install --offline",
+  "frontend:build": "npm run build",
+  "frontend:dev:watcher": "npm run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "tonnidiaz",
+    "email": "therealhackingknight@gmail.com"
+  }
+}

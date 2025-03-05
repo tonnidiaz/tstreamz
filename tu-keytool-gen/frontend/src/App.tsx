@@ -22,9 +22,12 @@ import { tuImmer } from "@cmn/utils/funcs4";
 import { GenKeystore } from "wailsjs/go/main/App";
 import TuToast from "@mobile/ui-next/components/TuToast";
 import { showToast } from "@mobile/ui-next/utils/funcs";
+import { useTuState } from "@repo/ui-next/lib/hooks";
+import UButton from "@repo/ui-next/components/UButton";
 
 let toastCnt = 1
 function App() {
+    const cnt = useTuState(0)
     const appStore = useSelector((s: RootState) => s.app);
     const [formState, setFormState] = useState({
         keystore: "tu-keystore",
@@ -278,7 +281,6 @@ function App() {
                                 type="submit"
                                 className="w-full"
                                 showLoader
-                                loading
                             >
                                 Generate key
                             </TuButton>

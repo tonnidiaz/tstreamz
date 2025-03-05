@@ -17,14 +17,17 @@
         "noImplicitAny": false,
         "paths": {
             "@cmn/*": ["../../packages/common/src/*"],
-            "@/*": ["./src/*"],
+            "@mobile/ui-next/*": ["./src/*"],
             "@repo/ui/*": ["../../apps/ui/src/*"],
+            "@repo/ui-next/*": ["../../apps/ui-next/src/*"],
         }
     },
     "include": [
         "next-env.d.ts",
         "./src/**/*.ts",
         "./src/**/*.tsx",
+        "../../apps/ui-next/src/**/*.tsx",
+        "../../apps/ui-next/src/**/*.ts",
         "../../packages/common/src/**/*.ts",
         "../../apps/ui/src/**/*.ts"
     ],

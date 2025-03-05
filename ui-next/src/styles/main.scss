@@ -15,6 +15,7 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --titlebar-h: 40px;
 }
 
 @layer base {
@@ -84,7 +85,7 @@ html, body{
 .titlebar {
     // background-color: var(--color-card);
     @apply bg-neutral-800;
-    height: 40px;
+    height: var(--titlebar-h);
     // background: #329ea3;
     user-select: none;
     display: flex;
@@ -133,4 +134,14 @@ html, body{
     }
     
 } 
+
+#tu-toasts{
+    position: fixed;
+    top: calc(var(--titlebar-h) + 4px);
+    right: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 99999999999999;
+}
 }

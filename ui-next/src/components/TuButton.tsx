@@ -1,6 +1,6 @@
-import { handleErrs } from "@cmn/utils/funcs";
+import { handleErrs, timedLog } from "@cmn/utils/funcs";
 import { ButtonHTMLAttributes, useEffect, useMemo, useRef, useState } from "react";
-
+import {useTuState} from '@repo/ui-next/lib/hooks'
 const TuButton = ({
     variant = "default",
     children,
@@ -66,17 +66,96 @@ const TuButton = ({
     }, [variant]);
 
     const el = useRef<HTMLButtonElement>(null);
+    const intercepted = useTuState(false)
+    let submitHandler: Function | undefined;
     const [_loading, setLoading] = useState(
         loading || className?.includes("btn-loading")
     );
 
-    async function caller(cb: Function) {
+    
+    useEffect(()=>{
+        if (!el.current || intercepted.value) return
+        interceptFormSubmit(el.current)
+        intercepted.value = true
+    }, [el.current])
+
+    useEffect(() => {
+        if (!el.current || !onClick) return;
+        el.current?.removeEventListener("click", handleClick);
+        el.current.addEventListener("click", handleClick);
+        // console.log({onClick});
+
+        return () => el.current?.removeEventListener("click", handleClick);
+    }, [onClick]);
+
+    useEffect(()=>{
+        // console.log({_loading, showLoader});
+    }, [_loading])
+
+    async function interceptFormSubmit(btn: HTMLButtonElement) {
         try {
+
+            if (_type == "submit") {
+                // console.log("interceptFormSubmit", {_type});
+                const form = btn.form;
+                if (!form) {
+                    console.log("No form");
+                    return;
+                }
+                // console.log(btn);
+
+                const listener = async (e) => {
+                    e.preventDefault();
+                    const formSubmit = btn.form.onsubmit;
+                    // console.log({submitHandler, formSubmit});
+                    if (formSubmit && !submitHandler) {
+                        // console.log({formSubmit});
+                        submitHandler = formSubmit
+
+                        btn.form.onsubmit = (e) => e.preventDefault();
+                        btn.form.onsubmit = undefined;
+                    } else if (submitHandler) {
+                        // console.log("Custom submit");
+                    }
+                    btn.form.removeEventListener("submit", listener);
+                };
+                btn.form.addEventListener("submit", listener);
+                btn.form.addEventListener("submit", async (e) => {
+                    e.preventDefault()
+                    // console.log("Custom listener", {submitHandler});
+                    const event = new Event("submit", {
+                        bubbles: true,
+                        cancelable: true,
+                    });
+                    // Dispatch the event on the form element
+                    const isDefaultPrevented = true; //!btn.form.dispatchEvent(event);
+                    if (isDefaultPrevented)
+                        // Invoke the onsubmit callback
+                        await caller(
+                            async () =>
+                                {
+                                    
+                                    submitHandler.bind(btn.form)
+                                    await submitHandler(event)
+                                    
+                                }
+
+                        );
+                });
+            }
+        } catch (err) {
+            handleErrs(err);
+        }
+    }
+ async function caller(cb: Function) {
+        try {
+            // timedLog("Caller Begins...")
             setLoading(true);
             el.current.classList.add("disabled"); //.disabled = true;
             await cb?.();
+            // timedLog("Caller done")
         } catch (err) {
-            console.log("[UButton] caller() error", err);
+            // console.log("[UButton] caller() error", err);
             handleErrs(err);
         } finally {
             if (!el) return;
@@ -99,21 +178,9 @@ const TuButton = ({
             await caller(onClick);
         }
     }
-
-    useEffect(() => {
-        if (!el.current) return;
-        el.current?.removeEventListener("click", handleClick);
-        el.current.addEventListener("click", handleClick);
-        console.log({onClick});
-        return () => el.current?.removeEventListener("click", handleClick);
-    }, [onClick]);
-
-    useEffect(()=>{
-        console.log({_loading, showLoader});
-    }, [_loading])
-
+    
     return (
-        <button type={_type} className={`${_class} ${(_loading || disabled) && "disabled"} ${className}`} {...props}>
+        <button ref={el} type={_type} className={`${_class} ${(_loading || disabled) && "disabled"} ${className}`} {...props}>
             {children}
             {showLoader && _loading && (
                 <span className="loading loading-spinner loading-sm"></span>

@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../../../wails-app"
+		},
+		{
+			"path": "../../../../apps/ui"
+		},
+		{
+			"path": "../../../neu-app-0"
+		},
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../apps/ui-next"
+		},
+		{
+			"path": "../../../tu-player-wails"
+		},
+		{
+			"path": "../../../../apps/ui-sv"
+		}
+	],
+    "settings": {}
+}

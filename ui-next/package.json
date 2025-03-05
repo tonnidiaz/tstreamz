@@ -1,6 +1,8 @@
 {
     "name": "@mobile/ui-next",
-    "scripts": {},
+    "scripts": {
+        
+    },
     "devDependencies": {
         "@types/jquery": "^3.5.32",
         "@types/lodash": "^4.17.15",
