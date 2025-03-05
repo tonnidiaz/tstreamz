@@ -4,28 +4,32 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "pre": "cd src-tauri && tsx fix-bins.ts",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "cd src-tauri && tsx fix-bins.ts && tauri"
+    "tauri": "npm run pre && tauri"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
-    "@repo/common": "^1.0.0",
-    "@repo/ui": "^0.0.0",
-    "@repo/ui-next": "*",
-    "@tauri-apps/api": "^1",
-    "react": "^18.3.1",
+    "@repo/common": "1.0.0",
+    "@repo/ui": "0.0.0",
+    "@repo/ui-next": "1.0.1",
+    "@tauri-apps/api": "^1.6.0",
+    "react": "^19.0.0",
     "react-daisyui": "^5.0.5",
-    "react-dom": "^18.3.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1",
-    "@types/react": "^18.3.1",
-    "@types/react-dom": "^18.3.1",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "~5.6.2",
-    "vite": "^6.0.3",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "typescript": "*",
+    "vite": "^6.1.1",
     "vite-tsconfig-paths": "^5.1.4"
   }
 }

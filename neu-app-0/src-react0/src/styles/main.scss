@@ -1,0 +1,107 @@
+.titlebar {
+    @apply bg-base-200;
+    height: 30px;
+    // background: #329ea3;
+    user-select: none;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    gap: 3px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.titlebar-button {
+    @apply flex items-center justify-center;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.titlebar-button:hover {
+    background: var(--color-card-2);
+}
+.vid-card {
+    width: 200px;
+    height: 150px;
+    @apply rounded-md flex items-center justify-center flex-col;
+    flex-shrink: 0;
+}
+
+#video-cont {
+    @apply /* bg-card */ rounded-md flex items-center justify-center flex-col p-2;
+    video {
+        @apply rounded-md;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+    }
+}
+
+:root {
+    --resizer-sz: 25px;
+    --resizer-diff: calc(-1 * var(--resizer-sz) / 5);
+    --resizer-diff2: calc(var(--resizer-diff) * 2.5);
+}
+
+#resizers {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    #root {
+        flex: 1;
+    }
+    .bottom,
+    .top {
+        display: flex;
+        justify-content: space-between;
+        gap: 4px;
+        width: 100vw;
+        height: var(--resizer-sz);
+    }
+
+    .resizer {
+        background-color: rgb(8, 95, 73);
+    }
+    .top,
+    .bottom,
+    .left,
+    .right {
+        background-color: rgba(255, 166, 0, 0.377);
+    }
+    .resizer {
+        &.left,
+        &.right {
+            width: var(--resizer-sz);
+            height: var(--resizer-sz);
+        }
+        &.mid {
+            height: var(--resizer-sz);
+            flex: 1;
+        }
+    }
+    .top {
+        .mid {
+            cursor: n-resize;
+        }
+        .right {
+            cursor: ne-resize;
+        }
+        .left {
+            cursor: nw-resize;
+        }
+    }
+    .bottom {
+        .mid {
+            cursor: s-resize;
+        }
+        .right {
+            cursor: se-resize;
+        }
+        .left {
+            cursor: sw-resize;
+        }
+    }
+}

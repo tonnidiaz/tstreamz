@@ -1,8 +1,0 @@
-#dragbar {
-    -webkit-app-region: drag;
-    cursor:move;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  

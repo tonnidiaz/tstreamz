@@ -1,0 +1,28 @@
+#tu-app{
+    padding: 0 4.5px;
+}
+.titlebar {
+    background-color: var(--color-base-200);
+    height: 40px;
+    // background: #329ea3;
+    user-select: none;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    gap: 3px;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px
+  }
+  .titlebar-button {
+    @apply flex items-center justify-center rounded-full;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  .titlebar-button:hover {
+    background: var(--color-base-300);
+  }

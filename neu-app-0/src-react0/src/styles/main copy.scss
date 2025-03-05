@@ -1,0 +1,15 @@
+:root{
+    --resizer-sz: 25px;
+    --resizer-diff: calc(-1 * var(--resizer-sz) / 5);
+    --resizer-diff2: calc(var(--resizer-diff) * 2.5)
+}
+
+.resizers{
+    position: fixed;
+    .bottom{
+        bottom: 0;
+        width: 100vw;
+        height: var(--resizer-sz);
+        background: black;
+    }
+}

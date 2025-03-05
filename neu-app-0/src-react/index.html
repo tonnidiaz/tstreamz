@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" class="dark" data-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vite + React + Typescript</title>
+        <style>
+            :root {
+                color-scheme: light !important;
+            }
+        </style>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+                background: #1e1e1e;
+            }
+            #window {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100vw;
+                height: 100vh;
+                border: 1px solid #ccc;
+                background-color: #f9f9f9;
+                box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+                overflow: hidden; /* Prevent content overflow during resize */
+            }
+
+            .resize-handle {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #aaa;
+                cursor: se-resize; /* Southeast resize cursor */
+            }
+
+            #bottom-right-resize {
+                bottom: 0;
+                right: 0;
+            }
+
+            #bottom-left-resize {
+                bottom: 0;
+                left: 0;
+                cursor: sw-resize;
+            }
+
+            #top-right-resize {
+                top: 0;
+                right: 0;
+                cursor: ne-resize;
+            }
+
+            #top-left-resize {
+                top: 0;
+                left: 0;
+                cursor: nw-resize;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- <div id="window">
+            <div id="top-left-resize" class="resize-handle"></div>
+            <div id="top-right-resize" class="resize-handle"></div>
+            <div id="bottom-left-resize" class="resize-handle"></div>
+            <div id="bottom-right-resize" class="resize-handle"></div>
+            <p>Simulated Frameless Window</p> 
+        </div> -->
+        <div id="resizers0">
+            <div class="top">
+                <div class="resizer left"></div>
+                <div class="resizer mid"></div>
+                <div class="resizer right"></div>
+            </div>
+            <div id="root"></div>
+            <div class="bottom">
+                <div class="resizer left"></div>
+                <div class="resizer mid"></div>
+                <div class="resizer right"></div>
+            </div>
+        </div>
+
+        <script id="neu-script" src="/main.js"></script>
+        <script src="/neutralino.js"></script>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+{
+    "name": "@mobile/ui-next",
+    "scripts": {},
+    "devDependencies": {
+        "@types/jquery": "^3.5.32",
+        "@types/lodash": "^4.17.15",
+        "@types/node": "*",
+        "@types/react": "^19.0.1",
+        "@types/react-dom": "^19.0.1",
+        "typescript": "*"
+    },
+    "dependencies": {
+        "@reduxjs/toolkit": "^2.5.1",
+        "@repo/common": "1.0.0",
+        "axios": "^1.7.9",
+        "jquery": "^3.7.1",
+        "next": "15.1.7",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-redux": "^9.2.0"
+    },
+    "version": "1.0.1"
+}

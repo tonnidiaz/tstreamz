@@ -18,3 +18,48 @@ body {
     font-size: 16px;
     font-weight: normal;
 }
+
+
+/* .resizer.top-left{
+    top: var(--resizer-diff); left: var(--resizer-diff);
+    cursor:nw-resize;
+}
+.resizer.top-right{
+    top: var(--resizer-diff); right: var(--resizer-diff);
+    cursor:ne-resize;
+}
+.resizer.bottom-left{
+    bottom: var(--resizer-diff); left: var(--resizer-diff);
+    cursor:sw-resize;
+}
+.resizer.bottom-right{
+    bottom: var(--resizer-diff); right: var(--resizer-diff);
+    cursor:se-resize;
+}
+.resizer.left{
+    top: var(--resizer-diff); left: var(--resizer-diff);
+    cursor:nw-resize;
+}
+.resizer.right{
+    top: var(--resizer-diff); right: var(--resizer-diff);
+    cursor:ne-resize;
+}
+.resizer.top{
+    bottom: var(--resizer-diff); left: var(--resizer-diff);
+    cursor:sw-resize;
+}
+.resizer.bottom{
+    bottom: var(--resizer-diff); width: calc(100vw - var(--resizer-diff2));
+    left: calc(var(--resizer-diff2) / 2);
+    cursor:s-resize;
+    max-width: auto;
+}
+
+.resizer{
+    position: fixed;
+   
+    width: var(--resizer-sz); height: var(--resizer-sz); background-color: black;
+}
+.resizer:not(.top, .bottom, .left, .right){
+     border-radius: 50%;
+} */

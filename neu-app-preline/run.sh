@@ -1,0 +1,1 @@
+clear && cd src-react && npm run neu:dev

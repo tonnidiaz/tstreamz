@@ -68,19 +68,22 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	fmt.Printf("Tu Golang Lib: %d\n\n", port)
+	fmt.Printf("Tu GoLib: %d\n\n", port)
 	http.HandleFunc("/ws", handleConnections)
 
 	fmt.Println("WebSocket server started on port", port)
+	fmt.Printf(`{"msg": "LibGo_ON", "port": %d}`, port)
+	fmt.Println()
 	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	if err != nil {
 		fmt.Println("Error starting server:", err)
 	}
+
 }
 
 // Check if a port is available and return the first open port
 func findAvailablePort(startPort int) int {
-	for port := startPort; port <= startPort+10; port++ {
+	for port := startPort; port <= startPort+50; port++ {
 		ln, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 		if err == nil {
 			ln.Close()

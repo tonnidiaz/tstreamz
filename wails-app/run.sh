@@ -1,0 +1,1 @@
+clear && WAILS_NO_UPDATE_CHECK=true wails dev -nosyncgomod

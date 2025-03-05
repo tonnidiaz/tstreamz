@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Frameless Window Simulation</title>
+<style>
+#window {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  width: 300px;
+  height: 200px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Prevent content overflow during resize */
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #aaa;
+  cursor: se-resize; /* Southeast resize cursor */
+}
+
+#bottom-right-resize {
+  bottom: 0;
+  right: 0;
+}
+
+#bottom-left-resize {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+}
+
+#top-right-resize {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+}
+
+#top-left-resize {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+}
+
+</style>
+</head>
+<body>
+
+<div id="window">
+  <div id="top-left-resize" class="resize-handle"></div>
+  <div id="top-right-resize" class="resize-handle"></div>
+  <div id="bottom-left-resize" class="resize-handle"></div>
+  <div id="bottom-right-resize" class="resize-handle"></div>
+  <p>Simulated Frameless Window</p>
+</div>
+
+<script>
+const windowElement = document.getElementById('window');
+const resizeHandles = document.querySelectorAll('.resize-handle');
+
+let isResizing = false;
+let currentHandle = null;
+let initialX, initialY, initialWidth, initialHeight, initialTop, initialLeft;
+
+function startResize(e) {
+  isResizing = true;
+  currentHandle = e.target;
+  initialX = e.clientX;
+  initialY = e.clientY;
+  initialWidth = windowElement.offsetWidth;
+  initialHeight = windowElement.offsetHeight;
+  initialTop = windowElement.offsetTop;
+  initialLeft = windowElement.offsetLeft;
+
+  document.addEventListener('mousemove', resize);
+  document.addEventListener('mouseup', stopResize);
+}
+
+function resize(e) {
+  if (!isResizing) return;
+
+  const deltaX = e.clientX - initialX;
+  const deltaY = e.clientY - initialY;
+
+  switch (currentHandle.id) {
+    case 'bottom-right-resize':
+      windowElement.style.width = initialWidth + deltaX + 'px';
+      windowElement.style.height = initialHeight + deltaY + 'px';
+      break;
+    case 'bottom-left-resize':
+      windowElement.style.width = initialWidth - deltaX + 'px';
+      windowElement.style.height = initialHeight + deltaY + 'px';
+      windowElement.style.left = initialLeft + deltaX + 'px';
+      break;
+    case 'top-right-resize':
+      windowElement.style.width = initialWidth + deltaX + 'px';
+      windowElement.style.height = initialHeight - deltaY + 'px';
+      windowElement.style.top = initialTop + deltaY + 'px';
+      break;
+    case 'top-left-resize':
+      windowElement.style.width = initialWidth - deltaX + 'px';
+      windowElement.style.height = initialHeight - deltaY + 'px';
+      windowElement.style.top = initialTop + deltaY + 'px';
+      windowElement.style.left = initialLeft + deltaX + 'px';
+      break;
+    default:
+      break;
+  }
+}
+
+function stopResize() {
+  isResizing = false;
+  currentHandle = null;
+  document.removeEventListener('mousemove', resize);
+  document.removeEventListener('mouseup', stopResize);
+}
+
+resizeHandles.forEach(handle => {
+  handle.addEventListener('mousedown', startResize);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+go build . && cp -f lib-go ../src-tauri/binaries/dev/lib-go && cd ../src-tauri && tsx fix-bins.ts

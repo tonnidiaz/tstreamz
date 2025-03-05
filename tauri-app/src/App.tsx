@@ -1,75 +1,131 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { invoke } from "@tauri-apps/api/tauri";
 import { dialog, fs, path } from "@tauri-apps/api";
 import "@repo/ui/styles/all.scss";
 import "@/styles/main.scss";
-import "@flaticon/flaticon-uicons/css/all/all.css"
+import "@flaticon/flaticon-uicons/css/all/all.css";
 import Titlebar from "./components/Titlebar";
 import { handleErrs, timedLog } from "@cmn/utils/funcs";
 import UButton from "@repo/ui-next/components/UButton";
 import { useTuState } from "@repo/ui-next/lib/hooks";
 import { getBaseDir, getFilename, tuImmer } from "@cmn/utils/funcs4";
 import { videoExtensions } from "@cmn/utils/consts";
-import { Command } from "@tauri-apps/api/shell";
+import { Child, Command } from "@tauri-apps/api/shell";
 
-const src =
-    "http://localhost:45875/files?path=%2FUSB%2FPurple_Hearts_(2022)_(NetNaija.com)_(1).mp4";
 function App() {
     const [, setGreetMsg] = useState("");
     const [name, setName] = useState("");
-    const ws = useTuState<WebSocket | null>(null)
+    const [LibGoState, setLibGoState] = useState({
+        on: false,
+        pid: 0,
+        port: 0,
+    });
+
+    const ws = useTuState<WebSocket | null>(null);
     const state = useTuState<{ currentFile?: string }>({});
-
-    useEffect(()=>{
-        initGoLib().then(()=>{
-           initWs() 
-        })
-        
-    },[])
-    useEffect(()=>{
-            const {currentFile} = state.value
-            if (currentFile){
-                // Read other files in directory
-                const dir = getBaseDir(currentFile)
-                fs.readDir(dir, {recursive: false}).then(r=>{
-                    const videoFiles = r.filter(el=> videoExtensions.includes(el.name?.split('.').pop() as string)).map(el=>el.path)
-                    if (videoFiles.length){
-                        ws.value?.send(JSON.stringify({ev: 'GetFileSz', data: videoFiles}))
-                    }
-                }).catch(handleErrs)
+    const playerRef = useRef<HTMLVideoElement>();
+    useEffect(() => {
+        initGoLib().then(() => {});
+        return () => {
+            if (LibGoState.pid) new Child(LibGoState.pid).kill();
+        };
+    }, []);
+    useEffect(() => {
+        const { currentFile } = state.value;
+        if (currentFile) {
+            if (playerRef.current) {
+                playerRef.current.pause();
+                playerRef.current.load();
+                playerRef.current.play();
             }
-    }, [state.value.currentFile])
+            // Read other files in directory
+            const dir = getBaseDir(currentFile);
+            fs.readDir(dir, { recursive: false })
+                .then((r) => {
+                    const videoFiles = r
+                        .filter((el) =>
+                            videoExtensions.includes(
+                                el.name?.split(".").pop() as string
+                            )
+                        )
+                        .map((el) => el.path);
+                    if (videoFiles.length) {
+                        ws.value?.send(
+                            JSON.stringify({
+                                ev: "GetFileSz",
+                                data: videoFiles,
+                            })
+                        );
+                    }
+                })
+                .catch(handleErrs);
+        }
+    }, [state.value.currentFile]);
 
-    async function initGoLib(){
+    useEffect(() => {
+        if (LibGoState.on) {
+            console.log({ LibGo_ON: LibGoState.on });
+            initWs();
+        }
+    }, [LibGoState.on]);
+    async function initGoLib() {
         // Initialize the Go backend
         try {
-            const cmd = Command.sidecar("./binaries/prod/lib-go")
-            const r = await cmd.execute()
-            console.log(r);
-        } catch (err){handleErrs(err)}
+            if (LibGoState.on) return;
+            timedLog("\nInit GoLib\n");
+            const cmd = Command.sidecar("./binaries/prod/lib-go");
+            cmd.on("error", (err) => {
+                console.log(err);
+            });
+            cmd.on("close", (c) => {
+                console.log(c);
+            });
+            cmd.stdout.on("data", (stdout) => {
+                console.log({ stdout });
+                if (stdout?.includes("LibGo_ON")) {
+                    const { port } = JSON.parse(stdout);
+                    console.log({ port });
+                    setLibGoState((s) =>
+                        tuImmer(s, (s) => {
+                            s.on = true;
+                            s.port = port;
+                        })
+                    );
+                }
+            });
+            cmd.stderr.on("data", (stderr) => {
+                console.log({ stderr });
+            });
+            const child = await cmd.spawn();
+            console.log({ PID: child.pid });
+            setLibGoState((s) => tuImmer(s, (s) => (s.pid = child.pid)));
+        } catch (err) {
+            handleErrs(err);
+        }
     }
-    async function initWs(){
+    async function initWs() {
         if (ws.value) return;
+        timedLog("INit ws");
         try {
-            const _ws = new WebSocket("ws://localhost:45874/ws")
-            _ws.onopen = ()=>{
+            const _ws = new WebSocket("ws://localhost:45874/ws");
+            _ws.onopen = () => {
                 timedLog(`ws:open`);
-            }
-            _ws.onerror = (err) =>{
-                timedLog('ws-err:');
-                handleErrs(err)
-            }
-            _ws.onmessage = (ev)=>{
+            };
+            _ws.onerror = (err) => {
+                timedLog("ws-err:");
+                handleErrs(err);
+            };
+            _ws.onmessage = (ev) => {
                 timedLog(`[ws:msg]`, ev.data);
                 console.log(JSON.parse(ev.data));
-            }
-            _ws.close = (code, reason)=>{
-                timedLog(`[ws:close]`, {code, reason});
-            }
-            
-            ws.value = _ws
+            };
+            _ws.close = (code, reason) => {
+                timedLog(`[ws:close]`, { code, reason });
+            };
+
+            ws.value = _ws;
         } catch (err) {
-            handleErrs(err)
+            handleErrs(err);
         }
     }
     async function greet() {
@@ -92,8 +148,6 @@ function App() {
                     (s) => (s.currentFile = res as string)
                 );
             }
-
-
         } catch (err) {
             handleErrs(err);
         }
@@ -104,58 +158,77 @@ function App() {
             <div className="flex-col h-full w-full">
                 <Titlebar />
                 <div className="tu-app">
-                    <div className="p-4 flex-col gap-4 h-full oy-scroll">
-                        <div>
-                            {state.value.currentFile && (
-                                <h1 className="text-center fs-16 fw-6 max-lines-2 ellipsis">
-                                    {getFilename(state.value.currentFile)}
-                                </h1>
-                            )}
-                        </div>
-
-                        <div
-                            id="video-cont"
-                            className="bg-card rounded-md w-full h-200px"
-                        >
-                            <video disablePictureInPicture controls>
-                                <source src={src} />
-                            </video>
-                        </div>
-                        <UButton onClick={pickVideo} className="btn-primary">
-                            Pick video
-                        </UButton>
-                        <section>
-                            <h3 className="ttl">Playlist</h3>
-                            <div className="mt-3 p-2 flex ox-scroll gap-3">
-                                {Array(10)
-                                    .fill(2)
-                                    .map((el, i) => (
-                                        <div key={`vid-${i}`}>
-                                            <div className="vid-card">
-                                                <img
-                                                    src="/images/img.jpg"
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div className="p-2">
-                                                <h4 className="fs-14 max-lines-2 ellipsis">
-                                                    Lorem ipsum dolor sit amet
-                                                    consectetur adipisicing
-                                                    elit. Voluptatem dolorum
-                                                    minus aliquam praesentium
-                                                    voluptate tempora. Nisi
-                                                    saepe porro dolores dolore
-                                                    inventore ipsum nobis
-                                                    molestias nostrum architecto
-                                                    pariatur. Asperiores,
-                                                    aspernatur provident!
-                                                </h4>
-                                            </div>
-                                        </div>
-                                    ))}
+                    {LibGoState.on ? (
+                        <div className="p-4 flex-col gap-4 h-full oy-scroll">
+                            <div>
+                                {state.value.currentFile && (
+                                    <h1 className="text-center fs-16 fw-6 max-lines-2 ellipsis">
+                                        {getFilename(state.value.currentFile)}
+                                    </h1>
+                                )}
                             </div>
-                        </section>
-                    </div>
+
+                            <div
+                                id="video-cont"
+                                className="bg-card rounded-md w-full h-500px"
+                            >
+                                <video
+                                    ref={playerRef}
+                                    disablePictureInPicture
+                                    controls
+                                >
+                                    {state.value.currentFile && (
+                                        <source
+                                            src={`http://localhost:${LibGoState.port}/files?path=${encodeURIComponent(state.value.currentFile)}`}
+                                        />
+                                    )}
+                                </video>
+                            </div>
+                            <UButton
+                                onClick={pickVideo}
+                                className="btn-primary"
+                            >
+                                Pick video
+                            </UButton>
+                            <section>
+                                <h3 className="ttl">Playlist</h3>
+                                <div className="mt-3 p-2 flex ox-scroll gap-3">
+                                    {Array(10)
+                                        .fill(2)
+                                        .map((el, i) => (
+                                            <div key={`vid-${i}`}>
+                                                <div className="vid-card">
+                                                    <img
+                                                        src="/images/img.jpg"
+                                                        alt=""
+                                                    />
+                                                </div>
+                                                <div className="p-2">
+                                                    <h4 className="fs-14 max-lines-2 ellipsis">
+                                                        Lorem ipsum dolor sit
+                                                        amet consectetur
+                                                        adipisicing elit.
+                                                        Voluptatem dolorum minus
+                                                        aliquam praesentium
+                                                        voluptate tempora. Nisi
+                                                        saepe porro dolores
+                                                        dolore inventore ipsum
+                                                        nobis molestias nostrum
+                                                        architecto pariatur.
+                                                        Asperiores, aspernatur
+                                                        provident!
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        ))}
+                                </div>
+                            </section>
+                        </div>
+                    ) : (
+                        <div className="loading-div">
+                            <span className="loading loading-lg loading-ring"></span>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

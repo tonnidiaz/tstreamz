@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en" class="dark" data-theme="tb">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vite + React + Typescript</title>
+        <style>
+            :root {
+                color-scheme: light !important;
+            }
+        </style>
+        <style>
+            body {
+                margin: 0;
+                overflow: hidden;
+                background: #1e1e1e;
+            }
+
+            /* Resize handles */
+            .resize-handle {
+                position: absolute;
+                background: green;
+                z-index: 9999999999999999;
+            }
+
+            :root {
+                --handler-sz: 5px;
+            }
+
+            /* Edges */
+            .resize-handle.top {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: var(--handler-sz);
+                cursor: ns-resize;
+            }
+            .resize-handle.bottom {
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: var(--handler-sz);
+                cursor: ns-resize;
+            }
+            .resize-handle.left {
+                top: 0;
+                left: 0;
+                width: var(--handler-sz);
+                height: 100%;
+                cursor: ew-resize;
+            }
+            .resize-handle.right {
+                top: 0;
+                right: 0;
+                width: var(--handler-sz);
+                height: 100%;
+                cursor: ew-resize;
+            }
+
+            /* Corners */
+            .resize-handle.tl {
+                top: 0;
+                left: 0;
+                width: clac(var(--handler-sz) * 2);
+                height: clac(var(--handler-sz) * 2);
+                cursor: nwse-resize;
+            }
+            .resize-handle.tr {
+                top: 0;
+                right: 0;
+                width: clac(var(--handler-sz) * 2);
+                height: clac(var(--handler-sz) * 2);
+                cursor: nesw-resize;
+            }
+            .resize-handle.bl {
+                bottom: 0;
+                left: 0;
+                width: clac(var(--handler-sz) * 2);
+                height: clac(var(--handler-sz) * 2);
+                cursor: nesw-resize;
+            }
+            .resize-handle.br {
+                bottom: 0;
+                right: 0;
+                width: clac(var(--handler-sz) * 2);
+                height: clac(var(--handler-sz) * 2);
+                cursor: nwse-resize;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="resize-handle left" data-direction="left"></div>
+        <div class="resize-handle right" data-direction="right"></div>
+        <div class="resize-handle top" data-direction="top"></div>
+        <div class="resize-handle bottom" data-direction="bottom"></div>
+        <div id="resizers0">
+            <div class="top">
+                <div class="resizer left"></div>
+                <div class="resizer mid"></div>
+                <div class="resizer right"></div>
+            </div>
+            <div id="root"></div>
+            <div class="bottom">
+                <div class="resizer left"></div>
+                <div class="resizer mid"></div>
+                <div class="resizer right"></div>
+            </div>
+        </div>
+
+        <script id="neu-script" src="/main.js"></script>
+        <script src="/neutralino.js"></script>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
+</html>

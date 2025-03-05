@@ -1,8 +1,0 @@
-{"frontendLibrary": {
-        "patchFile": "/src-next/static/index.html",
-        "devUrl": "http://localhost:3000",
-        "projectPath": "/src-next/",
-        "initCommand": "npm install",
-        "devCommand": "BROWSER=none npm run start with",
-        "buildCommand": "npm run build"
-    }}

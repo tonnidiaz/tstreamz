@@ -1,0 +1,136 @@
+@forward "../../../../apps/ui/src/styles/classes";
+@forward "../../../../apps/ui/src/styles/classes2";
+@forward "../../../../apps/ui/src/styles/scrollbar";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "@flaticon/flaticon-uicons/css/all/all.css";
+
+:root {
+    /* color-scheme: dark; */
+    font-family: Ubuntu, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+    :root {
+        --color-bg: #fff;
+        --color-text: #131716;
+    }
+    .dark {
+        color-scheme: dark;
+        --color-bg-0: #131716;
+        --color-bg: #1E1E1E;//#363636;
+        --color-bg-2: #131816;
+        --color-card: #3d3d3d;
+        --color-text: #dddfde;
+        // @apply bg-neutral-800
+    }
+}
+html, body{
+    background-color: var(--color-bg);
+}
+.tu-inp {
+    @apply flex px-2 w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:text-neutral-300;
+    @apply border dark:border-neutral-700;
+    // @apply  dark:focus:ring-neutral-600  ;
+    &:focus, &:focus-visible{
+        outline-offset: 2px;
+        --tw-ring-inset: var(--tw-empty,);
+        --tw-ring-offset-width: 0px;
+        --tw-ring-offset-color: #fff;
+        // --tw-ring-color: var(--color-blue-600);
+        --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
+            var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+        --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
+            calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+        box-shadow:
+            var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+            var(--tw-shadow);
+        // border-color: var(--color-blue-600);
+        outline: 2px solid #0000;
+        background-color: red !important;
+    }
+    input {
+        @apply w-full bg-transparent px-1;
+        // @apply focus:pt-6 focus:pb-2 placeholder:text-transparent [&:not(:placeholder-shown)]:pt-6 [&:not(:placeholder-shown)]:pb-2 autofill:pt-6 autofill:pb-2 ;
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        &:focus,
+        &:focus-visible {
+            border: none !important;
+            outline: none !important;
+            box-shadow: none !important;
+           
+        }
+    }
+}
+
+#root{
+    height: calc(100vh - 4px);
+    overflow: hidden;
+}
+#tu-app {
+    padding: 0 4.5px;
+    overflow: hidden
+    // @apply flex-1 max-w-full;
+}
+.titlebar {
+    // background-color: var(--color-card);
+    @apply bg-neutral-800;
+    height: 40px;
+    // background: #329ea3;
+    user-select: none;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    gap: 3px;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+}
+.titlebar-button {
+    @apply flex items-center justify-center rounded-full;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+.titlebar-button:hover {
+    background: var(--color-base-300);
+}
+.tu-ctx-menu-item,
+.tu-menu-item {
+    @apply w-full flex items-center gap-x-3 py-1.5 px-3 rounded-lg text-[13px] text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700;
+}
+
+.hs-select{
+    .bg-white.p-2.sticky.top-0{
+        background-color: transparent;
+    }
+}
+
+@layer components{
+   .loading{
+    @apply animate-spin inline-block size-6 border-current border-t-transparent text-gray-400 rounded-full;
+    // @apply  border-3;
+    &-sm{
+        @apply size-4
+    }
+    &-md{
+        @apply size-6
+    }
+    &-lg{
+        @apply size-8
+    }
+    
+} 
+}

@@ -1,0 +1,6 @@
+@import "tailwindcss";
+/* Files to include */
+@source "../../../ui-next/src";
+@plugin "daisyui" {
+    themes: dark --prefersdark, cupcake, night, dim, luxury, tu-dark;
+}
