@@ -2,23 +2,30 @@ package main
 
 import (
 	"embed"
+	"os"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/assetserver"
 	"github.com/wailsapp/wails/v2/pkg/options/linux"
+	"github.com/wailsapp/wails/v2/pkg/options/windows"
 )
 
 //go:embed all:frontend/dist
 var assets embed.FS
 
-// //go:embed build/appicon.png
-// var icon []byte
+//go:embed build/tu-player.png
+var icon []byte
 
 func main() {
 	// Create an instance of the app structure
 	app := NewApp()
+	argsWithoutProg := os.Args[1:]
 
+	if len(argsWithoutProg) != 0 {
+		TuPrint("launchArgs", argsWithoutProg)
+		args = argsWithoutProg
+	}
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:  "Tu player",
@@ -29,7 +36,8 @@ func main() {
 		},
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
 		OnStartup:        app.startup,
-		Linux:            &linux.Options{},
+		Linux:            &linux.Options{Icon: icon},
+		Windows:          &windows.Options{},
 		Bind: []interface{}{
 			app,
 		},

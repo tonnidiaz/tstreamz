@@ -78,7 +78,7 @@ html, body{
     overflow: hidden;
 }
 #tu-app {
-    padding: 0 4.5px;
+    padding: 0;
     overflow: hidden
     // @apply flex-1 max-w-full;
 }
@@ -91,11 +91,12 @@ html, body{
     display: flex;
     justify-content: flex-end;
     position: relative;
-    gap: 3px;
+    // gap: 8px;
     top: 0;
     left: 0;
     right: 0;
     padding: 5px;
+    font-size: 14.5px
 }
 .titlebar-button {
     @apply flex items-center justify-center rounded-full;
@@ -110,7 +111,7 @@ html, body{
 }
 .tu-ctx-menu-item,
 .tu-menu-item {
-    @apply w-full flex items-center gap-x-3 py-1.5 px-3 rounded-lg text-[13px] text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700;
+    @apply w-full flex items-center gap-x-3 py-1.5 px-3 rounded-md text-[13px] text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:bg-gray-100 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700;
 }
 
 .hs-select{
@@ -145,3 +146,13 @@ html, body{
     z-index: 99999999999999;
 }
 }
+
+@layer utilities{
+    .text-primary{
+        @apply text-blue-500
+    }
+}
+
+
+
+.tu-dropdown{z-index: 65;}

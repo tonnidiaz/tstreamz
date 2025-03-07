@@ -1,12 +1,1 @@
-{
-  "name": "tu-player-wails",
-  "outputfilename": "tu-player-wails",
-  "frontend:install": "npm install --offline",
-  "frontend:build": "npm run build",
-  "frontend:dev:watcher": "npm run dev",
-  "frontend:dev:serverUrl": "auto",
-  "author": {
-    "name": "tonnidiaz",
-    "email": "therealhackingknight@gmail.com"
-  }
-}
+{"name":"tu-player","outputfilename":"tu-player","frontend:install":"npm install --offline","frontend:build":"npm run build","frontend:dev:watcher":"npm run dev","frontend:dev:serverUrl":"auto","author":{"name":"tonnidiaz","email":"tunedstreamz@gmail.com"},"fileAssociations":[{"ext":"mp4","name":"MP4 Files","description":"MP4 video files","iconName":"tu-player","role":"Editor"},{"ext":"mov","name":"MOV Files","description":"MOV video files","iconName":"tu-player","role":"Editor"},{"ext":"avi","name":"AVI Files","description":"AVI video files","iconName":"tu-player","role":"Editor"},{"ext":"wmv","name":"WMV Files","description":"WMV video files","iconName":"tu-player","role":"Editor"},{"ext":"flv","name":"FLV Files","description":"FLV video files","iconName":"tu-player","role":"Editor"},{"ext":"mkv","name":"MKV Files","description":"MKV video files","iconName":"tu-player","role":"Editor"},{"ext":"webm","name":"WEBM Files","description":"WEBM video files","iconName":"tu-player","role":"Editor"},{"ext":"ts","name":"TS Files","description":"TS video files","iconName":"tu-player","role":"Editor"},{"ext":"m4v","name":"M4V Files","description":"M4V video files","iconName":"tu-player","role":"Editor"}]}

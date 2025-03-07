@@ -8,12 +8,13 @@ var videoExtensions []string = []string{
 	"flv",
 	"mkv",
 	"webm",
+	"ts",
+	"m4v",
 	// "mpeg",
 	// "mpg",
 	// "3gp",
 	// "ogv",
-	"ts",
-	// "m4v",
+
 	// "f4v",
 	// "vob",
 	// "rm",
@@ -21,3 +22,6 @@ var videoExtensions []string = []string{
 	// "asf",
 	// "divx",
 }
+
+var currentFile string
+var args []string

@@ -1,6 +1,6 @@
 import "preline/preline";
 import "@mobile/ui-next/styles/main.scss";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { IStaticMethods } from "preline/preline";
 
 declare global {
@@ -9,21 +9,17 @@ declare global {
     }
 }
 // import Components from "./components/Components";
-import PrelineComponents from "./components/PrelineComponents";
-import { handleErrs, sleep } from "@cmn/utils/funcs";
-import TuThemeSwitcher from "@mobile/ui-next/components/TuThemeSwitcher";
-import { WindowSetTitle,  } from "wailsjs/runtime/runtime";
+import { handleErrs } from "@cmn/utils/funcs";
+import { WindowIsMaximised, WindowMinimise, WindowSetTitle, WindowToggleMaximise,  } from "wailsjs/runtime/runtime";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import Titlebar from "./components/Titlebar";
 import { TuButton, TuFormGroup, TuInput } from "@mobile/ui-next/components";
 import UForm from "@repo/ui-next/components/UForm";
 import { tuImmer } from "@cmn/utils/funcs4";
-import { GenKeystore } from "wailsjs/go/main/App";
-import TuToast from "@mobile/ui-next/components/TuToast";
+import { CloseApp, GenKeystore } from "wailsjs/go/main/App";
 import { showToast } from "@mobile/ui-next/utils/funcs";
 import { useTuState } from "@repo/ui-next/lib/hooks";
-import UButton from "@repo/ui-next/components/UButton";
+import Titlebar from "@mobile/ui-next/components/Titlebar";
 
 let toastCnt = 1
 function App() {
@@ -87,7 +83,7 @@ function App() {
     };
     return (
         <div className="flex-col flex h-full w-full">
-            <Titlebar />
+            <Titlebar title={appStore.title} minimize={WindowMinimise} toggleMaximize={WindowToggleMaximise} close={CloseApp} isMaximized={WindowIsMaximised} />
             <div className="tu-app flex-1" id="tu-app">
                 <div className="p-4 w-full h-full flex-col gap-3 items-center justify-center oy-scroll">
                     <div className="my-4">

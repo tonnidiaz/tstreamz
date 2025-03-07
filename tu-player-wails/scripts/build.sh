@@ -1,9 +1,6 @@
-#! /bin/bash
-
-echo -e "Start running the script..."
+clear
+tsx ../tools/tool.ts
 cd ../
-
-echo -e "Start building the app..."
-wails build --clean
-
-echo -e "End running the script!"
+wails build -nosyncgomod
+echo "Packaging .deb bundle"
+cd tools && nfpm pkg --packager deb --target ../build

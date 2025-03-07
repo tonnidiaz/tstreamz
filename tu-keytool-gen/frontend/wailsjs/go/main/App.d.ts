@@ -7,8 +7,6 @@ export function ExecCmd(arg1:string):Promise<any>;
 
 export function GenKeystore(arg1:string):Promise<any>;
 
-export function GetPort():Promise<number>;
-
 export function Greet(arg1:string):Promise<string>;
 
 export function SelectSaveDir():Promise<any>;

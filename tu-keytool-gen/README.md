@@ -1,5 +1,5 @@
 
-# Tu wails app
+# Tu keytool gen
 
-A wails app starter template [react + typescript + tailwindcss] from **Tu**
+A wails app desktop app for generating keystore for mobile apps
 

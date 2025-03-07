@@ -4,7 +4,11 @@ import {main} from '../models';
 
 export function CloseApp():Promise<void>;
 
+export function FileExists(arg1:string):Promise<boolean>;
+
 export function GenThumbnails(arg1:string):Promise<Array<main.VidThumb>>;
+
+export function GetArgs():Promise<Array<string>>;
 
 export function GetPort():Promise<number>;
 

@@ -35,7 +35,7 @@ yarn-error.log*
 *.pem
 **/**/_data/**/*.json
 _data
-
+!**/**/build/
 **/**/bin/
 **/**/dist/
 **/**/out/

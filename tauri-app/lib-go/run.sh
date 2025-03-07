@@ -1,1 +1,0 @@
-clear && go run . && chokidar "**/*.go" -c "clear && go run ."

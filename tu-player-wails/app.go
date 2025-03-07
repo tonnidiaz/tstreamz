@@ -68,11 +68,16 @@ func findAvailablePort(startPort int) int {
 	os.Exit(1)
 	return 0
 }
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+}
 
 func initServer() {
 	fmt.Println("Init HTTP SERVER...")
 	port = findAvailablePort(45874)
 	http.HandleFunc("/files", func(w http.ResponseWriter, r *http.Request) {
+
+		enableCors(&w)
 		// localhost:3000/files?path=/path.to/file
 		filePath := r.URL.Query().Get("path")
 		// fmt.Println("\nFilepath: \n", filePath)
@@ -142,12 +147,12 @@ func (a *App) GenThumbnails(dir string) []VidThumb {
 }
 
 func (a *App) CloseApp() {
-	res, _ := runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
-		Type:    runtime.QuestionDialog,
-		Title:   "Close app",
-		Message: "Are you sure you want to close app?",
-	})
-	if res == "Yes" {
-		runtime.Quit(a.ctx)
-	}
+	// res, _ := runtime.MessageDialog(a.ctx, runtime.MessageDialogOptions{
+	// 	Type:    runtime.QuestionDialog,
+	// 	Title:   "Close app",
+	// 	Message: "Are you sure you want to close app?",
+	// })
+	// if res == "Yes" {
+	runtime.Quit(a.ctx)
+	// }
 }

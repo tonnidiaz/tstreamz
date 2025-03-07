@@ -14,10 +14,6 @@ export function GenKeystore(arg1) {
   return window['go']['main']['App']['GenKeystore'](arg1);
 }
 
-export function GetPort() {
-  return window['go']['main']['App']['GetPort']();
-}
-
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }

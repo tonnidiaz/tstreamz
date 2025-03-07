@@ -1,0 +1,30 @@
+name: "tu-player"
+arch: "amd64"
+platform: "linux"
+version: "1.0.0"
+section: "default"
+priority: "extra"
+maintainer: "Tunedstreamz <tunedstreamz@gmail.com>"
+description: "A video player & editor from Tu"
+vendor: "Tonni Diaz"
+homepage: "http://tu.com"
+license: "MIT"
+contents:
+- src: ../build/bin/tu-player
+  dst: /usr/bin/tu-player
+- src: ./main.desktop
+  dst: /usr/share/applications/tu-player.desktop
+# - src: ./main.mimes.xml
+# dst: /usr/share/mime/packages/application-x-wails.xml
+# - src: ./main.mimes.xml
+#   dst: /usr/share/mime/packages/tu-player-mimes.xml
+- src: ../build/tu-player.svg
+  dst: /usr/share/icons/hicolor/scalable/apps/tu-player.svg
+# - src: ../wailsFileIcon.svg
+# dst: /usr/share/icons/hicolor/scalable/mimetypes/application-x-
+# wails.svg
+# - src: ../testFileIcon.svg
+# dst: /usr/share/icons/hicolor/scalable/mimetypes/application-x-
+scripts:
+  postinstall: ./post-install.sh
+  postremove: ./post-remove.sh

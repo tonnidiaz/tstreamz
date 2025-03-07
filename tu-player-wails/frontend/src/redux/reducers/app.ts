@@ -1,10 +1,12 @@
-import { tuImmer } from "@cmn/utils/funcs4";
 import { Path } from "@cmn/utils/interfaces";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import _ from "lodash";
 
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 const initialState = {
-    title: "Tu player"
+    title: "Tu player",
+    port: 0,
+    args: [] as string[]
 }
 
 type State = typeof initialState
@@ -17,6 +19,6 @@ const appSlice = createSlice({
 
     }
 })
-tuImmer
+
 export const appReducer = appSlice.reducer
 export const {updateState: updateAppState} = appSlice.actions

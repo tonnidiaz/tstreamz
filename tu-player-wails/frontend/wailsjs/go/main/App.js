@@ -6,8 +6,16 @@ export function CloseApp() {
   return window['go']['main']['App']['CloseApp']();
 }
 
+export function FileExists(arg1) {
+  return window['go']['main']['App']['FileExists'](arg1);
+}
+
 export function GenThumbnails(arg1) {
   return window['go']['main']['App']['GenThumbnails'](arg1);
+}
+
+export function GetArgs() {
+  return window['go']['main']['App']['GetArgs']();
 }
 
 export function GetPort() {

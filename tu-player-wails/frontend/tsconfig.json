@@ -23,18 +23,23 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
+            "@wailsjs/*": ["./wailsjs/*"],
             "@repo/ui/*": ["../../../apps/ui/src/*"],
             "@cmn/*": ["../../../packages/common/src/*"],
-            "@repo/ui-next/*": ["../../../apps/ui-next/src/*"]
+            "@repo/ui-next/*": ["../../../apps/ui-next/src/*"],
+            "@mobile/ui-next/*": ["../../ui-next/src/*"]
         }
     },
     "include": [
         "src",
         "wailsjs/**/*.d.ts",
-        "../../../apps/ui-next/src/*",
+        "../../../apps/ui-next/src/**/*.ts",
         "../../../apps/ui-next/src/**/*.tsx",
+        "../../ui-next/src/**/*.ts",
+        "../../ui-next/src/**/*.tsx",
         "../../../apps/ui/src/*",
         "../../../packages/common/src/**/*.ts"
     ],
-    "references": [{ "path": "./tsconfig.node.json" }]
+    "exclude": ["node_modules", "**/*/node_modules"]
+    // "references": [{ "path": "./tsconfig.node.json" }]
 }

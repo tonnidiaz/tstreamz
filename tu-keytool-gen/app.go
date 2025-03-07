@@ -4,13 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"net"
-	"net/http"
 	"os"
 	"os/exec"
 	"runtime"
 	"strings"
 
+	"github.com/wailsapp/wails/v2/pkg/menu"
 	wailsRuntime "github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
@@ -28,9 +27,9 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	// Perform your setup here
 	a.ctx = ctx
-	// menu := menu.Menu{}
+	_menu := menu.Menu{}
 	// Add menu
-	// wailsRuntime.MenuSetApplicationMenu(a.ctx, &menu)
+	wailsRuntime.MenuSetApplicationMenu(a.ctx, &_menu)
 	// Init http server for serving files
 	// initServer()
 }
@@ -60,57 +59,15 @@ func (a *App) Greet(name string) string {
 // Tu
 var port = 0
 
-// Check if a port is available and return the first open port
-func findAvailablePort(startPort int) int {
-	for port := startPort; port <= startPort+50; port++ {
-		ln, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
-		if err == nil {
-			ln.Close()
-			return port
-		}
-	}
-	TuPrint("No available ports found in range.")
-	os.Exit(1)
-	return 0
-}
-
-func initServer() {
-	TuPrint("Init HTTP SERVER...")
-	port = findAvailablePort(45874)
-	http.HandleFunc("/files", func(w http.ResponseWriter, r *http.Request) {
-		// localhost:3000/files?path=/path.to/file
-		filePath := r.URL.Query().Get("path")
-		// TuPrint("\nFilepath: \n", filePath)
-		audioPath := filePath // Change this to your file path
-		// audioPath := "C:\\Users\\User\\Music\\sample.mp3" // Windows (Use double backslashes)
-
-		// Ensure file exists
-		if _, err := os.Stat(audioPath); os.IsNotExist(err) {
-			http.Error(w, "File not found", http.StatusNotFound)
-			return
-		}
-
-		http.ServeFile(w, r, audioPath)
-	})
-
-	fmt.Printf("Serving files at http://localhost:%d/files\n", port)
-	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
-
-}
-
-func (a *App) GetPort() int {
-	return port
-}
-
 func (a *App) CloseApp() {
-	res, _ := wailsRuntime.MessageDialog(a.ctx, wailsRuntime.MessageDialogOptions{
-		Type:    wailsRuntime.QuestionDialog,
-		Title:   "Close app",
-		Message: "Are you sure you want to close app?",
-	})
-	if res == "Yes" {
-		wailsRuntime.Quit(a.ctx)
-	}
+	// res, _ := wailsRuntime.MessageDialog(a.ctx, wailsRuntime.MessageDialogOptions{
+	// 	Type:    wailsRuntime.QuestionDialog,
+	// 	Title:   "Close app",
+	// 	Message: "Are you sure you want to close app?",
+	// })
+	// if res == "Yes" {
+	wailsRuntime.Quit(a.ctx)
+	// }
 }
 
 func (a *App) SelectSaveDir() *string {

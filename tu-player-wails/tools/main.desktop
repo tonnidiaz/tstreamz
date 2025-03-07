@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=AudioVideo;Audio;Video;Player;TV;
+Exec=/usr/bin/tu-player %u
+Name=Tu player
+Terminal=false
+Type=Application
+MimeType=video/mp4v-es;video/mp4;
+Keywords=mpv;media;player;video;audio;tv;
+Icon=tu-player.png
