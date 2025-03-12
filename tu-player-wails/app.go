@@ -27,24 +27,30 @@ func (a *App) startup(ctx context.Context) {
 	// Perform your setup here
 	a.ctx = ctx
 	// Init http server for serving files
+	runtime.WindowSetDarkTheme(ctx)
 	initServer()
 }
 
 // domReady is called after front-end resources have been loaded
 func (a App) domReady(ctx context.Context) {
 	// Add your action here
+	TuPrint("\n[dom_ready]\n")
 }
 
 // beforeClose is called when the application is about to quit,
 // either by clicking the window close button or calling runtime.Quit.
 // Returning true will cause the application to continue, false will continue shutdown as normal.
 func (a *App) beforeClose(ctx context.Context) (prevent bool) {
+	TuPrint("\n[before_close]\n")
+	runtime.WindowUnfullscreen(ctx)
 	return false
 }
 
 // shutdown is called at application termination
 func (a *App) shutdown(ctx context.Context) {
+	TuPrint("\n[shutdown]\n")
 	// Perform your teardown here
+	runtime.WindowUnfullscreen(ctx)
 }
 
 // Greet returns a greeting for the given name

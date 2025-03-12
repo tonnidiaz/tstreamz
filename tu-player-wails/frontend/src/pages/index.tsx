@@ -3,17 +3,19 @@ import "@mobile/ui-next/styles/main.scss";
 import "@/styles/main.scss";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-import { handleErrs, sleep, timedLog } from "@cmn/utils/funcs";
-import { getBaseDir, getFilename, tuImmer } from "@cmn/utils/funcs4";
+import { formatDuration, handleErrs, timedLog } from "@cmn/utils/funcs";
+import { getBaseDir, getFilename } from "@cmn/utils/funcs4";
 import { GenThumbnails, ImportVideo, FileExists } from "wailsjs/go/main/App";
-import { WindowSetTitle } from "wailsjs/runtime/runtime";
+import { WindowSetTitle, WindowUnfullscreen } from "wailsjs/runtime/runtime";
 import videojs from "video.js";
 import { VideoJS } from "@/components/VideoJs";
 import { useDispatch, useSelector } from "react-redux";
 import { updateAppState } from "@/redux/reducers/app";
-import { TuButton } from "@mobile/ui-next/components";
 import { RootState } from "@/redux/store";
 import { setPlayerState } from "@/redux/reducers/player";
+import TuSlider from "@repo/ui-next-preline/components/TuSlider";
+import TuPlayer from "@/components/TuPlayer";
+import TuDivider from "@repo/ui-next-preline/components/TuDivider";
 
 const HomePage = () => {
     const pageRef = useRef<HTMLDivElement>(null);
@@ -25,6 +27,12 @@ const HomePage = () => {
     const [otherVids, setOtherVids] = useState<
         { filename: string; thumb: string }[]
     >([]);
+
+    const currVideoIndex = useMemo(
+        () => otherVids.findIndex((el) => el.filename == state.currentFile),
+        [otherVids, state.currentFile]
+    );
+
     const playerRef = useRef<HTMLVideoElement>(null);
     const videoContRef = useRef<HTMLDivElement>(null);
     const filesURL = useMemo(
@@ -63,9 +71,7 @@ const HomePage = () => {
             if (args.length) {
                 const currFile = args[0];
                 if (await FileExists(currFile)) {
-                    dispatch(
-                        setPlayerState({ path: "currentFile", value: currFile })
-                    );
+                    dispatch(setPlayerState(["currentFile", currFile + "#"]));
                 }
             }
         } catch (er) {}
@@ -75,7 +81,7 @@ const HomePage = () => {
         try {
             const res = await ImportVideo();
             if (res) {
-                dispatch(setPlayerState({ path: "currentFile", value: res }));
+                dispatch(setPlayerState(["currentFile", res]));
             }
         } catch (err) {
             handleErrs(err);
@@ -84,67 +90,32 @@ const HomePage = () => {
 
     useEffect(() => {
         checkAndSetCurrentFileFromArgs();
+
+        return () => {
+            WindowUnfullscreen();
+        };
     }, []);
 
     useEffect(() => {
         // state.currentFile
-        const { currentFile } = state;
+        let { currentFile } = state;
+        const cFile = currentFile;
+
         if (currentFile) {
+            if (cFile.endsWith("#")) currentFile = currentFile.replace("#", "");
             dispatch(
                 updateAppState({
                     path: "title",
                     value: getFilename(currentFile),
                 })
             );
-            setupOtherVideos(currentFile);
+            if (cFile.endsWith("#")) setupOtherVideos(currentFile);
             if (state.useVideoJs) {
                 // playerRef.current.play().then(()=>{
                 //     console.log('[vidjs] playing');
                 // }).catch(er=>{console.log('[vidjs] Failed to play video', er);})
                 return;
             }
-
-            if (playerRef.current) {
-                // console.log(playerRef.current);
-                playerRef.current.pause();
-                playerRef.current.load();
-                playerRef.current.oncanplay = (e)=>{
-                    timedLog("Player can play")
-                    playerRef.current.play().then(()=> timedLog("Player play")).catch(console.log)
-                }
-            }
-
-            // // Remove old video from container
-            // const oldVid = videoContRef.current.querySelector("video");
-            // if (oldVid) {
-            //     oldVid.pause();
-            //     oldVid.remove();
-            // }
-
-            // Create new video element
-            // const vid = document.createElement("video");
-            // vid.controls = true;
-            // vid.src = src;
-            // vid.autoplay = true;
-            // // vid.muted = true;
-            // videoContRef.current.appendChild(vid);
-            // // Add listeners to the video
-            // vid.oncanplay = (e) => {
-            //     console.log(`[VID] Can play`);
-            //     vid.play()
-            //         .then(async () => {
-            //             timedLog("Video playing...");
-            //             // await sleep(1000);
-            //             // vid.muted = false;
-            //             // vid.volume = 1;
-            //             // vid.play();
-            //         })
-            //         .catch((err) => {
-            //             console.log("Failed to play vid");
-            //             handleErrs(err);
-            //         });
-            // };
-
             const filename = getFilename(currentFile);
             WindowSetTitle(filename);
             dispatch(updateAppState({ path: "title", value: filename }));
@@ -160,21 +131,30 @@ const HomePage = () => {
             );
             if (el) {
                 const elToScroll = (el.nextSibling || el) as HTMLDivElement;
-                elToScroll.scrollTo({ left: 0, behavior: "smooth" });
-                // elToScroll.scrollIntoView({
-                //     behavior: "smooth",block: 'nearest', inline: 'center'
-                // });
+                // elToScroll.scrollTo({ left: 0, behavior: "smooth" });
+                elToScroll.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest",
+                    inline: "center",
+                });
             }
         }
     }, [state.currentFile, otherVids]);
 
+    const onEnded = () => {
+        timedLog("[on_ended] index page", { currVideoIndex });
+        dispatch(
+            setPlayerState([
+                "currentFile",
+                otherVids[currVideoIndex + 1].filename,
+            ])
+        );
+    };
+
     return (
         <>
             {appState.port ? (
-                <div
-                    ref={pageRef}
-                    className="p-4 flex-col gap-4 h-full oy-scroll"
-                >
+                <div ref={pageRef} className="flex-col gap-4 h-full">
                     <div className="hidden">
                         <div className="my-2">
                             <p className="text-primary text-center fw-6">
@@ -187,54 +167,90 @@ const HomePage = () => {
                             </h1>
                         )}
                     </div>
-
-                    <div
-                        id="video-cont"
-                        ref={videoContRef}
-                        className="bg-card rounded-md w-full h-500px flex items-center justify-center flex-col p-2"
-                    >
+                    <div className="flex gap-2 items-start w-full h-full">
                         <div
-                            className="flex items-center justify-center w-full h-full"
-                            style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                            }}
+                            id="video-cont"
+                            ref={videoContRef}
+                            className="flex-1 bg-card relative rounded-md w-full h-full flex items-center justify-center flex-col p-2"
                         >
-                            <button onClick={pickVideo} className="fs-40">
-                                <i className="fi fi-rr-add"></i>
-                            </button>
-                        </div>
-                        {state.useVideoJs || !state.currentFile ? null : (
-                            <video
-                                autoPlay
-                                ref={playerRef as any}
-                                controls
-                            >
-                                {state.currentFile && <source src={src} />}
-                            </video>
-                        )}
-                        {state.currentFile && state.useVideoJs ? (
-                            <VideoJS
-                                options={{
-                                    autoplay: true,
-                                    controls: true,
-                                    responsive: true,
-                                    fluid: true,
-                                    sources: [
-                                        {
-                                            src,
-                                            type: `video/${state.currentFile.split(".").pop().toLowerCase()}`,
-                                        },
-                                    ],
+                            <div
+                                className="flex items-center justify-center w-full h-full"
+                                style={{
+                                    position: "absolute",
+                                    top: 0,
+                                    left: 0,
                                 }}
-                                onReady={handlePlayerReady}
-                            />
-                        ) : null}
+                            >
+                                <button onClick={pickVideo} className="fs-40">
+                                    <i className="fi fi-rr-add"></i>
+                                </button>
+                            </div>
+                            {state.useVideoJs ? null : (
+                                <TuPlayer src={src} onEnded={onEnded} />
+                            )}
+                            {state.currentFile && state.useVideoJs ? (
+                                <VideoJS
+                                    options={{
+                                        autoplay: true,
+                                        controls: true,
+                                        responsive: true,
+                                        fluid: true,
+                                        sources: [
+                                            {
+                                                src,
+                                                type: `video/${state.currentFile.split(".").pop().toLowerCase()}`,
+                                            },
+                                        ],
+                                    }}
+                                    onReady={handlePlayerReady}
+                                />
+                            ) : null}
+                        </div>
+                        <div className="w-250px p-2 rounded-md border-1 border-neutral-800 flex flex-col max-h-full">
+                            <div className="my-2 px-2">
+                                <h3 className="text-md">Playlist</h3>
+                            </div>
+                            <TuDivider />
+                            <div className="oy-scroll flex-1">
+                                {otherVids.map((el, i) => (
+                                    <div
+                                        style={{ cursor: "pointer" }}
+                                        title={getFilename(el.filename)}
+                                        onClick={() =>
+                                            dispatch(
+                                                setPlayerState([
+                                                    "currentFile",
+                                                    el.filename,
+                                                ])
+                                            )
+                                        }
+                                        key={`Item${i + 1}`}
+                                        className={
+                                            "tu-menu-item p-2 flex gap-1 items-start vid-card-cont " +
+                                            (state.currentFile == el.filename &&
+                                                "active")
+                                        }
+                                    >
+                                        <div className="h-50px w-50px">
+                                            <img
+                                                src={
+                                                    `${filesURL}?path=` +
+                                                    encodeURIComponent(el.thumb)
+                                                }
+                                                alt=""
+                                            />
+                                        </div>
+                                        <h4 className="_title fs-12 max-lines-2 ellipsis wp-wrap">
+                                            {getFilename(el.filename)}
+                                        </h4>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     {otherVids.length ? (
-                        <section>
+                        <section className="hidden">
                             <h3 className="ttl">Playlist</h3>
                             <div className="mt-3 p-2 flex ox-scroll gap-3 relative">
                                 {otherVids.map((el, i) => (
@@ -242,10 +258,10 @@ const HomePage = () => {
                                         title={getFilename(el.filename)}
                                         onClick={() =>
                                             dispatch(
-                                                setPlayerState({
-                                                    path: "currentFile",
-                                                    value: el.filename,
-                                                })
+                                                setPlayerState([
+                                                    "currentFile",
+                                                    el.filename,
+                                                ])
                                             )
                                         }
                                         key={`vid-${i}`}

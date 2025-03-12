@@ -1,10 +1,11 @@
 import path from "path";
 
-// const flowbiteReact = require("flowbite-react/tailwind")
+const repoNextPrelineDir = require.resolve("@repo/ui-next-preline/package.json");
 const repoNextDir = require.resolve("@repo/ui-next/package.json");
-const uiNextDir = require.resolve("@mobile/ui-next/package.json");
+const mobileNextDir = require.resolve("@mobile/ui-next/package.json")
+
 const exts = "{js,ts,jsx,tsx,mdx}";
-const folders = [uiNextDir, repoNextDir].map((el) =>
+const folders = [repoNextPrelineDir, repoNextDir, mobileNextDir].map((el) =>
     path.dirname(path.relative(__dirname, el)) + `/src/**/*.${exts}`
 );
 console.log({folders});

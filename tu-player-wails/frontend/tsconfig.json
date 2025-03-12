@@ -5,6 +5,7 @@
         "lib": ["ESNext", "DOM", "DOM.Iterable"],
         "module": "ESNext",
         "skipLibCheck": true,
+        "types": ["./src/.d.ts"],
 
         /* Bundler mode */
         "moduleResolution": "bundler",
@@ -24,21 +25,24 @@
         "paths": {
             "@/*": ["./src/*"],
             "@wailsjs/*": ["./wailsjs/*"],
-            "@repo/ui/*": ["../../../apps/ui/src/*"],
             "@cmn/*": ["../../../packages/common/src/*"],
-            "@repo/ui-next/*": ["../../../apps/ui-next/src/*"],
-            "@mobile/ui-next/*": ["../../ui-next/src/*"]
+            "@repo/ui-next-preline/*": ["../../../packages/ui-next-preline/src/*"],
+            "@repo/ui-next/*": ["../../../packages/ui-next/src/*"],
+            "@repo/ui/*": ["../../../packages/ui/src/*"],
+            "@mobile/ui-next/*": ["../../../mobile-apps/ui-next/src/*"],
         }
     },
     "include": [
         "src",
         "wailsjs/**/*.d.ts",
-        "../../../apps/ui-next/src/**/*.ts",
-        "../../../apps/ui-next/src/**/*.tsx",
-        "../../ui-next/src/**/*.ts",
-        "../../ui-next/src/**/*.tsx",
-        "../../../apps/ui/src/*",
-        "../../../packages/common/src/**/*.ts"
+        "../../../packages/common/src/**/*.ts",
+        "../../../packages/ui/src/**/*.ts",
+        "../../../packages/ui-next-preline/src/**/*.ts",
+        "../../../packages/ui-next-preline/src/**/*.tsx",
+        "../../../packages/ui-next/src/**/*.ts",
+        "../../../packages/ui-next/src/**/*.tsx",
+        "../../../mobile-apps/ui-next/src/**/*.ts",
+        "../../../mobile-apps/ui-next/src/**/*.tsx",
     ],
     "exclude": ["node_modules", "**/*/node_modules"]
     // "references": [{ "path": "./tsconfig.node.json" }]

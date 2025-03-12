@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite --port=4587",
+  "scripts": { 
+    "dev": "vite",
     "neu:dev": "clear && concurrently \"npm run dev\" \"wait-on http://localhost:4587 && cd .. && neu run -- --frontend-lib-dev --window-enable-inspector\"",
     "build": "tsc -b && vite build",
     "shadcn:add": "npx shadcn@latest add",

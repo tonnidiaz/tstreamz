@@ -4,7 +4,8 @@ action=$1
 args=$2
 
 echo -e "Running with [ $args ]\n"
-test_file="'/home/tonni/Downloads/The Simpsons S00-S09 (1989-) + Shorts (1987-1989)/The Simpsons S05 (360p)/The Simpsons S05E03 Homer Goes to College.mp4'"
+test_file='"/home/tonni/Downloads/The Simpsons S00-S09 (1989-) + Shorts (1987-1989)/The Simpsons S05 (360p)/The Simpsons S05E03 Homer Goes to College.mp4"'
+
 
 function gen_deb(){
     echo -e "\nPackaging .deb bundle....\n"
@@ -38,5 +39,6 @@ then
 
 else
     echo -e "Running app...\n"
-    WAILS_NO_UPDATE_CHECK=true wails dev -nosyncgomod -s -appargs $test_file
+    echo -e "App args: $test_file\n"
+    WAILS_NO_UPDATE_CHECK=true wails dev -nosyncgomod -s -appargs "$test_file"
 fi

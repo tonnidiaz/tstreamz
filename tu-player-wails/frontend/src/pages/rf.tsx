@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useTuState } from "@repo/ui-next/lib/hooks";
 import { GetArgs } from "wailsjs/go/main/App";
-import TuButton from "@mobile/ui-next/components/TuButton";
+import TuButton from "@repo/ui-next-preline/components/TuButton";
 import { WindowSetTitle } from "@wailsjs/runtime/runtime";
 const RFPage = () => {
     const appStore = useSelector((s: RootState) => s.app);

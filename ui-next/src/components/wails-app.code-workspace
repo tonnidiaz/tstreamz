@@ -1,26 +1,28 @@
 {
 	"folders": [
-		{
-			"path": "../../../wails-app"
-		},
-		{
-			"path": "../../../../apps/ui"
-		},
-		{
-			"path": "../../../neu-app-0"
-		},
-		{
-			"path": "../../.."
-		},
-		{
-			"path": "../../../../apps/ui-next"
-		},
-		{
-			"path": "../../../tu-player-wails"
-		},
-		{
-			"path": "../../../../apps/ui-sv"
-		}
-	],
-    "settings": {}
+        {
+            "path": "../../../wails-app"
+        },
+        {
+            "path": "../../.."
+        },
+        {
+            "path": "../../../tu-player-wails"
+        },
+        {
+            "path": "../../../../packages/ui-next-preline"
+        },
+        {
+            "path": "../../../../packages/common"
+        },
+        {
+            "path": "../../../.."
+        },
+        {
+            "path": "../../../../packages/ui-next"
+        }
+    ],
+    "settings": {
+        "liveServer.settings.multiRootWorkspaceName": "mobile-apps"
+    }
 }

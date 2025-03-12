@@ -4,17 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port=4587",
+    "wails:dev": "clear && concurrently \"npm run dev\" \"echo 'Waiting for port...' && wait-on http://localhost:4587 && echo 'port ready' && cd .. && ./scripts/tu.sh run\"",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
-    "@mobile/ui-next": "*",
     "@reduxjs/toolkit": "^2.6.0",
-    "@repo/common": "1.0.0",
-    "@repo/ui": "0.0.0",
-    "@repo/ui-next": "1.0.1",
+    "@repo/common": "*",
+    "@repo/ui": "*",
+    "@repo/ui-next": "*",
+    "@repo/ui-next-preline": "*",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",

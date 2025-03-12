@@ -13,10 +13,10 @@ const Titlebar = ({
     title?: ReactNode;
     trailing?: ReactNode;
     leading?: ReactNode;
-    close: () => any;
-    minimize: () => any;
-    toggleMaximize: () => any;
-    isMaximized: () => Promise<boolean>;
+    close?: () => any;
+    minimize?: () => any;
+    toggleMaximize?: () => any;
+    isMaximized?: () => Promise<boolean>;
     
 }) => {
     const [_isMax, setIsMax] = useState<boolean>(false);
@@ -30,7 +30,7 @@ const Titlebar = ({
     }, []);
     return (
         <div
-            style={{ widows: 1 }}
+            style={{ widows: 1, zIndex: 25 }}
             data-tauri-drag-region
             className="titlebar gap-5 flex items-center justify-between text-neutral-300"
         >

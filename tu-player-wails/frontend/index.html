@@ -1,20 +1,48 @@
 <!doctype html>
-<html lang="en" class="dark" data-theme="tu-dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tauri + React + Typescript</title>
-    <style>
-        :root{
-            /* color-scheme: light !important; */
-        }
-    </style>
-  </head>
+<html lang="en" class="dark mobile" data-theme="tu-dark">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tauri + React + Typescript</title>
+        <style>
+            :root {
+                /* color-scheme: light !important; */
+            }
+        </style>
+    </head>
 
-  <body>
-    <div id="root"></div>
-    <script src="/js/opencv.js"></script>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <body>
+        <div
+            id="titlebar-root"
+            class="flex items-center w-full titlebar"
+            style="widows: 1"
+        >
+            <div
+                class="flex-1 flex items-center gap-3 pl-3"
+                id="titlebar-slot"
+            ></div>
+            <div class="flex items-center gap-2">
+                
+                <div class="titlebar-button" id="titlebar-minimize">
+                    <span>
+                        <i class="fi fi-br-window-minimize"></i>
+                    </span>
+                </div>
+                <div class="titlebar-button" id="titlebar-maximize">
+                    <span>
+                        <i class="fi fi-sr-window-maximize"></i>
+                    </span>
+                </div>
+                <div class="titlebar-button" id="titlebar-close">
+                    <span>
+                        <i class="fi fi-br-cross"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="root"></div>
+        <script src="/js/opencv.js"></script>
+        <script type="module" src="/src/main.tsx"></script>
+    </body>
 </html>
