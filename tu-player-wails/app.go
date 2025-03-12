@@ -87,16 +87,15 @@ func initServer() {
 		// localhost:3000/files?path=/path.to/file
 		filePath := r.URL.Query().Get("path")
 		// fmt.Println("\nFilepath: \n", filePath)
-		audioPath := filePath // Change this to your file path
 		// audioPath := "C:\\Users\\User\\Music\\sample.mp3" // Windows (Use double backslashes)
-
+		TuPrint("File path:", filePath)
 		// Ensure file exists
-		if _, err := os.Stat(audioPath); os.IsNotExist(err) {
-			http.Error(w, "File not found", http.StatusNotFound)
+		if _, err := os.Stat(filePath); os.IsNotExist(err) {
+			http.Error(w, fmt.Sprintf("File [%s] not found", filePath), http.StatusNotFound)
 			return
 		}
 
-		http.ServeFile(w, r, audioPath)
+		http.ServeFile(w, r, filePath)
 	})
 
 	fmt.Printf("Serving files at http://localhost:%d/files\n", port)
@@ -126,6 +125,8 @@ func (a *App) ImportVideo() string {
 type VidThumb struct {
 	Filename string `json:"filename"`
 	Thumb    string `json:"thumb"`
+	ModTime  int64  `json:"modifiedAt"`
+	Size     int64  `json:"size"`
 }
 
 // Gets other videos in directory and generate their thumbnails
@@ -147,7 +148,13 @@ func (a *App) GenThumbnails(dir string) []VidThumb {
 		if file.IsDir() || !slices.Contains(videoExtensions, ext) {
 			continue
 		}
-		vidThumbs = append(vidThumbs, VidThumb{Filename: fmt.Sprintf("%s/%s", dir, file.Name()), Thumb: dummyThumb})
+		fileInfo, err := file.Info()
+		if err != nil {
+			continue
+		}
+		fileInfo.ModTime().UnixMilli()
+		vidThumbs = append(vidThumbs, VidThumb{Filename: fmt.Sprintf("%s/%s", dir, file.Name()), Thumb: dummyThumb, ModTime: fileInfo.ModTime().Unix(), Size: fileInfo.Size()})
+
 	}
 	return vidThumbs
 }

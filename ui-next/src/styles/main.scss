@@ -16,6 +16,7 @@ body{overflow: hidden; max-height: 100%}
     right: 0;
     padding: 5px;
     font-size: 14.5px;
+    z-index: 50;
     ._title{text-align: center}
 }
 .titlebar-button {
@@ -28,4 +29,10 @@ body{overflow: hidden; max-height: 100%}
 }
 .titlebar-button:hover {
     background: var(--color-base-300);
+}
+
+#root{
+    &.fullscreen{
+        z-index: 55;
+    }
 }

@@ -1,4 +1,3 @@
-import { setPlayerState } from "@/redux/reducers/player";
 import { formatDuration, sleep, timedLog } from "@cmn/utils/funcs";
 import TuSlider from "@repo/ui-next-preline/components/TuSlider";
 import TuIcon from "@repo/ui-next/components/TuIcon";
@@ -8,7 +7,7 @@ import {
     WindowIsFullscreen,
     WindowUnfullscreen,
 } from "@wailsjs/runtime/runtime";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 let mouseLastMoveAt = Date.now();
 type PlayerListener = (el: HTMLVideoElement) => any;
@@ -23,6 +22,9 @@ const initPlayerState = {
     fullScreen: false,
     muted: false,
     volume: 100 / 100,
+    currentIndex: 0,
+    nextIndex: 0,
+    prevIndex: 0,
 };
 
 const TuPlayer = ({
@@ -32,21 +34,48 @@ const TuPlayer = ({
     onEnded,
     onReady,
     onDurationChange,
-    src,
+    onIndexChange,
+    playlist = [],
+    currIndex = 0,
 }: {
-    src?: string;
     onProgress?: (val: number) => any;
     onDurationChange?: (val: number) => any;
     onEnded?: PlayerListener;
     onPlay?: PlayerListener;
     onPause?: PlayerListener;
     onReady?: PlayerListener;
+    onIndexChange?: (index: number) => any;
+    /**List of video sources */
+    playlist?: string[];
+    currIndex?: number;
 }) => {
     const playerRef = useRef<HTMLVideoElement>(null);
     const controlsRef = useRef<HTMLDivElement>(null);
 
     const [state, setState] = useState(initPlayerState);
+    const src = useMemo(() => playlist[currIndex] || "http://localhost:45874/files?path=%2Fhome%2Ftonni%2FDownloads%2FThe%20Simpsons%20S00-S09%20(1989-)%20%2B%20Shorts%20(1987-1989)%2FThe%20Simpsons%20S05%20(360p)%2FThe%20Simpsons%20S05E02%20Cape%20Feare.mp4", [playlist, currIndex]);
+    const nextIndex = useMemo(
+        () =>
+            state.repeat
+                ? state.currentIndex
+                : playlist[state.currentIndex + 1]
+                  ? state.currentIndex + 1
+                  : 0,
+        [state.currentIndex, state.repeat, playlist]
+    );
+    const prevIndex = useMemo(
+        () =>
+            state.repeat
+                ? state.currentIndex
+                : playlist[state.currentIndex - 1]
+                  ? state.currentIndex - 1
+                  : 0,
+        [state.currentIndex, state.repeat, playlist]
+    );
 
+    function _onLoad() {
+        timedLog("[player:on_load]");
+    }
     // Player listeners
     function _onPlayerReady(e: any) {
         const player = playerRef.current;
@@ -83,9 +112,9 @@ const TuPlayer = ({
         setState((s) => ({ ...s, volume: playerRef.current.volume }));
     }
     function _onPlayerEnded(e: any) {
-        timedLog("[player_ended]")
+        timedLog("[player_ended]");
         const player = playerRef.current;
-        setState((s) => ({ ...s, isPlaying: false }));
+        setState((s) => ({ ...s, isPlaying: false, currentIndex: nextIndex }));
         onEnded?.(player);
     }
     const togglePlay = (e) => {
@@ -101,6 +130,11 @@ const TuPlayer = ({
             const isFullScreen = await WindowIsFullscreen();
             if (isFullScreen) WindowUnfullscreen();
             else WindowFullscreen();
+            const root = document.getElementById("root")
+            if (!isFullScreen && !root.classList.contains("fullscreen"))
+                root.classList.add("fullscreen")
+            else root.classList.remove("fullscreen")
+
             setState((s) => ({ ...s, fullScreen: !isFullScreen }));
         } catch (err) {
             console.log(err);
@@ -124,6 +158,20 @@ const TuPlayer = ({
     };
 
     useEffect(() => {
+        setState((s) => ({ ...s, nextIndex }));
+    }, [nextIndex]);
+    useEffect(() => {
+        setState((s) => ({ ...s, prevIndex }));
+    }, [prevIndex]);
+
+    useEffect(() => {
+        onIndexChange?.(state.currentIndex);
+    }, [state.currentIndex]);
+    useEffect(() => {
+        setState((s) => ({ ...s, currentIndex: currIndex }));
+    }, [currIndex]);
+
+    useEffect(() => {
         return () => {
             WindowUnfullscreen();
         };
@@ -142,9 +190,9 @@ const TuPlayer = ({
         }
     }, [src, playerRef.current]);
 
-    useEffect(()=>{
-        playerRef.current.muted = state.muted
-    }, [state.muted])
+    useEffect(() => {
+        playerRef.current.muted = state.muted;
+    }, [state.muted]);
 
     function _onVolumeWheel(ev: any) {
         try {
@@ -161,14 +209,14 @@ const TuPlayer = ({
             else playerRef.current.volume = Math.max(0, prevVol);
         } catch (err) {}
     }
-    
-    function _toggleMute(ev: any){
-        const player = playerRef.current
-        setState(s=> ({...s, muted: !player.muted}))
+
+    function _toggleMute(ev: any) {
+        const player = playerRef.current;
+        setState((s) => ({ ...s, muted: !player.muted }));
     }
 
-    function _onWaiting(){
-        setState(s=> ({...s, isReady: false}))
+    function _onWaiting() {
+        setState((s) => ({ ...s, isReady: false }));
     }
     return (
         <div
@@ -184,6 +232,7 @@ const TuPlayer = ({
                 </div> */}
                 <video
                     className="max-h-full"
+                    style={{backgroundColor: 'black'}}
                     autoPlay
                     ref={playerRef as any}
                     onPlaying={_onPlayerPlaying}
@@ -194,6 +243,7 @@ const TuPlayer = ({
                     onCanPlay={_onPlayerReady}
                     onVolumeChange={_onVolumeChange}
                     onWaiting={_onWaiting}
+                    onLoad={_onLoad}
                 >
                     {src && <source src={src} />}
                 </video>
@@ -259,7 +309,8 @@ function PlayerControls({
     togglePlay,
     onVolumeWheel,
     className = "",
-    toggleMute, setState
+    toggleMute,
+    setState,
 }: {
     className?: string;
     player: HTMLVideoElement;
@@ -267,7 +318,7 @@ function PlayerControls({
     togglePlay: (ev: any) => any;
     onVolumeWheel: (ev: any) => any;
     toggleMute: (ev: any) => any;
-    setState: ReturnType<typeof useState<typeof initPlayerState>>[1]
+    setState: ReturnType<typeof useState<typeof initPlayerState>>[1];
 }) {
     return (
         <div
@@ -284,34 +335,59 @@ function PlayerControls({
                     <button className="tu-menu-item-min">
                         <i className="fi fi-br-shuffle"></i>
                     </button>
-                    <button className="tu-menu-item-min">
-                        <i className="fi fi-br-angle-double-small-left"></i>
+
+                    <button className="tu-menu-item-min" onClick={()=>{player.currentTime -= 10}} title="-10s">
+                        <i className="fi fi-br-rotate-left"></i>
                     </button>
-                    <button className="tu-menu-item-min">
-                        <i className="fi fi-br-angle-small-left"></i>
+                    <button
+                        onClick={() => {
+                            setState((s) => ({
+                                ...s,
+                                currentIndex: s.prevIndex,
+                            }));
+                        }}
+                        className="tu-menu-item-min"
+                    >
+                        <i className="fi fi-br-step-backward"></i>
                     </button>
-                        <button
+                    <button
                         onClick={togglePlay}
                         className="tu-menu-item-min text-xl"
                     >
                         <i
-                            className={`fi fi-br-${!state.isReady ? "loading": state.isPlaying ? "pause" : "play"} `}
+                            className={`fi fi-br-${!state.isReady ? "loading" : state.isPlaying ? "pause" : "play"} `}
                         ></i>
                         {/* <TuIcon pkg="fi" name="br-play"/> */}
                     </button>
-                    <button className="tu-menu-item-min">
-                        <i className="fi fi-br-angle-small-right"></i>
+                    <button
+                        onClick={() => {
+                            setState((s) => ({
+                                ...s,
+                                currentIndex: s.nextIndex,
+                            }));
+                        }}
+                        className="tu-menu-item-min"
+                    >
+                        <i className="fi fi-br-step-forward"></i>
                     </button>
-                    <button className="tu-menu-item-min">
-                        <i className="fi fi-br-angle-double-small-right"></i>
+                    <button onClick={()=>{player.currentTime += 10}} title="+10s" className="tu-menu-item-min">
+                        <i className="fi fi-br-rotate-right"></i>
                     </button>
-                    <button onClick={()=>{setState(s=> ({...s, repeat: !s.repeat}))}} className="tu-menu-item-min">
-                        <i className={`fi fi-br-arrows-repeat${state.repeat ? '-1' : ''}`}></i>
+
+                    <button
+                        onClick={() => {
+                            setState((s) => ({ ...s, repeat: !s.repeat }));
+                        }}
+                        className="tu-menu-item-min"
+                    >
+                        <i
+                            className={`fi fi-br-arrows-repeat${state.repeat ? "-1" : ""}`}
+                        ></i>
                     </button>
                 </div>
                 <div className="">
                     <button
-                    onClick={toggleMute}
+                        onClick={toggleMute}
                         className="flex items-center flex-col"
                         onWheel={onVolumeWheel}
                     >

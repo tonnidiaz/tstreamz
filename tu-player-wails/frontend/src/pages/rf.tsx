@@ -2,9 +2,10 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useTuState } from "@repo/ui-next/lib/hooks";
-import { GetArgs } from "wailsjs/go/main/App";
 import TuButton from "@repo/ui-next-preline/components/TuButton";
 import { WindowSetTitle } from "@wailsjs/runtime/runtime";
+import TuResizable from "@repo/ui-next-preline/components/Resizable";
+
 const RFPage = () => {
     const appStore = useSelector((s: RootState) => s.app);
     const imgRef = useRef<HTMLImageElement>(null);
@@ -38,11 +39,11 @@ const RFPage = () => {
         }
     }
     async function openCVStuff(img: HTMLImageElement) {
-        window.cv.then((cv) => {
-            let mat = cv.imread(img);
-            console.log(mat);
-            cv.imshow("out-canvas", mat);
-        });
+        // window.cv.then((cv) => {
+        //     let mat = cv.imread(img);
+        //     console.log(mat);
+        //     cv.imshow("out-canvas", mat);
+        // });
     }
 
     async function changeTitle(){
@@ -58,7 +59,7 @@ const RFPage = () => {
             <div className="w-full flex flex-col gap-3 p-4">
                 <div className="p-4 flex gap-4 justify-center">
                     <div className="w-300px">
-                        <img ref={imgRef} src={src.value} alt="" />
+                        {src.value && <img ref={imgRef} src={src.value} alt="" />}
                     </div>
                     <div className="w-300px">
                         <canvas
@@ -68,6 +69,7 @@ const RFPage = () => {
                     </div>
                 </div>
                 <div className="p-4">
+                    <TuResizable/>
                     <TuButton onClick={changeTitle}>Change title</TuButton>
                     <h2 className="fs-18 fw-6">App arguments</h2>
                     <div className="ml-2">

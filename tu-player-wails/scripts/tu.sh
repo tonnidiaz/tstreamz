@@ -40,5 +40,5 @@ then
 else
     echo -e "Running app...\n"
     echo -e "App args: $test_file\n"
-    WAILS_NO_UPDATE_CHECK=true wails dev -nosyncgomod -s -appargs "$test_file"
+    WAILS_NO_UPDATE_CHECK=true wails dev -nosyncgomod -s -loglevel Info -appargs "$test_file"
 fi

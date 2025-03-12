@@ -17,7 +17,7 @@ const closeBtn = titlebar.querySelector("#titlebar-close")
 
 const toggleMaximize = (ev: any) =>{
     WindowToggleMaximise()
-    WindowIsMaximised().then(isIt =>{maximizeBtn.innerHTML =`<i class="fi fi-${isIt ? 'sr' : 'br'}-window-maximize"></i>`}).catch(console.log)
+    WindowIsMaximised().then(isIt =>{maximizeBtn.innerHTML =`<i class="fi fi-br-${isIt ? 'window-maximize' : 'browsers'}"></i>`}).catch(console.log)
 }
 const init = () => {
     try {
