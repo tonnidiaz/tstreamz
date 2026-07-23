@@ -20,7 +20,7 @@
     let { data } = $props();
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);
-    let server = $state(0),
+    let server = $state(1),
         setServer = (v: number) => (server = v);
     let tv = $derived<IObj | null>(data.tv);
     let frame: HTMLIFrameElement;
@@ -43,7 +43,7 @@
         const movieId = id;
         const s = query.s ?? "1",
             e = query.ep ?? "1";
-        return [`https://www.2embed.cc/embedtv/${movieId}&s=${s}&e=${e}`];
+        return [`https://www.2embed.cc/embedtv/${movieId}&s=${s}&e=${e}`, `https://vidsrcme.ru/embed/tv?tmdb=${movieId}&season=${s}&episode=${e}`];
     };
     const embedUrls = (i: number = 3) => {
         return servers()[i];
