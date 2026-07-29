@@ -17,7 +17,7 @@
 
     let meta = $state<any>(null),
         setMeta = (v: any) => (meta = v);
-    let server = $state(0),
+    let server = $state(1),
         setServer = (v: number) => (server = v);
     // let movie = $state<IObj | null>(null);
     let frame: HTMLIFrameElement;
@@ -26,7 +26,7 @@
     const {data} = $props();
     let movie = $derived<IObj | undefined>(data.movie)
 
-    const servers = () => [`https://www.2embed.cc/embed/${id}`];
+    const servers = () => [`https://www.2embed.cc/embed/${id}`, `https://vidsrcme.ru/embed/movie?tmdb=${id}`];
     const embedUrls = (i: number = 0) => {
         const movieId = movie?.id;
         return true ? servers()[i] : "";
